@@ -1,0 +1,2 @@
+rootProject.name = "Road to Effective Snapshot Testing"
+include ':app'
