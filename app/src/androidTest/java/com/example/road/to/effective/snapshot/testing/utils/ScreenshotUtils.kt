@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing
+package com.example.road.to.effective.snapshot.testing.utils
 
 import android.app.Activity
 import androidx.annotation.StyleRes

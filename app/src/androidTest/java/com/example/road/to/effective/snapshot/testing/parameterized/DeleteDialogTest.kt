@@ -4,8 +4,12 @@ import androidx.annotation.StringRes
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.example.road.to.effective.snapshot.testing.*
-import com.example.road.to.effective.snapshot.testing.Theme.MATERIAL_DARK
-import com.example.road.to.effective.snapshot.testing.Theme.MATERIAL_LIGHT
+import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_DARK
+import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_LIGHT
+import com.example.road.to.effective.snapshot.testing.utils.SmokeTest
+import com.example.road.to.effective.snapshot.testing.utils.DialogTheme
+import com.example.road.to.effective.snapshot.testing.utils.waitForActivity
+import com.example.road.to.effective.snapshot.testing.utils.waitForView
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
@@ -68,10 +72,9 @@ class BasicDeleteDialogSnapshotTest(private val testItem: TestItem) : Screenshot
     }
 }
 
-
 class TestItem(
     val fontScale: FontScale,
-    val theme: Theme,
+    val theme: DialogTheme,
     val texts: Array<Int>,
     val testName: String
 )

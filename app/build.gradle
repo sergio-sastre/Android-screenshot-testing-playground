@@ -6,21 +6,17 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.road.to.effective.snapshot.testing"
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "com.example.road.to.effective.snapshot.testing.TestRunner"
-
-        //testInstrumentationRunnerArguments ["annotation':'com.example.road.to.effective.snapshot.testing.dataprovider.SmokeTest'"]
-        //testApplicationId "com.example.road.to.effective.snapshot.testing.shot"
-        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
     }
 
     buildTypes {
@@ -33,11 +29,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 
-    // required for shot compatibility
+    // required for compatibility with shot
     packagingOptions {
         exclude 'META-INF/AL2.0'
         exclude "META-INF/LGPL2.1"
