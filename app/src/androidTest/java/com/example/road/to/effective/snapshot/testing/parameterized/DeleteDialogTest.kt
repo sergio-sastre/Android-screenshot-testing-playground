@@ -30,19 +30,24 @@ class AllDeleteDialogSnapshotTest(private val testItem: TestItem) : ScreenshotTe
         @Parameterized.Parameters
         fun data(): Array<TestItem> =
             arrayOf(
-                TestItem(SMALL, MATERIAL_DARK, arrayOf(R.string.shortest), "DARK_SMALL"),
+                TestItem(
+                    SMALL,
+                    MATERIAL_DARK,
+                    arrayOf(R.string.shortest),
+                    "DARK_SMALL"
+                ),
                 TestItem(
                     HUGE,
                     MATERIAL_DARK,
                     repeatedItem(7, R.string.largest),
                     "DARK_HUGE"
-                ),
+                )
             )
     }
 
     @Test
     fun snapDialog() {
-        snapDeleteDialog(testItem, testItem.testName)
+        snapDeleteDialog(testItem)
     }
 }
 
@@ -68,7 +73,7 @@ class BasicDeleteDialogSnapshotTest(private val testItem: TestItem) : Screenshot
     @SmokeTest
     @Test
     fun snapDialog() {
-        snapDeleteDialog(testItem, testItem.testName)
+        snapDeleteDialog(testItem)
     }
 }
 
@@ -79,7 +84,7 @@ class TestItem(
     val testName: String
 )
 
-private fun ScreenshotTest.snapDeleteDialog(testItem: TestItem, testName: String) {
+private fun ScreenshotTest.snapDeleteDialog(testItem: TestItem) {
     val activity = launch(MainActivity::class.java)
         .waitForActivity(testItem.theme.themId)
 
@@ -91,7 +96,7 @@ private fun ScreenshotTest.snapDeleteDialog(testItem: TestItem, testName: String
         )
     }
 
-    compareScreenshot(dialog, name = testName, widthInPx = 800)
+    compareScreenshot(dialog, name = testItem.testName, widthInPx = 800)
 }
 
 private fun itemArray(@StringRes resources: Array<Int>): Array<String> =
