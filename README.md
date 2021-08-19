@@ -4,7 +4,7 @@
 
 # Road to effective snapshot testing </br>
 A sample repo describing best practices for snapshot testing on Android. This includes for now:
-1. **Parameterized Tests**: Write the test once and run it under all desired configurations
+1. **Parameterized Tests**: Write the test once and run it under all desired configurations. This includes snapshot tests under various **Font sizes**
 2. **Filtered Parameterized Tests**: Create filters to group the configurations, so that we can run only the tests corresponding to a certain group 
 
 The code here will reflect everything discussed on my series on [snapshot testing](https://sergiosastre.hashnode.dev/an-introduction-to-snapshot-testing-on-android-in-2021)
