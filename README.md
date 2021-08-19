@@ -150,14 +150,15 @@ class BasicDeleteDialogSnapshotTest(private val testItem: TestItem) : Screenshot
 }
 ```
 
-Take a look at ´DelegateDialogTest.kt` to see how these Parameterized Tests are implemented` and run
+Take a look at [DelegateDialogTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/parameterized/DeleteDialogTest.kt) to see how these Parameterized Tests are implemented and run
 `./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.SmokeTest`
 to verify that only the `@SmokeTest` runs!
 
 ## What is coming next:
-1. Tips to remove flakiness
-2. Tips to increase test execution speed
-3. Jetpack compose samples
+1. More advance samples
+2. Tips to remove flakiness
+3. Tips to increase test execution speed
+4. Jetpack compose samples
 and more...
 
 
