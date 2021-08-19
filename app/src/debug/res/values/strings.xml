@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="largest">Item one, undoubtedly the longest</string>
+    <string name="middle">Item two, also very long</string>
+    <string name="shortest">Item three, short</string>
+</resources>
