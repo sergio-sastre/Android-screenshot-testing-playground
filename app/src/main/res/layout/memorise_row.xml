@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="12dp"
+            android:adjustViewBounds="true"
+            android:elevation="8dp"
+            android:src="@drawable/ic_russia_moscow_cathedral"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mainLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:minHeight="90dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="90dp"
+                android:paddingVertical="8dp"
+                android:id="@+id/contentLayout">
+
+                <ImageView
+                    android:id="@+id/sourceLangImage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_uk_flag_48dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/startGuideline"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/bottomImageGuideline"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/trainingIcon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_training_24dp"
+                    app:tint="@color/lightBlue"
+                    app:layout_constraintBottom_toBottomOf="@id/sourceLangImage"
+                    app:layout_constraintEnd_toStartOf="@+id/startGuideline"
+                    app:layout_constraintTop_toTopOf="@+id/sourceLangImage" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/appCompatImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="?android:selectableItemBackground"
+                    android:src="@drawable/ic_baseline_more_vert_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/endBarrier"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title"
+                    style="@style/Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
+                    tools:text="title_sample"
+                    app:layout_constraintBottom_toTopOf="@+id/body"
+                    app:layout_constraintEnd_toStartOf="@+id/endBarrier"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/startGuideline"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/body"
+                    style="@style/Subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    tools:text="lorem_ipsum2"
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    app:layout_constraintBottom_toBottomOf="@+id/textInfo"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"
+                    app:layout_constraintStart_toStartOf="@+id/startGuideline"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/trainingInfo"
+                    style="@style/TrainingInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="5/45"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/sourceLangImage"
+                    app:layout_constraintEnd_toStartOf="@+id/trainingIcon"
+                    app:layout_constraintStart_toEndOf="@id/sourceLangImage"
+                    app:layout_constraintTop_toTopOf="@+id/sourceLangImage" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textInfo"
+                    style="@style/TextInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:text="1321/3000"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/trainingIcon"
+                    app:layout_constraintStart_toStartOf="@+id/sourceLangImage"
+                    app:layout_constraintTop_toBottomOf="@id/sourceLangImage"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/endBarrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:barrierDirection="left"
+                    app:constraint_referenced_ids="appCompatImageButton"
+                    app:layout_constraintStart_toStartOf="@id/appCompatImageButton"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/startGuideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="110dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="110dp"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/bottomImageGuideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="100dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="75dp"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

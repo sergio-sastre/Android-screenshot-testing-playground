@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="popup_window_min_width">170dp</dimen>
+</resources>

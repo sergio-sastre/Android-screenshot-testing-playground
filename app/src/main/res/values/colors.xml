@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="memoTitle2">#828282</color>
     <color name="memoTitle">#414a4c</color>
     <color name="memoSubtitle">#BDBDBD</color>
+    <color name="lightBlue">#56CCF2</color>
 </resources>

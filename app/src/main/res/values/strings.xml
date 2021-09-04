@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Road to Effective Snapshot Testing</string>
     <string name="show_dialog">Show dialog!</string>
+    <string name="show_recycler_view">Show recycler view!</string>
     <string name="delete_text_forever">Delete Item zero forever?</string>
     <string name="you_will_also_permanently_lose">You will also permanently lose</string>
     <string name="delete_action">Delete</string>
     <string name="cancel_button">Cancel</string>
     <string name="delete_button">Delete</string>
+
+    <string name="training_header">TRAINING</string>
+    <string name="words_to_memorise_title">words\n<small>to train</small></string>
+    <string name="filter_words_to_memorise_text">FILTER WORDS TO TRAIN</string>
+    <string name="train_button_text">TRAIN</string>
 </resources>
