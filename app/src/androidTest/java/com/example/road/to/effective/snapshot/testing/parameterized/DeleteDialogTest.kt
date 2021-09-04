@@ -3,11 +3,13 @@ package com.example.road.to.effective.snapshot.testing.parameterized
 import androidx.annotation.StringRes
 import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
-import com.example.road.to.effective.snapshot.testing.*
-import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_DARK
-import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_LIGHT
-import com.example.road.to.effective.snapshot.testing.utils.SmokeTest
+import com.example.road.to.effective.snapshot.testing.DialogBuilder
+import com.example.road.to.effective.snapshot.testing.MainActivity
+import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.utils.DialogTheme
+import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_DARK_DIALOG
+import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_LIGHT_DIALOG
+import com.example.road.to.effective.snapshot.testing.utils.SmokeTest
 import com.example.road.to.effective.snapshot.testing.utils.waitForActivity
 import com.example.road.to.effective.snapshot.testing.utils.waitForView
 import com.karumi.shot.ScreenshotTest
@@ -18,6 +20,7 @@ import org.junit.runners.Parameterized
 import sergio.sastre.fontsize.FontScale
 import sergio.sastre.fontsize.FontScale.*
 import sergio.sastre.fontsize.FontScaleRules
+
 
 @RunWith(Parameterized::class)
 class AllDeleteDialogSnapshotTest(private val testItem: TestItem) : ScreenshotTest {
@@ -32,13 +35,13 @@ class AllDeleteDialogSnapshotTest(private val testItem: TestItem) : ScreenshotTe
             arrayOf(
                 TestItem(
                     SMALL,
-                    MATERIAL_DARK,
+                    MATERIAL_DARK_DIALOG,
                     arrayOf(R.string.shortest),
                     "DARK_SMALL"
                 ),
                 TestItem(
                     HUGE,
-                    MATERIAL_DARK,
+                    MATERIAL_DARK_DIALOG,
                     repeatedItem(7, R.string.largest),
                     "DARK_HUGE"
                 )
@@ -63,7 +66,7 @@ class BasicDeleteDialogSnapshotTest(private val testItem: TestItem) : Screenshot
         fun data(): Array<TestItem> = arrayOf(
             TestItem(
                 NORMAL,
-                MATERIAL_LIGHT,
+                MATERIAL_LIGHT_DIALOG,
                 arrayOf(R.string.largest, R.string.middle, R.string.shortest),
                 "SMOKE"
             )
@@ -107,3 +110,6 @@ private fun repeatedItem(timesRepeated: Int, @StringRes resource: Int): Array<In
     emptyList<Int>().toMutableList().apply {
         repeat(timesRepeated) { add(resource) }
     }.toTypedArray()
+
+
+
