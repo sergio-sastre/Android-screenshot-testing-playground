@@ -40,9 +40,12 @@ class TestItem(
 
 2. Write the method that inflates the view and takes/compares the screenshot. Use the parameters from
 `TestItem` to set the view into the right state.
+If you also want to enable different `Font size` configurations to your tests, you can add the
+[FontSizeTestRule](https://github.com/sergio-sastre/FontSizeTestRule) library to your project. For example,
+you can use the `FontSizeActivityScenario` as follows:
 ```kotlin
 private fun ScreenshotTest.snapDeleteDialog(testItem: TestItem) {
-    val activity = launch(MainActivity::class.java)
+    val activity = FontSizeActivityScenario.launchWith(testItem.fontScale)
         .waitForActivity(testItem.theme.themId)
 
     val dialog = waitForView {
@@ -56,9 +59,6 @@ private fun ScreenshotTest.snapDeleteDialog(testItem: TestItem) {
     compareScreenshot(dialog, name = testItem.testName, widthInPx = 800)
 }
 ```
-If you also want to enable different `Font size` configurations to your tests, you can add the
-[FontSizeTestRule](https://github.com/sergio-sastre/FontSizeTestRule) library to your project. We will
-see in the next section how to use it.
 
 3. Finally, we need to add the parameters. We will use `org.junit.runners.Parameterized` for that.
 We will pass the `TestItem` in the class constructor, and define each single configuration to be run
@@ -67,9 +67,6 @@ inside a method annotated with `@Parameterized.Parameters`.
 ```kotlin
 @RunWith(Parameterized::class)
 class AllDeleteDialogSnapshotTest(private val testItem: TestItem) : ScreenshotTest {
-
-    @get:Rule
-    val fontSize = FontScaleRules.fontScaleTestRule(testItem.fontScale)
 
     companion object {
         @JvmStatic
@@ -127,9 +124,6 @@ containing the "most common config" parameters, like here below
 ```kotlin
 @RuWith(Parameterized::class)
 class BasicDeleteDialogSnapshotTest(private val testItem: TestItem) : ScreenshotTest {
-
-    @get:Rule
-    val fontSize = FontScaleRules.fontScaleTestRule(testItem.fontScale)
 
     companion object {
         @JvmStatic
