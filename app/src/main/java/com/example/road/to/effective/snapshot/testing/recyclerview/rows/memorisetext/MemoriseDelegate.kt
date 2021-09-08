@@ -1,8 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.recyclerview.rows.memorisetext
 
-import android.os.Handler
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.recyclerview.DeleteMemoriseListener
 import com.example.road.to.effective.snapshot.testing.recyclerview.MemoriseClickedListener

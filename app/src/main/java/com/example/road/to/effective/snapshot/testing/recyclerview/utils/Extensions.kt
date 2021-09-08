@@ -4,6 +4,7 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.recyclerview.data.Language
@@ -19,6 +20,24 @@ fun Language.getCountryFlag(): Int {
         Language.French -> R.drawable.ic_france_flag_48dp
         Language.Italian -> R.drawable.ic_italy_flag_48dp
     }
+}
+
+fun ImageView.setFlagImage(language: Language) {
+    val langFlag = language.getCountryFlag()
+    setImageResource(langFlag)
+}
+
+fun ImageView.setLandmarkImage(landmark: Int, language: Language) {
+    val langLandmarkId = when (language) {
+        Language.Spanish -> null
+        Language.English -> R.drawable.ic_uk_gherkin
+        Language.German -> R.drawable.ic_germany_berlin_tower
+        Language.Russian -> R.drawable.ic_russia_moscow_cathedral
+        Language.Portuguese -> null
+        Language.French -> null
+        Language.Italian -> null
+    }
+    langLandmarkId?.let { setImageResource(it) }
 }
 
 fun IntArray.bubbleSortDescending(doOnSwap: (initPos: Int, finalPos: Int) -> Unit = { _, _ -> }): IntArray {

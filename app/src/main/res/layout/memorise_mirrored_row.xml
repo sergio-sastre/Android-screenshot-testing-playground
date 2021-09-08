@@ -38,34 +38,41 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:minHeight="90dp"
-                android:paddingVertical="8dp"
-                android:id="@+id/contentLayout">
+                android:paddingVertical="8dp">
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/sourceLangImage"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_germany_flag_48dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/trainingIcon"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/body"
                     app:layout_constraintStart_toStartOf="@id/startGuideline"
                     app:layout_constraintTop_toTopOf="@+id/bottomImageGuideline"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_germany_flag_48dp" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/trainingIcon"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_training_24dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="12dp"
                     android:tint="@color/lightBlue"
                     app:layout_constraintBottom_toBottomOf="@id/sourceLangImage"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/sourceLangImage"
                     app:layout_constraintTop_toTopOf="@+id/sourceLangImage"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/ic_training_24dp" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/appCompatImageButton"
@@ -73,13 +80,13 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:background="?android:selectableItemBackground"
-                    android:src="@drawable/ic_baseline_more_vert_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/endBarrier"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_baseline_more_vert_24" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/title"
@@ -87,14 +94,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    android:layout_marginBottom="4dp"
                     android:layout_marginTop="8dp"
-                    tools:text="title_sample"
+                    android:layout_marginBottom="4dp"
                     app:layout_constraintBottom_toTopOf="@+id/body"
                     app:layout_constraintEnd_toStartOf="@+id/startGuideline"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/endBarrier"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="title_sample" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/body"
@@ -102,12 +109,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
-                    tools:text="lorem_ipsum2"
-                    app:layout_constraintTop_toBottomOf="@id/title"
                     app:layout_constraintBottom_toBottomOf="@+id/textInfo"
                     app:layout_constraintEnd_toStartOf="@+id/startGuideline"
                     app:layout_constraintStart_toStartOf="@+id/endBarrier"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toBottomOf="@id/title"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:text="lorem_ipsum2" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -116,14 +123,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:layout_marginEnd="2dp"
-                    android:text="5/45"
+                    android:layout_marginEnd="8dp"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toBottomOf="@+id/sourceLangImage"
                     app:layout_constraintEnd_toStartOf="@+id/trainingIcon"
-                    app:layout_constraintStart_toEndOf="@id/sourceLangImage"
                     app:layout_constraintTop_toTopOf="@+id/sourceLangImage"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="5" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textInfo"
@@ -131,13 +137,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
-                    android:text="1321/3000"
                     app:layout_constrainedWidth="true"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/trainingIcon"
                     app:layout_constraintStart_toStartOf="@+id/sourceLangImage"
                     app:layout_constraintTop_toBottomOf="@id/sourceLangImage"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:text="1321/3000" />
 
                 <androidx.constraintlayout.widget.Barrier
                     android:id="@+id/endBarrier"

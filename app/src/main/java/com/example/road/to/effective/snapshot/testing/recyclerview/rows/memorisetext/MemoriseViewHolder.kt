@@ -7,6 +7,7 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.isVisible
@@ -15,7 +16,10 @@ import androidx.transition.TransitionManager
 import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.recyclerview.DeleteMemoriseListener
 import com.example.road.to.effective.snapshot.testing.recyclerview.MemoriseClickedListener
+import com.example.road.to.effective.snapshot.testing.recyclerview.utils.MAX_WORDS
 import com.example.road.to.effective.snapshot.testing.recyclerview.utils.PopUpWindowBuilder
+import com.example.road.to.effective.snapshot.testing.recyclerview.utils.setFlagImage
+import com.example.road.to.effective.snapshot.testing.recyclerview.utils.setLandmarkImage
 import com.google.android.material.card.MaterialCardView
 
 class MemoriseViewHolder<T>(
@@ -29,17 +33,30 @@ class MemoriseViewHolder<T>(
 
     val textTitle: TextView = container.findViewById(R.id.title)
 
-    val textBody : TextView =
+    val textBody: TextView =
         container.findViewById(R.id.body)
 
-    private fun setupView(item: MemoriseItem){
+    val sourceLangImage: AppCompatImageView = container.findViewById(R.id.sourceLangImage)
+
+    val landmarkImage: AppCompatImageView = container.findViewById(R.id.imageView)
+
+    val textInfo: TextView = container.findViewById(R.id.textInfo)
+    val trainingInfo: TextView = container.findViewById(R.id.trainingInfo)
+
+    fun setupView(item: MemoriseItem) {
         mainLayout.setOnClickListener {
             itemEventListener?.onMemoriseClicked(item.memorise)
         }
 
+        sourceLangImage.setFlagImage(item.memorise.srcLang)
+        landmarkImage.setLandmarkImage(item.memorise.landmark, item.memorise.srcLang)
+        textInfo.text = "${item.memorise.text.length}/$MAX_WORDS"
+        trainingInfo.text = item.memorise.translations.size.toString()
+
         appCompatImageButton.setOnClickListener {
             val rootView = container.findViewById<ViewGroup>(R.id.root)
-            val layout: View = LayoutInflater.from(it.context).inflate(R.layout.memorise_overflow_layout, rootView, false)
+            val layout: View = LayoutInflater.from(it.context)
+                .inflate(R.layout.memorise_overflow_layout, rootView, false)
 
             val dimension =
                 it.context.resources.getDimension(R.dimen.popup_window_min_width).toInt()
@@ -72,9 +89,9 @@ class MemoriseViewHolder<T>(
         item.animate(container.context, container)
     }
 
-    fun update(item: MemoriseItem){
+    fun update(item: MemoriseItem) {
         setupView(item)
-        Handler().postDelayed( {
+        Handler().postDelayed({
             item.animate(container.context, container)
         }, 500L)
     }
