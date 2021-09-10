@@ -10,11 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadToEffectiveSnapshotTesting">
-        <activity android:name=".recyclerview.mvvm.RecyclerViewActivity"></activity>
+        <activity
+            android:name=".recyclerview.mvvm.RecyclerViewActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
