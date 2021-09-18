@@ -1,6 +1,10 @@
 package com.example.road.to.effective.snapshot.testing.utils
 
 import android.app.Activity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
@@ -24,3 +28,9 @@ fun <V>ScreenshotTest.waitForView(actionToDo: () -> V): V =
 
 fun <A : Activity> ActivityScenario<A>.waitForActivity(@StyleRes theme: Int): Activity =
     this.waitForActivity().apply { setTheme(theme) }
+
+fun Activity.inflate(@LayoutRes layoutId: Int): View {
+    val root = findViewById<View>(android.R.id.content) as ViewGroup
+    return LayoutInflater.from(this)
+        .inflate(layoutId, root, true)
+}

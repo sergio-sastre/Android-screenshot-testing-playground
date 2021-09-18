@@ -6,9 +6,9 @@ import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.example.road.to.effective.snapshot.testing.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.MainActivity
 import com.example.road.to.effective.snapshot.testing.R
-import com.example.road.to.effective.snapshot.testing.utils.DialogTheme
-import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_DARK_DIALOG
-import com.example.road.to.effective.snapshot.testing.utils.DialogTheme.MATERIAL_LIGHT_DIALOG
+import com.example.road.to.effective.snapshot.testing.utils.config.DialogTheme
+import com.example.road.to.effective.snapshot.testing.utils.config.DialogTheme.MATERIAL_DARK_DIALOG
+import com.example.road.to.effective.snapshot.testing.utils.config.DialogTheme.MATERIAL_LIGHT_DIALOG
 import com.example.road.to.effective.snapshot.testing.utils.SmokeTest
 import com.example.road.to.effective.snapshot.testing.utils.waitForActivity
 import com.example.road.to.effective.snapshot.testing.utils.waitForView

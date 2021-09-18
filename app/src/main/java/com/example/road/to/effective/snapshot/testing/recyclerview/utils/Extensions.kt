@@ -94,6 +94,8 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
 
 fun Int.px(): Int = (this * Resources.getSystem().displayMetrics.density).toInt()
 
+fun Int.dp(): Int = (this / Resources.getSystem().displayMetrics.density).toInt()
+
 fun <K, V> Map<K, Collection<V>>.sortByValueSize(): Map<K, Collection<V>> =
     this.toList().sortedByDescending { (_, value) -> value.size }.toMap()
 

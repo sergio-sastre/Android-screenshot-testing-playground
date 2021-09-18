@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.utils
+package com.example.road.to.effective.snapshot.testing.utils.config
 
 import com.example.road.to.effective.snapshot.testing.R
 
