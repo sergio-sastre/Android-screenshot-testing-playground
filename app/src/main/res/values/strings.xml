@@ -1,9 +1,35 @@
 <resources>
     <string name="app_name">Road to Effective Snapshot Testing</string>
     <string name="show_dialog">Show dialog!</string>
+    <string name="show_recycler_view">Show recycler view!</string>
     <string name="delete_text_forever">Delete Item zero forever?</string>
     <string name="you_will_also_permanently_lose">You will also permanently lose</string>
     <string name="delete_action">Delete</string>
     <string name="cancel_button">Cancel</string>
     <string name="delete_button">Delete</string>
+
+    <string name="training_header">TRAINING</string>
+    <string name="words_to_memorise_title">words\n<small>to train</small></string>
+    <string name="filter_words_to_memorise_text">FILTER WORDS TO TRAIN</string>
+    <string name="train_button_text">TRAIN</string>
+
+    <string name="english_memorise_title">
+        Where can I get some Lorem Ipsum?
+    </string>
+    <string name="english_memorise_body">
+        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there is not anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+    </string>
+    <string name="german_memorise_title">
+        Deutsches Ipsum Dolor
+    </string>
+    <string name="german_memorise_body">
+        Deutsches Ipsum Dolor id Reise indoctum Kreuzberg pri, Freude schöner Götterfunken meliore Oktoberfest nominavi Vorsprung durch Technik Elitr Hackfleisch nam Schadenfreude his Wurst reque Vorsprung durch Technik assentior. Bier principes Donaudampfschiffahrtsgesellschaftskapitän ex Döner Ut Kartoffelkopf solum Käsefondue quas schnell adversarium danke ius, Grossbritannien minim Müller Rice eum Deutsche Mark
+    </string>
+    <string name="russian_memorise_title">
+        Лорем ипсум
+    </string>
+    <string name="russian_memorise_body">
+        Лорем ипсум долор сит амет, ан еррем модератиус инструцтиор про, ад маиорум яуаерендум меа. Модус дицит вих еу, аппеллантур медиоцритатем еи вим. Еос утинам модератиус еи, еум еи ерат тибияуе интерессет. Вим дицо мелиус ад.
+        Ет еум синт сцрипторем, ферри алтерум неглегентур ад усу. Темпор оптион долорум еи при, темпорибус диспутатиони про не, цум оффендит инвенире ат. Ет ностро урбанитас при, вим ид цибо омнесяуе, атяуи импедит демоцритум хис ет. Сонет долорум медиоцрем при ин. Ин номинави модератиус нам, ин нобис маиорум еам. Вих ех сонет ехерци.
+    </string>
 </resources>

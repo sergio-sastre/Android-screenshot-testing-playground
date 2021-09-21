@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="plural_train_words">
+        <item quantity="one">Train %d word</item>
+        <item quantity="other">Train %d words</item>
+    </plurals>
+</resources>
