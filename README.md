@@ -3,7 +3,8 @@
 </a>
 
 # Road to effective snapshot testing </br>
-A sample repo describing best practices for snapshot testing on Android. This includes for now:
+A sample repo describing best practices for snapshot testing on Android. This includes for now some samples to snapshot test Dialogs and ViewHolders,
+but I will also add Composable and custom View samples at least. These tests are written as:
 1. **Parameterized Tests**: Write the test once and run it under all desired configurations. This includes snapshot tests under various **Font sizes**
 2. **Filtered Parameterized Tests**: Create filters to group the configurations, so that we can run only the tests corresponding to a certain group. As described later in this ReadMe, this can be useful when having a large bunch of snapshot tests, in order to reduce building times. That way we can select to run a group of them on every PR (e.g. the essential ones), and the rest once a day.
 
@@ -146,7 +147,7 @@ class BasicDeleteDialogSnapshotTest(private val testItem: TestItem) : Screenshot
 }
 ```
 
-Take a look at [DelegateDialogTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/parameterized/DeleteDialogTest.kt) to see how these Parameterized Tests are implemented and run
+Take a look at [DeleteDialogTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/parameterized/DeleteDialogTest.kt) to see how these Parameterized Tests are implemented and run
 `./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.SmokeTest`
 to verify that only the `@SmokeTest` runs!
 
