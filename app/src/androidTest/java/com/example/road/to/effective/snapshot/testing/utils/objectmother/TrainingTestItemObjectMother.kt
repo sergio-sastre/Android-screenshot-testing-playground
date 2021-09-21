@@ -17,7 +17,7 @@ object TrainingTestItemObjectMother {
                 trainingByLang = mapOf(),
                 activeLangs = emptySet()
             ),
-            "WITHOUT_TRANSLATIONS_HAPPY_PATH"
+            "WITHOUT_WORDS_TO_TRAIN_HAPPY_PATH"
         )
 
     fun withWordsToTrainHappyPath(trainingItem: TrainingItem) =

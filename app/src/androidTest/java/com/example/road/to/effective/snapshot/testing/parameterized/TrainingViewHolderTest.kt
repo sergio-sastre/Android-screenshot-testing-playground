@@ -85,7 +85,7 @@ private fun ScreenshotTest.snapViewHolder(testItem: TrainingTestItem) {
     val view = waitForView {
         val layout = activity.inflate(R.layout.training_row)
         TrainingViewHolder(layout).apply {
-            bind(testItem.trainingItem, null)
+            bind(item = testItem.trainingItem, languageClickedListener = null)
         }
     }
 

@@ -28,12 +28,12 @@ class TrainingViewHolder(
 
     var listener: LanguageFilterClickedListener? = null
 
-    fun bind(item: TrainingItem, itemEventListener: LanguageFilterClickedListener?) {
-        listener = itemEventListener
+    fun bind(item: TrainingItem, languageClickedListener: LanguageFilterClickedListener?) {
+        listener = languageClickedListener
 
         with(container.findViewById<LanguageRadioGroup>(R.id.radioGroup)) {
             removeAllViews()
-            initFilterView(contextWrapper, item, itemEventListener)
+            initFilterView(contextWrapper, item, languageClickedListener)
             calculateRadioGroupMinimumHeight()
         }
 

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        window.decorView.rootView.run{
+        window.decorView.rootView.run {
             findViewById<MaterialButton>(R.id.showDialogButton)
                 .setOnClickListener { openDialog() }
 
