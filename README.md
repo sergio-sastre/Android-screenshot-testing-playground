@@ -160,4 +160,6 @@ to verify that only the `@SmokeTest` runs!
 4. Jetpack compose samples
 and more...
 
+## Attribution of icons in the app
+Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
