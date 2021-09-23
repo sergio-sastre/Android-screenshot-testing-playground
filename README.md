@@ -13,7 +13,9 @@ The code here will reflect everything discussed on my series on [snapshot testin
 All the samples use [Shot from Karumi](https://github.com/Karumi/Shot), what is a great library that facilitates
 snasphot testing.
 I've been using an emulator with API 23 for a matter of simplicity. That is because `Shot` requires less
-configuration for API < 29.
+configuration for API < 29. 
+
+**WARNING**: Disable animations on the emulator *via settings* before running snapshot test. Unfortunately, `testOptions { animationsDisabled = true }` does not work in all APIs
 
 ## Parameterized Snapshot Tests
 They enable us to test a given view with all possible different configurations, namely:
