@@ -1,5 +1,7 @@
 <a href="https://androidweekly.net/issues/issue-479">
 <img src="https://androidweekly.net/issues/issue-479/badge">
+</a><a href="https://androidweekly.net/issues/issue-485">
+<img src="https://androidweekly.net/issues/issue-485/badge">
 </a>
 
 # Road to effective snapshot testing </br>
