@@ -5,6 +5,9 @@
 </a>
 
 # Road to effective snapshot testing </br>
+
+![snapshotVsUiTests](https://user-images.githubusercontent.com/6097181/144911921-bae6182b-dae7-4f59-9dba-c88c9052b9b7.gif)
+
 A sample repo describing best practices for snapshot testing on Android. This includes for now some samples to snapshot test Dialogs and ViewHolders,
 but I will also add Composable and custom View samples at least. These tests are written as:
 1. **Parameterized Tests**: Write the test once and run it under all desired configurations. This includes snapshot tests under various **Font sizes**
