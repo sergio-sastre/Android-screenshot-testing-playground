@@ -137,7 +137,7 @@ e.g. `JUnitParams` fails if used.
 
 So first of all, we need to create our annotation
 ```kotlin
-annotation class HappyPath
+annotation class UnhappyPath
 ```
 
 And then we add another Test Class that reuses our previously defined `TestItem` and `snapTrainingViewHolder(testItem)`
@@ -166,8 +166,8 @@ class TrainingItemUnhappyPath(private val testItem: TrainingTestItem) : Screensh
 ```
 
 Take a look at [TrainingViewHolderTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/parameterized/trainingitem/TrainingViewHolderTest.kt) to see how these Parameterized Tests are implemented and run
-`./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.annotations.HappyPath`
-to verify that only the `@HappyTest` runs!
+`./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.annotations.UnhappyPath`
+to verify that only the `@UnhappyTest`s run!
 
 ## What is coming next:
 1. More advance samples
