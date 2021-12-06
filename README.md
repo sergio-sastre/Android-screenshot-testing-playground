@@ -55,19 +55,25 @@ If you also want to enable different `Font size` configurations to your tests, y
 [FontSizeTestRule](https://github.com/sergio-sastre/FontSizeTestRule) library to your project. For example,
 you can use the `FontSizeActivityScenario` as follows:
 ```kotlin
-private fun ScreenshotTest.snapDeleteDialog(testItem: TestItem) {
-    val activity = FontSizeActivityScenario.launchWith(testItem.fontScale)
-        .waitForActivity(testItem.theme.themId)
+object DeleteDialogSnapshotHelper : ScreenshotTest {
+    fun snapDeleteDialogWithActivityScenario(testItem: DeleteDialogTestItem) {
+        val activity = FontSizeActivityScenario.launchWith(testItem.fontScale)
+            .waitForActivity(testItem.theme.themId)
 
-    val dialog = waitForView {
-        DialogBuilder.buildDeleteDialog(
-            activity,
-            onDeleteClicked = {/* no-op*/ },
-            bulletTexts = itemArray(testItem.texts)
+        val dialog = waitForView {
+            DialogBuilder.buildDeleteDialog(
+                activity,
+                onDeleteClicked = {/* no-op*/ },
+                bulletTexts = itemArray(testItem.texts)
+            )
+        }
+
+        compareScreenshot(
+            dialog,
+            name = testItem.testName,
+            widthInPx = testItem.dialogWidth.widthInPx
         )
     }
-
-    compareScreenshot(dialog, name = testItem.testName, widthInPx = 800)
 }
 ```
 
@@ -77,34 +83,38 @@ inside a method annotated with `@Parameterized.Parameters`.
 
 ```kotlin
 @RunWith(Parameterized::class)
-class AllDeleteDialogSnapshotTest(private val testItem: TestItem) : ScreenshotTest {
+class DeleteDialogWithFontSizeActivityScenarioTest(private val testItem: DeleteDialogTestItem) : ScreenshotTest {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun data(): Array<TestItem> =
+        fun data(): Array<DeleteDialogTestItem> =
             arrayOf(
-                TestItem(
+                // spacious item: small font, little wording, wide view
+                DeleteDialogTestItem(
                     SMALL,
-                    MATERIAL_DARK,
+                    MATERIAL_DARK_DIALOG,
                     arrayOf(R.string.shortest),
-                    "DARK_SMALL"
+                    DialogWidth.WIDE,
+                    "DARK_SMALL_WIDE"
                 ),
-                TestItem(
+                // suffocated item: huge font, a lot of wording, narrow view
+                DeleteDialogTestItem(
                     HUGE,
-                    MATERIAL_DARK,
+                    MATERIAL_DARK_DIALOG,
                     repeatedItem(7, R.string.largest),
-                    "DARK_HUGE"
+                    DialogWidth.NARROW,
+                    "DARK_HUGE_NARROW"
                 )
             )
     }
 
+    @UnhappyPath
     @Test
     fun snapDialog() {
-        snapDeleteDialog(testItem)
+        DeleteDialogSnapshotHelper.snapDeleteDialogWithActivityScenario(testItem)
     }
 }
-
 ```
 Now you can just run your test with `./gradlew executeScreenshotTests -Precord` and you should see the
 results!
@@ -127,39 +137,37 @@ e.g. `JUnitParams` fails if used.
 
 So first of all, we need to create our annotation
 ```kotlin
-annotation class SmokeTest
+annotation class HappyPath
 ```
 
-And then we add another Test Class that reuses our previously defined `TestItem` and `snapDeleteDialog(testItem)`
+And then we add another Test Class that reuses our previously defined `TestItem` and `snapTrainingViewHolder(testItem)`
 containing the "most common config" parameters, like here below
 ```kotlin
-@RuWith(Parameterized::class)
-class BasicDeleteDialogSnapshotTest(private val testItem: TestItem) : ScreenshotTest {
+@RunWith(Parameterized::class)
+class TrainingItemUnhappyPath(private val testItem: TrainingTestItem) : ScreenshotTest {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun data(): Array<TestItem> = arrayOf(
-            TestItem(
-                NORMAL,
-                MATERIAL_LIGHT,
-                arrayOf(R.string.largest, R.string.middle, R.string.shortest),
-                "SMOKE"
+        fun data(): Array<TrainingTestItem> =
+            arrayOf(
+                withWordsToTrainUnhappyPath(),
+                withoutWordsToTrainUnhappyPath(ViewWidth.NARROW),
+                withoutWordsToTrainUnhappyPath(ViewWidth.WIDE),
             )
-        )
     }
 
-    @SmokeTest
+    @UnhappyPath
     @Test
-    fun snapDialog() {
-        snapDeleteDialog(testItem)
+    fun snapTrainingItem() {
+        TrainingViewSnapshotHelper.snapTrainingViewHolder(testItem)
     }
 }
 ```
 
-Take a look at [DeleteDialogTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/parameterized/DeleteDialogTest.kt) to see how these Parameterized Tests are implemented and run
-`./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.SmokeTest`
-to verify that only the `@SmokeTest` runs!
+Take a look at [TrainingViewHolderTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/parameterized/trainingitem/TrainingViewHolderTest.kt) to see how these Parameterized Tests are implemented and run
+`./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.annotations.HappyPath`
+to verify that only the `@HappyTest` runs!
 
 ## What is coming next:
 1. More advance samples
