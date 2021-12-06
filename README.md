@@ -11,7 +11,7 @@
 A sample repo containing code samples for the best practices for snapshot testing on Android. These have been discussed on:
 1. my blog series on [snapshot testing](https://sergiosastre.hashnode.dev/an-introduction-to-snapshot-testing-on-android-in-2021). 
 2. [Droidcon Berlin 2021](https://www.droidcon.com/2021/11/10/an-introduction-to-effective-snapshot-testing-on-android/)
-3. [Droidcon Longon 2021](https://www.droidcon.com/2021/11/17/an-introduction-to-effective-snapshot-testing-on-android-2/)
+3. [Droidcon London 2021](https://www.droidcon.com/2021/11/17/an-introduction-to-effective-snapshot-testing-on-android-2/)
 
 This repo includes some samples to snapshot test Dialogs and ViewHolders for now, but I will also add Composable and custom View samples at least. 
 These tests are written as:
