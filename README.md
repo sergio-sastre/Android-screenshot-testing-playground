@@ -8,12 +8,15 @@
 
 ![snapshotVsUiTests](https://user-images.githubusercontent.com/6097181/144911921-bae6182b-dae7-4f59-9dba-c88c9052b9b7.gif)
 
-A sample repo describing best practices for snapshot testing on Android. This includes for now some samples to snapshot test Dialogs and ViewHolders,
-but I will also add Composable and custom View samples at least. These tests are written as:
+A sample repo containing code samples for the best practices for snapshot testing on Android. These have been discussed on:
+1. my blog series on [snapshot testing](https://sergiosastre.hashnode.dev/an-introduction-to-snapshot-testing-on-android-in-2021). 
+2. [Droidcon Berlin 2021](https://www.droidcon.com/2021/11/10/an-introduction-to-effective-snapshot-testing-on-android/)
+3. [Droidcon Longon 2021](https://www.droidcon.com/2021/11/17/an-introduction-to-effective-snapshot-testing-on-android-2/)
+
+This repo includes some samples to snapshot test Dialogs and ViewHolders for now, but I will also add Composable and custom View samples at least. 
+These tests are written as:
 1. **Parameterized Tests**: Write the test once and run it under all desired configurations. This includes snapshot tests under various **Font sizes**
 2. **Filtered Parameterized Tests**: Create filters to group the configurations, so that we can run only the tests corresponding to a certain group. As described later in this ReadMe, this can be useful when having a large bunch of snapshot tests, in order to reduce building times. That way we can select to run a group of them on every PR (e.g. the essential ones), and the rest once a day.
-
-The code here will reflect everything discussed on my series on [snapshot testing](https://sergiosastre.hashnode.dev/an-introduction-to-snapshot-testing-on-android-in-2021)
 
 All the samples use [Shot from Karumi](https://github.com/Karumi/Shot), what is a great library that facilitates
 snasphot testing.
