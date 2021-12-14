@@ -11,7 +11,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.datapro
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.*
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.ClickAction.ShowNotSupportedActionSnackbar
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.Event
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.MAX_TEXTS
+
 
 class RecyclerViewViewModel(
     private val memoriseProvider: MemoriseProvider,
@@ -39,7 +39,7 @@ class RecyclerViewViewModel(
             memorises = memoriseProvider.getMemorises().toMutableList()
             val translByLang = MemorisesInfoCollector(memorises).getTranslationsToTrainByDestLang()
 
-            mutableListState.value = MemoriseListViewState.Results(memorises, MAX_TEXTS)
+            mutableListState.value = MemoriseListViewState.Results(memorises)
             mutableTrainingState.value =
                 TrainingViewState.Results(translByLang, settingsProvider.getActiveLangs())
         }
@@ -60,6 +60,10 @@ class RecyclerViewViewModel(
         mutableClicksState.value = Event(ShowNotSupportedActionSnackbar)
     }
 
+    override fun clickOnTrainAll() {
+        mutableClicksState.value = Event(ShowNotSupportedActionSnackbar)
+    }
+
     override fun clickOnTrainWeakInMemorise(memorise: Memorise) {
         mutableClicksState.value = Event(ShowNotSupportedActionSnackbar)
     }
@@ -77,7 +81,7 @@ class RecyclerViewViewModel(
 
         mutableListState.value = when (memorises.isEmpty()) {
             true -> MemoriseListViewState.Empty
-            false -> MemoriseListViewState.Results(memorises, MAX_TEXTS)
+            false -> MemoriseListViewState.Results(memorises)
         }
 
         mutableTrainingState.value =

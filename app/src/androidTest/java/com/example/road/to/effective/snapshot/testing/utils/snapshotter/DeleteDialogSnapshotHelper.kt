@@ -25,7 +25,7 @@ object DeleteDialogSnapshotHelper : ScreenshotTest {
             )
         }
 
-        TrainingViewSnapshotHelper.compareScreenshot(
+        compareScreenshot(
             dialog,
             name = testItem.testName,
             widthInPx = testItem.dialogWidth.widthInPx

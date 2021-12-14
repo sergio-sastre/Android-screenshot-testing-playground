@@ -1,6 +1,5 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.MemoriseListViewState
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.TrainingViewState
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.ViewModelStateProvider
@@ -40,16 +39,8 @@ class RowBuilder(private val viewModelStateProvider: ViewModelStateProvider) {
                 MemoriseListViewState.Loading -> TODO()
                 MemoriseListViewState.Error -> TODO()
                 MemoriseListViewState.Empty -> emptyList()
-                /*
-                    listOf(
-                        AllTextHeaderItem(0, MAX_TEXTS),
-                        EmptyMemoriseItem()
-                    )
-
-                 */
 
                 is MemoriseListViewState.Results ->
-                    // listOf(AllTextHeaderItem(memorises.size, MAX_TEXTS)) +
                     memorises.mapIndexed { index, memorise ->
                         MemoriseItem(
                             memorise = memorise,
