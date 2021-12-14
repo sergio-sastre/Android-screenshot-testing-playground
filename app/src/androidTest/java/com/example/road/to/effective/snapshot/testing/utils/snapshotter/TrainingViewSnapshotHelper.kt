@@ -2,7 +2,7 @@ package com.example.road.to.effective.snapshot.testing.utils.snapshotter
 
 import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.parameterized.trainingitem.TrainingTestItem
-import com.example.road.to.effective.snapshot.testing.recyclerview.rows.training.TrainingViewHolder
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.example.road.to.effective.snapshot.testing.utils.inflate
 import com.example.road.to.effective.snapshot.testing.utils.waitForView
 import com.karumi.shot.ActivityScenarioUtils.waitForActivity

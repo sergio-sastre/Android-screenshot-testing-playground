@@ -1,7 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.parameterized.trainingitem
 
-import com.example.road.to.effective.snapshot.testing.recyclerview.data.Language.*
-import com.example.road.to.effective.snapshot.testing.recyclerview.rows.training.TrainingItem
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.*
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
 import com.example.road.to.effective.snapshot.testing.utils.annotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.utils.annotations.UnhappyPath
 import com.example.road.to.effective.snapshot.testing.utils.config.ViewWidth
