@@ -4,8 +4,6 @@ import androidx.recyclerview.widget.DiffUtil
 
 class RecyclerViewDiffUtilCallback : DiffUtil.ItemCallback<RowType>() {
 
-    data class Payload(val oldItem: RowType, val newItem: RowType)
-
     override fun areItemsTheSame(oldItem: RowType, newItem: RowType): Boolean {
         return oldItem.isTheSame(newItem)
     }

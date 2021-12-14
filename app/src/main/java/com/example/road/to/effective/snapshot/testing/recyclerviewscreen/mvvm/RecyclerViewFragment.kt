@@ -11,10 +11,12 @@ import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.DeleteMemoriseListener
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.LanguageFilterClickedListener
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.MemoriseClickedListener
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.TrainAllClickedListener
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.memorise.UserMemoriseProvider
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.setting.UserSettingsProvider
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.ClickAction.ShowNotSupportedActionSnackbar
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.RecyclerViewAsyncDiffAdapter
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.RecyclerViewDiffUtilCallback
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.RowBuilder
@@ -27,7 +29,8 @@ import com.google.android.material.snackbar.Snackbar.*
 class RecyclerViewFragment : Fragment(),
     LanguageFilterClickedListener,
     DeleteMemoriseListener,
-    MemoriseClickedListener {
+    MemoriseClickedListener,
+    TrainAllClickedListener {
 
     companion object {
         fun newInstance() = RecyclerViewFragment()
@@ -53,7 +56,7 @@ class RecyclerViewFragment : Fragment(),
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.main_fragment, container, false)
+        val view = inflater.inflate(R.layout.recycler_view_fragment, container, false)
         view.findViewById<RecyclerView>(R.id.memoriseList).apply {
             adapter = rvAdapter
         }
@@ -92,11 +95,19 @@ class RecyclerViewFragment : Fragment(),
         viewModel.clickOnMemorise(memorise)
     }
 
+    override fun onTrainAllClicked() {
+        viewModel.clickOnTrainAll()
+    }
+
     private fun handleNavigateAction(action: RecyclerViewViewModelContract.ClickAction): Unit =
         when (action) {
-            is RecyclerViewViewModelContract.ClickAction.ShowNotSupportedActionSnackbar -> {
-                make(this.requireView(), "Non Supported Action", LENGTH_SHORT).show()
+            is ShowNotSupportedActionSnackbar -> {
+                showNonSupportedActionSnackbar()
             }
         }
+
+    private fun showNonSupportedActionSnackbar(){
+        make(this.requireView(), "Non Supported Action", LENGTH_SHORT).show()
+    }
 
 }

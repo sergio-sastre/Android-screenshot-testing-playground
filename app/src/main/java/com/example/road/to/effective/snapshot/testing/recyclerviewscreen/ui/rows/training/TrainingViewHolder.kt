@@ -11,6 +11,7 @@ import androidx.core.view.doOnNextLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.LanguageFilterClickedListener
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.TrainAllClickedListener
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.px
@@ -26,10 +27,17 @@ class TrainingViewHolder(
     val contextWrapper =
         ContextThemeWrapper(container.context, R.style.FlagCheckMark)
 
-    var listener: LanguageFilterClickedListener? = null
+    private var filterClickedListener: LanguageFilterClickedListener? = null
+    private var trainAllClickedListener: TrainAllClickedListener? = null
 
-    fun bind(item: TrainingItem, languageClickedListener: LanguageFilterClickedListener?) {
-        listener = languageClickedListener
+    fun <T> bind(
+        item: TrainingItem,
+        languageClickedListener: T?
+    ) where T : TrainAllClickedListener,
+            T : LanguageFilterClickedListener {
+
+        filterClickedListener = languageClickedListener
+        trainAllClickedListener = languageClickedListener
 
         with(container.findViewById<LanguageRadioGroup>(R.id.radioGroup)) {
             removeAllViews()
@@ -47,6 +55,7 @@ class TrainingViewHolder(
         container.animateEmptyStateTransition(item.trainingByLang.isEmpty())
 
         with(container.findViewById<Button>(R.id.trainButton)) {
+            setOnClickListener { trainAllClickedListener?.onTrainAllClicked() }
             isEnabled = item.trainingByLang.isNotEmpty()
             alpha = if (isEnabled) 1f else 0.5f
         }
@@ -60,7 +69,13 @@ class TrainingViewHolder(
 
         with(container.findViewById<LanguageRadioGroup>(R.id.radioGroup)) {
             animateFilterAmounts(payload.newTrainingItem, oldLangsSorted.keys, newLangsSorted.keys)
-            animateFilters(contextWrapper, payload.newTrainingItem, listener, oldLangsSorted, newLangsSorted )
+            animateFilters(
+                contextWrapper,
+                payload.newTrainingItem,
+                filterClickedListener,
+                oldLangsSorted,
+                newLangsSorted
+            )
         }
 
         with(container.findViewById<Button>(R.id.trainButton)) {
@@ -68,7 +83,7 @@ class TrainingViewHolder(
             alpha = if (isEnabled) 1f else 0.5f
         }
 
-        with(container.findViewById<DigitTextView>(R.id.amountText)){
+        with(container.findViewById<DigitTextView>(R.id.amountText)) {
             longTransformer = LongAsShortTransformer()
             setValue(payload.newTrainingItem.getWordsToMemoriseAmount())
         }
@@ -104,7 +119,7 @@ private fun RadioGroup.calculateRadioGroupMinimumHeight() {
 
 private fun View.animateEmptyStateTransition(showEmptyState: Boolean) {
     val fadingOutDuration = 600L
-    val fadingInDuration = 1000L
+    val fadingInDuration = 1_000L
     val invisibleAlpha = 0f
     val visibleAlpha = 1f
 

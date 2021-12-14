@@ -3,11 +3,16 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.row
 import android.view.ViewGroup
 import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.LanguageFilterClickedListener
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.TrainAllClickedListener
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.RowType
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.inflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
-class TrainingDelegate(val listener: LanguageFilterClickedListener) : AbsListItemAdapterDelegate<TrainingItem, RowType, TrainingViewHolder>() {
+class TrainingDelegate<T>(val listener: T) :
+    AbsListItemAdapterDelegate<TrainingItem, RowType, TrainingViewHolder>()
+        where T : LanguageFilterClickedListener,
+              T : TrainAllClickedListener {
+
     override fun isForViewType(item: RowType, items: MutableList<RowType>, position: Int): Boolean =
         item is TrainingItem
 

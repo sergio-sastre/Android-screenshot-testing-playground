@@ -9,7 +9,6 @@ import androidx.annotation.StyleRes
 import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.karumi.shot.ActivityScenarioUtils.waitForActivity
-import com.karumi.shot.ScreenshotTest
 
 /**
  * Setup the view under test and wait till the view is ready and main thread is idle
@@ -18,7 +17,7 @@ import com.karumi.shot.ScreenshotTest
  * @param actionToDo: Everything that drives the view to the state we want to snapshot.
  * This also includes inflation
  */
-fun <V>ScreenshotTest.waitForView(actionToDo: () -> V): V =
+fun <V> waitForView(actionToDo: () -> V): V =
     getInstrumentation().run {
         var view: V? = null
         runOnMainSync { view = actionToDo() }

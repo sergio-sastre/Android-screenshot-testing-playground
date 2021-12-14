@@ -12,6 +12,7 @@ interface RecyclerViewViewModelContract : ViewModelStateProvider {
 
     fun fetchMemorises()
     fun clickOnTrainFiltered()
+    fun clickOnTrainAll()
     fun clickOnFilter(lang: Language)
     fun clickOnMemorise(memorise: Memorise)
     fun clickOnTrainWeakInMemorise(memorise: Memorise)
@@ -22,7 +23,7 @@ interface RecyclerViewViewModelContract : ViewModelStateProvider {
         object Loading : MemoriseListViewState()
         object Error : MemoriseListViewState()
         object Empty : MemoriseListViewState()
-        data class Results(val memorises: List<Memorise>, val maxTexts: Int) :
+        data class Results(val memorises: List<Memorise>) :
             MemoriseListViewState()
     }
 

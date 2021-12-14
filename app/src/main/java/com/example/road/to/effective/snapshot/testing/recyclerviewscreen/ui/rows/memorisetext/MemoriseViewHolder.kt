@@ -133,19 +133,20 @@ class MemoriseViewHolder<T>(
     ) {
         val contentLayout = container.findViewById<ConstraintLayout>(R.id.contentLayout)
         val root = container.findViewById<ConstraintLayout>(R.id.root)
-        val constraint1 = ConstraintSet()
-        constraint1.clone(contentLayout)
 
-        val constraint2 = ConstraintSet()
-        val view2 = LayoutInflater.from(context)
+        val newView = LayoutInflater.from(context)
             .inflate(layoutRes, null, false)
-        constraint2.clone(view2.findViewById(R.id.contentLayout) as ConstraintLayout)
 
-        val constraint3 = ConstraintSet()
-        constraint3.clone(view2.findViewById(R.id.root) as ConstraintLayout)
+        val constraintContent = ConstraintSet().apply {
+            clone(newView.findViewById(R.id.contentLayout) as ConstraintLayout)
+        }
 
-        constraint3.applyTo(root)
-        constraint2.applyTo(contentLayout)
+        val constraintRoot = ConstraintSet().apply {
+            clone(newView.findViewById(R.id.root) as ConstraintLayout)
+        }
+
+        constraintRoot.applyTo(root)
+        constraintContent.applyTo(contentLayout)
 
         TransitionManager.beginDelayedTransition(root)
         Handler().postDelayed(
