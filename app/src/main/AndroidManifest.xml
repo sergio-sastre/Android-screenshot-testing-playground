@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadToEffectiveSnapshotTesting">
         <activity
-            android:name=".recyclerview.mvvm.RecyclerViewActivity"
+            android:name=".recyclerviewscreen.mvvm.RecyclerViewActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         </activity>
         <activity android:name=".MainActivity">

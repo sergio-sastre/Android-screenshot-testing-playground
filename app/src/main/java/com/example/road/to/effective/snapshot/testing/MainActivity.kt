@@ -3,7 +3,7 @@ package com.example.road.to.effective.snapshot.testing
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.road.to.effective.snapshot.testing.recyclerview.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
 import com.google.android.material.button.MaterialButton
 
 class MainActivity : AppCompatActivity() {

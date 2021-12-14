@@ -1,7 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.utils.objectmother
 
-import com.example.road.to.effective.snapshot.testing.recyclerview.data.Language
-import com.example.road.to.effective.snapshot.testing.recyclerview.data.Translation
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
 
 object TranslationsObjectMother {
 

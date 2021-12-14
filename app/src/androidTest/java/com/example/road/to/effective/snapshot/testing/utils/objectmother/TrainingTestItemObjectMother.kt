@@ -1,8 +1,8 @@
 package com.example.road.to.effective.snapshot.testing.utils.objectmother
 
 import com.example.road.to.effective.snapshot.testing.parameterized.trainingitem.TrainingTestItem
-import com.example.road.to.effective.snapshot.testing.recyclerview.data.Language.values
-import com.example.road.to.effective.snapshot.testing.recyclerview.rows.training.TrainingItem
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.values
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
 import com.example.road.to.effective.snapshot.testing.utils.config.ViewWidth
 import com.example.road.to.effective.snapshot.testing.utils.objectmother.TranslationsObjectMother.translationsPerLang
 import sergio.sastre.fontsize.FontScale

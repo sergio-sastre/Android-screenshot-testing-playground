@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toBottomOf="@id/filterText"
                 app:layout_constraintVertical_bias="1.0">
 
-                <com.example.road.to.effective.snapshot.testing.recyclerview.views.LanguageRadioGroup
+                <com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.views.LanguageRadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                     >
                     <!-- inflate dynamically -->
 
-                </com.example.road.to.effective.snapshot.testing.recyclerview.views.LanguageRadioGroup>>
+                </com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.views.LanguageRadioGroup>>
             </HorizontalScrollView>
 
             <ImageView
@@ -105,7 +105,7 @@
                 app:layout_constraintStart_toEndOf="@id/amountText"
                 app:layout_constraintTop_toTopOf="@id/amountText" />
 
-            <com.example.road.to.effective.snapshot.testing.recyclerview.views.DigitTextView
+            <com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.views.DigitTextView
                 android:id="@+id/amountText"
                 android:layout_width="60dp"
                 android:layout_height="70dp"

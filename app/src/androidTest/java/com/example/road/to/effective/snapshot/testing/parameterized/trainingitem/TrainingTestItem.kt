@@ -1,6 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.parameterized.trainingitem
 
-import com.example.road.to.effective.snapshot.testing.recyclerview.rows.training.TrainingItem
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
 import com.example.road.to.effective.snapshot.testing.utils.config.ViewWidth
 import sergio.sastre.fontsize.FontScale
 

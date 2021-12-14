@@ -44,7 +44,7 @@ class DeleteDialogWithFontSizeActivityScenarioTest(private val testItem: DeleteD
     @UnhappyPath
     @Test
     fun snapDialog() {
-        DeleteDialogSnapshotHelper.snapDeleteDialogWithActivityScenario(testItem)
+        snapDeleteDialogWithActivityScenario(testItem)
     }
 }
 

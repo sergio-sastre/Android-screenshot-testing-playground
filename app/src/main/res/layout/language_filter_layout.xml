@@ -8,7 +8,7 @@
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
     >
 
-    <com.example.road.to.effective.snapshot.testing.recyclerview.views.LanguageRadioButton
+    <com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.views.LanguageRadioButton
         android:id="@+id/filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         style="@style/FlagCheckMark"
         />
 
-    <com.example.road.to.effective.snapshot.testing.recyclerview.views.DigitTextView
+    <com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.views.DigitTextView
         android:id="@+id/filter_amount_texts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
