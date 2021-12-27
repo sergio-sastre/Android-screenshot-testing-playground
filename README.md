@@ -16,14 +16,36 @@ A sample repo containing code samples for the best practices for snapshot testin
 This repo includes some samples to snapshot test Dialogs and ViewHolders for now, but I will also add Composable and custom View samples at least. 
 These tests are written as:
 1. **Parameterized Tests**: Write the test once and run it under all desired configurations. This includes snapshot tests under various **Font sizes**
-2. **Filtered Parameterized Tests**: Create filters to group the configurations, so that we can run only the tests corresponding to a certain group. As described later in this ReadMe, this can be useful when having a large bunch of snapshot tests, in order to reduce building times. That way we can select to run a group of them on every PR (e.g. the essential ones), and the rest once a day.
+2. **Filtered Parameterized Tests**: Create filters to group the configurations, so that we can run only the tests corresponding to a certain group. As described later in this ReadMe, this can be useful when having a large bunch of snapshot tests, in order to reduce building times. That way we can, for instance, select to run a group of them on every PR (e.g. the essential ones) and the rest only once a day.
 
 All the samples use [Shot from Karumi](https://github.com/Karumi/Shot), what is a great library that facilitates
-snasphot testing.
-I've been using an emulator with API 23 for a matter of simplicity. That is because `Shot` requires less
-configuration for API < 29. 
+snapshot testing.
 
-**WARNING**: Disable animations on the emulator *via settings* before running snapshot test. Unfortunately, `testOptions { animationsDisabled = true }` does not work in all APIs
+## Before you start...
+### Emulators
+I've been using an emulator with API 23 for a matter of simplicity. That is because `Shot` requires less
+configuration for API < 28.
+
+From API 28 on, you need to execute the following commands before running the tests for the first time.
+Otherwise some tests might not be recorded (e.g. Dialogs)
+
+For Android 9 (API level 28)
+```
+adb shell settings put global hidden_api_policy_pre_p_apps 1
+adb shell settings put global hidden_api_policy_p_apps 1
+```
+
+For Android 10 (API level 29) or higher
+
+```
+adb shell settings put global hidden_api_policy 1
+```
+
+### Animations
+Snapshot tests might have issues due to running animations at the moment the snapshot are taken.
+
+In order to keep animations disabled, this project uses `testOptions { animationsDisabled = true }` in the gradle file. Unfortunately, it does not work on all APIs (e.g. API 26).
+Therefore, if you come across some issues, disable animations on the emulator *via settings* before running the snapshot tests.
 
 ## Parameterized Snapshot Tests
 They enable us to test a given view with all possible different configurations, namely:
