@@ -7,7 +7,7 @@ import com.example.road.to.effective.snapshot.testing.utils.inflate
 import com.example.road.to.effective.snapshot.testing.utils.waitForView
 import com.karumi.shot.ActivityScenarioUtils.waitForActivity
 import com.karumi.shot.ScreenshotTest
-import sergio.sastre.fontsize.FontSizeActivityScenario
+import sergio.sastre.fontsize.activityscenario.FontSizeActivityScenario
 
 object TrainingViewSnapshotHelper : ScreenshotTest {
 

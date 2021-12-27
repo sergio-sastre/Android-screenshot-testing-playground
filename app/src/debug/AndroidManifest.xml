@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.road.to.effective.snapshot.testing">
+    package="com.example.road.to.effective.snapshot.testing"
+    >
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadToEffectiveSnapshotTesting">
-        <activity android:name="sergio.sastre.fontsize.SmallFontSizeActivity"></activity>
-        <activity android:name="sergio.sastre.fontsize.NormalFontSizeActivity"></activity>
-        <activity android:name="sergio.sastre.fontsize.LargeFontSizeActivity"></activity>
-        <activity android:name="sergio.sastre.fontsize.HugeFontSizeActivity"></activity>
+        <activity android:name="sergio.sastre.fontsize.activityscenario.SmallFontSizeActivity"></activity>
+        <activity android:name="sergio.sastre.fontsize.activityscenario.NormalFontSizeActivity"></activity>
+        <activity android:name="sergio.sastre.fontsize.activityscenario.LargeFontSizeActivity"></activity>
+        <activity android:name="sergio.sastre.fontsize.activityscenario.HugeFontSizeActivity"></activity>
     </application>
 
 </manifest>
