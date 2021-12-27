@@ -9,7 +9,7 @@ import com.example.road.to.effective.snapshot.testing.parameterized.deletedialog
 import com.example.road.to.effective.snapshot.testing.utils.waitForActivity
 import com.example.road.to.effective.snapshot.testing.utils.waitForView
 import com.karumi.shot.ScreenshotTest
-import sergio.sastre.fontsize.FontSizeActivityScenario
+import sergio.sastre.fontsize.activityscenario.FontSizeActivityScenario
 
 object DeleteDialogSnapshotHelper : ScreenshotTest {
 
