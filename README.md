@@ -25,6 +25,7 @@ snapshot testing.
 ### Emulators
 I've been using an emulator with API 23 for a matter of simplicity. That is because `Shot` requires less
 configuration for API < 28.
+Moreover, if you are using Windows, beware that Shot 5.12.2 still has [some issues on API 29](https://github.com/pedrovgs/Shot/issues/244)
 
 From API 28 on, you need to execute the following commands before running the tests for the first time.
 Otherwise some tests might not be recorded (e.g. Dialogs)
@@ -192,10 +193,12 @@ Take a look at [TrainingViewHolderTest.kt](https://github.com/sergio-sastre/Road
 to verify that only the `@UnhappyTest`s run!
 
 ## What is coming next:
-1. More advance samples
-2. Tips to remove flakiness
-3. Tips to increase test execution speed
-4. Jetpack compose samples
+1. Effective localization snapshot testing
+2. Jetpack compose samples (finally!)
+3. Snapshot testing for foldables with Jetpack compose
+4. Running snapshot tests on multiple devices in parallel
+5. Tips to remove flakiness
+6. Tips to increase test execution speed
 and more...
 
 ## Attribution of icons in the app
