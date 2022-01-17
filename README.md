@@ -193,9 +193,9 @@ Take a look at [TrainingViewHolderTest.kt](https://github.com/sergio-sastre/Road
 to verify that only the `@UnhappyTest`s run!
 
 ## What is coming next:
-1. Effective localization snapshot testing
+1. Effective localization snapshot testing (coming soon!)
 2. Jetpack compose samples (finally!)
-3. Snapshot testing for foldables with Jetpack compose
+3. Snapshot testing for foldables (Jetpack compose sample!)
 4. Running snapshot tests on multiple devices in parallel
 5. Tips to remove flakiness
 6. Tips to increase test execution speed
