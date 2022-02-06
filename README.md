@@ -18,7 +18,7 @@ These tests are written as:
 1. **Parameterized Tests**: Write the test once and run it under all desired configurations. This includes snapshot tests under various **Font sizes**
 2. **Filtered Parameterized Tests**: Create filters to group the configurations, so that we can run only the tests corresponding to a certain group. As described later in this ReadMe, this can be useful when having a large bunch of snapshot tests, in order to reduce building times. That way we can, for instance, select to run a group of them on every PR (e.g. the essential ones) and the rest only once a day.
 
-All the samples use [Shot from Karumi](https://github.com/Karumi/Shot), what is a great library that facilitates
+All the samples use [Shot from pedrovgs](https://github.com/pedrovgs/Shot), what is a great library that facilitates
 snapshot testing.
 
 ## Before you start...
