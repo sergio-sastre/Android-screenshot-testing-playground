@@ -1,21 +1,22 @@
 package com.example.road.to.effective.snapshot.testing.utils.snapshotter
 
 import androidx.annotation.StringRes
-import androidx.test.core.app.ActivityScenario
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.road.to.effective.snapshot.testing.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.MainActivity
 import com.example.road.to.effective.snapshot.testing.parameterized.deletedialog.DeleteDialogTestItem
-import com.example.road.to.effective.snapshot.testing.utils.waitForActivity
-import com.example.road.to.effective.snapshot.testing.utils.waitForView
 import com.karumi.shot.ScreenshotTest
-import sergio.sastre.fontsize.activityscenario.FontSizeActivityScenario
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioConfigurator
+import sergio.sastre.uitesting.utils.utils.waitForActivity
+import sergio.sastre.uitesting.utils.utils.waitForView
 
 object DeleteDialogSnapshotHelper : ScreenshotTest {
 
     fun snapDeleteDialogWithTestRule(testItem: DeleteDialogTestItem) {
-        val activity = ActivityScenario.launch(MainActivity::class.java)
-            .waitForActivity(testItem.theme.themId)
+        val activity = ActivityScenarioConfigurator.ForActivity()
+            .setUiMode(testItem.uiMode)
+            .launch(MainActivity::class.java)
+            .waitForActivity()
 
         val dialog = waitForView {
             DialogBuilder.buildDeleteDialog(
@@ -33,8 +34,12 @@ object DeleteDialogSnapshotHelper : ScreenshotTest {
     }
 
     fun snapDeleteDialogWithActivityScenario(testItem: DeleteDialogTestItem) {
-        val activity = FontSizeActivityScenario.launchWith(testItem.fontScale)
-            .waitForActivity(testItem.theme.themId)
+        val activity =
+            ActivityScenarioConfigurator.ForView()
+                .setFontSize(testItem.fontScale)
+                .setUiMode(testItem.uiMode)
+                .launchConfiguredActivity()
+                .waitForActivity()
 
         val dialog = waitForView {
             DialogBuilder.buildDeleteDialog(

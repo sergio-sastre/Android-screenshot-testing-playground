@@ -2,6 +2,7 @@
     <string name="app_name">Road to Effective Snapshot Testing</string>
     <string name="show_dialog">Show dialog!</string>
     <string name="show_recycler_view">Show recycler view!</string>
+    <string name="show_compose_activity">Show compose activity!</string>
     <string name="delete_text_forever">Delete Item zero forever?</string>
     <string name="you_will_also_permanently_lose">You will also permanently lose</string>
     <string name="delete_action">Delete</string>
@@ -13,6 +14,16 @@
     <string name="filter_words_to_memorise_text">FILTER WORDS TO TRAIN</string>
     <string name="train_button_text">TRAIN</string>
 
+    <!-- short numbers -->
+    <!-- https://unicode-org.github.io/cldr-staging/charts/latest/verify/numbers/en.html -->
+    <string name="thousands">k</string>
+    <string name="millions">M</string>
+    <string name="billions">G</string>
+    <string name="trillions">T</string>
+    <string name="million_millions">P</string>
+    <string name="million_billion">E</string>
+
+    <!-- sample text -->
     <string name="english_memorise_title">
         Where can I get some Lorem Ipsum?
     </string>

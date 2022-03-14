@@ -2,11 +2,17 @@ package com.example.road.to.effective.snapshot.testing.parameterized.trainingite
 
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
 import com.example.road.to.effective.snapshot.testing.utils.config.ViewWidth
-import sergio.sastre.fontsize.FontScale
+import sergio.sastre.uitesting.utils.common.FontSize
+import sergio.sastre.uitesting.utils.common.UiMode
 
 data class TrainingTestItem(
-    val fontScale: FontScale,
-    val viewWidth: ViewWidth,
-    val trainingItem: TrainingItem,
-    val testName: String
+    val locale: String = "en",
+    val fontScale: FontSize = FontSize.NORMAL,
+    val uiMode: UiMode = UiMode.DAY,
+    val viewWidth: ViewWidth = ViewWidth.DEVICE_WIDTH,
+    val trainingItem: TrainingItem = TrainingItem(
+        trainingByLang = mapOf(),
+        activeLangs = emptySet()
+    ),
+    val testName: String,
 )

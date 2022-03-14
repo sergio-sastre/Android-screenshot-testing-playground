@@ -53,7 +53,7 @@ class LanguageFilterView : ConstraintLayout, Checkable {
 
     fun setValue(value: Int) {
         filterText.run {
-            longTransformer = LongAsShortTransformer()
+            longTransformer = LongAsShortTransformer(context)
             setValue(value.toLong())
         }
     }

@@ -46,7 +46,7 @@ class TrainingViewHolder(
         }
 
         with(container.findViewById<DigitTextView>(R.id.amountText)) {
-            longTransformer = LongAsShortTransformer()
+            longTransformer = LongAsShortTransformer(container.context)
             setAnimationOff()
             setValue(item.getWordsToMemoriseAmount())
             setAnimationOn()
@@ -84,7 +84,7 @@ class TrainingViewHolder(
         }
 
         with(container.findViewById<DigitTextView>(R.id.amountText)) {
-            longTransformer = LongAsShortTransformer()
+            longTransformer = LongAsShortTransformer(context)
             setValue(payload.newTrainingItem.getWordsToMemoriseAmount())
         }
     }

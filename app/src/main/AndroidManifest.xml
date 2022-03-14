@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
@@ -11,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadToEffectiveSnapshotTesting">
         <activity
-            android:name=".recyclerviewscreen.mvvm.RecyclerViewActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+            android:name=".recyclerviewscreen.mvvm.RecyclerViewActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -20,8 +20,8 @@
         <item name="android:textColor">@color/memoTitle</item>
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:fontFamily">@font/montserrat_alternates</item>
-        <item name="fontFamily">@font/montserrat_alternates</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
     </style>
 
     <style name="Subtitle" parent="TextAppearance.AppCompat.Body1"> -->
@@ -30,8 +30,8 @@
         <item name="android:maxLines">4</item>
         <item name="android:ellipsize">end</item>
         <item name="android:lineSpacingExtra">1dp</item>
-        <item name="android:fontFamily">@font/montserrat_alternates</item>
-        <item name="fontFamily">@font/montserrat_alternates</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
     </style>
 
     <style name="Subtitle.Delete">
@@ -44,7 +44,7 @@
 
     <style name="RowHeader" parent="TextAppearance.AppCompat.Body2">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/lightBlue</item>
+        <item name="android:textColor">?attr/training_card_bg_color</item>
     </style>
 
     <style name="FlagCheckMark" parent="Widget.AppCompat.CompoundButton.CheckBox">
@@ -69,7 +69,7 @@
     <style name="TrainingInfo" parent="TextAppearance.AppCompat.Body2">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize" tools:ignore="SpUsage">16dp</item>
-        <item name="android:textColor">@color/lightBlue</item>
+        <item name="android:textColor">?attr/training_card_bg_color</item>
         <item name="android:textAlignment">gravity</item>
         <item name="android:gravity">center_vertical</item>
         <item name="autoSizeTextType">uniform</item>
@@ -82,7 +82,7 @@
 
     <style name="TextInfo" parent="TextAppearance.AppCompat.Body2">
         <item name="android:textSize" tools:ignore="SpUsage">12dp</item>
-        <item name="android:textColor">@color/lightBlue</item>
+        <item name="android:textColor">?attr/training_card_bg_color</item>
         <item name="autoSizeTextType">uniform</item>
         <item name="autoSizeMinTextSize">8dp</item>
         <item name="android:maxLines">1</item>

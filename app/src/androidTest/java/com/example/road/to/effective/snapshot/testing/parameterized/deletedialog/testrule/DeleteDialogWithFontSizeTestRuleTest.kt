@@ -9,7 +9,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import sergio.sastre.fontsize.testrule.FontScaleRules
+import org.junit.runners.Parameterized.*
+import sergio.sastre.uitesting.utils.testrules.fontsize.FontSizeTestRule
 
 /**
  * This tests showcase how to use FontScaleTestRule
@@ -18,11 +19,11 @@ import sergio.sastre.fontsize.testrule.FontScaleRules
 class DeleteDialogWithFontSizeTestRuleTest(private val testItem: DeleteDialogTestItem) : ScreenshotTest {
 
     @get:Rule
-    val fontSize = FontScaleRules.fontScaleTestRule(testItem.fontScale)
+    val fontSize = FontSizeTestRule(testItem.fontScale)
 
     companion object {
         @JvmStatic
-        @Parameterized.Parameters
+        @Parameters
         fun data(): Array<DeleteDialogTestItem> = arrayOf(
             normalItemHappyPath()
         )

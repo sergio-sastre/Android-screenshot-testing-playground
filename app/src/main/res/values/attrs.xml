@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="tm">
+        <attr name="training_card_bg_color" format="color" />
+        <attr name="background_color" format="color" />
+    </declare-styleable>
+</resources>

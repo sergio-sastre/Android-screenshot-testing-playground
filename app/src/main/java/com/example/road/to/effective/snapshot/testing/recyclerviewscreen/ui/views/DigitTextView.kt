@@ -16,7 +16,8 @@ class DigitTextView : FrameLayout, Checkable {
     private var isChecked = true
     private var animationDuration = ANIMATION_DURATION
 
-    var longTransformer : LongTransformer = NoTransformer()
+    var longTransformer: LongTransformer =
+        NoTransformer(context)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(context)
@@ -26,12 +27,8 @@ class DigitTextView : FrameLayout, Checkable {
         init(context)
     }
 
-    interface LongTransformer{
-        fun convertToString(long: Long) : String
-    }
-
-    class NoTransformer : LongTransformer{
-        override fun convertToString(long: Long): String = long.toString()
+    interface LongTransformer {
+        fun convertToString(long: Long): String
     }
 
     private fun init(context: Context) {
@@ -40,15 +37,14 @@ class DigitTextView : FrameLayout, Checkable {
         nextTextView = rootView.findViewById<TextView>(R.id.nextTextView).apply {
             translationY = height.toFloat()
         }
-
         setValue(currentValue)
     }
 
-    fun setAnimationOn(){
+    fun setAnimationOn() {
         animationDuration = ANIMATION_DURATION
     }
 
-    fun setAnimationOff(){
+    fun setAnimationOff() {
         animationDuration = 0L
     }
 

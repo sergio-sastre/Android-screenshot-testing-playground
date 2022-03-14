@@ -1,6 +1,12 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils
 
+import android.content.Context
 import android.content.res.Resources
+import android.os.Build
+import android.text.TextUtils
+import android.util.LayoutDirection
+import android.util.LayoutDirection.LTR
+import android.util.LayoutDirection.RTL
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +14,7 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import com.example.road.to.effective.snapshot.testing.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
+import java.text.NumberFormat
 import java.util.*
 
 fun Language.getCountryFlag(): Int {
@@ -65,28 +72,34 @@ fun IntArray.bubbleSortDescending(doOnSwap: (initPos: Int, finalPos: Int) -> Uni
     return this
 }
 
-private val suffixes: NavigableMap<Long, String> = TreeMap(
+private val suffixes: NavigableMap<Long, Int> = TreeMap(
     mapOf(
-        Pair(1_000L, "k"),
-        Pair(1_000_000L, "M"),
-        Pair(1_000_000_000L, "G"),
-        Pair(1_000_000_000_000L, "T"),
-        Pair(1_000_000_000_000_000L, "P"),
-        Pair(1_000_000_000_000_000_000L, "E")
+        Pair(1_000L, R.string.thousands),
+        Pair(1_000_000L, R.string.millions),
+        Pair(1_000_000_000L, R.string.billions),
+        Pair(1_000_000_000_000L, R.string.trillions),
+        Pair(1_000_000_000_000_000L, R.string.million_millions),
+        Pair(1_000_000_000_000_000_000L, R.string.million_billion)
     )
 )
 
-fun Long.asShortString(): String {
+fun Long.asShortString(
+    context: Context,
+): String {
     //Long.MIN_VALUE == -Long.MIN_VALUE so we need an adjustment here
-    if (this == Long.MIN_VALUE) return (Long.MIN_VALUE + 1).asShortString()
-    if (this < 0) return "-" + (-this).asShortString()
-    if (this < 1000) return this.toString() //deal with easy case
+    val locale = context.mainLocale()
+    val numberFormat = NumberFormat.getInstance(locale)
+    if (this == Long.MIN_VALUE) return (Long.MIN_VALUE + 1).asShortString(context)
+    if (this < 0) return "-" + (-this).asShortString(context)
+    if (this < 1_000) return numberFormat.format(this) //deal with easy case
     val e = suffixes.floorEntry(this) ?: return ""
     val divideBy = e.key
-    val suffix = e.value
+    val suffix = context.getString(e.value)
     val truncated = this / (divideBy / 10) //the number part of the output times 10
     val hasDecimal = truncated < 100 && truncated / 10.0 != (truncated / 10).toDouble()
-    return if (hasDecimal) (truncated / 10.0).toString() + suffix else (truncated / 10).toString() + suffix
+    return if (hasDecimal) {
+        numberFormat.format(truncated / 10.0) + suffix
+    } else numberFormat.format(truncated / 10) + suffix
 }
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
@@ -98,6 +111,13 @@ fun Int.dp(): Int = (this / Resources.getSystem().displayMetrics.density).toInt(
 
 fun <K, V> Map<K, Collection<V>>.sortByValueSize(): Map<K, Collection<V>> =
     this.toList().sortedByDescending { (_, value) -> value.size }.toMap()
+
+fun Context.mainLocale() =
+    if (Build.VERSION.SDK_INT >= 24) {
+        this.resources.configuration.locales[0]
+    } else {
+        this.resources.configuration.locale
+    }
 
 /**
  * Returns the same set but with {@param item} to the set if does not contain item, or without it otherwise

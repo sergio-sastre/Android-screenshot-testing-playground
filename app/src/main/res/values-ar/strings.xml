@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">الطريق إلى اختبار اللقطة الفعال</string>
+    <string name="training_header">تمرين</string>
+    <string name="words_to_memorise_title">كلمات\n<small>للتدريب</small></string>
+    <string name="filter_words_to_memorise_text">كلمات الترشيح للتدريب</string>
+    <string name="train_button_text">يدرب</string>
+
+    <!-- short numbers -->
+    <!-- https://unicode-org.github.io/cldr-staging/charts/latest/verify/numbers/ar.html -->
+    <string name="thousands">ألف</string>
+    <string name="millions">مليون</string>
+    <string name="billions">مليار</string>
+    <string name="trillions">ترليون</string>
+    <string name="million_millions">P</string>
+    <string name="million_billion">E</string>
+</resources>
