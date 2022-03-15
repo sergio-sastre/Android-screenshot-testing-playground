@@ -1,4 +1,4 @@
-part of blog posts featured in
+part of blog posts featured in</br>
 <a href="https://androidweekly.net/issues/issue-479">
 <img src="https://androidweekly.net/issues/issue-479/badge">
 </a><a href="https://androidweekly.net/issues/issue-485">
@@ -40,7 +40,7 @@ that facilitates snapshot testing.
 - [Parameterized snapshot tests](#parameterized-snapshot-tests)
     - [with Parameterized Runner](#with-parameterized-runner)
     - [with TestParameterInjector](#with-testparameterinjector)
-- [Filter parameterized tests](#filter-parameterized-tests)   
+- [Filtered parameterized tests](#filtered-parameterized-tests)   
 - [What is coming next](#what-is-coming-next)   
 - [Attribution of icons in the app](#attribution-of-icons-in-the-app)
 
@@ -271,7 +271,7 @@ class DeleteDialogTest : ScreenshotTest {
 Now you can just run your test with `./gradlew executeScreenshotTests -Precord` and you should see
 the results!   
 
-## Filter Parameterized Tests
+## Filtered Parameterized Tests
 
 Running snapshot tests for all configurations on every PR can be very time-consuming and lead to
 incrementally slower builds. One approach to solve that issue is to run only a part of those tests
@@ -286,7 +286,7 @@ or
 `-Pandroid.testInstrumentationRunnerArguments.notAnnotation=com.your.package.YourAnnotation`
 
 **Warning**: These arguments are supported by `org.junit.runners.Parameterized` and `com.google.testing.junit.testparameterinjector.TestParameterInjector`, but not by all
-runners, e.g. `JUnitParams` fails if used. I strongly recommend to use `com.google.testing.junit.testparameterinjector.TestParameterInjector` for filter parameterized tests,
+runners, e.g. `JUnitParams` fails if used. I strongly recommend to use `com.google.testing.junit.testparameterinjector.TestParameterInjector` for filtered parameterized tests,
 because you can control which parameters are passed wo each test method. That is not the case with `org.junit.runners.Parameterized`, because the parameters are injected into every single test method.
 Thus, you need to create different Test classes to inject different parameters.
 
