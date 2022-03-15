@@ -2,7 +2,7 @@ package com.example.road.to.effective.snapshot.testing.utils.objectmother
 
 import androidx.annotation.StringRes
 import com.example.road.to.effective.snapshot.testing.R
-import com.example.road.to.effective.snapshot.testing.parameterized.deletedialog.DeleteDialogTestItem
+import com.example.road.to.effective.snapshot.testing.testparameterinjector.deletedialog.DeleteDialogTestItem
 import com.example.road.to.effective.snapshot.testing.utils.config.DialogWidth
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.UiMode

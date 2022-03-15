@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.parameterized.deletedialog
+package com.example.road.to.effective.snapshot.testing.testparameterinjector.deletedialog
 
 import com.example.road.to.effective.snapshot.testing.utils.config.DialogWidth
 import sergio.sastre.uitesting.utils.common.FontSize
