@@ -5,7 +5,7 @@
     android:id="@+id/landing"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="?attr/background_color">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/memoriseList"

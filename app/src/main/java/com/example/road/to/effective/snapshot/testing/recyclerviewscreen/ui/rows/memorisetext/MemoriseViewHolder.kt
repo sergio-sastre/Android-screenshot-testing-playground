@@ -18,13 +18,16 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.DeleteM
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.MemoriseClickedListener
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.MAX_WORDS
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.PopUpWindowBuilder
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.mainLocale
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.setFlagImage
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.setLandmarkImage
 import com.google.android.material.card.MaterialCardView
+import java.text.NumberFormat
 
 class MemoriseViewHolder<T>(
     private val container: View,
-    private val itemEventListener: T?
+    private val itemEventListener: T?,
+    private val animationDelay: Long = 500L
 ) : RecyclerView.ViewHolder(container) where T : DeleteMemoriseListener, T : MemoriseClickedListener {
     val mainLayout: MaterialCardView = container.findViewById(R.id.mainLayout)
 
@@ -42,6 +45,7 @@ class MemoriseViewHolder<T>(
 
     val textInfo: TextView = container.findViewById(R.id.textInfo)
     val trainingInfo: TextView = container.findViewById(R.id.trainingInfo)
+    val numberFormat = NumberFormat.getInstance(container.context.mainLocale())
 
     fun setupView(item: MemoriseItem) {
         mainLayout.setOnClickListener {
@@ -50,8 +54,8 @@ class MemoriseViewHolder<T>(
 
         sourceLangImage.setFlagImage(item.memorise.srcLang)
         landmarkImage.setLandmarkImage(item.memorise.landmark, item.memorise.srcLang)
-        textInfo.text = "${item.memorise.text.length}/$MAX_WORDS"
-        trainingInfo.text = item.memorise.translations.size.toString()
+        textInfo.text = "${numberFormat.format(item.memorise.text.length)}/${numberFormat.format(MAX_WORDS)}"
+        trainingInfo.text = numberFormat.format(item.memorise.translations.size)
 
         appCompatImageButton.setOnClickListener {
             val rootView = container.findViewById<ViewGroup>(R.id.root)
@@ -93,7 +97,7 @@ class MemoriseViewHolder<T>(
         setupView(item)
         Handler().postDelayed({
             item.animate(container.context, container)
-        }, 500L)
+        }, animationDelay)
     }
 
     private fun PopupWindow.showAsDropDownForItem(item: MemoriseItem, anchor: View) {
@@ -152,7 +156,7 @@ class MemoriseViewHolder<T>(
         Handler().postDelayed(
             {
                 TransitionManager.beginDelayedTransition(contentLayout)
-            }, 500
+            }, animationDelay
         )
     }
 }

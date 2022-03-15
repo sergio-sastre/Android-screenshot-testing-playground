@@ -1,6 +1,8 @@
 package com.example.road.to.effective.snapshot.testing.parameterized.trainingitem
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.*
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.English
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.German
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.Russian
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
 import com.example.road.to.effective.snapshot.testing.utils.annotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.utils.annotations.UnhappyPath
@@ -15,13 +17,14 @@ import com.karumi.shot.ScreenshotTest
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import org.junit.runners.Parameterized.Parameters
 
 @RunWith(Parameterized::class)
 class TrainingItemUnhappyPath(private val testItem: TrainingTestItem) : ScreenshotTest {
 
     companion object {
         @JvmStatic
-        @Parameterized.Parameters
+        @Parameters
         fun data(): Array<TrainingTestItem> =
             arrayOf(
                 withWordsToTrainUnhappyPath(),
@@ -42,7 +45,7 @@ class TrainingItemHappyPath(private val testItem: TrainingTestItem) : Screenshot
 
     companion object {
         @JvmStatic
-        @Parameterized.Parameters
+        @Parameters
         fun data(): Array<TrainingTestItem> =
             arrayOf(
                 withoutWordsToTrainHappyPath(),

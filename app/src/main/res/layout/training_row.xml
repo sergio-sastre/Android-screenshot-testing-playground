@@ -12,14 +12,14 @@
         android:id="@+id/trainingLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/lightBlue"
+        app:cardBackgroundColor="?attr/training_card_bg_color"
         app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        tools:background="@color/lightBlue">
+        tools:background="?attr/training_card_bg_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -133,7 +133,8 @@
                 app:layout_constraintTop_toTopOf="@+id/title"
                 app:strokeColor="@android:color/white"
                 app:strokeWidth="2dp"
-                tools:backgroundTint="@color/lightBlue" />
+                android:backgroundTint="?attr/training_card_bg_color"
+                 />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

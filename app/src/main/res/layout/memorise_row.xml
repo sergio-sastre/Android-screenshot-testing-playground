@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textInfo"
-                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"
+                    app:layout_constraintEnd_toStartOf="@+id/endBarrier"
                     app:layout_constraintStart_toStartOf="@+id/startGuideline"
                     app:layout_constraintTop_toBottomOf="@id/title"
                     app:layout_constraintVertical_bias="1.0"
@@ -144,7 +144,7 @@
                     android:id="@+id/endBarrier"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    app:barrierDirection="left"
+                    app:barrierDirection="start"
                     app:constraint_referenced_ids="appCompatImageButton"
                     app:layout_constraintStart_toStartOf="@id/appCompatImageButton"
                     app:layout_constraintTop_toTopOf="parent" />

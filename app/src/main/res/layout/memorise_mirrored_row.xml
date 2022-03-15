@@ -99,7 +99,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/body"
                     app:layout_constraintEnd_toStartOf="@+id/startGuideline"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/endBarrier"
+                    app:layout_constraintStart_toEndOf="@+id/endBarrier"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="title_sample" />
 
@@ -111,11 +111,10 @@
                     android:layout_marginHorizontal="8dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textInfo"
                     app:layout_constraintEnd_toStartOf="@+id/startGuideline"
-                    app:layout_constraintStart_toStartOf="@+id/endBarrier"
+                    app:layout_constraintStart_toEndOf="@+id/endBarrier"
                     app:layout_constraintTop_toBottomOf="@id/title"
                     app:layout_constraintVertical_bias="1.0"
                     tools:text="lorem_ipsum2" />
-
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/trainingInfo"
@@ -149,7 +148,7 @@
                     android:id="@+id/endBarrier"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    app:barrierDirection="right"
+                    app:barrierDirection="end"
                     app:constraint_referenced_ids="appCompatImageButton"
                     app:layout_constraintStart_toStartOf="@id/appCompatImageButton"
                     app:layout_constraintTop_toTopOf="parent" />

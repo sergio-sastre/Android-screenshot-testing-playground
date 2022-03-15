@@ -13,4 +13,5 @@
     <color name="memoSubtitle">#BDBDBD</color>
     <color name="lightBlue">#56CCF2</color>
     <color name="background">#EAFFFF</color>
+    <color name="dark_background">#121212</color>
 </resources>
