@@ -48,7 +48,7 @@ that facilitates snapshot testing.
 
 ### Emulators
 
-I've been using an emulator with API 23 for a matter of simplicity. That is because `Shot` requires
+I've been using an emulator with API 27 for a matter of simplicity. That is because `Shot` requires
 less configuration for API < 28. Moreover, if you are using Windows, beware that Shot 5.12.2 still
 has [some issues on API 29](https://github.com/pedrovgs/Shot/issues/244)
 
