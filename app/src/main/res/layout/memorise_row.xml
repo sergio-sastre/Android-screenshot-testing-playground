@@ -67,7 +67,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/sourceLangImage"
                     app:layout_constraintTop_toTopOf="@+id/sourceLangImage"
-                    app:tint="@color/lightBlue" />
+                    app:tint="?attr/memorise_info_text_color" />
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/appCompatImageButton"

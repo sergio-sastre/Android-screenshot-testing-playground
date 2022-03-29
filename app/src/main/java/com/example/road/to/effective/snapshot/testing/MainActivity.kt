@@ -3,6 +3,7 @@ package com.example.road.to.effective.snapshot.testing
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.road.to.effective.snapshot.testing.compose.CoffeeDrinkComposeActivity
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
 import com.google.android.material.button.MaterialButton
 
@@ -17,6 +18,9 @@ class MainActivity : AppCompatActivity() {
 
             findViewById<MaterialButton>(R.id.showRecyclerViewButton)
                 .setOnClickListener { showRecyclerView() }
+
+            findViewById<MaterialButton>(R.id.showComposeActivityButton)
+                .setOnClickListener { showComposeActivity() }
         }
     }
 
@@ -35,6 +39,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun showRecyclerView() {
         val intent = Intent(this, RecyclerViewActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun showComposeActivity() {
+        val intent = Intent(this, CoffeeDrinkComposeActivity::class.java)
         startActivity(intent)
     }
 }

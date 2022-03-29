@@ -13,14 +13,15 @@ import sergio.sastre.uitesting.utils.utils.waitForView
 object TrainingViewSnapshotHelper : ScreenshotTest {
 
     fun snapTrainingViewHolder(testItem: TrainingTestItem) {
-        val activity =
+        val activityScenario =
             ActivityScenarioConfigurator.ForView()
                 .setFontSize(testItem.fontScale)
                 .setLocale(testItem.locale)
                 .setUiMode(testItem.uiMode)
                 .setInitialOrientation(Orientation.PORTRAIT)
                 .launchConfiguredActivity()
-                .waitForActivity()
+
+        val activity = activityScenario.waitForActivity()
 
         val layout = waitForView {
             activity.inflate(R.layout.training_row)
@@ -38,5 +39,7 @@ object TrainingViewSnapshotHelper : ScreenshotTest {
             widthInPx = testItem.viewWidth.widthInPx,
             name = testItem.testName
         )
+
+        activityScenario.close()
     }
 }

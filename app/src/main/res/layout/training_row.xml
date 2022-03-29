@@ -90,7 +90,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:fontFamily="@font/montserrat_alternates"
+                android:fontFamily="@font/montserrat_alternates_with_cyrillic"
                 android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:lineSpacingMultiplier="0.85"

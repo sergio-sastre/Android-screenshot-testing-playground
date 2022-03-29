@@ -11,13 +11,14 @@ import sergio.sastre.uitesting.utils.utils.waitForView
 
 object DeleteDialogSnapshotHelper : ScreenshotTest {
 
-    fun snapDeleteDialogWithActivityScenario(testItem: DeleteDialogTestItem) {
-        val activity =
+    fun snapDeleteDialog(testItem: DeleteDialogTestItem) {
+        val activityScenario =
             ActivityScenarioConfigurator.ForView()
                 .setFontSize(testItem.fontScale)
                 .setUiMode(testItem.uiMode)
                 .launchConfiguredActivity()
-                .waitForActivity()
+
+        val activity = activityScenario.waitForActivity()
 
         val dialog = waitForView {
             DialogBuilder.buildDeleteDialog(
@@ -32,6 +33,8 @@ object DeleteDialogSnapshotHelper : ScreenshotTest {
             name = testItem.testName,
             widthInPx = testItem.dialogWidth.widthInPx
         )
+
+        activityScenario.close()
     }
 
     private fun itemArray(context: Context, @StringRes resources: Array<Int>): Array<String> =

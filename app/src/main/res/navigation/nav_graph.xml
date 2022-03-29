@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/coffeeDrinksFragment">
+    <fragment
+        android:id="@+id/coffeeDrinksFragment"
+        android:name="com.example.road.to.effective.snapshot.testing.compose.CoffeeDrinksFragment"
+        android:label="CoffeeDrinksFragment" />
+</navigation>

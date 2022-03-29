@@ -12,7 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="training_card_bg_color">@color/lightBlue</item>
+        <item name="training_card_bg_color">@color/light_blue</item>
+        <item name="memorise_info_text_color">@color/light_blue</item>
         <item name="background_color">@color/background</item>
+        <item name="memorise_title_color">@color/dark_grey</item>
+        <item name="memorise_body_color">@color/super_light_grey</item>
+        <item name="error_color">@color/design_default_color_error</item>
+        <item name="delete_dialog_button_bar_color">@color/super_light_grey</item>
+        <item name="delete_dialog_cancel_button_text_color">@color/dark_grey</item>
+        <item name="delete_icon_color">@color/white</item>
+        <item name="delete_circle_stroke_color">@color/pinkish_red</item>
     </style>
 </resources>

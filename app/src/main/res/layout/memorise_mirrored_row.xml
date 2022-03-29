@@ -65,7 +65,7 @@
                     android:layout_height="18dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginEnd="12dp"
-                    android:tint="@color/lightBlue"
+                    app:tint="?attr/memorise_info_text_color"
                     app:layout_constraintBottom_toBottomOf="@id/sourceLangImage"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
