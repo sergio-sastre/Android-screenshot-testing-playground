@@ -121,11 +121,12 @@ class DeleteDialogTestItem(
 ```kotlin
 object DeleteDialogSnapshotHelper : ScreenshotTest {
     fun snapDeleteDialogWithActivityScenario(testItem: DeleteDialogTestItem) {
-        val activity = ActivityScenarioConfigurator.ForView()
+        val activityScenario = ActivityScenarioConfigurator.ForView()
             .setFontSize(testItem.fontScale)
             .setUiMode(testItem.uiMode)
             .launchConfiguredActivity()
-            .waitForActivity()
+
+        val activity = activityScenario.waitForActivity()
 
         val dialog = waitForView {
             DialogBuilder.buildDeleteDialog(
@@ -140,6 +141,8 @@ object DeleteDialogSnapshotHelper : ScreenshotTest {
             name = testItem.testName,
             widthInPx = testItem.dialogWidth.widthInPx
         )
+        
+        activityScenario.close()
     }
 }
 ```
@@ -179,7 +182,7 @@ class DeleteDialogTest(private val testItem: DeleteDialogTestItem) : ScreenshotT
     @UnhappyPath
     @Test
     fun snapDialog() {
-        DeleteDialogSnapshotHelper.snapDeleteDialogWithActivityScenario(testItem)
+        DeleteDialogSnapshotHelper.snapDeleteDialog(testItem)
     }
 }
 ```
