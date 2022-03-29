@@ -64,7 +64,7 @@
                 app:layout_constraintStart_toEndOf="@id/trainingInfo"
                 app:layout_constraintTop_toTopOf="@id/imageView"
                 app:layout_constraintVertical_bias="0.3"
-                app:tint="@color/lightBlue" />
+                app:tint="?attr/memorise_info_text_color" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/appCompatImageButton"

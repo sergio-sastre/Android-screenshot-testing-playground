@@ -5,7 +5,7 @@ import com.example.road.to.effective.snapshot.testing.utils.annotations.UnhappyP
 import com.example.road.to.effective.snapshot.testing.utils.objectmother.DeleteDialogTestItemObjectMother.normalItemHappyPath
 import com.example.road.to.effective.snapshot.testing.utils.objectmother.DeleteDialogTestItemObjectMother.spaciousDialogUnhappyPath
 import com.example.road.to.effective.snapshot.testing.utils.objectmother.DeleteDialogTestItemObjectMother.suffocatedItemUnhappyPath
-import com.example.road.to.effective.snapshot.testing.utils.snapshotter.DeleteDialogSnapshotHelper.snapDeleteDialogWithActivityScenario
+import com.example.road.to.effective.snapshot.testing.utils.snapshotter.DeleteDialogSnapshotHelper.snapDeleteDialog
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import com.karumi.shot.ScreenshotTest
@@ -27,12 +27,12 @@ class DeleteDialogTest : ScreenshotTest {
     @UnhappyPath
     @Test
     fun snapDialogUnhappyPath(@TestParameter testItem: UnhappyPathTest) {
-        snapDeleteDialogWithActivityScenario(testItem.deleteItem)
+        snapDeleteDialog(testItem.deleteItem)
     }
 
     @HappyPath
     @Test
     fun snapDialogHappyPath(@TestParameter testItem: HappyPathTest) {
-        snapDeleteDialogWithActivityScenario(testItem.deleteItem)
+        snapDeleteDialog(testItem.deleteItem)
     }
 }

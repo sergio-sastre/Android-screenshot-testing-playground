@@ -14,6 +14,10 @@
         <activity
             android:name=".recyclerviewscreen.mvvm.RecyclerViewActivity">
         </activity>
+        <activity
+            android:name=".compose.CoffeeDrinkComposeActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        </activity>
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

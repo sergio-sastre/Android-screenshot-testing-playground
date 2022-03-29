@@ -18,8 +18,7 @@ have been discussed on:
 2. [Droidcon Berlin 2021](https://www.droidcon.com/2021/11/10/an-introduction-to-effective-snapshot-testing-on-android/)
 3. [Droidcon London 2021](https://www.droidcon.com/2021/11/17/an-introduction-to-effective-snapshot-testing-on-android-2/)
 
-This repo includes some samples to snapshot test Dialogs, ViewHolders and Activities for now, but I will also
-add Composable and custom View samples at least. These tests are written as:
+This repo includes some samples to snapshot test Dialogs, ViewHolders, Activities and **Jetpack Compose**!. These tests are written as:
 
 1. **Parameterized Tests**: Write the test once and run it under all desired configurations. This
    includes snapshot tests under various **font sizes**, **locales**, **orientations** and **UI modes (i.e. Dark/Light mode)**
@@ -40,8 +39,9 @@ that facilitates snapshot testing.
 - [Parameterized snapshot tests](#parameterized-snapshot-tests)
     - [with Parameterized Runner](#with-parameterized-runner)
     - [with TestParameterInjector](#with-testparameterinjector)
-- [Filtered parameterized tests](#filtered-parameterized-tests)   
-- [What is coming next](#what-is-coming-next)   
+- [Filter parameterized tests](#filter-parameterized-tests)
+- [Jetpack Compose Examples!](#jetpack-compose-examples)
+- [What is coming next](#what-is-coming-next)
 - [Attribution of icons in the app](#attribution-of-icons-in-the-app)
 
 ## Before you start...
@@ -231,11 +231,12 @@ enum class UnhappyPathTest(val deleteItem: DeleteDialogTestItem) {
 ```kotlin
 object DeleteDialogSnapshotHelper : ScreenshotTest {
     fun snapDeleteDialogWithActivityScenario(testItem: DeleteDialogTestItem) {
-        val activity = ActivityScenarioConfigurator.ForView()
+        val activityScenario = ActivityScenarioConfigurator.ForView()
             .setFontSize(testItem.fontScale)
             .setUiMode(testItem.uiMode)
             .launchConfiguredActivity()
-            .waitForActivity()
+                
+        val activity = activityScenario.waitForActivity()
 
         val dialog = waitForView {
             DialogBuilder.buildDeleteDialog(
@@ -250,6 +251,8 @@ object DeleteDialogSnapshotHelper : ScreenshotTest {
             name = testItem.testName,
             widthInPx = testItem.dialogWidth.widthInPx
         )
+       
+        activityScenario.close()
     }
 }
 ```
@@ -264,7 +267,7 @@ class DeleteDialogTest : ScreenshotTest {
     @UnhappyPath
     @Test
     fun snapDialogUnhappyPath(@TestParameter testItem: UnhappyPathTest) {
-        snapDeleteDialogWithActivityScenario(testItem.deleteItem)
+        snapDeleteDialog(testItem.deleteItem)
     }
 }
 ```
@@ -301,7 +304,7 @@ annotation class HappyPath
 ```
 
 And then we add another Test Class that reuses our previously defined `DeleteDialogTestItem`
-and `snapDeleteDialogWithActivityScenario(testItem)`
+and `snapDeleteDialog(testItem)`
 containing the "most common config" parameters, like here below
 
 ```kotlin
@@ -337,13 +340,24 @@ to see how these parameterized tests are implemented and run
 `./gradlew executeScreenshotTests -Precord -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.annotations.UnhappyPath`
 to verify that only the `@UnhappyPath` tests run! The same goes for `@HappyPath`
 
+## Jetpack Compose examples!
+
+We've recently included some Jetpack Compose examples!
+1. Screenshot testing an Activity made up of Composables
+   - [CoffeeDrinkComposeActivityTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/testparameterinjector/compose/activity/CoffeeDrinkComposeActivityTest.kt)
+2. Screenshot testing Composables:
+   - [CoffeeDrinkListComposableTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/testparameterinjector/compose/composeitem/CoffeeDrinkListComposableTest.kt)
+   - [CoffeeDrinkAppBarComposableTest.kt](https://github.com/sergio-sastre/RoadToEffectiveSnapshotTesting/blob/master/app/src/androidTest/java/com/example/road/to/effective/snapshot/testing/parameterized/compose/composeitem/CoffeeDrinkAppBarComposableTest.kt)
+
+Special thanks to [Alex Zhukovich](https://github.com/AlexZhukovich) for his [CoffeeDrinksWithJetpackCompose](https://github.com/AlexZhukovich/CoffeeDrinksWithJetpackCompose) projects, from which
+I've borrowed the Jetpack Compose examples!
+
 ## What is coming next:
 
-1. Jetpack compose samples (finally!)
-2. Snapshot testing for foldables (Jetpack compose sample!)
-3. Running snapshot tests on multiple devices in parallel
-4. Tips to remove flakiness
-5. Tips to increase test execution speed and more...
+1. Snapshot testing for foldables (Jetpack compose sample!)
+2. Running snapshot tests on multiple devices in parallel
+3. Tips to remove flakiness
+4. Tips to increase test execution speed and more...
 
 ## Attribution of icons in the app
 

@@ -8,10 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="memoTitle2">#828282</color>
-    <color name="memoTitle">#414a4c</color>
-    <color name="memoSubtitle">#BDBDBD</color>
-    <color name="lightBlue">#56CCF2</color>
+    <color name="light_grey">#828282</color>
+    <color name="dark_grey">#414a4c</color>
+    <color name="very_dark_grey">#373737</color>
+    <color name="super_light_grey">#BDBDBD</color>
+    <color name="light_blue">#56CCF2</color>
     <color name="background">#EAFFFF</color>
     <color name="dark_background">#121212</color>
+    <color name="very_light_blue">#82b1ff</color>
+    <color name="greenish_blue">#009bbf</color>
+    <color name="pinkish_red">#CF6679</color>
 </resources>

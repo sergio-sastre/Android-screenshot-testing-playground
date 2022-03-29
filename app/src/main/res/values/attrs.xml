@@ -3,5 +3,13 @@
     <declare-styleable name="tm">
         <attr name="training_card_bg_color" format="color" />
         <attr name="background_color" format="color" />
+        <attr name="memorise_title_color" format="color" />
+        <attr name="memorise_body_color" format="color" />
+        <attr name="memorise_info_text_color" format="color" />
+        <attr name="error_color" format="color" />
+        <attr name="delete_circle_stroke_color" format="color" />
+        <attr name="delete_icon_color" format="color" />
+        <attr name="delete_dialog_button_bar_color" format="color" />
+        <attr name="delete_dialog_cancel_button_text_color" format="color" />
     </declare-styleable>
 </resources>

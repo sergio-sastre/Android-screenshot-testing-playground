@@ -7,12 +7,21 @@ import sergio.sastre.uitesting.utils.common.UiMode
 
 object RecyclerViewActivityObjectMother {
 
-    fun withUiMode(uiMode: UiMode) =
+    fun happyPath() =
         ConfigTestItem(
-            uiMode = uiMode,
+            uiMode = UiMode.DAY,
             fontSize = FontSize.NORMAL,
             locale = "en",
             orientation = Orientation.PORTRAIT,
-            name = "RecyclerViewActivity_${uiMode.name}"
+            name = "RecyclerViewActivity_Portrait_HappyPath"
+        )
+
+    fun unhappyPath() =
+        ConfigTestItem(
+            uiMode = UiMode.NIGHT,
+            fontSize = FontSize.HUGE,
+            locale = "ar",
+            orientation = Orientation.PORTRAIT,
+            name = "RecyclerViewActivity_Portrait_UnhappyPath"
         )
 }

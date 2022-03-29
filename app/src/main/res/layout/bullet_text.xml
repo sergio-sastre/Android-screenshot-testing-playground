@@ -8,13 +8,14 @@
     android:orientation="horizontal"
     >
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bulletImage"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:contentDescription="@null"
         android:padding="8dp"
         android:src="@drawable/shape_circle"
+        android:tint="?attr/error_color"
         />
 
     <TextView

@@ -6,13 +6,13 @@
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackgroundBorderless">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/trainingIcon"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:padding="2dp"
         android:src="@drawable/ic_training_24dp"
-        android:tint="@color/memoTitle"
+        android:tint="?attr/memorise_body_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toEndOf="@id/trainingIcon"
         app:layout_constraintTop_toTopOf="@id/trainingIcon"
         android:textSize="15sp"
-        android:textColor="@color/memoTitle"
+        android:textColor="?attr/memorise_body_color"
         style="@style/PopUpActionText"
         />
 
