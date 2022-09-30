@@ -1,4 +1,4 @@
-part of blog posts featured in</br>
+part of blog posts</br>
 <a href="https://androidweekly.net/issues/issue-479">
 <img src="https://androidweekly.net/issues/issue-479/badge">
 </a><a href="https://androidweekly.net/issues/issue-485">
