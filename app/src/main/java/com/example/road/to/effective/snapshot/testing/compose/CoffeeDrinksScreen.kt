@@ -14,20 +14,23 @@ import com.example.road.to.effective.snapshot.testing.R
 
 @Composable
 fun ShowSuccessCoffeeDrinksScreen(
-    coffeeDrinksState: CoffeeDrinksState
+    coffeeDrinksState: CoffeeDrinksState,
+    coffeeShopName: String,
 ) {
     CoffeeDrinksScreenUI(
-        coffeeDrinksState = coffeeDrinksState
+        coffeeDrinksState = coffeeDrinksState,
+        coffeeShopName = coffeeShopName,
     )
 }
 
 @Composable
 fun CoffeeDrinksScreenUI(
     coffeeDrinksState: CoffeeDrinksState,
+    coffeeShopName: String,
 ) {
     Surface {
         Column {
-            CoffeeDrinkAppBar()
+            CoffeeDrinkAppBar(coffeeShopName)
             CoffeeDrinkList(
                 coffeeDrinksState = coffeeDrinksState
             )
@@ -36,11 +39,13 @@ fun CoffeeDrinksScreenUI(
 }
 
 @Composable
-fun CoffeeDrinkAppBar() {
+fun CoffeeDrinkAppBar(
+    coffeeShopName: String = "",
+) {
     TopAppBar(
         title = {
             Text(
-                text = stringResource(R.string.coffee_drinks_title),
+                text = stringResource(R.string.coffee_drinks_title).addLocation(coffeeShopName),
                 style = MaterialTheme.typography.h6.copy(
                     color = MaterialTheme.colors.onPrimary
                 )
@@ -49,6 +54,14 @@ fun CoffeeDrinkAppBar() {
         backgroundColor = MaterialTheme.colors.primary
     )
 }
+
+fun String.addLocation(location: String): String =
+    if (location.isNotBlank()) {
+        this + (" at $location").trimEnd()
+    } else {
+        this
+    }
+
 
 @Composable
 fun CoffeeDrinkList(

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Пут до ефективног тестирања снимака</string>
+    <string name="training_header">ОБУКА</string>
+    <string name="words_to_memorise_title">речи\n<small>за обуку</small></string>
+    <string name="filter_words_to_memorise_text">ФИЛТЕР РЕЧИ ЗА ТРЕН</string>
+    <string name="train_button_text">обучавати</string>
+
+    <!-- short numbers -->
+    <!-- https://unicode-org.github.io/cldr-staging/charts/latest/verify/numbers/sr.html -->
+    <string name="thousands">хиљ.</string>
+    <string name="millions">мил.</string>
+    <string name="billions">млрд.</string>
+    <string name="trillions">бил.</string>
+    <string name="million_millions">P</string>
+    <string name="million_billion">E</string>
+</resources>

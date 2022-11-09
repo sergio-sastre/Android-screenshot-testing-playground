@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.road.to.effective.snapshot.testing.compose.CoffeeDrinkComposeActivity
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
 import com.google.android.material.button.MaterialButton
+import com.example.road.to.effective.snapshot.testing.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

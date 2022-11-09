@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -28,17 +27,6 @@ class CoffeeDrinksViewModel(
                     _uiState.value = UiState.Success(
                         CoffeeDrinksState(it)
                     )
-                }
-        }
-    }
-
-    fun changeFavouriteState(coffeeDrink: CoffeeDrinkItem) {
-        viewModelScope.launch {
-            repository.updateFavouriteState(coffeeDrink.id, !coffeeDrink.isFavourite)
-                .collect { result ->
-                    if (result) {
-                        loadCoffeeDrinks()
-                    }
                 }
         }
     }

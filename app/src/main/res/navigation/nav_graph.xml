@@ -6,5 +6,10 @@
     <fragment
         android:id="@+id/coffeeDrinksFragment"
         android:name="com.example.road.to.effective.snapshot.testing.compose.CoffeeDrinksFragment"
-        android:label="CoffeeDrinksFragment" />
+        android:label="CoffeeDrinksFragment" >
+        <argument
+            android:name="coffee_shop_name"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
 </navigation>
