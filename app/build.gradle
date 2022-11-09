@@ -7,13 +7,12 @@ plugins {
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "com.example.road.to.effective.snapshot.testing"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -46,7 +45,8 @@ android {
         exclude "META-INF/LGPL2.1"
     }
 
-    // Not reliable on every API. Better to disable through developer settings
+    // Not reliable on every API. Seems to work only from API 25 on.
+    // Better to disable through developer settings
     testOptions {
         animationsDisabled = true
     }
@@ -57,51 +57,56 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.0.5'
+        kotlinCompilerExtensionVersion '1.3.2'
     }
 }
 
 shot {
+    tolerance = 0.15 // Tests pass if less than 0,15% of the pixels differ
     applicationId = "com.example.road.to.effective.snapshot.testing"
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0-alpha01'
+
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.fragment:fragment-ktx:1.4.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
 
     // Jetpack Compose
-    implementation "androidx.compose.runtime:runtime:1.1.1"
-    implementation "androidx.compose.ui:ui:1.1.1"
-    implementation "androidx.compose.foundation:foundation-layout:1.1.1"
-    implementation "androidx.compose.material:material:1.1.1"
-    implementation "androidx.compose.material:material-icons-extended:1.1.1"
-    implementation "androidx.compose.foundation:foundation:1.1.1"
-    implementation "androidx.compose.animation:animation:1.1.1"
-    implementation "androidx.compose.ui:ui-tooling:1.1.1"
-    implementation "androidx.compose.runtime:runtime-livedata:1.1.1"
-    implementation "androidx.navigation:navigation-compose:2.4.1"
-    implementation "androidx.navigation:navigation-fragment:2.4.1"
-    androidTestImplementation "androidx.compose.ui:ui-test:1.1.1"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:1.1.1"
+    implementation platform('androidx.compose:compose-bom:2022.10.00')
+    implementation "androidx.compose.runtime:runtime"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.foundation:foundation-layout"
+    implementation "androidx.compose.material:material"
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.compose.foundation:foundation"
+    implementation "androidx.compose.animation:animation"
+    implementation "androidx.compose.ui:ui-tooling"
+    implementation "androidx.compose.runtime:runtime-livedata"
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4"
+
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
 
     testImplementation 'junit:junit:4.13.2'
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.5'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation 'androidx.test:core-ktx:1.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
-    androidTestImplementation 'com.github.sergio-sastre:AndroidUiTestingUtils:1.0.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
+
+    androidTestImplementation('com.github.sergio-sastre:AndroidUiTestingUtils:1.2.2')
 }
 repositories {
     mavenCentral()

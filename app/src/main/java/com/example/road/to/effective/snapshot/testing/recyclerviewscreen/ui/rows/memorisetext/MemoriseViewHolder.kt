@@ -29,25 +29,25 @@ class MemoriseViewHolder<T>(
     private val itemEventListener: T?,
     private val animationDelay: Long = 500L
 ) : RecyclerView.ViewHolder(container) where T : DeleteMemoriseListener, T : MemoriseClickedListener {
-    val mainLayout: MaterialCardView = container.findViewById(R.id.mainLayout)
+    private val mainLayout: MaterialCardView = container.findViewById(R.id.mainLayout)
 
-    val appCompatImageButton: AppCompatImageButton =
+    private val appCompatImageButton: AppCompatImageButton =
         container.findViewById(R.id.appCompatImageButton)
 
-    val textTitle: TextView = container.findViewById(R.id.title)
+    private val textTitle: TextView = container.findViewById(R.id.title)
 
-    val textBody: TextView =
+    private val textBody: TextView =
         container.findViewById(R.id.body)
 
-    val sourceLangImage: AppCompatImageView = container.findViewById(R.id.sourceLangImage)
+    private val sourceLangImage: AppCompatImageView = container.findViewById(R.id.sourceLangImage)
 
-    val landmarkImage: AppCompatImageView = container.findViewById(R.id.imageView)
+    private val landmarkImage: AppCompatImageView = container.findViewById(R.id.imageView)
 
-    val textInfo: TextView = container.findViewById(R.id.textInfo)
-    val trainingInfo: TextView = container.findViewById(R.id.trainingInfo)
-    val numberFormat = NumberFormat.getInstance(container.context.mainLocale())
+    private val textInfo: TextView = container.findViewById(R.id.textInfo)
+    private val trainingInfo: TextView = container.findViewById(R.id.trainingInfo)
+    private val numberFormat: NumberFormat = NumberFormat.getInstance(container.context.mainLocale())
 
-    fun setupView(item: MemoriseItem) {
+    private fun setupView(item: MemoriseItem) {
         mainLayout.setOnClickListener {
             itemEventListener?.onMemoriseClicked(item.memorise)
         }

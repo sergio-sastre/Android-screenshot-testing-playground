@@ -18,4 +18,6 @@
     <color name="very_light_blue">#82b1ff</color>
     <color name="greenish_blue">#009bbf</color>
     <color name="pinkish_red">#CF6679</color>
+    <color name="light_green">#11af62</color>
+    <color name="dark_green">#3D8361</color>
 </resources>

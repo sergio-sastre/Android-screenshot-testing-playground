@@ -37,7 +37,8 @@ class CoffeeDrinksFragment : Fragment() {
                         when (uiState) {
                             is UiState.Success -> {
                                 ShowSuccessCoffeeDrinksScreen(
-                                    coffeeDrinksState = uiState.data
+                                    coffeeDrinksState = uiState.data,
+                                    coffeeShopName = arguments?.getString("coffee_shop_name").toString()
                                 )
                             }
                             UiState.Loading -> {

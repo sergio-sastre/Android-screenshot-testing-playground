@@ -23,4 +23,9 @@
         <item name="delete_icon_color">@color/very_dark_grey</item>
         <item name="delete_circle_stroke_color">@color/pinkish_red</item>
     </style>
+
+    <style name="Theme.Custom" parent="Theme.RoadToEffectiveSnapshotTesting">
+        <!-- Customize your theme here. -->
+        <item name="training_card_bg_color">@color/light_green</item>
+    </style>
 </resources>
