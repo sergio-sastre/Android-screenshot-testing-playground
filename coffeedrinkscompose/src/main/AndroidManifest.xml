@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RoadToEffectiveSnapshotTesting">
+        <activity
+            android:name=".CoffeeDrinksComposeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="action.coffeedrinkscompose.open" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

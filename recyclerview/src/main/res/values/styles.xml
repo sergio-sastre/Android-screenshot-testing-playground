@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Title" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?attr/memorise_title_color</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+    </style>
+
+    <style name="Subtitle" parent="TextAppearance.AppCompat.Body1"> -->
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/memorise_body_color</item>
+        <item name="android:maxLines">4</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">1dp</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+    </style>
+
+    <style name="Subtitle.Delete">
+        <item name="android:textColor">?attr/error_color</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+    </style>
+
+    <style name="RowHeader" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">?attr/training_card_bg_color</item>
+    </style>
+
+    <style name="FlagCheckMark" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@null</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_width">44dp</item>
+    </style>
+
+    <style name="CounterTextView">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:autoSizeTextType" tools:ignore="NewApi">uniform</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="TrainingInfo" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize" tools:ignore="SpUsage">16dp</item>
+        <item name="android:textColor">?attr/memorise_info_text_color</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">8dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+    </style>
+
+    <style name="TextInfo" parent="TextAppearance.AppCompat.Body2">
+        <item name="android:textSize" tools:ignore="SpUsage">12dp</item>
+        <item name="android:textColor">?attr/memorise_info_text_color</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">8dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+    </style>
+
+    <style name="PopUpActionText">
+        <item name="android:textSize" tools:ignore="SpUsage">12dp</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="autoSizeMinTextSize">8dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:minWidth">@dimen/popup_window_min_width</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="PopUpActionText.Destructive">
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:textColor">?attr/error_color</item>
+        <item name="drawableTint">?attr/error_color</item>
+    </style>
+</resources>

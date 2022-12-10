@@ -10,22 +10,6 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-        <item name="training_card_bg_color">@color/greenish_blue</item>
-        <item name="memorise_info_text_color">@color/very_light_blue</item>
-        <item name="background_color">@color/dark_background</item>
-        <item name="memorise_title_color">@android:color/primary_text_dark</item>
-        <item name="memorise_body_color">@android:color/secondary_text_dark</item>
-        <item name="error_color">@color/pinkish_red</item>
-        <item name="delete_dialog_button_bar_color">@color/dark_grey</item>
-        <item name="delete_dialog_cancel_button_text_color">@color/super_light_grey</item>
-        <item name="delete_icon_color">@color/very_dark_grey</item>
-        <item name="delete_circle_stroke_color">@color/pinkish_red</item>
-    </style>
-
-    <style name="Theme.Custom" parent="Theme.RoadToEffectiveSnapshotTesting">
-        <!-- Customize your theme here. -->
-        <item name="training_card_bg_color">@color/light_green</item>
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
     </style>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootLayout"
     android:orientation="vertical"
@@ -13,17 +12,17 @@
         android:id="@+id/showDialogButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_dialog" />
+        android:text="@string/show_delete_dialog" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/showRecyclerViewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_recycler_view" />
+        android:text="@string/show_recycler_view_screen" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/showComposeActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_compose_activity" />
+        android:text="@string/show_lazy_column_screen" />
 </LinearLayout>
