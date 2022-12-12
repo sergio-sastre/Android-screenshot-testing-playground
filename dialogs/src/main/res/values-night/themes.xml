@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.RoadToEffectiveSnapshotTesting" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
@@ -11,7 +11,11 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!--
+        Customize your theme here.
+        These custom attributes are defined in other modules, but the app crashes if not added
+        in /app
+        -->
         <item name="memorise_title_color">@android:color/primary_text_dark</item>
         <item name="memorise_body_color">@android:color/secondary_text_dark</item>
         <item name="error_color">@color/pinkish_red</item>

@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Road to Effective Snapshot Testing</string>
     <string name="show_delete_dialog" translatable="false">Show delete dialog!</string>
-    <string name="show_recycler_view_screen" translatable="false">Show recycler view screen!</string>
-    <string name="show_lazy_column_screen" translatable="false">Show lazy column screen!</string>
+    <string name="show_recycler_view" translatable="false">Show recycler view!</string>
+    <string name="show_lazy_column" translatable="false">Show lazy column!</string>
 </resources>

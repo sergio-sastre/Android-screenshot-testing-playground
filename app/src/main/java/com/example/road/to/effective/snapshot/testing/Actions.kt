@@ -5,7 +5,7 @@ import android.content.Intent
 
 object Actions {
     fun openRecyclerView(context: Context) =
-        internalIntent(context, "action.recyclerview.open")
+        internalIntent(context, "action.recyclerviewscreen.open")
 
     fun openCoffeeDrinks(context: Context) =
         internalIntent(context, "action.coffeedrinkscompose.open")

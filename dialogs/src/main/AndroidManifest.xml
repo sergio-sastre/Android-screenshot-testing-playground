@@ -3,7 +3,6 @@
 
     <application
         android:allowBackup="true"
-        android:label="Shot"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadToEffectiveSnapshotTesting" />
 

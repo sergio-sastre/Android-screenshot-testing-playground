@@ -61,9 +61,9 @@ android {
 }
 
 dependencies {
-    implementation project(':coffeedrinkscompose')
+    implementation project(':lazycolumnscreen')
     implementation project(':dialogs')
-    implementation project(':recyclerview')
+    implementation project(':recyclerviewscreen')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.9.0'
