@@ -1,22 +1,22 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.parameterized
 
 import com.android.resources.NightMode
-import com.android.resources.ScreenOrientation
-import com.example.road.to.effective.snapshot.testing.coffeedrinkscompose.R
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.PhoneOrientation
 
 data class DeviceConfig(
     val nightMode: NightMode = NightMode.NOTNIGHT,
     val fontScale: Float = 1.0f,
     val locale: String = "en",
-    val screenOrientation: ScreenOrientation,
+    val phoneOrientation: PhoneOrientation,
 )
 
 enum class HappyPathTestItem(val item: DeviceConfig) {
-    HAPPY(
+    PORTRAIT(
         DeviceConfig(
             locale = "en",
-            screenOrientation = ScreenOrientation.PORTRAIT,
+            phoneOrientation = PhoneOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 1.0f,
         ),
@@ -24,27 +24,26 @@ enum class HappyPathTestItem(val item: DeviceConfig) {
 }
 
 enum class UnhappyPathTestItem(val item: DeviceConfig) {
-    UNHAPPY_LANDSCAPE(
+    LANDSCAPE(
         DeviceConfig(
             locale = "en",
-            screenOrientation = ScreenOrientation.LANDSCAPE,
+            phoneOrientation = PhoneOrientation.LANDSCAPE,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 1.0f,
         ),
     ),
-    UNHAPPY_HUGE(
+    HUGE(
         DeviceConfig(
             locale = "en",
-            screenOrientation = ScreenOrientation.PORTRAIT,
+            phoneOrientation = PhoneOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 1.3f,
         ),
     ),
-
-    UNHAPPY_SMALL(
+    SMALL(
         DeviceConfig(
             locale = "en",
-            screenOrientation = ScreenOrientation.PORTRAIT,
+            phoneOrientation = PhoneOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 0.85f,
         ),

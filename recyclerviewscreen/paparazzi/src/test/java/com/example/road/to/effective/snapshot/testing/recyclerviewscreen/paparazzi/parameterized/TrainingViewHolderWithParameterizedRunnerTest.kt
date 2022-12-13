@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.setOrientation
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.setPhoneOrientation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 
 /**
@@ -26,7 +26,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
-class TrainingItemParameterizedHappyPathTest(
+class TrainingViewHolderParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem
 ) {
     private val deviceConfig
@@ -46,10 +46,11 @@ class TrainingItemParameterizedHappyPathTest(
             nightMode = deviceConfig.nightMode,
             locale = deviceConfig.locale,
             fontScale = deviceConfig.fontScale,
-        ).setOrientation(deviceConfig.orientation),
+        ).setPhoneOrientation(deviceConfig.orientation),
         theme = deviceConfig.theme,
-        supportsRtl = true,
+        supportsRtl = true, // needed for "ar" locale
         renderingMode = SessionParams.RenderingMode.V_SCROLL,
+        // avoid Paparazzi 1.1.0 crash when compileSDK 33
         environment = detectEnvironment().copy(
             platformDir = "${androidHome()}/platforms/android-32",
             compileSdkVersion = 32
@@ -57,7 +58,7 @@ class TrainingItemParameterizedHappyPathTest(
     )
 
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = paparazzi.inflate<View>(R.layout.training_row)
 
         val viewHolder =
@@ -74,7 +75,7 @@ class TrainingItemParameterizedHappyPathTest(
 }
 
 @RunWith(Parameterized::class)
-class TrainingItemParameterizedUnhappyPathTest(
+class TrainingViewHolderParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem
 ) {
     private val deviceConfig
@@ -94,10 +95,11 @@ class TrainingItemParameterizedUnhappyPathTest(
             nightMode = deviceConfig.nightMode,
             locale = deviceConfig.locale,
             fontScale = deviceConfig.fontScale,
-        ).setOrientation(deviceConfig.orientation),
-        supportsRtl = true,
+        ).setPhoneOrientation(deviceConfig.orientation),
+        supportsRtl = true, // needed for "ar" locale
         theme = deviceConfig.theme,
         renderingMode = SessionParams.RenderingMode.V_SCROLL,
+        // avoid Paparazzi 1.1.0 crash when compileSDK 33
         environment = detectEnvironment().copy(
             platformDir = "${androidHome()}/platforms/android-32",
             compileSdkVersion = 32
@@ -105,7 +107,7 @@ class TrainingItemParameterizedUnhappyPathTest(
     )
 
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = paparazzi.inflate<View>(R.layout.training_row)
 
         val viewHolder =

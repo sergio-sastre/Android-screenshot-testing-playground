@@ -20,7 +20,7 @@ import sergio.sastre.uitesting.utils.testrules.locale.SystemLocaleTestRule
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
- * Example with ActivityScenarioForActivityRule()
+ * Example with ActivityScenarioForActivityRule() of AndroidUiTestingUtils
  */
 class CoffeeDrinkComposeActivityHappyPathTest {
 
@@ -50,7 +50,7 @@ class CoffeeDrinkComposeActivityHappyPathTest {
 }
 
 /**
- * Example with ActivityScenarioConfigurator.ForActivity()
+ * Example with ActivityScenarioConfigurator.ForActivity() of AndroidUiTestingUtils
  *
  * This is an alternative if we cannot use ActivityScenarioForActivityRule(), or we want to use
  * in-app Locale, which ActivityScenarioForActivityRule does not support

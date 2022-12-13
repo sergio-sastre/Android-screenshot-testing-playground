@@ -25,7 +25,7 @@ import com.google.testing.junit.testparameterinjector.TestParameterInjector
  */
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class TrainingItemHappyPath(
+class TrainingViewHolderTestParameterHappyPathTest(
     @TestParameter val testItem: HappyPathTestItem
 ) : ScreenshotTest {
 
@@ -34,7 +34,7 @@ class TrainingItemHappyPath(
 
     @HappyPath
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForMeasuredViewHolder {
@@ -46,14 +46,14 @@ class TrainingItemHappyPath(
         compareScreenshot(
             holder = viewHolder,
             heightInPx = viewHolder.itemView.measuredHeight,
-            name = "TrainingViewHolder_${testItem.name}_TestParameterInjector",
+            name = "${testItem.name}_TestParameter", // testItem names are already long
         )
     }
 }
 
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class TrainingItemUnhappyPath(
+class TrainingViewHolderTestParameterUnhappyPath(
     @TestParameter val testItem: UnhappyPathTestItem
 ) : ScreenshotTest {
 
@@ -62,7 +62,7 @@ class TrainingItemUnhappyPath(
 
     @UnhappyPath
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForMeasuredViewHolder {
@@ -74,7 +74,7 @@ class TrainingItemUnhappyPath(
         compareScreenshot(
             holder = viewHolder,
             heightInPx = viewHolder.itemView.measuredHeight,
-            name = "TrainingViewHolder_${testItem.name}_TestParameterInjector",
+            name = "${testItem.name}_TestParameter", // testItem names are already long
         )
     }
 }

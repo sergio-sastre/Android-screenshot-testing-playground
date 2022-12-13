@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.road.to.effective.snapshot.testing.coffeedrinkscompose'
+    namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen'
     compileSdk 33
 
     defaultConfig {

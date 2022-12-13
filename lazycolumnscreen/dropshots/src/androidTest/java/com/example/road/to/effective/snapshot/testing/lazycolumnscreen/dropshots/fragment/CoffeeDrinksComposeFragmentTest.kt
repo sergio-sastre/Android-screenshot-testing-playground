@@ -6,7 +6,6 @@ import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.example.road.to.effective.snapshot.testing.testannotations.framework.DropshotsTest
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.utils.common.DisplaySize
@@ -19,7 +18,7 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
 import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
 
 /**
- * Example with fragmentScenarioConfiguratorRule
+ * Example with fragmentScenarioConfiguratorRule of AndroidUiTestingUtils
  */
 class CoffeeDrinksComposeFragmentHappyPathTest {
 
@@ -39,7 +38,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
             )
         )
 
-    @HappyPath @DropshotsTest
+    @HappyPath
     @Test
     fun snapFragment() {
         dropshots.assertSnapshot(
@@ -50,14 +49,14 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
 }
 
 /**
- * Example with FragmentScenarioConfigurator
+ * Example with FragmentScenarioConfigurator of AndroidUiTestingUtils
  */
 class CoffeeDrinksComposeFragmentUnhappyPathTest {
 
     @get:Rule
     val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
 
-    @UnhappyPath @DropshotsTest
+    @UnhappyPath
     @Test
     fun snapFragment() {
         val fragmentScenario =

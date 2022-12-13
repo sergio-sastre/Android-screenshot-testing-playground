@@ -22,12 +22,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-/**
- * Example with ActivityScenarioForComposableRule()
+ * Example with ActivityScenarioForComposableRule() of AndroidUiTestingUtils
  */
 class CoffeeDrinkAppBarHappyPathTest {
 
@@ -63,7 +58,7 @@ class CoffeeDrinkAppBarHappyPathTest {
 }
 
 /**
- * Example with ActivityScenarioConfigurator.ForComposable()
+ * Example with ActivityScenarioConfigurator.ForComposable() of AndroidUiTestingUtils
  * This is an alternative if we cannot use ActivityScenarioForComposableRule()
  */
 class CoffeeDrinkAppBarUnhappyPathTest {

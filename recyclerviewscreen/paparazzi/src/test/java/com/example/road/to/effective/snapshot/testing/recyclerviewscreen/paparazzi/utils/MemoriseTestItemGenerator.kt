@@ -1,7 +1,11 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils
 
 import android.content.Context
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseItem
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
 
 object MemoriseTestItemGenerator {
     /**
@@ -12,10 +16,10 @@ object MemoriseTestItemGenerator {
      * the string will not be correctly localized with the locale of the Activity
      */
     private fun generateMemorise(activity: Context) =
-        com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise(
+        Memorise(
             id = 2,
             landmark = 4,
-            srcLang = com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.English,
+            srcLang = Language.English,
             title = activity.getString(R.string.english_memorise_title),
             text = activity.getString(R.string.english_memorise_body),
             translations = englishTransl.repeated(3)
@@ -32,15 +36,15 @@ object MemoriseTestItemGenerator {
         )
 
     private val englishTransl =
-        com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation(
+        Translation(
             "hallo",
             setOf(),
-            com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.English,
-            com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.English
+            Language.English,
+            Language.English
         )
 
-    private fun com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation.repeated(times: Int): List<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation> =
-        mutableListOf<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation>().apply {
+    private fun Translation.repeated(times: Int): List<Translation> =
+        mutableListOf<Translation>().apply {
             repeat(times) { add(this@repeated) }
         }
 }

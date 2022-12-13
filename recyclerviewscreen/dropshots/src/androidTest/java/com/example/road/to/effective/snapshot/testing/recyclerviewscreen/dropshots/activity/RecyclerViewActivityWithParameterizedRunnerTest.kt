@@ -22,7 +22,7 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
-class RecyclerViewActivityHappyPathTest(
+class RecyclerViewActivityParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) {
 
@@ -50,7 +50,7 @@ class RecyclerViewActivityHappyPathTest(
 }
 
 @RunWith(Parameterized::class)
-class RecyclerViewActivityUnhappyPathTest(
+class RecyclerViewActivityParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
 ) {
 

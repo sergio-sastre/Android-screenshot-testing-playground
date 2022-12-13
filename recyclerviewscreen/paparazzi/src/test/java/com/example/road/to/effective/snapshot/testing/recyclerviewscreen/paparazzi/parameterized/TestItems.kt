@@ -3,7 +3,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.papara
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.PhoneOrientation
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.PhoneOrientation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
 
 data class DeviceConfig(
@@ -71,7 +71,7 @@ enum class HappyPathTestItem(val item: TrainingTestItem) {
 }
 
 enum class UnhappyPathTestItem(val item: TrainingTestItem) {
-    UNHAPPY_AR_WITH_WORDS(
+    AR_WITH_WORDS(
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "ar",
@@ -79,7 +79,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    UNHAPPY_CUSTOM_THEME_DAY_SR_LATIN_WITH_WORDS(
+    CUSTOM_THEME_DAY_SR_LATIN_WITH_WORDS(
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "b+sr+Latn",
@@ -88,7 +88,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    UNHAPPY_CUSTOM_THEME_NIGHT_SR_CYRYL_WITH_WORDS(
+    CUSTOM_THEME_NIGHT_SR_CYRYL_WITH_WORDS(
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "b+sr+Cyrl",
@@ -98,7 +98,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    UNHAPPY_EN_WITH_1M_WORDS_IN_ALL_LANGS(
+    WITH_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "en",
@@ -106,7 +106,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = oneMillionWordsTrainingItem,
         ),
     ),
-    UNHAPPY_EN_HUGE_WITH_1M_WORDS_IN_ALL_LANGS(
+    HUGE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "en",
@@ -115,7 +115,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = oneMillionWordsTrainingItem,
         ),
     ),
-    UNHAPPY_EN_NIGHT_LANDSCAPE_WITH_1M_WORDS_IN_ALL_LANGS(
+    NIGHT_LANDSCAPE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "en",

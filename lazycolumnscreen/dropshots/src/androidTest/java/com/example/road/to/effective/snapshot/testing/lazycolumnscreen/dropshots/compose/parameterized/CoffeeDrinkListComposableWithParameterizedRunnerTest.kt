@@ -8,7 +8,6 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.waitForComposeView
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.example.road.to.effective.snapshot.testing.testannotations.framework.DropshotsTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -42,9 +41,9 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     @get:Rule
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(testItem.item)
 
-    @HappyPath @DropshotsTest
+    @HappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -75,9 +74,9 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     @get:Rule
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(testItem.item)
 
-    @UnhappyPath @DropshotsTest
+    @UnhappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)

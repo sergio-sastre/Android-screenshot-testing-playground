@@ -3,7 +3,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.com
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.karumi.shot.ScreenshotTest
@@ -40,7 +40,7 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
 
     @HappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -71,7 +71,7 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
 
     @UnhappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)

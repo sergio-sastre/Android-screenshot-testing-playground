@@ -24,7 +24,7 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
  */
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewActivityTestParameterInjectorHappyPathTest(
+class RecyclerViewActivityTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
 ) {
     @get:Rule
@@ -39,14 +39,14 @@ class RecyclerViewActivityTestParameterInjectorHappyPathTest(
     fun snapActivity() {
         dropshots.assertSnapshot(
             activity = activityScenarioForActivityRule.activity,
-            name = "RecyclerViewActivity_${configItem.name}_TestParameterInjector"
+            name = "RecyclerViewActivity_${configItem.name}_TestParameter"
         )
     }
 }
 
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewActivityTestParameterInjectorUnhappyPathTest(
+class RecyclerViewActivityTestParameterUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,
 ) {
     @get:Rule
@@ -61,7 +61,7 @@ class RecyclerViewActivityTestParameterInjectorUnhappyPathTest(
     fun snapActivity() {
         dropshots.assertSnapshot(
             activity = activityScenarioForActivityRule.activity,
-            name = "RecyclerViewActivity_${configItem.name}_TestParameterInjector"
+            name = "RecyclerViewActivity_${configItem.name}_TestParameter"
         )
     }
 }

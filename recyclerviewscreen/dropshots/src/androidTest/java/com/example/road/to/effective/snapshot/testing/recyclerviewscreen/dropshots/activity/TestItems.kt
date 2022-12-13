@@ -7,7 +7,7 @@ import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 
 enum class HappyPathTestItem(val item: ActivityConfigItem) {
-    HAPPY(
+    PORTRAIT(
         ActivityConfigItem(
             systemLocale = "en",
             orientation = Orientation.PORTRAIT,
@@ -19,16 +19,7 @@ enum class HappyPathTestItem(val item: ActivityConfigItem) {
 }
 
 enum class UnhappyPathTestItem(val item: ActivityConfigItem) {
-    UNHAPPY_LANDSCAPE(
-        ActivityConfigItem(
-            systemLocale = "en",
-            orientation = Orientation.LANDSCAPE,
-            uiMode = UiMode.DAY,
-            fontSize = FontSize.NORMAL,
-            displaySize = DisplaySize.NORMAL,
-        ),
-    ),
-    UNHAPPY_EN_XA_NIGHT_SMALL_SMALL(
+    EN_XA_NIGHT_SMALL_SMALL(
         ActivityConfigItem(
             systemLocale = "en_XA",
             orientation = Orientation.PORTRAIT,
@@ -37,7 +28,7 @@ enum class UnhappyPathTestItem(val item: ActivityConfigItem) {
             displaySize = DisplaySize.SMALL,
         ),
     ),
-    UNHAPPY_AR_XB_NIGHT_HUGE_LARGEST(
+    AR_XB_NIGHT_HUGE_LARGEST(
         ActivityConfigItem(
             systemLocale = "ar_XB",
             orientation = Orientation.PORTRAIT,
@@ -45,5 +36,14 @@ enum class UnhappyPathTestItem(val item: ActivityConfigItem) {
             fontSize = FontSize.HUGE,
             displaySize = DisplaySize.LARGEST,
         ),
-    )
+    ),
+    LANDSCAPE(
+        ActivityConfigItem(
+            systemLocale = "en",
+            orientation = Orientation.LANDSCAPE,
+            uiMode = UiMode.DAY,
+            fontSize = FontSize.NORMAL,
+            displaySize = DisplaySize.NORMAL,
+        ),
+    ),
 }

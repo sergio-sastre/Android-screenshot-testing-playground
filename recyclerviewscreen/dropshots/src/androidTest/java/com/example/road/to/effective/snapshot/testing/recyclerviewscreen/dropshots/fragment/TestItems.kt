@@ -4,20 +4,20 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.fragmentscenario.FragmentConfigItem
-import  com.example.road.to.effective.snapshot.testing.recyclerview.R
+import  com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 
 enum class HappyPathTestItem(val item: FragmentConfigItem) {
-    HAPPY(
+    PORTRAIT(
         FragmentConfigItem(
             locale = "en",
             uiMode = UiMode.DAY,
             fontSize = FontSize.NORMAL,
         ),
-    )
+    ),
 }
 
 enum class UnhappyPathTestItem(val item: FragmentConfigItem) {
-    UNHAPPY_CUSTOM_THEME_DAY(
+    CUSTOM_THEME_DAY(
         FragmentConfigItem(
             locale = "en",
             theme = R.style.Theme_Custom,
@@ -25,7 +25,7 @@ enum class UnhappyPathTestItem(val item: FragmentConfigItem) {
             fontSize = FontSize.NORMAL,
         ),
     ),
-    UNHAPPY_CUSTOM_THEME_NIGHT(
+    CUSTOM_THEME_NIGHT(
         FragmentConfigItem(
             locale = "en",
             theme = R.style.Theme_Custom,
@@ -33,17 +33,17 @@ enum class UnhappyPathTestItem(val item: FragmentConfigItem) {
             fontSize = FontSize.NORMAL,
         ),
     ),
-    UNHAPPY_AR_XB_HUGE(
+    AR_XB_HUGE(
         FragmentConfigItem(
             locale = "ar_XB",
             uiMode = UiMode.DAY,
             fontSize = FontSize.HUGE,
         ),
     ),
-    UNHAPPY_LANDSCAPE_AR_XB(
+    LANDSCAPE_NIGHT(
         FragmentConfigItem(
-            locale = "ar_XB",
-            uiMode = UiMode.DAY,
+            locale = "en",
+            uiMode = UiMode.NIGHT,
             orientation = Orientation.LANDSCAPE,
             fontSize = FontSize.NORMAL,
         ),

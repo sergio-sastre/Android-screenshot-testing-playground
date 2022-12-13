@@ -4,7 +4,6 @@ import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.androidHome
 import app.cash.paparazzi.detectEnvironment
-import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import org.junit.Rule
 import org.junit.Test
@@ -25,11 +24,13 @@ class DeleteDialogParameterizedHappyPathTest(
     @get:Rule
     val paparazzi = Paparazzi(
         deviceConfig = DeviceConfig.PIXEL_5.copy(
+            softButtons = false,
             screenWidth = testItem.deleteItem.screenWidth.widthInPx,
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
+        // avoid Paparazzi 1.1.0 crash when compileSDK 33
         environment = detectEnvironment().copy(
             platformDir = "${androidHome()}/platforms/android-32",
             compileSdkVersion = 32
@@ -66,12 +67,13 @@ class DeleteDialogParameterizedUnhappyPathTest(
     @get:Rule
     val paparazzi = Paparazzi(
         deviceConfig = DeviceConfig.PIXEL_5.copy(
+            softButtons = false,
             screenWidth = testItem.deleteItem.screenWidth.widthInPx,
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
-        renderingMode = SessionParams.RenderingMode.SHRINK,
+        // avoid Paparazzi 1.1.0 crash when compileSDK 33
         environment = detectEnvironment().copy(
             platformDir = "${androidHome()}/platforms/android-32",
             compileSdkVersion = 32

@@ -8,7 +8,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.road.to.effective.snapshot.testing.coffeedrinkscompose.R
 
 class CoffeeDrinksFragment : Fragment() {
     private val viewModel: CoffeeDrinksViewModel by viewModels {

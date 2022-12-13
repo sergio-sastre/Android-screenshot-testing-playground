@@ -18,6 +18,7 @@ fun paparazzi(
         Paparazzi(
             deviceConfig = deviceConfig,
             renderingMode = renderingMode,
+            // avoid Paparazzi 1.1.0 crash when compileSDK 33
             environment = detectEnvironment().copy(
                 platformDir = "${androidHome()}/platforms/android-32",
                 compileSdkVersion = 32
@@ -25,6 +26,9 @@ fun paparazzi(
         )
     }
 
+/**
+ * This is necessary to avoid crash when using compose 1.3.2
+ */
 private fun setFinalStatic(field: Field, newValue: Any) {
     Field::class.java.getDeclaredField("modifiers").apply {
         isAccessible = true

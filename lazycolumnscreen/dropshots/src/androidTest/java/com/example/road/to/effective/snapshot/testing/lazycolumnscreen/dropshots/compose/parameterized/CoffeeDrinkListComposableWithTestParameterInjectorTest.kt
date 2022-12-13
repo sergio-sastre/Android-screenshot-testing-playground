@@ -8,7 +8,6 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.waitForComposeView
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.example.road.to.effective.snapshot.testing.testannotations.framework.DropshotsTest
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -26,7 +25,7 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposa
  * Parameterized Runner is compatible with instrumented test of any API level
  */
 @RunWith(TestParameterInjector::class)
-class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
+class CoffeeDrinkListComposableTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
 ) {
 
@@ -36,9 +35,9 @@ class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
     @get:Rule
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)
 
-    @HappyPath @DropshotsTest
+    @HappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -63,9 +62,9 @@ class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
     @get:Rule
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)
 
-    @UnhappyPath @DropshotsTest
+    @UnhappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)

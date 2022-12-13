@@ -25,7 +25,7 @@ import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPat
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
-class TrainingItemParameterizedHappyPathTest(
+class TrainingViewHolderParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem
 ) {
     companion object {
@@ -42,7 +42,7 @@ class TrainingItemParameterizedHappyPathTest(
 
     @HappyPath
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForViewHolder {
@@ -53,13 +53,13 @@ class TrainingItemParameterizedHappyPathTest(
 
         dropshots.assertSnapshot(
             view = viewHolder,
-            name = "TrainingViewHolder_${testItem.name}_Parameterized",
+            name = "${testItem.name}_Parameterized", // testItem names are already long
         )
     }
 }
 
 @RunWith(Parameterized::class)
-class TrainingItemParameterizedUnhappyPathTest(
+class TrainingViewHolderParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem
 ) {
     companion object {
@@ -76,7 +76,7 @@ class TrainingItemParameterizedUnhappyPathTest(
 
     @UnhappyPath
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForViewHolder {
@@ -87,7 +87,7 @@ class TrainingItemParameterizedUnhappyPathTest(
 
         dropshots.assertSnapshot(
             view = viewHolder,
-            name = "TrainingViewHolder_${testItem.name}_Parameterized",
+            name = "${testItem.name}_Parameterized", // testItem names are already long
         )
     }
 }

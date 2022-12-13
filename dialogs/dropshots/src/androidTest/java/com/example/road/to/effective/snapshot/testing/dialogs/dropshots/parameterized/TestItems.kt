@@ -1,10 +1,11 @@
-package com.example.road.to.effective.snapshot.testing.dialogs.dropshots
+package com.example.road.to.effective.snapshot.testing.dialogs.dropshots.parameterized
 
 import android.content.Context
 import androidx.annotation.StringRes
 import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.UiMode
+import com.example.road.to.effective.snapshot.testing.dialogs.R
 
 data class DeleteDialogTestItem(
     val viewConfig: ViewConfigItem = ViewConfigItem(),

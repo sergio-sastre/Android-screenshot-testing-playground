@@ -48,14 +48,14 @@ private val wordsInSomeLangsTrainingItem = TrainingItem(
 )
 
 enum class HappyPathTestItem(val item: TrainingTestItem) {
-    HAPPY_EN_WITHOUT_WORDS(
+    WITHOUT_WORDS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "en",
             ),
         ),
     ),
-    HAPPY_EN_WITH_WORDS_IN_SOME_LANGS(
+    WITH_WORDS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "en",
@@ -66,7 +66,7 @@ enum class HappyPathTestItem(val item: TrainingTestItem) {
 }
 
 enum class UnhappyPathTestItem(val item: TrainingTestItem) {
-    UNHAPPY_AR_WITH_WORDS_IN_SOME_LANGS(
+    AR_WITH_WORDS_IN_SOME_LANGS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "ar",
@@ -74,7 +74,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    UNHAPPY_CUSTOM_THEME_DAY_SR_LATIN_WITH_WORDS_IN_SOME_LANGS(
+    CUSTOM_THEME_DAY_SR_LATIN_WITH_WORDS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "sr-Latn-RS",
@@ -83,7 +83,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    UNHAPPY_CUSTOM_THEME_NIGHT_SR_CYRYL_CUSTOM_WITH_WORDS_IN_SOME_LANGS(
+    CUSTOM_THEME_NIGHT_SR_CYRYL_CUSTOM_WITH_WORDS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "sr-Cyrl-RS",
@@ -93,7 +93,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    UNHAPPY_EN_XA_WITH_1M_WORDS_IN_ALL_LANGS(
+    EN_XA_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "en_XA",
@@ -101,7 +101,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = oneMillionWordsTrainingItem,
         ),
     ),
-    UNHAPPY_EN_HUGE_WITH_1M_WORDS_IN_ALL_LANGS(
+    HUGE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "en",
@@ -110,7 +110,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = oneMillionWordsTrainingItem,
         ),
     ),
-    UNHAPPY_EN_NIGHT_LANDSCAPE_WITH_1M_WORDS_IN_ALL_LANGS(
+    NIGHT_LANDSCAPE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "en",

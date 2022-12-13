@@ -19,7 +19,7 @@ import sergio.sastre.uitesting.utils.utils.inflateAndWaitForIdle
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
- * Example with ActivityScenarioForViewRule
+ * Example with ActivityScenarioForViewRule of AndroidUiTestingUtils
  */
 class MemoriseViewHolderHappyPathTest : ScreenshotTest {
     @get:Rule
@@ -53,13 +53,13 @@ class MemoriseViewHolderHappyPathTest : ScreenshotTest {
         compareScreenshot(
             holder = viewHolder,
             heightInPx = viewHolder.itemView.measuredHeight,
-            name = "MemoriseView_Happy"
+            name = "MemoriseViewHolder_Happy"
         )
     }
 }
 
 /**
- * Example with ActivityScenarioConfigurator.ForView()
+ * Example with ActivityScenarioConfigurator.ForView() of AndroidUiTestingUtils
  *
  * This is an alternative if we cannot use ActivityScenarioForViewRule()
  */
@@ -92,7 +92,7 @@ class MemoriseViewHolderUnhappyPathTest : ScreenshotTest {
         compareScreenshot(
             holder = viewHolder,
             heightInPx = viewHolder.itemView.measuredHeight,
-            name = "MemoriseView_Unhappy"
+            name = "MemoriseViewHolder_Unhappy"
         )
 
         activityScenario.close()

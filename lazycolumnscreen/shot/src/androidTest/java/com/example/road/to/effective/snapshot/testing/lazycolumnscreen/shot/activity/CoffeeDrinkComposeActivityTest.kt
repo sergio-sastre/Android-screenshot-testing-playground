@@ -20,7 +20,7 @@ import sergio.sastre.uitesting.utils.testrules.locale.SystemLocaleTestRule
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
- * Example with ActivityScenarioForActivityRule()
+ * Example with ActivityScenarioForActivityRule() of AndroidUiTestingUtils
  */
 @SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
 class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
@@ -28,7 +28,8 @@ class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
     @get:Rule
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
-            config = ActivityConfigItem(systemLocale = "en",
+            config = ActivityConfigItem(
+                systemLocale = "en",
                 orientation = Orientation.PORTRAIT,
                 uiMode = UiMode.DAY,
                 fontSize = FontSize.NORMAL,
@@ -51,7 +52,7 @@ class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
 }
 
 /**
- * Example with ActivityScenarioConfigurator.ForActivity()
+ * Example with ActivityScenarioConfigurator.ForActivity() of AndroidUiTestingUtils
  *
  * This is an alternative if we cannot use ActivityScenarioForActivityRule(), or we want to use
  * in-app Locale, which ActivityScenarioForActivityRule does not support

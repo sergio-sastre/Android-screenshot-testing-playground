@@ -27,7 +27,7 @@ import sergio.sastre.uitesting.utils.utils.waitForView
  */
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class TrainingItemHappyPath(
+class TrainingViewHolderTestParameterHappyPathTest(
     @TestParameter val testItem: HappyPathTestItem
 ) {
     @get:Rule
@@ -38,7 +38,7 @@ class TrainingItemHappyPath(
 
     @HappyPath
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForView {
@@ -49,14 +49,14 @@ class TrainingItemHappyPath(
 
         dropshots.assertSnapshot(
             view = viewHolder,
-            name = "TrainingViewHolder_${testItem.name}_TestParameterInjector",
+            name = "${testItem.name}_TestParameter", // testItem names are already long
         )
     }
 }
 
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class TrainingItemUnhappyPath(
+class TrainingViewHolderTestParameterUnhappyPathTest(
     @TestParameter val testItem: UnhappyPathTestItem
 ) {
     @get:Rule
@@ -67,7 +67,7 @@ class TrainingItemUnhappyPath(
 
     @UnhappyPath
     @Test
-    fun snapTrainingItem() {
+    fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForViewHolder {
@@ -78,7 +78,7 @@ class TrainingItemUnhappyPath(
 
         dropshots.assertSnapshot(
             view = viewHolder,
-            name = "TrainingViewHolder_${testItem.name}_TestParameterInjector",
+            name = "${testItem.name}_TestParameter", // testItem names are already long
         )
     }
 }

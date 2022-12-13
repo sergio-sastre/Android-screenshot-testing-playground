@@ -1,7 +1,5 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen
 
-import com.example.road.to.effective.snapshot.testing.coffeedrinkscompose.R
-
 class DummyCoffeeDrinksDataSource : CoffeeDrinkDataSource {
 
     override fun getCoffeeDrinks(): List<CoffeeDrink> {

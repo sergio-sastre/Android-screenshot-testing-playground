@@ -3,7 +3,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.com
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -25,7 +25,7 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposa
  */
 @SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
 @RunWith(TestParameterInjector::class)
-class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
+class CoffeeDrinkListComposableTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
 ) : ScreenshotTest {
 
@@ -34,7 +34,7 @@ class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
 
     @HappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -43,14 +43,14 @@ class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
 
         compareScreenshot(
             rule = activityScenarioForComposableRule.composeRule,
-            name = "CoffeeDrinkListComposable_${configItem.name}_TestParameterInjector"
+            name = "CoffeeDrinkListComposable_${configItem.name}_TestParameter"
         )
     }
 }
 
 @SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
 @RunWith(TestParameterInjector::class)
-class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
+class CoffeeDrinkListComposableTestParameterUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
 
@@ -59,7 +59,7 @@ class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
 
     @UnhappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -68,7 +68,7 @@ class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
 
         compareScreenshot(
             rule = activityScenarioForComposableRule.composeRule,
-            name = "CoffeeDrinkListComposable_${configItem.name}_TestParameterInjector"
+            name = "CoffeeDrinkListComposable_${configItem.name}_TestParameter"
         )
     }
 }

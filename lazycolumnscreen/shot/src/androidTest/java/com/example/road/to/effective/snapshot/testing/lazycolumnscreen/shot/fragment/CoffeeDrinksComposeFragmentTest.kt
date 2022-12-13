@@ -17,7 +17,7 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
 import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
 
 /**
- * Example with fragmentScenarioConfiguratorRule
+ * Example with fragmentScenarioConfiguratorRule of AndroidUiTestingUtils
  */
 class CoffeeDrinksComposeFragmentHappyPathTest : ScreenshotTest {
     @get:Rule
@@ -44,7 +44,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest : ScreenshotTest {
 }
 
 /**
- * Example with FragmentScenarioConfigurator
+ * Example with FragmentScenarioConfigurator of AndroidUiTestingUtils
  */
 class CoffeeDrinksComposeFragmentUnhappyPathTest : ScreenshotTest {
     @UnhappyPath

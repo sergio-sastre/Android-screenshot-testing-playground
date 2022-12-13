@@ -20,7 +20,7 @@ import sergio.sastre.uitesting.utils.utils.inflateAndWaitForIdle
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
- * Example with ActivityScenarioForViewRule
+ * Example with ActivityScenarioForViewRule of AndroidUiTestingUtils
  */
 class MemoriseViewHolderHappyPathTest {
     @get:Rule
@@ -40,7 +40,7 @@ class MemoriseViewHolderHappyPathTest {
 
     @HappyPath
     @Test
-    fun snapViewHolder() {
+    fun snapMemoriseViewHolderHappyPath() {
         val activity = activityScenarioForViewRule.activity
         val layout = activityScenarioForViewRule.inflateAndWaitForIdle(R.layout.memorise_row)
 
@@ -62,7 +62,7 @@ class MemoriseViewHolderHappyPathTest {
 }
 
 /**
- * Example with ActivityScenarioConfigurator.ForView()
+ * Example with ActivityScenarioConfigurator.ForView() of AndroidUiTestingUtils
  *
  * This is an alternative if we cannot use ActivityScenarioForViewRule()
  */
@@ -73,7 +73,7 @@ class MemoriseViewHolderUnhappyPathTest {
 
     @UnhappyPath
     @Test
-    fun snapViewHolder() {
+    fun snapMemoriseViewHolderUnhappyPath() {
         val activityScenario = ActivityScenarioConfigurator.ForView()
             .setInitialOrientation(Orientation.LANDSCAPE)
             .setLocale("en_XA")

@@ -24,7 +24,7 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
  */
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewFragmentTestParameterInjectorHappyPathTest(
+class RecyclerViewFragmentTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
 ) {
     @get:Rule
@@ -39,14 +39,14 @@ class RecyclerViewFragmentTestParameterInjectorHappyPathTest(
     fun snapFragment() {
         dropshots.assertSnapshot(
             view = fragmentScenarioConfiguratorRule.fragment.view!!,
-            name = "RecyclerViewFragment_${configItem.name}_TestParameterInjector",
+            name = "RecyclerViewFragment_${configItem.name}_TestParameter",
         )
     }
 }
 
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewFragmentTestParameterInjectorUnhappyPathTest(
+class RecyclerViewFragmentTestParameterIUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,
 )  {
     @get:Rule
@@ -61,7 +61,7 @@ class RecyclerViewFragmentTestParameterInjectorUnhappyPathTest(
     fun snapFragment() {
         dropshots.assertSnapshot(
             view = fragmentScenarioConfiguratorRule.fragment.view!!,
-            name = "RecyclerViewFragment_${configItem.name}_TestParameterInjector",
+            name = "RecyclerViewFragment_${configItem.name}_TestParameter",
         )
     }
 }

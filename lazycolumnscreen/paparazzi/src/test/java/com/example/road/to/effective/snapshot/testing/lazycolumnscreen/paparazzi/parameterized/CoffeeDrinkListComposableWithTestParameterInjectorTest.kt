@@ -5,6 +5,7 @@ import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.paparazzi
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Rule
@@ -21,7 +22,7 @@ import org.junit.runner.RunWith
  * Parameterized Runner is compatible with instrumented test of any API level
  */
 @RunWith(TestParameterInjector::class)
-class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
+class CoffeeDrinkListComposableTestParameterHappyPathTest(
     @TestParameter val testItem: HappyPathTestItem,
 ) {
 
@@ -30,18 +31,15 @@ class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
         paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
                 softButtons = false,
-                screenHeight = 1,
                 nightMode = testItem.item.nightMode,
                 fontScale = testItem.item.fontScale,
-                orientation = testItem.item.screenOrientation,
                 locale = testItem.item.locale,
-            ),
+            ).setPhoneOrientation(testItem.item.phoneOrientation),
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )
 
-    // TODO @HappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         paparazzi.snapshot(name = "CoffeeDrinkListComposable_${testItem.name}_TestParameter") {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -51,7 +49,7 @@ class CoffeeDrinkListComposableTestParameterInjectorHappyPathTest(
 }
 
 @RunWith(TestParameterInjector::class)
-class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
+class CoffeeDrinkListComposableTestParameterUnhappyPathTest(
     @TestParameter val testItem: UnhappyPathTestItem,
 ){
 
@@ -60,18 +58,15 @@ class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
         paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
                 softButtons = false,
-                screenHeight = 1,
                 nightMode = testItem.item.nightMode,
                 fontScale = testItem.item.fontScale,
-                orientation = testItem.item.screenOrientation,
                 locale = testItem.item.locale,
-            ),
+            ).setPhoneOrientation(testItem.item.phoneOrientation),
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )
 
-    //TODO @UnhappyPath
     @Test
-    fun snapCoffeeDrinkList() {
+    fun snapComposable() {
         paparazzi.snapshot(name = "CoffeeDrinkListComposable_${testItem.name}_TestParameter") {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)

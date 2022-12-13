@@ -5,28 +5,21 @@ import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.PhoneOrientation
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Test
 import org.junit.Rule
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-/**
- * Example with ActivityScenarioForComposableRule()
- */
 class CoffeeDrinkAppBarHappyPathTest {
     @get:Rule
     val paparazzi =
         paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
                 softButtons = false,
-                screenHeight = 1,
                 nightMode = NightMode.NOTNIGHT,
                 fontScale = 1.0f,
                 locale = "en",
-            ).setOrientation(PhoneOrientation.PORTRAIT),
+            ).setPhoneOrientation(PhoneOrientation.PORTRAIT),
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )
 
@@ -46,11 +39,10 @@ class CoffeeDrinkAppBarUnhappyPathTest {
         paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
                 softButtons = false,
-                screenHeight = 1,
                 nightMode = NightMode.NIGHT,
                 fontScale = 1.3f,
                 locale = "en",
-            ).setOrientation(PhoneOrientation.LANDSCAPE),
+            ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )
 

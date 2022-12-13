@@ -4,7 +4,6 @@ import app.cash.paparazzi.DeviceConfig.Companion.PIXEL_5
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.androidHome
 import app.cash.paparazzi.detectEnvironment
-import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
@@ -19,18 +18,19 @@ import org.junit.runner.RunWith
  * Unlike Parameterized Runner, the test methods admit arguments, although we do not use them here.
  */
 @RunWith(TestParameterInjector::class)
-class DeleteDialogTestParameterInjectorHappyPathTest(
+class DeleteDialogTestParameterHappyPathTest(
     @TestParameter val testItem: HappyPathTestItem,
 ) {
     @get:Rule
     val paparazzi = Paparazzi(
         deviceConfig = PIXEL_5.copy(
+            softButtons = false,
             screenWidth = testItem.deleteItem.screenWidth.widthInPx,
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
-        renderingMode = SessionParams.RenderingMode.SHRINK,
+        // avoid Paparazzi 1.1.0 crash when compileSDK 33
         environment = detectEnvironment().copy(
             platformDir = "${androidHome()}/platforms/android-32",
             compileSdkVersion = 32
@@ -38,7 +38,7 @@ class DeleteDialogTestParameterInjectorHappyPathTest(
     )
 
     @Test
-    fun snapDialogHappyPath() {
+    fun snapDialog() {
         val dialog =
             DialogBuilder.buildDeleteDialog(
                 ctx = paparazzi.context,
@@ -47,24 +47,25 @@ class DeleteDialogTestParameterInjectorHappyPathTest(
             )
         paparazzi.snapshot(
             view =  dialog.window!!.decorView,
-            name = "DeleteDialog_${testItem.name}_TestParameterInjector",
+            name = "DeleteDialog_${testItem.name}_TestParameter",
         )
     }
 }
 
 @RunWith(TestParameterInjector::class)
-class DeleteDialogTestParameterInjectorUnhappyPathTest(
+class DeleteDialogTestParameterUnhappyPathTest(
     @TestParameter val testItem: UnhappyPathTestItem,
 ) {
     @get:Rule
     val paparazzi = Paparazzi(
         deviceConfig = PIXEL_5.copy(
+            softButtons = false,
             screenWidth = testItem.deleteItem.screenWidth.widthInPx,
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
-        renderingMode = SessionParams.RenderingMode.SHRINK,
+        // avoid Paparazzi 1.1.0 crash when compileSDK 33
         environment = detectEnvironment().copy(
             platformDir = "${androidHome()}/platforms/android-32",
             compileSdkVersion = 32
@@ -72,7 +73,7 @@ class DeleteDialogTestParameterInjectorUnhappyPathTest(
     )
 
     @Test
-    fun snapDialogUnhappyPath() {
+    fun snapDialog() {
         val dialog =
             DialogBuilder.buildDeleteDialog(
                 ctx = paparazzi.context,
@@ -81,7 +82,7 @@ class DeleteDialogTestParameterInjectorUnhappyPathTest(
             )
         paparazzi.snapshot(
             view =  dialog.window!!.decorView,
-            name = "DeleteDialog_${testItem.name}_TestParameterInjector",
+            name = "DeleteDialog_${testItem.name}_TestParameter",
         )
     }
 }

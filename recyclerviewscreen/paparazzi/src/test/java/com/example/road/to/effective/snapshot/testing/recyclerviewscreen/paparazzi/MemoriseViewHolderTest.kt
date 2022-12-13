@@ -7,13 +7,15 @@ import app.cash.paparazzi.androidHome
 import app.cash.paparazzi.detectEnvironment
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.MemoriseTestItemGenerator.generateMemoriseItem
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.landscapeOrientation
 import org.junit.Rule
 import org.junit.Test
 
 /**
- * Example with ActivityScenarioForViewRule
+ * Example with ActivityScenarioForViewRule of AndroidUiTestingUtils
  */
 class MemoriseViewHolderHappyPathTest {
     @get:Rule
@@ -26,13 +28,13 @@ class MemoriseViewHolderHappyPathTest {
             ),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
+            // avoid Paparazzi 1.1.0 crash when compileSDK 33
             environment = detectEnvironment().copy(
                 platformDir = "${androidHome()}/platforms/android-32",
                 compileSdkVersion = 32
             ),
         )
 
-    // TODO - @HappyPath
     @Test
     fun snapViewHolder() {
         val layout = paparazzi.inflate<View>(R.layout.memorise_row)
@@ -52,7 +54,7 @@ class MemoriseViewHolderHappyPathTest {
 }
 
 /**
- * Example with ActivityScenarioConfigurator.ForView()
+ * Example with ActivityScenarioConfigurator.ForView() of AndroidUiTestingUtils
  *
  * This is an alternative if we cannot use ActivityScenarioForViewRule()
  */
@@ -68,13 +70,13 @@ class MemoriseViewHolderUnhappyPathTest {
             ).landscapeOrientation(),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
+            // avoid Paparazzi 1.1.0 crash when compileSDK 33
             environment = detectEnvironment().copy(
                 platformDir = "${androidHome()}/platforms/android-32",
                 compileSdkVersion = 32
             ),
         )
 
-    // TODO @UnhappyPath
     @Test
     fun snapViewHolder() {
         val layout = paparazzi.inflate<View>(R.layout.memorise_row)

@@ -1,6 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.compose.parameterized
 
-import com.example.road.to.effective.snapshot.testing.coffeedrinkscompose.R
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
@@ -9,7 +9,7 @@ import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 
 enum class HappyPathTestItem(val item: ComposableConfigItem) {
-    HAPPY(
+    PORTRAIT(
         ComposableConfigItem(
             locale = "en",
             orientation = Orientation.PORTRAIT,
@@ -21,7 +21,7 @@ enum class HappyPathTestItem(val item: ComposableConfigItem) {
 }
 
 enum class UnhappyPathTestItem(val item: ComposableConfigItem) {
-    UNHAPPY_LANDSCAPE(
+    LANDSCAPE(
         ComposableConfigItem(
             locale = "en",
             orientation = Orientation.LANDSCAPE,
@@ -30,7 +30,7 @@ enum class UnhappyPathTestItem(val item: ComposableConfigItem) {
             displaySize = DisplaySize.NORMAL,
         ),
     ),
-    UNHAPPY_HUGE(
+    HUGE(
         ComposableConfigItem(
             locale = "en",
             orientation = Orientation.PORTRAIT,
@@ -39,7 +39,7 @@ enum class UnhappyPathTestItem(val item: ComposableConfigItem) {
             displaySize = DisplaySize.NORMAL,
         ),
     ),
-    UNHAPPY_AR_XB_SMALL(
+    AR_XB_SMALL(
         ComposableConfigItem(
             locale = "ar_XB",
             orientation = Orientation.PORTRAIT,

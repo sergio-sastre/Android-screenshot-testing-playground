@@ -5,7 +5,7 @@ import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.karumi.shot.ScreenshotTest
@@ -21,7 +21,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
- * Example with ActivityScenarioForComposableRule()
+ * Example with ActivityScenarioForComposableRule() of AndroidUiTestingUtils
  */
 @SdkSuppress(minSdkVersion = 26) // Compose tests with shot require API 26+
 class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
@@ -55,7 +55,7 @@ class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
 }
 
 /**
- * Example with ActivityScenarioConfigurator.ForComposable()
+ * Example with ActivityScenarioConfigurator.ForComposable() of AndroidUiTestingUtils
  * This is an alternative if we cannot use ActivityScenarioForComposableRule()
  */
 @SdkSuppress(minSdkVersion = 26) // Compose tests with shot require API 26+

@@ -3,7 +3,7 @@ package com.example.road.to.effective.snapshot.testing.dialogs.shot.parameterize
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.shot.compareDialogScreenshot
-import com.example.road.to.effective.snapshot.testing.dialogs.shot.waitForDialogView
+import com.example.road.to.effective.snapshot.testing.dialogs.shot.waitForMeasuredDialog
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -25,7 +25,7 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRul
  */
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class DeleteDialogTestParameterInjectorHappyPathTest(
+class DeleteDialogTestParameterHappyPathTest(
     @TestParameter val testItem: HappyPathTestItem,
 ) : ScreenshotTest {
 
@@ -35,10 +35,10 @@ class DeleteDialogTestParameterInjectorHappyPathTest(
 
     @HappyPath
     @Test
-    fun snapDialogHappyPath() {
+    fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
 
-        val dialog = waitForDialogView {
+        val dialog = waitForMeasuredDialog {
             DialogBuilder.buildDeleteDialog(
                 ctx = activity,
                 onDeleteClicked = {/* no-op*/ },
@@ -50,14 +50,14 @@ class DeleteDialogTestParameterInjectorHappyPathTest(
             dialog = dialog,
             heightInPx = dialog.window?.decorView?.measuredHeight,
             widthInPx = testItem.deleteItem.dialogWidth.widthInPx,
-            name = "DeleteDialog_${testItem.name}_TestParameterInjector",
+            name = "DeleteDialog_${testItem.name}_TestParameter",
         )
     }
 }
 
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class DeleteDialogTestParameterInjectorUnhappyPathTest(
+class DeleteDialogTestParameterUnhappyPathTest(
     @TestParameter val testItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
 
@@ -67,10 +67,10 @@ class DeleteDialogTestParameterInjectorUnhappyPathTest(
 
     @UnhappyPath
     @Test
-    fun snapDialogUnhappyPath() {
+    fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
 
-        val dialog = waitForDialogView {
+        val dialog = waitForMeasuredDialog {
             DialogBuilder.buildDeleteDialog(
                 ctx = activity,
                 onDeleteClicked = {/* no-op*/ },
@@ -82,7 +82,7 @@ class DeleteDialogTestParameterInjectorUnhappyPathTest(
             dialog = dialog,
             heightInPx = dialog.window?.decorView?.measuredHeight,
             widthInPx = testItem.deleteItem.dialogWidth.widthInPx,
-            name = "DeleteDialog_${testItem.name}_TestParameterInjector",
+            name = "DeleteDialog_${testItem.name}_TestParameter",
         )
     }
 }

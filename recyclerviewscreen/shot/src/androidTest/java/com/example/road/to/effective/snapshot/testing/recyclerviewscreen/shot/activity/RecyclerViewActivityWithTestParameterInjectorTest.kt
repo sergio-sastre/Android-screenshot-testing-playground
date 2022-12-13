@@ -1,39 +1,35 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.activity
 
+import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
+import com.google.testing.junit.testparameterinjector.TestParameter
+import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
 import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 
 /**
- * Example of Parameterized test with Parameterized Runner.
+ * Example of Parameterized test with TestParameterInjector Runner.
  *
- * Unlike TestParameterInjector, the testItem is used in all @Tests (the test methods do not admit
- * arguments).
+ * Unlike Parameterized Runner, the test methods admit arguments, although we do not use them here.
  *
- * On the other hand, ParameterizedRunner is compatible with instrumented test of any API level,
- * whereas TestParameterInjector requires API 24+, throwing
- * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
+ * On the other hand, TestParameterInjector requires API 24+ to run with instrumented tests.
+ * It throws java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder in lower APIs.
+ * Parameterized Runner is compatible with instrumented test of any API level
  */
-@RunWith(Parameterized::class)
-class RecyclerViewActivityHappyPathTest(
-    private val testItem: HappyPathTestItem,
+@SdkSuppress(minSdkVersion = 24)
+@RunWith(TestParameterInjector::class)
+class RecyclerViewActivityTestParameterHappyPathTest(
+    @TestParameter val configItem: HappyPathTestItem,
 ) : ScreenshotTest {
-
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
-    }
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+        activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
 
     @HappyPath
     @Test
@@ -45,25 +41,20 @@ class RecyclerViewActivityHappyPathTest(
             activity = activity,
             heightInPx = activityView.measuredHeight,
             widthInPx = activityView.measuredWidth,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
+            name = "RecyclerViewActivity_${configItem.name}_TestParameter"
         )
     }
 }
 
-@RunWith(Parameterized::class)
-class RecyclerViewActivityUnhappyPathTest(
-    private val testItem: UnhappyPathTestItem,
+@SdkSuppress(minSdkVersion = 24)
+@RunWith(TestParameterInjector::class)
+class RecyclerViewActivityTestParameterUnhappyPathTest(
+    @TestParameter val configItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
-
-    companion object {
-        @JvmStatic
-        @Parameterized.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
-    }
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+        activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
 
     @UnhappyPath
     @Test
@@ -75,7 +66,7 @@ class RecyclerViewActivityUnhappyPathTest(
             activity = activity,
             heightInPx = activityView.measuredHeight,
             widthInPx = activityView.measuredWidth,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
+            name = "RecyclerViewActivity_${configItem.name}_TestParameter"
         )
     }
 }

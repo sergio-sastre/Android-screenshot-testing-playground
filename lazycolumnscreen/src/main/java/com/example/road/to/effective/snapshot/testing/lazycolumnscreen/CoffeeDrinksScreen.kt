@@ -10,7 +10,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import com.example.road.to.effective.snapshot.testing.coffeedrinkscompose.R
 
 @Composable
 fun ShowSuccessCoffeeDrinksScreen(
