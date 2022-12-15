@@ -10,14 +10,8 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RoadToEffectiveSnapshotTesting">
-        <activity
-            android:name=".recyclerviewscreen.mvvm.RecyclerViewActivity">
-        </activity>
-        <activity
-            android:name=".compose.CoffeeDrinkComposeActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-        </activity>
+        android:theme="@style/Theme.RoadToEffectiveSnapshotTesting"
+        >
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

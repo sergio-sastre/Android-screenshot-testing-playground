@@ -1,0 +1,7 @@
+<resources>
+    <string name="delete_text_forever">Delete Item zero forever?</string>
+    <string name="you_will_also_permanently_lose">You will also permanently lose</string>
+    <string name="delete_action">Delete</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="delete_button">Delete</string>
+</resources>

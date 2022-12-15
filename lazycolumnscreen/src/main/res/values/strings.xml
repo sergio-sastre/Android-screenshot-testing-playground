@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CoffeeDrinksCompose</string>
+
+    <string name="coffee_drinks_title">Coffee Drinks</string>
+    <string name="americano_title">Americano</string>
+    <string name="americano_description">Americano is a type of coffee drink prepared by diluting an espresso with hot water, giving it a similar strength to, but different flavour from, traditionally brewed coffee.</string>
+    <string name="americano_ingredients">Espresso, Water</string>
+    <string name="americano_order_description">150 ml</string>
+</resources>

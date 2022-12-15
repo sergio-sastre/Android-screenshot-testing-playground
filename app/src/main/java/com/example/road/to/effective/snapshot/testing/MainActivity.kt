@@ -1,12 +1,9 @@
 package com.example.road.to.effective.snapshot.testing
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.road.to.effective.snapshot.testing.compose.CoffeeDrinkComposeActivity
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
 import com.google.android.material.button.MaterialButton
-import com.example.road.to.effective.snapshot.testing.R
+import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
         window.decorView.rootView.run {
             findViewById<MaterialButton>(R.id.showDialogButton)
-                .setOnClickListener { openDialog() }
+                .setOnClickListener { showDeleteDialog() }
 
             findViewById<MaterialButton>(R.id.showRecyclerViewButton)
                 .setOnClickListener { showRecyclerView() }
@@ -25,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun openDialog() {
-        val dialog = DialogBuilder.buildDeleteDialog(
+    private fun showDeleteDialog() {
+        DialogBuilder.buildDeleteDialog(
             this,
             onDeleteClicked = {/* no-op*/ },
             bulletTexts = arrayOf(
@@ -34,17 +31,14 @@ class MainActivity : AppCompatActivity() {
                 "Item two, also very long",
                 "Item three, short"
             )
-        )
-        dialog.show()
+        ).show()
     }
 
     private fun showRecyclerView() {
-        val intent = Intent(this, RecyclerViewActivity::class.java)
-        startActivity(intent)
+        startActivity(Actions.openRecyclerView(this))
     }
 
     private fun showComposeActivity() {
-        val intent = Intent(this, CoffeeDrinkComposeActivity::class.java)
-        startActivity(intent)
+        startActivity(Actions.openCoffeeDrinks(this))
     }
 }
