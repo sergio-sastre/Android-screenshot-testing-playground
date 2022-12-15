@@ -133,7 +133,7 @@ Then run the following gradle tasks depending on the module:
    2. `./gradlew :recyclerviewscreen:shot:executeScreenshotTests`
    3. `./gradlew :lazycolumnscreen:shot:executeScreenshotTests`
 
-> **NOTE**
+> **Note**
 > The library says the record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/index.html`
 > However, it is wrong. The record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/record/index.html`
 > The path for the verification reports is right though.
