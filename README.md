@@ -11,7 +11,7 @@ part of blog posts</br>
 
 ![snapshotVsUiTests](https://user-images.githubusercontent.com/6097181/144911921-bae6182b-dae7-4f59-9dba-c88c9052b9b7.gif)
 
-A sample repo containing code samples to introduce screenshot testing for Android UI components and screens like the one above (module `:recyclerviewscreen`).
+A sample repo to introduce screenshot testing in Android. It contains a wide variety of examples written with different screenshot testing libraries for a beter comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 # Introduction
 This repo showcases how to snapshot test Dialogs, ViewHolders, Activities, Fragments and **Jetpack Compose**!.
