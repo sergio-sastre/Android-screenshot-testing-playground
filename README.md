@@ -59,7 +59,7 @@ More screenshot test examples, as well as examples with other libraries will be 
   - [Dropshots](#dropshotshttpsgithubcomdropboxdropshots)
   - [Shot](#shothttpsgithubcompedrovgsshot)
 - [Parameterized screenshot tests](#parameterized-screenshot-tests)
-- [Filter parameterized screenshot tests](#filtered-parameterized-tests)
+- [Filtered parameterized screenshot tests](#filtered-parameterized-screenshot-tests)
   - [Instrumented tests](#instrumented-tests)
   - [Gradle tests](#gradle-tests)
 - [What is coming next](#what-is-coming-next)
@@ -107,7 +107,7 @@ Most on-device screenshot testing frameworks use Canvas to generate bitmaps, wha
 This is specially noticeable in API 31:
 
 <p align="center">
-<img width="350" src="../../../Downloads/pixel-copy vs Canvas.jpeg">
+<img width="350" src="https://user-images.githubusercontent.com/6097181/209678572-c4610c75-0122-41c4-bfae-304e8a633b2d.jpeg">
 </p>
 
 However, on-device screenshot testing libraries also accept bitmaps as arguments of their take/verify screenshot methods.
@@ -129,7 +129,7 @@ You can find a code example of how to do it here, from [android-testify](https:/
 
 And the resulting screenshot would render elevation
 <p align="center">
-<img width="350" src="../../../Downloads/pixelCopyBitmap.png">
+<img width="350" src="https://user-images.githubusercontent.com/6097181/209678214-9e4664b7-f898-4173-a9f7-36dfc764b035.png">
 </p>
 
 **Screenshot testing Activites and Fragments**
@@ -151,7 +151,7 @@ For example,
 
 | View.animate()                                                   |                View.animate() + ObjectAnimator                |
 |------------------------------------------------------------------|:-------------------------------------------------------------:|
-| <img width="350" src="../../../Downloads/SHOT/withoutwords.png"> | <img width="350" src="../../../Downloads/SHOT/withwords.png"> |
+| <img width="350" src="https://user-images.githubusercontent.com/6097181/209678715-c7356e7b-7d4c-413a-942f-76e42e445d0b.png"> | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678760-b84bb060-03fb-4050-b283-ab2e28415df7.png"> |
 
 3. Doesn't support **Pseudolocales**. We can use pseudolocales to detect layout alignment issues without the need to render the screen in several languages. If set while testing, such tests crash. You can read more in the [official android documentation](https://developer.android.com/guide/topics/resources/pseudolocales).
 
@@ -202,7 +202,7 @@ For screenshot testing, 2 tasks are required:
 
 All Screenshot testing frameworks provide at least these 2 tasks.
 
-> **Warning**
+> **Warning**</br>
 > All the commands in the description are for MacOS. You might need to adjust them depending on the operating system of your machine.
 
 ### [Paparazzi](https://github.com/cashapp/paparazzi)
@@ -241,7 +241,7 @@ Then run the following gradle tasks depending on the module:
    2. `./gradlew :recyclerviewscreen:shot:executeScreenshotTests`
    3. `./gradlew :lazycolumnscreen:shot:executeScreenshotTests`
 
-> **Note**
+> **Note** </br>
 > The library says the record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/index.html`
 > However, it is wrong. The record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/record/index.html`
 > The path for the verification reports is right though.
@@ -293,7 +293,7 @@ In order to filter tests, we need to provide the corresponding test instrumentat
 1. `-Pandroid.testInstrumentationRunnerArguments.annotation=com.your.package.YourAnnotation`
 2. `-Pandroid.testInstrumentationRunnerArguments.notAnnotation=com.your.package.YourAnnotation`
 
-> **Warning**
+> **Warning**</br>
 > These arguments are supported by `org.junit.runners.Parameterized` and `com.google.testing.junit.testparameterinjector.TestParameterInjector`, but not by all
 > runners, e.g. `JUnitParams` fails if used. I strongly recommend to use `com.google.testing.junit.testparameterinjector.TestParameterInjector` for filtered parameterized tests,
 > because you can control which parameters are passed wo each test method. That is not the case with `org.junit.runners.Parameterized`, because the parameters are injected into every single test method.
@@ -319,7 +319,7 @@ This enables to filter the test separately by executing:
 1. Only Happy path tests:`./gradlew :module_name:paparazzi:recordPaparazziDebug --tests '*UnhappyPath*'`
 2. Only Unhappy path tests:`./gradlew :module_name:paparazzi:recordPaparazziDebug --tests '*HappyPath*'`
 
-> **Note**
+> **Note**</br>
 > This approach does not work for instrumented tests though.
 
 ## What is coming next:
