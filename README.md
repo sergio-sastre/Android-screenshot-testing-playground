@@ -51,6 +51,9 @@ More screenshot test examples, as well as examples with other libraries will be 
     - [The need for screenshot testing](#the-need-for-screenshot-testing)
     - [Emulators](#emulators)
       - [Animations](#animations)
+- [Comparing screenshot testing libraries](#comparing-screenshot-testing-libraries)
+  - [Paparazzi vs. on-device screenshot testing libraries](#paparazzi-vs-on-device-screenshot-testing-libraries)
+    - [Summary: Pros and Cons](#summary-pros-and-cons)
 - [Recording and verifying screenshots](#recording-and-verifying-screenshots)
   - [Paparazzi](#paparazzihttpsgithubcomcashapppaparazzi)
   - [Dropshots](#dropshotshttpsgithubcomdropboxdropshots)
@@ -85,6 +88,112 @@ In order to keep animations disabled, this project uses `testOptions { animation
 in the gradle file. Unfortunately, it does not work on all APIs (e.g. API 26 or lower). Therefore, if you
 come across some issues, disable animations on the emulator *via settings* before running the
 screenshot tests.
+
+## Comparing screenshot testing libraries
+
+### Paparazzi vs. on-device screenshot testing libraries
+**Need for emulators**
+
+Paparazzi is the **only** screenshot testing library as of December 2022 that lets you run screenshot tests on the JVM, without emulators/devices.
+Although it also comes with some speed wins, its main advantage is that one doesn't have to deal with emulator and their problems, such as:
+1. Emulators eventually freezing/crashing (specially on CI)
+2. "Insufficient storage" errors
+
+**Rendering elevation in generated screenshots**
+
+Paparazzi uses PixelCopy to generate bitmaps out of Views.
+Most on-device screenshot testing frameworks use Canvas to generate bitmaps, what skips elevation.
+
+This is specially noticeable in API 31:
+
+<p align="center">
+<img width="350" src="../../../Downloads/pixel-copy vs Canvas.jpeg">
+</p>
+
+However, on-device screenshot testing libraries also accept bitmaps as arguments of their take/verify screenshot methods.
+```kotlin
+// Shot
+compareScreenshot(
+    bitmap = pixelCopyBitmapFromView
+)
+```
+```kotlin
+// Dropshots
+dropshots.assertSnapshot(
+    bitmap = pixelCopyBitmapFromView
+)
+```
+Therefore, they could render elevation by converting views to bitmaps using PixelCopy.
+You can find a code example of how to do it here, from [android-testify](https://github.com/ndtp/android-testify): </br>
+[PixelCopyCapture.kt](https://github.com/ndtp/android-testify/blob/main/Library/src/main/java/dev/testify/internal/processor/capture/PixelCopyCapture.kt)
+
+And the resulting screenshot would render elevation
+<p align="center">
+<img width="350" src="../../../Downloads/pixelCopyBitmap.png">
+</p>
+
+**Screenshot testing Activites and Fragments**
+
+ActivityScenarios and FragmentScenarios are compatible with Robolectric, which mocks the Android framework to run instrumented tests on the JVM.
+Therefore, we could also use Robolectric to run Activity/Fragment screenshot tests on the JVM with Paparazzi, theoretically.
+However, it crashes in doing so with some Byte Buddy exception, likely due to some conflicts with Robolectric.
+
+This means, only on-device screenshot testing frameworks can be used for snapshoting Activites/Fragments
+
+**Rendering problems**
+
+Paparazzi relies on layoutlib to record screenshots. That's a private library used to render the xml layouts and Compose previews in Android Studio.
+This comes with some limitations.
+For example,
+1. [Composables using NavHost cannot be rendered](https://github.com/cashapp/paparazzi/issues/635) in the @Preview, and therefore, Paparazzi cannot either, for now.
+2. Renders incorrectly UI elements that use `View.animate()` or `ObjectAnimator.ofPropertyValuesHolder()`. You can notice them when running
+`./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug` in this repo. For instance:
+
+| View.animate()                                                   |                View.animate() + ObjectAnimator                |
+|------------------------------------------------------------------|:-------------------------------------------------------------:|
+| <img width="350" src="../../../Downloads/SHOT/withoutwords.png"> | <img width="350" src="../../../Downloads/SHOT/withwords.png"> |
+
+3. Doesn't support **Pseudolocales**. We can use pseudolocales to detect layout alignment issues without the need to render the screen in several languages. If set while testing, such tests crash. You can read more in the [official android documentation](https://developer.android.com/guide/topics/resources/pseudolocales).
+
+On the other hand, on-device screenshot testing has its own issues as well. Most of them happen due to the **hardware accelerated drawing model**. This happens for example, when running the same test on machines with different architectures<sup>1</sup> e.g. Macbook Pro with M1 chip vs. Intel x64. It might cause issues like:
+1. Shadows & elevation
+2. Font smoothing & anti-aliasing
+3. Image decompression and rendering
+4. Alpha-blending.
+
+Nevertheless, you can solve/mitigate such issues as follows:
+1. Hardware acceleration can be enabled/disabled at different levels e.g. Activity, Window, View... to reduce such issues. Keep in mind that this affects how the screenshots are rendered.
+2. Most libraries provide a "tolerance/maxPixelDiff" mechanism to set some error threshold when verifying the screenshot. Although it isn't a real fix, you could use it to mitigate such issues. There is an [interesting thread](https://github.com/ndtp/android-testify/issues/101) in android-testify about this.
+3. The safest solution is to generate the screenshots only on the CI, then pushing them in a new commit on your PRs. Same goes for "verify". This ensures that the screenshots are always generated using the same hardware.
+
+Read more about hardware acceleration in the [official Android documentation](https://developer.android.com/topic/performance/hardware-accel)
+
+<sup>1</sup> There is evidence of such problems in Paparazzi as well, when running tests on different operating systems, as stated [here](https://github.com/cashapp/paparazzi/issues/311) 
+
+**Stability: Android Gradle Plugin and Compose runtime updates**
+
+Unfortunately, any Android Gradle Plugin (a.k.a. AGP) or Compose update can make your working Paparazzi screenshot tests break... or fix those broken.
+For instance:
+1. When updating to Compose runtime 1.4.x: [this issue](https://github.com/cashapp/paparazzi/issues/641) & [the corresponding fix](https://github.com/cashapp/paparazzi/pull/650/files)
+2. Before updating AGP to that of Android Studio Dolphin:
+[Compose Dialog rendering issue](https://github.com/cashapp/paparazzi/issues/619)
+
+#### Summary: Pros and Cons
+Let's summarize.
+
+**Pros**
+1. No emulators needed.
+    1. Faster
+    2. No emulator troubleshooting
+2. Uses PixelCopy by default to generate bitmaps out of the views. Thus, screenshots render UI elements with elevation (e.g. shadows)
+
+**Cons**
+1. Cannot screenshot Activities or Fragments
+2. Rendering problems
+   1. Incorrect screenshots for UI components that use View.animate() or ObjectAnimator.ofPropertyValuesHolder()
+   2. Only renders what the Compose @Previews can display
+3. Fragile to AGP & Jetpack Compose updates
+4. No support for Pseudolocales
 
 ## Recording and verifying screenshots
 For screenshot testing, 2 tasks are required:
