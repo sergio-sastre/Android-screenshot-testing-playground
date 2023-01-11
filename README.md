@@ -77,7 +77,7 @@ If reading is not your thing, you can always watch my 2021 Droidcon tech-talks o
 ### Emulators
 
 For instrumented screenshot testing (which excludes Paparazzi), I've been using emulators running API 27-31. That is because I encountered some issues on lower & greater APIs, namely API 24, 26 & 33.
-These issues are mainly related to `ComposeTestRule` not playing nicely with `ActivityScenarios` for such APIs.
+These issues are mainly related to a bug in `ActivityScenarioForComposableRule` and `ActivityScenarioForViewRule`, not calling `activityScenario.close()` after each test (fix coming with AndroidUiTestingUtils 1.2.3).
 Moreover, if you are running screenshot tests on a Windows machine, beware that Shot 5.14.1 still may have [some issues on API 29](https://github.com/pedrovgs/Shot/issues/244)
 
 #### Animations
