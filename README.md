@@ -34,16 +34,16 @@ As of December 2022, there are many screenshot testing libraries that facilitate
 All of them have their own pros and cons.
 The ultimate goal of this repo is to help you choose the libraries that better meet your needs!
 
-In order to do that, it contains the same/similar examples but written with different libraries<sup>2<sup/>:
+In order to do that, it contains the same/similar examples but written with different libraries<sup>2</sup>:
 1. [Paparazzi](https://github.com/cashapp/paparazzi)
 2. [Dropshots](https://github.com/dropbox/dropshots)
 3. [Shot](https://github.com/pedrovgs/Shot)
 
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
-<sup>1<sup/> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
+<sup>1</sup> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
 
-<sup>2<sup/> Paparazzi does not support screenshot tests for Activities and Fragments
+<sup>2</sup> Paparazzi does not support screenshot tests for Activities and Fragments
 
 ## Table of Contents
 
@@ -101,7 +101,7 @@ Although it also comes with some speed wins, its main advantage is that one does
 **Rendering elevation in generated screenshots**
 
 Paparazzi uses PixelCopy to generate bitmaps out of Views.
-Most on-device screenshot testing frameworks use Canvas as default<sup>1</> to generate bitmaps, what ignores elevation.
+Most on-device screenshot testing frameworks use Canvas as default<sup>1</sup> to generate bitmaps, what ignores elevation.
 
 This is specially noticeable in API 31:
 
@@ -132,7 +132,7 @@ And the resulting screenshot would render elevation
 
 You can find such examples in this repo, under the `bitmap` folder under any `:dropshots` & `:shot` module.
 
-<sup>1</> Shot doesn't use Canvas when using `compareScreenshot(composeRule)`, so those screenshots draw elevation. It does use Canvas for Views, Activities, Fragments & Dialogs though.
+<sup>1</sup> Shot doesn't use Canvas when using `compareScreenshot(composeRule)`, so those screenshots draw elevation. It does use Canvas for Views, Activities, Fragments & Dialogs though.
 
 **Screenshot testing Activites and Fragments**
 
