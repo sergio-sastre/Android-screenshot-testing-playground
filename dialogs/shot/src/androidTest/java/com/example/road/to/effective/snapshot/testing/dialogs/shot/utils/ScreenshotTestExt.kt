@@ -17,7 +17,7 @@ import org.lsposed.hiddenapibypass.HiddenApiBypass
 fun ScreenshotTest.compareDialogScreenshot(
     dialog: Dialog,
     heightInPx: Int? = dialog.window!!.decorView.height,
-    widthInPx: Int? = null,
+    widthInPx: Int? = dialog.window!!.decorView.width,
     name: String? = null
 ) {
     bypassNonSDKInterface {
