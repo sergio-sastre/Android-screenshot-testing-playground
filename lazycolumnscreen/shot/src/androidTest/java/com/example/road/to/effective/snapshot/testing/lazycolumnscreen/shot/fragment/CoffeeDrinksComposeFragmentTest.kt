@@ -38,7 +38,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest : ScreenshotTest {
     fun snapFragment() {
         compareScreenshot(
             fragment = fragmentScenarioConfiguratorRule.fragment,
-            name = "CoffeeDrinksFragment_HappyPath"
+            name = "CoffeeDrinksFragment_Happy"
         )
     }
 }
@@ -64,7 +64,7 @@ class CoffeeDrinksComposeFragmentUnhappyPathTest : ScreenshotTest {
 
         compareScreenshot(
             fragment = fragmentScenario.waitForFragment(),
-            name = "CoffeeDrinksFragment_UnhappyPath",
+            name = "CoffeeDrinksFragment_Unhappy",
         )
 
         fragmentScenario.close()

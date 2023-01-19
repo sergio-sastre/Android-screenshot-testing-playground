@@ -24,11 +24,11 @@ enum class HappyPathTestItem(val item: DeviceConfig) {
 }
 
 enum class UnhappyPathTestItem(val item: DeviceConfig) {
-    LANDSCAPE(
+    LANDSCAPE_NIGHT(
         DeviceConfig(
             locale = "en",
             phoneOrientation = PhoneOrientation.LANDSCAPE,
-            nightMode = NightMode.NOTNIGHT,
+            nightMode = NightMode.NIGHT,
             fontScale = 1.0f,
         ),
     ),

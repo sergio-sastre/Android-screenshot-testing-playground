@@ -1,8 +1,8 @@
 package com.example.road.to.effective.snapshot.testing.dialogs.shot.parameterized
 
+import android.graphics.Color.TRANSPARENT
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
-import com.example.road.to.effective.snapshot.testing.dialogs.shot.compareDialogScreenshot
-import com.example.road.to.effective.snapshot.testing.dialogs.shot.waitForMeasuredDialog
+import com.example.road.to.effective.snapshot.testing.dialogs.shot.utils.compareDialogScreenshot
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.karumi.shot.ScreenshotTest
@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -26,6 +27,8 @@ class DeleteDialogParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) : ScreenshotTest {
 
+    private val deleteItem = testItem.deleteItem
+
     companion object {
         @JvmStatic
         @Parameterized.Parameters
@@ -34,25 +37,26 @@ class DeleteDialogParameterizedHappyPathTest(
 
     @get:Rule
     val activityScenarioForViewRule =
-        ActivityScenarioForViewRule(config = testItem.deleteItem.viewConfig)
+        ActivityScenarioForViewRule(
+            config = deleteItem.viewConfig,
+            backgroundColor = TRANSPARENT,
+        )
 
     @HappyPath
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
 
-        val dialog = waitForMeasuredDialog {
+        val dialog = waitForMeasuredDialog(exactWidthPx = deleteItem.dialogWidth.widthInPx) {
             DialogBuilder.buildDeleteDialog(
                 ctx = activity,
                 onDeleteClicked = {/* no-op*/ },
-                bulletTexts = itemArray(activity, testItem.deleteItem.bulletTexts)
+                bulletTexts = itemArray(activity, deleteItem.bulletTexts)
             )
         }
 
         compareDialogScreenshot(
             dialog = dialog,
-            heightInPx = dialog.window?.decorView?.measuredHeight,
-            widthInPx = testItem.deleteItem.dialogWidth.widthInPx,
             name = "DeleteDialog_${testItem.name}_Parameterized",
         )
     }
@@ -63,6 +67,8 @@ class DeleteDialogParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
 
+    private val deleteItem = testItem.deleteItem
+
     companion object {
         @JvmStatic
         @Parameterized.Parameters
@@ -71,26 +77,29 @@ class DeleteDialogParameterizedUnhappyPathTest(
 
     @get:Rule
     val activityScenarioForViewRule =
-        ActivityScenarioForViewRule(config = testItem.deleteItem.viewConfig)
+        ActivityScenarioForViewRule(
+            config = deleteItem.viewConfig,
+            backgroundColor = TRANSPARENT,
+        )
 
     @UnhappyPath
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
 
-        val dialog = waitForMeasuredDialog {
-            DialogBuilder.buildDeleteDialog(
-                ctx = activity,
-                onDeleteClicked = {/* no-op*/ },
-                bulletTexts = itemArray(activity, testItem.deleteItem.bulletTexts)
-            )
-        }
+        val dialog =
+            waitForMeasuredDialog(exactWidthPx = deleteItem.dialogWidth.widthInPx) {
+                DialogBuilder.buildDeleteDialog(
+                    ctx = activity,
+                    onDeleteClicked = {/* no-op*/ },
+                    bulletTexts = itemArray(activity, deleteItem.bulletTexts)
+                )
+            }
 
         compareDialogScreenshot(
             dialog = dialog,
-            heightInPx = dialog.window?.decorView?.measuredHeight,
-            widthInPx = testItem.deleteItem.dialogWidth.widthInPx,
             name = "DeleteDialog_${testItem.name}_Parameterized",
         )
     }
 }
+

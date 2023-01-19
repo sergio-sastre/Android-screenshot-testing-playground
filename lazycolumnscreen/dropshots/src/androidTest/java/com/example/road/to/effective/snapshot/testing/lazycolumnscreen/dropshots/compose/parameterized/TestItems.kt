@@ -21,11 +21,11 @@ enum class HappyPathTestItem(val item: ComposableConfigItem) {
 }
 
 enum class UnhappyPathTestItem(val item: ComposableConfigItem) {
-    LANDSCAPE(
+    LANDSCAPE_NIGHT(
         ComposableConfigItem(
             locale = "en",
             orientation = Orientation.LANDSCAPE,
-            uiMode = UiMode.DAY,
+            uiMode = UiMode.NIGHT,
             fontSize = FontSize.NORMAL,
             displaySize = DisplaySize.NORMAL,
         ),

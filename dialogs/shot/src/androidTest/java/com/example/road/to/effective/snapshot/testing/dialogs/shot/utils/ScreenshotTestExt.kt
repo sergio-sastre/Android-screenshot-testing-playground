@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.dialogs.shot
+package com.example.road.to.effective.snapshot.testing.dialogs.shot.utils
 
 import android.app.Dialog
 import android.os.Build
@@ -16,7 +16,7 @@ import org.lsposed.hiddenapibypass.HiddenApiBypass
  */
 fun ScreenshotTest.compareDialogScreenshot(
     dialog: Dialog,
-    heightInPx: Int? = null,
+    heightInPx: Int? = dialog.window!!.decorView.height,
     widthInPx: Int? = null,
     name: String? = null
 ) {

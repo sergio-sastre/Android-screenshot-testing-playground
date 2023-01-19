@@ -5,7 +5,6 @@ import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.setContent
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.waitForComposeView
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -14,6 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
+import sergio.sastre.uitesting.utils.utils.waitForComposeView
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.

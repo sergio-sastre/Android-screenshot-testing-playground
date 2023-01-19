@@ -102,7 +102,7 @@ Although it also comes with some speed wins, its main advantage is that one does
 **Rendering elevation in generated screenshots**
 
 Paparazzi uses PixelCopy to generate bitmaps out of Views.
-Most on-device screenshot testing frameworks use Canvas to generate bitmaps, what skips elevation.
+Most on-device screenshot testing frameworks use Canvas as default<sup>1</> to generate bitmaps, what ignores elevation.
 
 This is specially noticeable in API 31:
 
@@ -124,13 +124,16 @@ dropshots.assertSnapshot(
 )
 ```
 Therefore, they could render elevation by converting views to bitmaps using PixelCopy.
-You can find a code example of how to do it here, from [android-testify](https://github.com/ndtp/android-testify): </br>
-[PixelCopyCapture.kt](https://github.com/ndtp/android-testify/blob/main/Library/src/main/java/dev/testify/internal/processor/capture/PixelCopyCapture.kt)
+[Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils) provides the `drawToBitmapWithElevation()` method for that.
 
 And the resulting screenshot would render elevation
 <p align="center">
 <img width="350" src="https://user-images.githubusercontent.com/6097181/209678214-9e4664b7-f898-4173-a9f7-36dfc764b035.png">
 </p>
+
+You can find such examples in this repo, under the `bitmap` folder under any `:dropshots` & `:shot` module.
+
+<sup>1</> Shot doesn't use Canvas when using `compareScreenshot(composeRule)`, so those screenshots draw elevation. It does use Canvas for Views, Activities, Fragments & Dialogs though.
 
 **Screenshot testing Activites and Fragments**
 
