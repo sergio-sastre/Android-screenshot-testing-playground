@@ -7,7 +7,6 @@ import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.setContent
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.waitForComposeView
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Test
@@ -20,6 +19,7 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.waitForActivity
+import sergio.sastre.uitesting.utils.utils.waitForComposeView
 
 /**
  * Example with ActivityScenarioForComposableRule() of AndroidUiTestingUtils
@@ -51,7 +51,7 @@ class CoffeeDrinkAppBarHappyPathTest {
         }
 
         dropshots.assertSnapshot(
-            view = activityScenarioForComposableRule.activity.waitForComposeView(),
+            view = activityScenarioForComposableRule.composeView,
             name = "CoffeeDrinkAppBar_Happy",
         )
     }

@@ -16,6 +16,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.BitmapPainter
@@ -75,9 +76,10 @@ fun CoffeeDrinkListItem(
 @Composable
 private fun CoffeeDrinkLogo(@DrawableRes id: Int) {
     Surface(
-        modifier = Modifier.size(COFFEE_DRINK_IMAGE_SIZE)
-            .padding(8.dp),
-        shape = CircleShape,
+        modifier = Modifier
+            .size(COFFEE_DRINK_IMAGE_SIZE)
+            .padding(8.dp)
+            .shadow(elevation = 4.dp, shape = CircleShape),
         color = Color(0xFFFAFAFA)
     ) {
         Image(
@@ -103,7 +105,8 @@ private fun CoffeeDrinkTitle(title: String) {
 private fun CoffeeDrinkIngredient(ingredients: String) {
     Text(
         text = ingredients,
-        modifier = Modifier.padding(end = 8.dp)
+        modifier = Modifier
+            .padding(end = 8.dp)
             .alpha(0.54f),
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,

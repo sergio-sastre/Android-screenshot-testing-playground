@@ -1,9 +1,9 @@
-package com.example.road.to.effective.snapshot.testing.dialogs.dropshots.parameterized
+package com.example.road.to.effective.snapshot.testing.dialogs.dropshots.dialog.parameterized
 
+import android.graphics.Color.TRANSPARENT
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
-import com.example.road.to.effective.snapshot.testing.dialogs.dropshots.waitForDialogView
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -12,6 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Rule
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -27,19 +28,24 @@ class DeleteDialogTestParameterHappyPathTest(
     @TestParameter val testItem: HappyPathTestItem,
 ) {
 
+    private val deleteItem = testItem.deleteItem
+
     @get:Rule
     val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
 
     @get:Rule
     val activityScenarioForViewRule =
-        ActivityScenarioForViewRule(config = testItem.deleteItem.viewConfig)
+        ActivityScenarioForViewRule(
+            config = testItem.deleteItem.viewConfig,
+            backgroundColor = TRANSPARENT,
+        )
 
     @HappyPath
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
 
-        val dialog = waitForDialogView {
+        val dialog = waitForMeasuredDialog(exactWidthPx = deleteItem.dialogWidth.widthInPx) {
             DialogBuilder.buildDeleteDialog(
                 ctx = activity,
                 onDeleteClicked = {},
@@ -48,7 +54,7 @@ class DeleteDialogTestParameterHappyPathTest(
         }
 
         dropshots.assertSnapshot(
-            view = dialog,
+            view = dialog.window!!.decorView,
             name = "DeleteDialog_${testItem.name}_TestParameter",
         )
     }
@@ -59,19 +65,24 @@ class DeleteDialogTestParameterUnhappyPathTest(
     @TestParameter val testItem: UnhappyPathTestItem,
 ) {
 
+    private val deleteItem = testItem.deleteItem
+
     @get:Rule
     val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
 
     @get:Rule
     val activityScenarioForViewRule =
-        ActivityScenarioForViewRule(config = testItem.deleteItem.viewConfig)
+        ActivityScenarioForViewRule(
+            config = testItem.deleteItem.viewConfig,
+            backgroundColor = TRANSPARENT,
+        )
 
     @UnhappyPath
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
 
-        val dialog = waitForDialogView {
+        val dialog = waitForMeasuredDialog(exactWidthPx = deleteItem.dialogWidth.widthInPx) {
             DialogBuilder.buildDeleteDialog(
                 ctx = activity,
                 onDeleteClicked = {},
@@ -80,7 +91,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
         }
 
         dropshots.assertSnapshot(
-            view = dialog,
+            view = dialog.window!!.decorView,
             name = "DeleteDialog_${testItem.name}_TestParameter",
         )
     }

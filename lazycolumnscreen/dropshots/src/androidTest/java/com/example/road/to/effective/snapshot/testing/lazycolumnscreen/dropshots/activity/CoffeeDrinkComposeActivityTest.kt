@@ -17,6 +17,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.fontsize.FontSizeTestRule
 import sergio.sastre.uitesting.utils.testrules.locale.LocaleTestRule
 import sergio.sastre.uitesting.utils.testrules.locale.SystemLocaleTestRule
+import sergio.sastre.uitesting.utils.testrules.uiMode.UiModeTestRule
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
@@ -70,12 +71,14 @@ class CoffeeDrinkComposeActivityUnhappyPathTest {
     @get:Rule
     val fontSize = FontSizeTestRule(FontSize.HUGE)
 
+    @get:Rule
+    val uiMode = UiModeTestRule(UiMode.NIGHT)
+
     @UnhappyPath
     @Test
     fun snapActivity() {
         val activityScenario = ActivityScenarioConfigurator.ForActivity()
             .setOrientation(Orientation.LANDSCAPE)
-            .setUiMode(UiMode.NIGHT)
             .launch(CoffeeDrinksComposeActivity::class.java)
 
         dropshots.assertSnapshot(

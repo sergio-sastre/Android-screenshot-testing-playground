@@ -17,6 +17,7 @@ import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.inflateAndWaitForIdle
 import sergio.sastre.uitesting.utils.utils.waitForActivity
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
  * Example with ActivityScenarioForViewRule of AndroidUiTestingUtils
@@ -52,7 +53,7 @@ class MemoriseViewHolderHappyPathTest : ScreenshotTest {
 
         compareScreenshot(
             holder = viewHolder,
-            heightInPx = viewHolder.itemView.measuredHeight,
+            heightInPx = viewHolder.itemView.height,
             name = "MemoriseViewHolder_Happy"
         )
     }

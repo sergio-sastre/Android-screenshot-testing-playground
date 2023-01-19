@@ -8,10 +8,10 @@ import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.viewholder.waitForMeasuredViewHolder
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
  * Example of Parameterized test with Parameterized Runner.
@@ -22,6 +22,7 @@ import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPat
  * On the other hand, ParameterizedRunner is compatible with instrumented test of any API level,
  * whereas TestParameterInjector requires API 24+, throwing
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
+ *
  */
 @RunWith(Parameterized::class)
 class TrainingViewHolderParameterizedHappyPathTest(
@@ -50,7 +51,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
 
         compareScreenshot(
             holder = viewHolder,
-            heightInPx = viewHolder.itemView.measuredHeight,
+            heightInPx = viewHolder.itemView.height,
             name = "${testItem.name}_Parameterized", // testItem names are already long
         )
     }
