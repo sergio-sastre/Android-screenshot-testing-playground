@@ -80,5 +80,5 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
 
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
-    androidTestImplementation 'com.github.sergio-sastre:AndroidUiTestingUtils:1.2.3'
+    androidTestImplementation 'com.github.sergio-sastre:AndroidUiTestingUtils:1.2.4'
 }

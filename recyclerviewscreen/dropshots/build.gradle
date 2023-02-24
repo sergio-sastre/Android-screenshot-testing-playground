@@ -56,5 +56,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
-    androidTestImplementation 'com.github.sergio-sastre:AndroidUiTestingUtils:1.2.3'
+    androidTestImplementation 'com.github.sergio-sastre:AndroidUiTestingUtils:1.2.4'
 }
