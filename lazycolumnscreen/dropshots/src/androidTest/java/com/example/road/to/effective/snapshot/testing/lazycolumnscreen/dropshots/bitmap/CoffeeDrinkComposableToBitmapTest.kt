@@ -1,13 +1,14 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.bitmap
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.bitmap
 
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.drawToBitmap
+import com.dropbox.dropshots.Dropshots
+import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.compose.parameterized.coffeeDrink
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.compose.parameterized.coffeeDrink
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.setContent
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
-import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
@@ -35,11 +36,10 @@ import sergio.sastre.uitesting.utils.utils.waitForComposeView
  * screenshots the UI component under tests without resizing it even though it goes beyond the device
  * screen
  *
- *  NOTE:
- *  Shot's compareScreenshot(composeRule) does not use Canvas, as opposed to other compareScreenshot
- *  methods. That's why it renders elevation of Composables without using drawToBitmapWithElevation(=
  */
-class CoffeeDrinkListComposableToBitmapTest: ScreenshotTest {
+class CoffeeDrinkComposableToBitmapTest {
+    @get:Rule
+    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
 
     @get:Rule
     val activityScenarioForComposableRule =
@@ -62,11 +62,11 @@ class CoffeeDrinkListComposableToBitmapTest: ScreenshotTest {
             .waitForActivity()
             .waitForComposeView()
 
-
+    // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
     fun snapComposableWithPixelCopy() {
-        compareScreenshot(
+        dropshots.assertSnapshot(
             bitmap = inflateComposable().drawToBitmapWithElevation(),
             name = "CoffeeDrinkListComposable_BitmapWithElevation"
         )
@@ -75,7 +75,7 @@ class CoffeeDrinkListComposableToBitmapTest: ScreenshotTest {
     @BitmapTest
     @Test
     fun snapComposableWithCanvas() {
-        compareScreenshot(
+        dropshots.assertSnapshot(
             bitmap = inflateComposable().drawToBitmap(),
             name = "CoffeeDrinkListComposable_BitmapWithoutElevation"
         )

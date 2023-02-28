@@ -68,6 +68,7 @@ class DeleteDialogBitmapTest {
         }
     }
 
+    // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
     fun snapDialogWithPixelCopy(){

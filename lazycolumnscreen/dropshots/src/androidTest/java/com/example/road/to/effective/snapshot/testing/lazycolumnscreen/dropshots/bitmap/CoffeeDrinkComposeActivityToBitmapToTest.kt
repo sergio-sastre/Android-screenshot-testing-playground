@@ -1,25 +1,20 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.bitmap
 
-import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.drawToBitmap
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.compose.parameterized.coffeeDrink
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
-import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
+import sergio.sastre.uitesting.utils.activityscenario.ActivityConfigItem
+import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
+import sergio.sastre.uitesting.utils.testrules.locale.InAppLocaleTestRule
 import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
-import sergio.sastre.uitesting.utils.utils.waitForActivity
-import sergio.sastre.uitesting.utils.utils.waitForComposeView
 
 /**
  * Example of Tests for Bitmaps to take more realistic screenshots.
@@ -37,47 +32,44 @@ import sergio.sastre.uitesting.utils.utils.waitForComposeView
  * screen
  *
  */
-class CoffeeDrinkListComposableToBitmapTest {
+class CoffeeDrinkComposeActivityToBitmapToTest {
     @get:Rule
     val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
 
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule
-    val activityScenarioForComposableRule =
-        ActivityScenarioForComposableRule(
-            config = ComposableConfigItem(
-                locale = "en",
-                uiMode = UiMode.DAY,
+    val inAppLocale = InAppLocaleTestRule("en")
+
+    @get:Rule
+    val activityScenarioForActivityRule =
+        activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
+            config = ActivityConfigItem(
+                systemLocale = "en",
                 orientation = Orientation.PORTRAIT,
+                uiMode = UiMode.DAY,
                 fontSize = FontSize.NORMAL,
                 displaySize = DisplaySize.NORMAL,
             )
         )
 
-    private fun inflateComposable(): ComposeView =
-        activityScenarioForComposableRule.setContent {
-            AppTheme {
-                CoffeeDrinkList(coffeeDrink = coffeeDrink)
-            }
-        }
-            .waitForActivity()
-            .waitForComposeView()
-
-
+    // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
     fun snapComposableWithPixelCopy() {
+        val activityView = activityScenarioForActivityRule.activity.window.decorView
         dropshots.assertSnapshot(
-            bitmap = inflateComposable().drawToBitmapWithElevation(),
-            name = "CoffeeDrinkListComposable_BitmapWithElevation"
+            bitmap = activityView.drawToBitmapWithElevation(),
+            name = "CoffeeDrinkComposeActivity_BitmapWithElevation"
         )
     }
 
     @BitmapTest
     @Test
     fun snapComposableWithCanvas() {
+        val activityView = activityScenarioForActivityRule.activity.window.decorView
         dropshots.assertSnapshot(
-            bitmap = inflateComposable().drawToBitmap(),
-            name = "CoffeeDrinkListComposable_BitmapWithoutElevation"
+            bitmap = activityView.drawToBitmap(),
+            name = "CoffeeDrinkComposeActivity_BitmapWithoutElevation"
         )
     }
 }

@@ -1,6 +1,5 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.activity
 
-import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -15,7 +14,7 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.fontsize.FontSizeTestRule
-import sergio.sastre.uitesting.utils.testrules.locale.LocaleTestRule
+import sergio.sastre.uitesting.utils.testrules.locale.InAppLocaleTestRule
 import sergio.sastre.uitesting.utils.testrules.locale.SystemLocaleTestRule
 import sergio.sastre.uitesting.utils.testrules.uiMode.UiModeTestRule
 import sergio.sastre.uitesting.utils.utils.waitForActivity
@@ -23,8 +22,11 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
 /**
  * Example with ActivityScenarioForActivityRule() of AndroidUiTestingUtils
  */
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
 class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
+
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
+    @get:Rule
+    val inAppLocale = InAppLocaleTestRule("en")
 
     @get:Rule
     val activityScenarioForActivityRule =
@@ -58,15 +60,14 @@ class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
  * This is an alternative if we cannot use ActivityScenarioForActivityRule(), or we want to use
  * in-app Locale, which ActivityScenarioForActivityRule does not support
  */
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
 class CoffeeDrinkComposeActivityUnhappyPathTest : ScreenshotTest {
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule
-    val appLocale = LocaleTestRule("ar_XB")
+    val inAppLocale = InAppLocaleTestRule("ar_XB")
 
     @get:Rule
-    val locale = SystemLocaleTestRule("en_XA")
+    val systemLocale = SystemLocaleTestRule("en_XA")
 
     @get:Rule
     val fontSize = FontSizeTestRule(FontSize.HUGE)

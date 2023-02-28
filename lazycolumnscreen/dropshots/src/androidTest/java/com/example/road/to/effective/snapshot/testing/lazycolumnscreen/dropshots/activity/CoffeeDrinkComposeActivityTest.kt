@@ -1,5 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.activity
 
+import androidx.test.rule.GrantPermissionRule
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
@@ -15,7 +16,7 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.fontsize.FontSizeTestRule
-import sergio.sastre.uitesting.utils.testrules.locale.LocaleTestRule
+import sergio.sastre.uitesting.utils.testrules.locale.InAppLocaleTestRule
 import sergio.sastre.uitesting.utils.testrules.locale.SystemLocaleTestRule
 import sergio.sastre.uitesting.utils.testrules.uiMode.UiModeTestRule
 import sergio.sastre.uitesting.utils.utils.waitForActivity
@@ -26,7 +27,14 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
 class CoffeeDrinkComposeActivityHappyPathTest {
 
     @get:Rule
+    val grantPermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+    @get:Rule
     val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
+    @get:Rule
+    val inAppLocale = InAppLocaleTestRule("en")
 
     @get:Rule
     val activityScenarioForActivityRule =
@@ -63,10 +71,10 @@ class CoffeeDrinkComposeActivityUnhappyPathTest {
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule
-    val appLocale = LocaleTestRule("ar_XB")
+    val inAppLocale = InAppLocaleTestRule("ar_XB")
 
     @get:Rule
-    val locale = SystemLocaleTestRule("en_XA")
+    val systemLocale = SystemLocaleTestRule("en_XA")
 
     @get:Rule
     val fontSize = FontSizeTestRule(FontSize.HUGE)
