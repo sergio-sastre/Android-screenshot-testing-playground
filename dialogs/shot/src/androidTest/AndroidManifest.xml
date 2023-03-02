@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The content of this manifest is needed for Shot to run on API 29 -->
+    <application
+        android:requestLegacyExternalStorage="true"
+        tools:node="merge">
+    </application>
+
+</manifest>

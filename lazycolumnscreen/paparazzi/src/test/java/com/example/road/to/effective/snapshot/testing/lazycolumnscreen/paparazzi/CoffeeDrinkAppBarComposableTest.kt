@@ -5,6 +5,7 @@ import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.paparazzi
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.PhoneOrientation
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Test

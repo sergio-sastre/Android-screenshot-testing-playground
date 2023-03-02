@@ -3,6 +3,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
 import androidx.test.filters.SdkSuppress
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -28,7 +29,9 @@ class RecyclerViewActivityTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
 ) {
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForActivityRule =
@@ -50,7 +53,9 @@ class RecyclerViewActivityTestParameterUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,
 ) {
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForActivityRule =

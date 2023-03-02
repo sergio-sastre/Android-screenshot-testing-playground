@@ -4,7 +4,7 @@ import app.cash.paparazzi.DeviceConfig
 import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.paparazzi
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.paparazzi
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Test
 import org.junit.Rule

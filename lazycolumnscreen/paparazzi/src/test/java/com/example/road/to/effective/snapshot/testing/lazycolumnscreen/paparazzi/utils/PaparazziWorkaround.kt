@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils
 
 import android.os.Build
 import app.cash.paparazzi.DeviceConfig

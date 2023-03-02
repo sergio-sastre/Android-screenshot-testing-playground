@@ -4,7 +4,8 @@ import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -30,7 +31,9 @@ class CoffeeDrinkListComposableTestParameterHappyPathTest(
 ) {
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)
@@ -57,7 +60,9 @@ class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
 ){
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)

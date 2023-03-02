@@ -1,9 +1,9 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.activity
 
-import androidx.test.rule.GrantPermissionRule
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Rule
@@ -27,10 +27,9 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
 class CoffeeDrinkComposeActivityHappyPathTest {
 
     @get:Rule
-    val grantPermission = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-    @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule
@@ -67,7 +66,9 @@ class CoffeeDrinkComposeActivityHappyPathTest {
 class CoffeeDrinkComposeActivityUnhappyPathTest {
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule

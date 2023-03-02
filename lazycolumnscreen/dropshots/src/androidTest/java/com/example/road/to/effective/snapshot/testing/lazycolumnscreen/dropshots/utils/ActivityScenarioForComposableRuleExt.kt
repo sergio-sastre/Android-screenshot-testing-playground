@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils
 
 import android.app.Activity
 import androidx.activity.compose.setContent
@@ -12,7 +12,6 @@ fun ActivityScenarioForComposableRule.setContent(
     activityScenario.onActivity {
         it.setContent { content() }
     }
-
 
 
 

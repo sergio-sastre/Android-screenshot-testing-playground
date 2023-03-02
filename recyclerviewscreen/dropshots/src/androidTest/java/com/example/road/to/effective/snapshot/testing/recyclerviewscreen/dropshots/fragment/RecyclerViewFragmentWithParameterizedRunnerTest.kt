@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
 
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -32,7 +33,9 @@ class RecyclerViewFragmentParameterizedHappyPathTest(
     }
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
@@ -52,14 +55,17 @@ class RecyclerViewFragmentParameterizedHappyPathTest(
 class RecyclerViewFragmentParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
 ) {
-    @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
         fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
     }
+
+    @get:Rule
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
