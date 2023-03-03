@@ -1,10 +1,10 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.parameterized
 
 import app.cash.paparazzi.DeviceConfig
+import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.paparazzi
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Test
 import org.junit.Rule
@@ -33,7 +33,7 @@ class CoffeeDrinkAppBarParameterizedHappyPathTest(
 
     @get:Rule
     val paparazzi =
-        paparazzi(
+        Paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
                 softButtons = false,
                 nightMode = testItem.item.nightMode,
@@ -65,7 +65,7 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     }
 
     @get:Rule
-    val paparazzi = paparazzi(
+    val paparazzi = Paparazzi(
         deviceConfig = DeviceConfig.PIXEL_5.copy(
             softButtons = false,
             nightMode = testItem.item.nightMode,

@@ -3,8 +3,6 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.papara
 import android.view.View
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
-import app.cash.paparazzi.androidHome
-import app.cash.paparazzi.detectEnvironment
 import com.android.ide.common.rendering.api.SessionParams
 import org.junit.Rule
 import org.junit.Test
@@ -50,11 +48,6 @@ class TrainingViewHolderParameterizedHappyPathTest(
         theme = deviceConfig.theme,
         supportsRtl = true, // needed for "ar" locale
         renderingMode = SessionParams.RenderingMode.V_SCROLL,
-        // avoid Paparazzi 1.1.0 crash when compileSDK 33
-        environment = detectEnvironment().copy(
-            platformDir = "${androidHome()}/platforms/android-32",
-            compileSdkVersion = 32
-        ),
     )
 
     @Test
@@ -99,11 +92,6 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
         supportsRtl = true, // needed for "ar" locale
         theme = deviceConfig.theme,
         renderingMode = SessionParams.RenderingMode.V_SCROLL,
-        // avoid Paparazzi 1.1.0 crash when compileSDK 33
-        environment = detectEnvironment().copy(
-            platformDir = "${androidHome()}/platforms/android-32",
-            compileSdkVersion = 32
-        ),
     )
 
     @Test

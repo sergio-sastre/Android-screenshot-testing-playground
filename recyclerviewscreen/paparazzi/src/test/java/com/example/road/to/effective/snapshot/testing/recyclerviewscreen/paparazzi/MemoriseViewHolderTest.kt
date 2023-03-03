@@ -3,14 +3,13 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.papara
 import android.view.View
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
-import app.cash.paparazzi.androidHome
-import app.cash.paparazzi.detectEnvironment
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.landscapeOrientation
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.PhoneOrientation
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Rule
 import org.junit.Test
 
@@ -25,14 +24,9 @@ class MemoriseViewHolderHappyPathTest {
                 softButtons = false,
                 screenHeight = 1,
                 locale = "en",
-            ),
+            ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
-            // avoid Paparazzi 1.1.0 crash when compileSDK 33
-            environment = detectEnvironment().copy(
-                platformDir = "${androidHome()}/platforms/android-32",
-                compileSdkVersion = 32
-            ),
         )
 
     @Test
@@ -67,14 +61,9 @@ class MemoriseViewHolderUnhappyPathTest {
                 softButtons = false,
                 nightMode = NightMode.NIGHT,
                 locale = "en",
-            ).landscapeOrientation(),
+            ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
-            // avoid Paparazzi 1.1.0 crash when compileSDK 33
-            environment = detectEnvironment().copy(
-                platformDir = "${androidHome()}/platforms/android-32",
-                compileSdkVersion = 32
-            ),
         )
 
     @Test
