@@ -1,6 +1,7 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.bitmap
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.bitmap
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import androidx.core.os.bundleOf
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
@@ -15,49 +16,38 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmap
 import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 
 /**
- * Example of Tests for Bitmaps to take more realistic screenshots.
- * For that, we draw the Views under tests to bitmaps using PixelCopy & Canvas,each of them
- * obtaining different results:
- *
- * - PixelCopy: draws UI components to bitmap considering elevation. However, use carefully if
- * screenshooting Dialogs/Views/Composables whose size goes beyond the device screen (e.g. ScrollViews).
- * PixelCopy resizes the UI component under test to fit it inside the window. Better use Canvas instead.
- * Moreover, PixelCopy requires API 26+, defaulting to Canvas (no elevation) in lower APIs.
- *
- * - Canvas: draws UI components to bitmap without considering elevation. Unlike PixelCopy, it fully
- * screenshots the UI component under tests without resizing it even though it goes beyond the device
- * screen
+ * Example with fragmentScenarioConfiguratorRule of AndroidUiTestingUtils
  */
-class RecyclerViewFragmentToBitmapTest: ScreenshotTest {
-
+class CoffeeDrinksComposeFragmentToBitmapTest : ScreenshotTest {
     @get:Rule
     val fragmentScenarioConfiguratorRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>(
+        fragmentScenarioConfiguratorRule<CoffeeDrinksFragment>(
+            fragmentArgs = bundleOf("coffee_shop_name" to "MyCoffeeShop"),
             config = FragmentConfigItem(
                 locale = "en",
                 uiMode = UiMode.DAY,
                 orientation = Orientation.PORTRAIT,
                 fontSize = FontSize.NORMAL,
                 displaySize = DisplaySize.NORMAL,
-            ),
+            )
         )
 
     // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithPixelCopy(){
+    fun snapFragmentWithPixelCopy() {
         compareScreenshot(
             bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmapWithElevation(),
-            name = "RecyclerViewFragment_BitmapWithElevation"
+            name = "CoffeeDrinksFragment_BitmapWithElevation"
         )
     }
 
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithCanvas(){
+    fun snapFragmentWithCanvas() {
         compareScreenshot(
             bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmap(),
-            name = "RecyclerViewFragment_BitmapWithoutElevation"
+            name = "CoffeeDrinksFragment_BitmapWithoutElevation"
         )
     }
 }

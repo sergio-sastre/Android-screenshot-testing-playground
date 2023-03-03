@@ -4,6 +4,7 @@ import android.graphics.Color.*
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
+import com.example.road.to.effective.snapshot.testing.dialogs.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Test
@@ -37,7 +38,9 @@ class DeleteDialogParameterizedHappyPathTest(
     }
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForViewRule =
@@ -80,7 +83,9 @@ class DeleteDialogParameterizedUnhappyPathTest(
     }
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForViewRule =

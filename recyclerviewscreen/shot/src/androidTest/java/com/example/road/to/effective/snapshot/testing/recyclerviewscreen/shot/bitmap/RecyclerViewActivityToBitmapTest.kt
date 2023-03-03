@@ -11,6 +11,7 @@ import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
+import sergio.sastre.uitesting.utils.testrules.locale.InAppLocaleTestRule
 import sergio.sastre.uitesting.utils.utils.drawToBitmap
 import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 
@@ -31,6 +32,9 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 class RecyclerViewActivityToBitmapTest: ScreenshotTest {
 
     @get:Rule
+    val inAppLocale = InAppLocaleTestRule("en")
+
+    @get:Rule
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<RecyclerViewActivity>(
             config = ActivityConfigItem(
@@ -42,6 +46,7 @@ class RecyclerViewActivityToBitmapTest: ScreenshotTest {
             ),
         )
 
+    // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
     fun snapRecyclerViewActivityWithPixelCopy(){

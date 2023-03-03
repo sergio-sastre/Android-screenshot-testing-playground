@@ -15,7 +15,11 @@ fun DeviceConfig.setPhoneOrientation(
         throw SetPhoneOrientationException()
     }
     return if (phoneOrientation == PhoneOrientation.LANDSCAPE) {
-        this.landscapeOrientation()
+        return copy(
+            screenWidth = this.screenHeight,
+            screenHeight = 1,
+            orientation = ScreenOrientation.LANDSCAPE,
+        )
     } else {
         this.copy(
             screenHeight = 1,
@@ -26,13 +30,3 @@ fun DeviceConfig.setPhoneOrientation(
 
 private class SetPhoneOrientationException
     : RuntimeException("Do not set DeviceConfig#screenHeight to 1")
-
-fun DeviceConfig.landscapeOrientation(): DeviceConfig {
-    val rotatedWidth = screenHeight
-    val rotatedHeight = screenWidth
-    return copy(
-        screenHeight = rotatedHeight,
-        screenWidth = rotatedWidth,
-        orientation = ScreenOrientation.LANDSCAPE,
-    )
-}

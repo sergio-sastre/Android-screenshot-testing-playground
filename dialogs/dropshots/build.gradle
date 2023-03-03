@@ -23,6 +23,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            pseudoLocalesEnabled true
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -48,6 +51,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
+    implementation 'androidx.test:rules:1.5.0'
 
     testImplementation 'junit:junit:4.13.2'
 
@@ -57,5 +61,5 @@ dependencies {
     androidTestImplementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
 
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
-    androidTestImplementation 'com.github.sergio-sastre:AndroidUiTestingUtils:1.2.3'
+    androidTestImplementation 'com.github.sergio-sastre:AndroidUiTestingUtils:1.2.4'
 }

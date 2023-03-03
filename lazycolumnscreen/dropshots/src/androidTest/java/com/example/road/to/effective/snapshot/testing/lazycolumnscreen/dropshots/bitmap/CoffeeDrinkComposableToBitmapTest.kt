@@ -7,7 +7,8 @@ import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.compose.parameterized.coffeeDrink
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
 import org.junit.Test
@@ -37,9 +38,12 @@ import sergio.sastre.uitesting.utils.utils.waitForComposeView
  * screen
  *
  */
-class CoffeeDrinkListComposableToBitmapTest {
+class CoffeeDrinkComposableToBitmapTest {
+
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForComposableRule =
@@ -62,7 +66,7 @@ class CoffeeDrinkListComposableToBitmapTest {
             .waitForActivity()
             .waitForComposeView()
 
-
+    // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
     fun snapComposableWithPixelCopy() {

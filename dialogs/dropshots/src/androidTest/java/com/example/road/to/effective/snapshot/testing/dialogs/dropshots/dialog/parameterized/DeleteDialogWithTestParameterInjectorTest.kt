@@ -4,6 +4,7 @@ import android.graphics.Color.TRANSPARENT
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
+import com.example.road.to.effective.snapshot.testing.dialogs.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -31,12 +32,14 @@ class DeleteDialogTestParameterHappyPathTest(
     private val deleteItem = testItem.deleteItem
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForViewRule =
         ActivityScenarioForViewRule(
-            config = testItem.deleteItem.viewConfig,
+            config = deleteItem.viewConfig,
             backgroundColor = TRANSPARENT,
         )
 
@@ -68,7 +71,9 @@ class DeleteDialogTestParameterUnhappyPathTest(
     private val deleteItem = testItem.deleteItem
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val activityScenarioForViewRule =

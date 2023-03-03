@@ -63,6 +63,7 @@ class MemoriseViewHolderToBitmapTest: ScreenshotTest {
         }
     }
 
+    // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
     fun snapViewHolderWithPixelCopy() {

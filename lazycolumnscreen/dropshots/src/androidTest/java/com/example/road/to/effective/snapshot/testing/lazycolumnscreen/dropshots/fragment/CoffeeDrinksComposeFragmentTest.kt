@@ -4,6 +4,7 @@ import androidx.core.os.bundleOf
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Rule
@@ -23,7 +24,9 @@ import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
 class CoffeeDrinksComposeFragmentHappyPathTest {
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
@@ -54,7 +57,9 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
 class CoffeeDrinksComposeFragmentUnhappyPathTest {
 
     @get:Rule
-    val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @UnhappyPath
     @Test

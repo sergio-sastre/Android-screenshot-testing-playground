@@ -39,7 +39,7 @@ import sergio.sastre.uitesting.utils.utils.waitForComposeView
  *  Shot's compareScreenshot(composeRule) does not use Canvas, as opposed to other compareScreenshot
  *  methods. That's why it renders elevation of Composables without using drawToBitmapWithElevation(=
  */
-class CoffeeDrinkListComposableToBitmapTest: ScreenshotTest {
+class CoffeeDrinkComposableToBitmapTest: ScreenshotTest {
 
     @get:Rule
     val activityScenarioForComposableRule =
@@ -63,6 +63,7 @@ class CoffeeDrinkListComposableToBitmapTest: ScreenshotTest {
             .waitForComposeView()
 
 
+    // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
     fun snapComposableWithPixelCopy() {
