@@ -58,6 +58,7 @@ More screenshot test examples, as well as examples with other libraries will be 
   - [Paparazzi](#paparazzihttpsgithubcomcashapppaparazzi)
   - [Dropshots](#dropshotshttpsgithubcomdropboxdropshots)
   - [Shot](#shothttpsgithubcompedrovgsshot)
+  - [Library-agnostic](#library-agnostic)
 - [Parameterized screenshot tests](#parameterized-screenshot-tests)
 - [Filtered parameterized screenshot tests](#filtered-parameterized-screenshot-tests)
   - [Instrumented tests](#instrumented-tests)
@@ -247,6 +248,27 @@ Then run the following gradle tasks depending on the module:
 > The library says the record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/index.html`
 > However, it is wrong. The record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/record/index.html`
 > The path for the verification reports is right though.
+
+
+### Library-agnostic
+Currently only supported for Composables. Therefore, these tests are under `:lazycolumnscreen:sharedtest`.
+You can run them out of the box with Paparazzi and Shot as described in the previous sections, for instance:
+1. **Record**:
+   1. Paparazzi -> `./gradlew :lazycolumnscreen:sharedTest:recordPaparazziDebug`
+   2. Shot -> `./gradlew :lazycolumnscreen:sharedTest:executeScreenshotTests -Precord`
+2. **Verify**:
+   1. Paparazzi -> `./gradlew :lazycolumnscreen:sharedTest:verifyPaparazziDebug`
+   2. Shot -> `./gradlew :lazycolumnscreen:sharedTest:executeScreenshotTests`
+
+In order to run it with Dropshots, set its ScreenshotTestRule first under `src/androidTest/SharedTestRule` like this:
+```kotlin
+class SharedTestRule(
+    private val config: ScreenshotConfig,
+): ScreenshotTestRule by DropshotsScreenshotTestRule(config)
+```
+and then execute the corresponding gradle task
+1. **Record**: `./gradlew :lazycolumnscreen:sharedTest:connectedAndroidTest -Pdropshots.record`
+2. **Verify**: `./gradlew :lazycolumnscreen:sharedTest:connectedAndroidTest`
 
 ## Parameterized Screenshot Tests
 
