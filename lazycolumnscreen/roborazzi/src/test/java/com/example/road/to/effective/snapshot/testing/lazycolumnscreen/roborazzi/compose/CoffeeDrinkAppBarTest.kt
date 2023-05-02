@@ -1,0 +1,113 @@
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose
+
+import androidx.activity.compose.setContent
+import androidx.compose.ui.test.junit4.createEmptyComposeRule
+import androidx.compose.ui.test.onRoot
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.setContent
+import com.github.takahirom.roborazzi.captureRoboImage
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.GraphicsMode
+import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
+import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioConfigurator
+import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
+import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
+import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
+import sergio.sastre.uitesting.utils.common.DisplaySize
+import sergio.sastre.uitesting.utils.common.FontSize
+import sergio.sastre.uitesting.utils.common.Orientation
+import sergio.sastre.uitesting.utils.common.UiMode
+
+/**
+ * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
+ *
+ * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
+ * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
+ * adding the following in the module's build.gradle:
+ *
+ *  testOptions {
+ *      unitTests {
+ *          includeAndroidResources = true
+ *          all {
+ *              systemProperty 'robolectric.graphicsMode', 'NATIVE' // this
+ *          }
+ *      }
+ *  }
+ */
+@RunWith(RobolectricTestRunner::class)
+class CoffeeDrinkAppBarHappyPathTest {
+
+    @get:Rule
+    val activityScenarioForComposableRule =
+        RobolectricActivityScenarioForComposableRule(
+            config = ComposableConfigItem(
+                locale = "en",
+                uiMode = UiMode.DAY,
+                orientation = Orientation.PORTRAIT,
+                fontSize = FontSize.NORMAL,
+                displaySize = DisplaySize.NORMAL,
+            ),
+            deviceScreen = PIXEL_4A,
+        )
+
+    @GraphicsMode(NATIVE)
+    @Test
+    fun snapComposable() {
+        activityScenarioForComposableRule.setContent {
+            AppTheme {
+                CoffeeDrinkAppBar()
+            }
+        }
+
+        activityScenarioForComposableRule.composeRule
+            .onRoot()
+            .captureRoboImage(
+                filePath("CoffeeDrinkAppBar_Happy")
+            )
+    }
+}
+
+/**
+ *  Example with RobolectricActivityScenarioConfigurator.ForComposable()
+ *  of AndroidUiTestingUtils:robolectric
+ */
+@RunWith(RobolectricTestRunner::class)
+class CoffeeDrinkAppBarUnhappyPathTest {
+
+    @get:Rule
+    val composeTestRule = createEmptyComposeRule()
+
+    @GraphicsMode(NATIVE)
+    @Test
+    fun snapComposable() {
+        val activityScenario =
+            RobolectricActivityScenarioConfigurator.ForComposable()
+                .setDeviceScreen(PIXEL_4A)
+                .setLocale("en_XA")
+                .setUiMode(UiMode.NIGHT)
+                .setInitialOrientation(Orientation.LANDSCAPE)
+                .setFontSize(FontSize.HUGE)
+                .setDisplaySize(DisplaySize.LARGER)
+                .launchConfiguredActivity()
+                .onActivity {
+                    it.setContent {
+                        AppTheme {
+                            CoffeeDrinkAppBar()
+                        }
+                    }
+                }
+
+        composeTestRule
+            .onRoot()
+            .captureRoboImage(
+                filePath("CoffeeDrinkAppBar_Unhappy")
+            )
+
+        activityScenario.close()
+    }
+}
