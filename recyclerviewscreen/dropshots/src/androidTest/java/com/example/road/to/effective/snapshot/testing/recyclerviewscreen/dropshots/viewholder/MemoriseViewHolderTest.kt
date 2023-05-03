@@ -19,7 +19,6 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.inflateAndWaitForIdle
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
-import sergio.sastre.uitesting.utils.utils.waitForView
 
 /**
  * Example with ActivityScenarioForViewRule of AndroidUiTestingUtils
@@ -88,7 +87,7 @@ class MemoriseViewHolderUnhappyPathTest {
 
         val layout = activity.inflateAndWaitForIdle(R.layout.memorise_row)
 
-        val viewHolder = waitForViewHolder {
+        val viewHolder = waitForMeasuredViewHolder {
             MemoriseViewHolder(
                 container = layout,
                 itemEventListener = null,
@@ -96,7 +95,7 @@ class MemoriseViewHolderUnhappyPathTest {
             ).apply {
                 bind(generateMemoriseItem(rightAligned = true, activity = activity))
             }
-        }
+        }.itemView
 
         dropshots.assertSnapshot(
             view = viewHolder,

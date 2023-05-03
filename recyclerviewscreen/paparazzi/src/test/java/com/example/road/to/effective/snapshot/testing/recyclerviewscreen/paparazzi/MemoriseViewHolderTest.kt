@@ -22,7 +22,6 @@ class MemoriseViewHolderHappyPathTest {
         Paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
                 softButtons = false,
-                screenHeight = 1,
                 locale = "en",
             ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
