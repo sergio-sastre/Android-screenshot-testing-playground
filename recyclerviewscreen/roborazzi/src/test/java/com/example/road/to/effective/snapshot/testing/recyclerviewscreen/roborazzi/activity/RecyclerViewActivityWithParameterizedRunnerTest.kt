@@ -1,6 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.activity
 
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
@@ -10,7 +11,6 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.robolectricActivityScenarioForActivityRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_5
-import java.io.File
 
 /**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
@@ -85,10 +85,4 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
                 filePath("RecyclerViewActivity_${testItem.name}_Parameterized")
             )
     }
-}
-
-fun filePath(name: String): String {
-    val path = System.getProperty("user.dir")
-    val file = File("$path/src/test", "$name.png")
-    return file.path
 }

@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.robora
 
 import android.graphics.Color.TRANSPARENT
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.viewholder.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.github.takahirom.roborazzi.captureRoboImage
@@ -23,7 +24,6 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.inflateAndWaitForIdle
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
-import java.io.File
 
 /**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
@@ -122,10 +122,4 @@ class MemoriseViewHolderUnhappyPathTest {
 
         activityScenario.close()
     }
-}
-
-fun filePath(name: String): String {
-    val path = System.getProperty("user.dir")
-    val file = File("$path/src/test", "$name.png")
-    return file.path
 }
