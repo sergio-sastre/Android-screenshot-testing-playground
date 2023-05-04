@@ -7,7 +7,7 @@
     android:id="@+id/root"
     android:padding="8dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
             android:layout_width="90dp"
             android:layout_height="90dp"
@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        </ImageView>
+        </androidx.appcompat.widget.AppCompatImageView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mainLayout"
@@ -105,7 +105,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/body"
-                    style="@style/Subtitle"
+                    style="@style/Subtitle.Landscape"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"

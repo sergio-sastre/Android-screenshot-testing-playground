@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.row
 
 import android.content.Context
 import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -45,7 +46,8 @@ class MemoriseViewHolder<T>(
 
     private val textInfo: TextView = container.findViewById(R.id.textInfo)
     private val trainingInfo: TextView = container.findViewById(R.id.trainingInfo)
-    private val numberFormat: NumberFormat = NumberFormat.getInstance(container.context.mainLocale())
+    private val numberFormat: NumberFormat =
+        NumberFormat.getInstance(container.context.mainLocale())
 
     private fun setupView(item: MemoriseItem) {
         mainLayout.setOnClickListener {
@@ -54,7 +56,8 @@ class MemoriseViewHolder<T>(
 
         sourceLangImage.setFlagImage(item.memorise.srcLang)
         landmarkImage.setLandmarkImage(item.memorise.landmark, item.memorise.srcLang)
-        textInfo.text = "${numberFormat.format(item.memorise.text.length)}/${numberFormat.format(MAX_WORDS)}"
+        textInfo.text =
+            "${numberFormat.format(item.memorise.text.length)}/${numberFormat.format(MAX_WORDS)}"
         trainingInfo.text = numberFormat.format(item.memorise.translations.size)
 
         appCompatImageButton.setOnClickListener {
@@ -95,9 +98,10 @@ class MemoriseViewHolder<T>(
 
     fun update(item: MemoriseItem) {
         setupView(item)
-        Handler().postDelayed({
-            item.animate(container.context, container)
-        }, animationDelay)
+        Handler(Looper.getMainLooper()).postDelayed(
+            { item.animate(container.context, container) },
+            animationDelay
+        )
     }
 
     private fun PopupWindow.showAsDropDownForItem(item: MemoriseItem, anchor: View) {
@@ -153,10 +157,9 @@ class MemoriseViewHolder<T>(
         constraintContent.applyTo(contentLayout)
 
         TransitionManager.beginDelayedTransition(root)
-        Handler().postDelayed(
-            {
-                TransitionManager.beginDelayedTransition(contentLayout)
-            }, animationDelay
+        Handler(Looper.getMainLooper()).postDelayed(
+            { TransitionManager.beginDelayedTransition(contentLayout) },
+            animationDelay
         )
     }
 }

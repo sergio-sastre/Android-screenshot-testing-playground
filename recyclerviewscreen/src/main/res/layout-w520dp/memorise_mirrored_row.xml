@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/android"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="2dp">
+    android:padding="8dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
+        android:minHeight="90dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,58 +25,65 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/contentLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:minHeight="90dp"
             android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imageView"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:layout_marginEnd="8dp"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
                 android:adjustViewBounds="true"
                 android:elevation="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"
-                app:layout_constraintTop_toTopOf="@id/contentLayout"
-                app:srcCompat="@drawable/ic_russia_moscow_cathedral" />
+                android:src="@drawable/ic_russia_moscow_cathedral"
+                app:layout_constraintBottom_toBottomOf="@+id/contentLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/contentLayout">
+
+            </androidx.appcompat.widget.AppCompatImageView>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/sourceLangImage"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginEnd="2dp"
-                app:layout_constraintBottom_toBottomOf="@id/imageView"
-                app:layout_constraintEnd_toStartOf="@+id/trainingInfo"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/trainingIcon"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/endBarrier"
-                app:layout_constraintTop_toTopOf="@id/imageView"
-                app:layout_constraintVertical_bias="0.271"
-                app:srcCompat="@drawable/ic_uk_flag_48dp" />
+                app:layout_constraintStart_toEndOf="@+id/body"
+                app:layout_constraintStart_toStartOf="@id/startGuideline"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                app:layout_constraintVertical_bias="0.5"
+                app:srcCompat="@drawable/ic_germany_flag_48dp" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/trainingIcon"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_training_24dp"
-                app:layout_constraintBottom_toBottomOf="@id/imageView"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/sourceLangImage"
+                app:layout_constraintEnd_toStartOf="@id/imageView"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/trainingInfo"
-                app:layout_constraintTop_toTopOf="@id/imageView"
-                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintStart_toEndOf="@+id/sourceLangImage"
+                app:layout_constraintTop_toTopOf="@+id/sourceLangImage"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_training_24dp"
                 app:tint="?attr/memorise_info_text_color" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/appCompatImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:layout_margin="8dp"
                 android:background="?android:selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintEnd_toEndOf="@+id/endBarrier"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_baseline_more_vert_24" />
@@ -84,29 +93,28 @@
                 style="@style/Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="4dp"
                 app:layout_constraintBottom_toTopOf="@+id/body"
-                app:layout_constraintEnd_toStartOf="@+id/endBarrier"
+                app:layout_constraintEnd_toStartOf="@+id/startGuideline"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endBarrier"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="title_sample" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/body"
-                style="@style/Subtitle"
+                style="@style/Subtitle.Landscape"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/endBarrier"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/startGuideline"
+                app:layout_constraintStart_toEndOf="@+id/endBarrier"
                 app:layout_constraintTop_toBottomOf="@id/title"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="1.0"
                 tools:text="lorem_ipsum2" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -114,15 +122,13 @@
                 style="@style/TrainingInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="2dp"
                 app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="@id/sourceLangImage"
+                app:layout_constraintBottom_toBottomOf="@+id/sourceLangImage"
                 app:layout_constraintEnd_toStartOf="@+id/trainingIcon"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@id/sourceLangImage"
-                app:layout_constraintTop_toTopOf="@id/sourceLangImage"
-                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintTop_toTopOf="@+id/sourceLangImage"
+                app:layout_constraintVertical_bias="0.0"
                 tools:text="5" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -131,14 +137,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="12dp"
                 app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="@id/imageView"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/endBarrier"
-                app:layout_constraintTop_toBottomOf="@+id/sourceLangImage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/trainingIcon"
+                app:layout_constraintStart_toStartOf="@+id/sourceLangImage"
+                app:layout_constraintTop_toBottomOf="@id/sourceLangImage"
                 app:layout_constraintVertical_bias="0.0"
                 tools:text="1321/3000" />
 
@@ -146,13 +149,21 @@
                 android:id="@+id/endBarrier"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:barrierDirection="start"
-                app:constraint_referenced_ids="appCompatImageButton, trainingIcon, imageView, trainingInfo, sourceLangImage"
-                app:layout_constraintStart_toStartOf="@id/sourceLangImage"
+                app:barrierDirection="end"
+                app:constraint_referenced_ids="appCompatImageButton"
+                app:layout_constraintStart_toStartOf="@id/appCompatImageButton"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/startGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="110dp"
+                android:orientation="vertical"
+                app:barrierDirection="start"
+                app:layout_constraintStart_toStartOf="@id/trainingIcon" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
