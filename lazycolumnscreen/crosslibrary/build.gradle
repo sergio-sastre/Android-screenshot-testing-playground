@@ -1,0 +1,122 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'app.cash.paparazzi'
+}
+
+ext {
+    SCREENSHOT_LIBRARY = "screenshotLibrary"
+    SHOT = "shot"
+    DROPSHOTS = "dropshots"
+}
+
+Boolean screenshotLibrary(String libName) {
+    return project.hasProperty(SCREENSHOT_LIBRARY) &&
+            project.property(SCREENSHOT_LIBRARY) == libName
+}
+
+String screenshotLibraryName() {
+    if (project.hasProperty(SCREENSHOT_LIBRARY)) {
+        return project.property(SCREENSHOT_LIBRARY)
+    } else {
+        return ""
+    }
+}
+
+// Apply on-device screenshot library plugins conditionally:
+// Shot plugin does not work properly if Dropshots plugin is also applied.
+// Thus, apply screenshot library plugins based on the argument passed via command line
+if (screenshotLibrary(SHOT)) {
+    apply plugin: 'shot'
+    shot {
+        tolerance = 0.15 // Tests pass if less than 0,15% of the pixels differ
+        applicationId = "com.example.road.to.effective.snapshot.testing"
+    }
+}
+
+if (screenshotLibrary(DROPSHOTS)) {
+    apply plugin: 'com.dropbox.dropshots'
+}
+
+android {
+    namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtest'
+    compileSdk 33
+
+    defaultConfig {
+        testApplicationId "com.example.road.to.effective.snapshot.testing"
+        minSdk 23
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        // make gradle constants available in Tests via BuildConfig to reduce errors
+        buildConfigField "String", "SCREENSHOT_LIBRARY", "\"${SCREENSHOT_LIBRARY}\""
+        buildConfigField "String", "SHOT", "\"${SHOT}\""
+        buildConfigField "String", "DROPSHOTS", "\"${DROPSHOTS}\""
+
+        // make gradle property available in Android Tests via InstrumentationRegistry.getArguments()
+        testInstrumentationRunnerArguments = [(SCREENSHOT_LIBRARY): screenshotLibraryName()]
+
+        if (screenshotLibrary(SHOT)) {
+            testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
+        } else {
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.2'
+    }
+
+    // required for shared tests in this module
+    sourceSets {
+        test {
+            java.srcDir 'src/sharedTest/java'
+        }
+        androidTest {
+            java.srcDir 'src/sharedTest/java'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':lazycolumnscreen')
+    implementation project(':testannotations')
+
+    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    debugImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
+
+    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta02'
+    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-beta02'
+    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-beta02'
+
+    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-paparazzi:2.0.0-beta02'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-beta02'
+}
