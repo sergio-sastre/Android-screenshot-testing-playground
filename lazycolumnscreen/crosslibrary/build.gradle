@@ -39,7 +39,7 @@ if (screenshotLibrary(DROPSHOTS)) {
 }
 
 android {
-    namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtest'
+    namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary'
     compileSdk 33
 
     defaultConfig {
@@ -103,7 +103,6 @@ dependencies {
     implementation project(':lazycolumnscreen')
     implementation project(':testannotations')
 
-    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
 
@@ -113,10 +112,26 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     debugImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
 
-    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta02'
-    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-beta02'
-    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-beta02'
-
-    debugImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-paparazzi:2.0.0-beta02'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-beta02'
+    /**
+     * AndroidUiTestingUtils 2.0.0-beta02 uses androidx.core:core-ktx:1.10.0
+     * That results into crashes while running the tests with Paparazzi.
+     * Therefore, exclude it and use 'androidx.core:core-ktx:1.9.0' instead
+     */
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta02') {
+        exclude group: 'androidx.core'
+    }
+    debugImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-beta02'){
+        exclude group: 'androidx.core'
+    }
+    debugImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-beta02'){
+        exclude group: 'androidx.core'
+    }
+    debugImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-paparazzi:2.0.0-beta02'){
+        exclude group: 'androidx.core'
+    }
+    testImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-beta02'){
+        exclude group: 'androidx.core'
+    }
+    //noinspection GradleDependency
+    implementation 'androidx.core:core-ktx:1.9.0'
 }

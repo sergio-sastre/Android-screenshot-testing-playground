@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'de.mannodermaus.android-junit5'
 }
-apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 33

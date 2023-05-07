@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtest.parameterized
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.parameterized
 
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
@@ -22,6 +22,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedScreensho
  *  2. Shot: ./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot
  *  3. Dropshots: ./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots
  */
+
 @RunWith(ParameterizedScreenshotTestAndroidJUnit4::class)
 class CoffeeDrinkListComposableParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,

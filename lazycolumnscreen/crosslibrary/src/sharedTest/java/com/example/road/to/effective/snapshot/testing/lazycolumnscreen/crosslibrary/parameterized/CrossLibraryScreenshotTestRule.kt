@@ -1,8 +1,9 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtest.parameterized
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.parameterized
 
 import androidx.test.platform.app.InstrumentationRegistry.*
+
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtest.BuildConfig
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.BuildConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
@@ -16,6 +17,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTest
  * A [SharedScreenshotTestRule]that decides which library runs the instrumented screenshot tests
  * based on the -PscreenshotLibrary argument passed via command line.
  */
+
 class CrossLibraryScreenshotTestRule(
     override val config: ScreenshotConfig,
 ) : SharedScreenshotTestRule(config) {
@@ -40,24 +42,19 @@ class CrossLibraryScreenshotTestRule(
         )
 }
 
-/**
- * Returns a [CrossLibraryScreenshotTestRule] with default configurations for each library.
- * You can override them by calling [CrossLibraryScreenshotTestRule.configure] again for
- * the desired library (last configure call wins)
- */
 fun defaultCrossLibraryScreenshotTestRule(config: ScreenshotConfig): ScreenshotTestRule =
     CrossLibraryScreenshotTestRule(config).configure(
         ShotConfig(
-            bitmapCaptureMethod = BitmapCaptureMethod.PixelCopy()
+            bitmapCaptureMethod = BitmapCaptureMethod.PixelCopy(),
         )
     ).configure(
         DropshotsConfig(
             bitmapCaptureMethod = BitmapCaptureMethod.PixelCopy(),
-            resultValidator = ThresholdValidator(0.15f)
+            resultValidator = ThresholdValidator(0.15f),
         )
+
     ).configure(
         PaparazziConfig(
-            deviceConfig = DeviceConfig.NEXUS_4
+            deviceConfig = DeviceConfig.NEXUS_4,
         )
     )
-

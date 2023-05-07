@@ -1,7 +1,8 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtest.parameterized
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.parameterized
 
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
+
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
