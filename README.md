@@ -24,20 +24,27 @@ In order to help find the desire examples, the app is modularized accordingly:
 
 Each of these modules contains submodules. Each submodule name corresponds to a screenshot testing library. You'll find screenshot test examples with that library in it. 
 
-As of December 2022, there are many screenshot testing libraries that facilitate automated screenshot testing, namely:
+As of May 2023, there are many screenshot testing libraries that facilitate automated screenshot testing, namely:
 1. Cashapp [Paparazzi](https://github.com/cashapp/paparazzi)
 2. Dropbox [Dropshots](https://github.com/dropbox/dropshots)
 3. [Shot from pedrovgs](https://github.com/pedrovgs/Shot)
-4. Facebook [screenshot-tests-for-android](https://github.com/facebook/screenshot-tests-for-android)
-5. Ndtp [android-testify](https://github.com/ndtp/android-testify) <sup>1<sup/>
+4. [Roborazzi from takahirom](https://github.com/takahirom/roborazzi)
+5. Facebook [screenshot-tests-for-android](https://github.com/facebook/screenshot-tests-for-android)
+6. Ndtp [android-testify](https://github.com/ndtp/android-testify) <sup>1<sup/>
+7. [Snappy from QuickBird](https://github.com/QuickBirdEng/kotlin-snapshot-testing)
 
 All of them have their own pros and cons.
-The ultimate goal of this repo is to help you choose the libraries that better meet your needs!
+The ultimate goal of this repo is to help you choose the libraries that better meet your project's needs!
 
 In order to do that, it contains the same/similar examples but written with different libraries<sup>2</sup>:
 1. [Paparazzi](https://github.com/cashapp/paparazzi)
 2. [Dropshots](https://github.com/dropbox/dropshots)
 3. [Shot](https://github.com/pedrovgs/Shot)
+4. [Roborazzi](https://github.com/takahirom/roborazzi)
+
+**BONUS**:
+It also contains an example of a **Cross-Library Screenshot Tests**: *the very same screenshot test running with multiple libraries, namely: Paparazzi, Shot & Dropshots*.
+For that it uses [Android UI Testing Utils 2.0.0-beta02](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
 
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
@@ -58,6 +65,8 @@ More screenshot test examples, as well as examples with other libraries will be 
   - [Paparazzi](#paparazzihttpsgithubcomcashapppaparazzi)
   - [Dropshots](#dropshotshttpsgithubcomdropboxdropshots)
   - [Shot](#shothttpsgithubcompedrovgsshot)
+  - [Roborazzi](#roborazzihttpsgithubcomtakahiromroborazzi)
+  - [Cross-library](#cross-library)
 - [Parameterized screenshot tests](#parameterized-screenshot-tests)
 - [Filtered parameterized screenshot tests](#filtered-parameterized-screenshot-tests)
   - [Instrumented tests](#instrumented-tests)
@@ -93,8 +102,10 @@ screenshot tests.
 ### Paparazzi vs. on-device screenshot testing libraries
 **Need for emulators**
 
-Paparazzi is the **only** screenshot testing library as of December 2022 that lets you run screenshot tests on the JVM, without emulators/devices.
-Although it also comes with some speed wins, its main advantage is that one doesn't have to deal with emulator and their problems, such as:
+Roborazzi & Paparazzi let you run screenshot tests on the JVM, without emulators/devices.
+I'm still evaluating Roborazzi, so this section refers to Paparazzi only, and will be extended in the future.
+
+Although running screenshot tests on the JVM comes with some speed wins, its main advantage is that one doesn't have to deal with emulator and their problems, such as:
 1. Emulators eventually freezing/crashing (specially on CI)
 2. "Insufficient storage" errors
 
@@ -140,7 +151,9 @@ ActivityScenarios and FragmentScenarios are compatible with Robolectric, which m
 Therefore, we could also use Robolectric to run Activity/Fragment screenshot tests on the JVM with Paparazzi, theoretically.
 However, it crashes in doing so with some Byte Buddy exception, likely due to some conflicts with Robolectric.
 
-This means, only on-device screenshot testing frameworks can be used for snapshoting Activites/Fragments
+Roborazzi, on the other hand, is built on top of Robolectric, so ActivityScenarios and FragmentScenarios are also compatible with it.
+
+This means, only on-device screenshot testing frameworks & Roborazzi can be used for snapshoting Activites/Fragments. Only Paparazzi cannot.
 
 **Rendering problems**
 
@@ -248,6 +261,34 @@ Then run the following gradle tasks depending on the module:
 > However, it is wrong. The record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/record/index.html`
 > The path for the verification reports is right though.
 
+### [Roborazzi](https://github.com/takahirom/roborazzi)
+No emulators required.
+Run the following gradle tasks depending on the module:
+1. **Record**: `./gradlew :module_name:roborazzi:recordRoborazziDebug`. For instance:
+    1. `./gradlew :dialogs::roborazzi:recordRoborazziDebug`
+    2. `./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug`
+    3. `./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug`
+2. **Verify**: `./gradlew :module_name:roborazzi:verifyRoborazziDebug`. For instance:
+    1. `./gradlew :dialogs:roborazzi:verifyRoborazziDebug`
+    2. `./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug`
+    3. `./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug`
+
+In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
+
+### Cross-Library
+Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Shot & Dropshots. 
+For that to work with Shot & Dropshots, you need to pass the library name via command line as follows:
+1. **Record**:
+    1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordPaparazziDebug`
+    2. Shot: `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -Precord -PscreenshotLibrary=shot`
+    3. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots`
+2. **Verify**:
+   1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug`
+   2. Shot: `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
+   3. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
+
+To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-beta02](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+
 ## Parameterized Screenshot Tests
 
 Some tests in this repo are written as parameterized. 
@@ -270,7 +311,7 @@ configurations! You can read more about how we can profit from it here:
 This can be achieved by using either `org.junit.runners.Parameterized`
 or `com.google.testing.junit.testparameterinjector.TestParameterInjector`, as you'll find in most examples in this repo.
 
-Neither Dropbox nor Shot offer the possibility to set such configurations (Paparazzi does though). However, we can set the desired configurations for our Dropbox/Shot instrumented screenshot tests with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
+Dropshots, Shot and Roborazzi do not offer the possibility to set such configurations (Paparazzi does though). However, we can set the desired configurations for those libraries with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
 
 > **Remark**
 > The Parameterized runner injects the parameter passed in the Test class constructor to every
@@ -312,14 +353,18 @@ In order to run filtered tests, execute the following gradle tasks, for the give
 The same goes for `@HappyPath`
 
 ### Gradle tests
-The previous approach only works for instrumented tests. For non-instrumented tests, like those running with paparazzi, the simplest approach is to use gradle test filters. We can pass them as parameters when executing the corresponding paparazzi test tasks.
+The previous approach only works for instrumented tests. For non-instrumented tests, like those running with Paparazzi or Roborazzi, the simplest approach is to use gradle test filters. We can pass them as parameters when executing the corresponding paparazzi test tasks.
 For this to work, it is important to define a clear test naming convention, for example:
 1. UnhappyPath tests -> inside `class myTestClassNameUnhappyPathTest`
 2. HappyPath tests -> inside `class myTestClassNameHappyPathTest`
 
 This enables to filter the test separately by executing:
-1. Only Happy path tests:`./gradlew :module_name:paparazzi:recordPaparazziDebug --tests '*UnhappyPath*'`
-2. Only Unhappy path tests:`./gradlew :module_name:paparazzi:recordPaparazziDebug --tests '*HappyPath*'`
+1. Only Happy path tests:
+   1. Paparazzi: `./gradlew :module_name:paparazzi:recordPaparazziDebug --tests '*UnhappyPath*'`
+   2. Roborazzi: `./gradlew :module_name:roborazzi:recordRoborazziDebug --tests '*UnhappyPath*'`
+2. Only Unhappy path tests:
+   1. Paparazzi: `./gradlew :module_name:paparazzi:recordPaparazziDebug --tests '*HappyPath*'`
+   2. Roborazzi: `./gradlew :module_name:roborazzi:recordRoborazziDebug --tests '*HappyPath*'`
 
 > **Note**</br>
 > This approach does not work for instrumented tests though.
@@ -330,7 +375,6 @@ This enables to filter the test separately by executing:
 2. More Snapshot testing samples (e.g. ScrollViews, Material you + dynamic colors...)
 3. Screenshot tests with other libraries: Facebook, ndtp/Testify, without library...
 4. Running snapshot tests on multiple devices/JVM in parallel
-5. **framework-agnostic** & **shared screenshot testing** i.e. same test running either on device or on JVM
 6. Tips to remove flakiness
 7. Tips to increase test execution speed and more...
 

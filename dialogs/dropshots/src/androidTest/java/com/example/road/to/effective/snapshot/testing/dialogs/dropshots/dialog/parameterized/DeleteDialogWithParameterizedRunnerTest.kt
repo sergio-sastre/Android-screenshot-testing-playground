@@ -54,7 +54,7 @@ class DeleteDialogParameterizedHappyPathTest(
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
 
-        val dialog = waitForMeasuredDialog(exactWidthPx = deleteItem.dialogWidth.widthInPx) {
+        val dialog = waitForMeasuredDialog {
             DialogBuilder.buildDeleteDialog(
                 ctx = activity,
                 onDeleteClicked = {},

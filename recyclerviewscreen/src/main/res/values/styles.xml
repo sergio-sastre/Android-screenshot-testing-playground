@@ -10,7 +10,7 @@
         <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
     </style>
 
-    <style name="Subtitle" parent="TextAppearance.AppCompat.Body1"> -->
+    <style name="Subtitle" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?attr/memorise_body_color</item>
         <item name="android:maxLines">4</item>
@@ -18,6 +18,10 @@
         <item name="android:lineSpacingExtra">1dp</item>
         <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
         <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
+    </style>
+
+    <style name="Subtitle.Landscape">
+        <item name="android:maxLines">3</item>
     </style>
 
     <style name="Subtitle.Delete">

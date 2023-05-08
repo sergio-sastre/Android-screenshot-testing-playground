@@ -8,13 +8,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.viewholder.waitForViewHolder
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
-import sergio.sastre.uitesting.utils.utils.waitForView
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -41,14 +40,14 @@ class TrainingViewHolderTestParameterHappyPathTest(
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
-        val viewHolder = waitForView {
+        val viewHolder = waitForMeasuredViewHolder {
             TrainingViewHolder(layout).apply {
                 bind(item = testItem.item.trainingItem, languageClickedListener = null)
-            }.itemView
+            }
         }
 
         dropshots.assertSnapshot(
-            view = viewHolder,
+            view = viewHolder.itemView,
             name = "${testItem.name}_TestParameter", // testItem names are already long
         )
     }
@@ -70,14 +69,14 @@ class TrainingViewHolderTestParameterUnhappyPathTest(
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
-        val viewHolder = waitForViewHolder {
+        val viewHolder = waitForMeasuredViewHolder {
             TrainingViewHolder(layout).apply {
                 bind(item = testItem.item.trainingItem, languageClickedListener = null)
             }
         }
 
         dropshots.assertSnapshot(
-            view = viewHolder,
+            view = viewHolder.itemView,
             name = "${testItem.name}_TestParameter", // testItem names are already long
         )
     }
