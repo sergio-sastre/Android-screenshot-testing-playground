@@ -2,7 +2,6 @@ package com.example.road.to.effective.snapshot.testing.dialogs.paparazzi
 
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
-import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import org.junit.Rule
 import org.junit.Test

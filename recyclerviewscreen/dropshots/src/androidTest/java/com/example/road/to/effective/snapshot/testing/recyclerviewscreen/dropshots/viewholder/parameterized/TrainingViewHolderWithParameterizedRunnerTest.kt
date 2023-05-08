@@ -9,10 +9,10 @@ import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.viewholder.waitForViewHolder
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
  * Example of Parameterized test with Parameterized Runner.
@@ -45,14 +45,14 @@ class TrainingViewHolderParameterizedHappyPathTest(
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
-        val viewHolder = waitForViewHolder {
+        val viewHolder = waitForMeasuredViewHolder {
             TrainingViewHolder(layout).apply {
                 bind(item = testItem.item.trainingItem, languageClickedListener = null)
             }
         }
 
         dropshots.assertSnapshot(
-            view = viewHolder,
+            view = viewHolder.itemView,
             name = "${testItem.name}_Parameterized", // testItem names are already long
         )
     }
@@ -79,14 +79,14 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
 
-        val viewHolder = waitForViewHolder {
+        val viewHolder = waitForMeasuredViewHolder {
             TrainingViewHolder(layout).apply {
                 bind(item = testItem.item.trainingItem, languageClickedListener = null)
             }
         }
 
         dropshots.assertSnapshot(
-            view = viewHolder,
+            view = viewHolder.itemView,
             name = "${testItem.name}_Parameterized", // testItem names are already long
         )
     }

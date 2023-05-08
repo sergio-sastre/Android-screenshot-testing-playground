@@ -49,7 +49,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        // make gradle constants available in Tests via BuildConfig to reduce errors
+        // make gradle constants available in Tests via BuildConfig to make changes consistent
+        // among build and test files
         buildConfigField "String", "SCREENSHOT_LIBRARY", "\"${SCREENSHOT_LIBRARY}\""
         buildConfigField "String", "SHOT", "\"${SHOT}\""
         buildConfigField "String", "DROPSHOTS", "\"${DROPSHOTS}\""
@@ -88,7 +89,7 @@ android {
         kotlinCompilerExtensionVersion '1.3.2'
     }
 
-    // required for shared tests in this module
+    // required for shared tests in this module: on-device + JVM screenshot tests
     sourceSets {
         test {
             java.srcDir 'src/sharedTest/java'
@@ -102,15 +103,6 @@ android {
 dependencies {
     implementation project(':lazycolumnscreen')
     implementation project(':testannotations')
-
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    debugImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
 
     /**
      * AndroidUiTestingUtils 2.0.0-beta02 uses androidx.core:core-ktx:1.10.0

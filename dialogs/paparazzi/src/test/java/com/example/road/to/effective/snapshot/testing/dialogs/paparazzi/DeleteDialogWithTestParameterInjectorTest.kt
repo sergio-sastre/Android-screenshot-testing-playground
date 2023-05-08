@@ -6,7 +6,6 @@ import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import org.junit.Test
-
 import org.junit.Rule
 import org.junit.runner.RunWith
 

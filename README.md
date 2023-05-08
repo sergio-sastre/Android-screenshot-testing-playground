@@ -273,6 +273,8 @@ Run the following gradle tasks depending on the module:
     2. `./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug`
     3. `./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug`
 
+In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
+
 ### Cross-Library
 Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Shot & Dropshots. 
 For that to work with Shot & Dropshots, you need to pass the library name via command line as follows:

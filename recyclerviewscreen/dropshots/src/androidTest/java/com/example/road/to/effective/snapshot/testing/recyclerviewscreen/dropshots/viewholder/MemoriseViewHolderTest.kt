@@ -53,10 +53,10 @@ class MemoriseViewHolderHappyPathTest {
             ).apply {
                 bind(generateMemoriseItem(rightAligned = false, activity = activity))
             }
-        }.itemView
+        }
 
         dropshots.assertSnapshot(
-            view = viewHolder,
+            view = viewHolder.itemView,
             name = "MemoriseView_Happy"
         )
     }
@@ -95,10 +95,10 @@ class MemoriseViewHolderUnhappyPathTest {
             ).apply {
                 bind(generateMemoriseItem(rightAligned = true, activity = activity))
             }
-        }.itemView
+        }
 
         dropshots.assertSnapshot(
-            view = viewHolder,
+            view = viewHolder.itemView,
             name = "MemoriseView_Unhappy"
         )
 
