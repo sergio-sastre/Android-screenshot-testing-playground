@@ -7,6 +7,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.robolectricActivityScenarioForActivityRule
@@ -48,6 +49,7 @@ class RecyclerViewActivityParameterizedHappyPathTest(
         )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapActivity() {
         activityScenarioForActivityRule
@@ -77,6 +79,7 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
         )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapActivity() {
         activityScenarioForActivityRule

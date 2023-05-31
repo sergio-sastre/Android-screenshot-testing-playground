@@ -1,13 +1,15 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'app.cash.paparazzi'
 }
 
 ext {
     SCREENSHOT_LIBRARY = "screenshotLibrary"
+
     SHOT = "shot"
     DROPSHOTS = "dropshots"
+    PAPARAZZI = "paparazzi"
+    ROBORAZZI = "roborazzi"
 }
 
 Boolean screenshotLibrary(String libName) {
@@ -23,7 +25,7 @@ String screenshotLibraryName() {
     }
 }
 
-// Apply on-device screenshot library plugins conditionally:
+// Apply screenshot library plugins conditionally:
 // Shot plugin does not work properly if Dropshots plugin is also applied.
 // Thus, apply screenshot library plugins based on the argument passed via command line
 if (screenshotLibrary(SHOT)) {
@@ -36,6 +38,14 @@ if (screenshotLibrary(SHOT)) {
 
 if (screenshotLibrary(DROPSHOTS)) {
     apply plugin: 'com.dropbox.dropshots'
+}
+
+if (screenshotLibrary(PAPARAZZI)) {
+    apply plugin: 'app.cash.paparazzi'
+}
+
+if (screenshotLibrary(ROBORAZZI)) {
+    apply plugin: 'io.github.takahirom.roborazzi'
 }
 
 android {
@@ -54,6 +64,8 @@ android {
         buildConfigField "String", "SCREENSHOT_LIBRARY", "\"${SCREENSHOT_LIBRARY}\""
         buildConfigField "String", "SHOT", "\"${SHOT}\""
         buildConfigField "String", "DROPSHOTS", "\"${DROPSHOTS}\""
+        buildConfigField "String", "PAPARAZZI", "\"${PAPARAZZI}\""
+        buildConfigField "String", "ROBORAZZI", "\"${ROBORAZZI}\""
 
         // make gradle property available in Android Tests via InstrumentationRegistry.getArguments()
         testInstrumentationRunnerArguments = [(SCREENSHOT_LIBRARY): screenshotLibraryName()]
@@ -86,7 +98,28 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.3.2'
+        kotlinCompilerExtensionVersion '1.4.0'
+    }
+
+    testOptions {
+        // Not reliable on every API. Seems to work only from API 25 on.
+        // Better to disable through developer settings
+        animationsDisabled = true
+
+        unitTests {
+            // Avoid loading class clashes with Paparazzi
+            if (screenshotLibrary(ROBORAZZI)) {
+                includeAndroidResources = true
+            }
+            all {
+                // make gradle property available in unit tests via System.getProperty
+                systemProperty SCREENSHOT_LIBRARY, screenshotLibraryName()
+
+                if (screenshotLibrary(ROBORAZZI)) {
+                    systemProperty 'robolectric.graphicsMode', 'NATIVE'
+                }
+            }
+        }
     }
 
     // required for shared tests in this module: on-device + JVM screenshot tests
@@ -104,26 +137,16 @@ dependencies {
     implementation project(':lazycolumnscreen')
     implementation project(':testannotations')
 
-    /**
-     * AndroidUiTestingUtils 2.0.0-beta02 uses androidx.core:core-ktx:1.10.0
-     * That results into crashes while running the tests with Paparazzi.
-     * Therefore, exclude it and use 'androidx.core:core-ktx:1.9.0' instead
-     */
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta02') {
-        exclude group: 'androidx.core'
-    }
-    debugImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-beta02'){
-        exclude group: 'androidx.core'
-    }
-    debugImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-beta02'){
-        exclude group: 'androidx.core'
-    }
-    debugImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-paparazzi:2.0.0-beta02'){
-        exclude group: 'androidx.core'
-    }
-    testImplementation ('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-beta02'){
-        exclude group: 'androidx.core'
-    }
-    //noinspection GradleDependency
-    implementation 'androidx.core:core-ktx:1.9.0'
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta03')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-beta03')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-beta03')
+
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0-beta03')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.0.0-beta03')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-roborazzi:2.0.0-beta03')
+
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-beta03')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-paparazzi:2.0.0-beta03')
 }

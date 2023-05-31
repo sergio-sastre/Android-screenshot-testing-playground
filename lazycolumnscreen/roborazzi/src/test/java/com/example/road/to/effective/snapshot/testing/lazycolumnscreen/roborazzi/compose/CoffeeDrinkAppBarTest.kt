@@ -12,6 +12,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioConfigurator
@@ -56,6 +57,7 @@ class CoffeeDrinkAppBarHappyPathTest {
         )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {
@@ -83,6 +85,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
     val composeTestRule = createEmptyComposeRule()
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapComposable() {
         val activityScenario =

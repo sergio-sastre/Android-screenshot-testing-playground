@@ -5,6 +5,7 @@ import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setDisplaySize
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Test
 import org.junit.Rule
@@ -45,6 +46,8 @@ class CoffeeDrinkAppBarParameterizedHappyPathTest(
 
     @Test
     fun snapComposable() {
+        paparazzi.context.setDisplaySize(testItem.item.displaySize)
+
         paparazzi.snapshot(name = "CoffeeDrinkListComposable_${testItem.name}_Parameterized") {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -77,6 +80,8 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
 
     @Test
     fun snapComposable() {
+        paparazzi.context.setDisplaySize(testItem.item.displaySize)
+
         paparazzi.snapshot(name = "CoffeeDrinkListComposable_${testItem.name}_Parameterized") {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)

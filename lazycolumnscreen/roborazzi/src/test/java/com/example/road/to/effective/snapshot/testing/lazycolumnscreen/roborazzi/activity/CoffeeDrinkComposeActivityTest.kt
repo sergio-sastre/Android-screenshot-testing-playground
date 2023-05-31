@@ -7,6 +7,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioConfigurator
@@ -30,7 +31,7 @@ import sergio.sastre.uitesting.utils.utils.rootView
  *      unitTests {
  *          includeAndroidResources = true
  *          all {
- *              systemProperty 'robolectric.graphicsMode', 'NATIVE' // this
+ *              systemProperty 'robolectric.graphicsMode', 'NATIVE'
  *          }
  *      }
  *  }
@@ -51,6 +52,7 @@ class CoffeeDrinkComposeActivityHappyPathTest {
         )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapActivity() {
         activityScenarioForActivityRule
@@ -69,6 +71,7 @@ class CoffeeDrinkComposeActivityHappyPathTest {
 class CoffeeDrinkComposeActivityUnhappyPathTest {
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapActivity() {
         val activityScenario = RobolectricActivityScenarioConfigurator.ForActivity()

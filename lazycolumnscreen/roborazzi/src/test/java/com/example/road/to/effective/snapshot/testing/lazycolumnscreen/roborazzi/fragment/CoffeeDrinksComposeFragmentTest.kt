@@ -8,8 +8,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
+import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
 import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentScenarioConfiguratorRule
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
@@ -49,9 +51,11 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
                 fontSize = FontSize.NORMAL,
                 displaySize = DisplaySize.NORMAL,
             ),
+            deviceScreen = PIXEL_4A,
         )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapFragment() {
         fragmentScenarioConfiguratorRule.fragment
@@ -69,10 +73,12 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
 class CoffeeDrinksComposeFragmentUnhappyPathTest {
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapFragment() {
         val fragmentScenario =
             RobolectricFragmentScenarioConfigurator.ForFragment()
+                .setDeviceScreen(PIXEL_4A)
                 .setLocale("ar_XB")
                 .setUiMode(UiMode.NIGHT)
                 .setInitialOrientation(Orientation.LANDSCAPE)

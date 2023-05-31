@@ -9,6 +9,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roboraz
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.robolectric.ParameterizedRobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForViewRule
@@ -50,6 +51,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
     )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
@@ -85,6 +87,7 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)

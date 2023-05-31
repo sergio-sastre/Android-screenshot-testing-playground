@@ -61,7 +61,6 @@ fun String.addLocation(location: String): String =
         this
     }
 
-
 @Composable
 fun CoffeeDrinkList(
     coffeeDrinksState: CoffeeDrinksState

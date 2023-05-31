@@ -10,6 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import com.github.takahirom.roborazzi.captureRoboImage
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
@@ -50,6 +51,7 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {
@@ -85,6 +87,7 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
         )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {

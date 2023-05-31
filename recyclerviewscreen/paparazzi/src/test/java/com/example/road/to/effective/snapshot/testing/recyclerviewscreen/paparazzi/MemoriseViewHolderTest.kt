@@ -8,7 +8,9 @@ import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.DisplaySize
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.PhoneOrientation
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.setDisplaySize
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Rule
 import org.junit.Test
@@ -30,6 +32,9 @@ class MemoriseViewHolderHappyPathTest {
 
     @Test
     fun snapViewHolder() {
+        // Must be called inside the test: paparazzi.context is null before
+        paparazzi.setDisplaySize(DisplaySize.NORMAL)
+
         val layout = paparazzi.inflate<View>(R.layout.memorise_row)
         val view = MemoriseViewHolder(
             container = layout,
@@ -67,6 +72,9 @@ class MemoriseViewHolderUnhappyPathTest {
 
     @Test
     fun snapViewHolder() {
+        // Must be called inside the test: paparazzi.context is null before
+        paparazzi.setDisplaySize(DisplaySize.LARGEST)
+
         val layout = paparazzi.inflate<View>(R.layout.memorise_row)
 
         val viewHolder =
