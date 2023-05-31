@@ -276,18 +276,20 @@ Run the following gradle tasks depending on the module:
 In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
 
 ### Cross-Library
-Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Shot & Dropshots. 
-For that to work with Shot & Dropshots, you need to pass the library name via command line as follows:
+Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot & Dropshots. 
+Since it configures 2 on-device & 2 JVM screenshot libraries, you need to pass the library name via command line for its correct execution:
 1. **Record**:
-    1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordPaparazziDebug`
-    2. Shot: `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -Precord -PscreenshotLibrary=shot`
-    3. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots`
+    1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordPaparazziDebug -PscreenshotLibrary=paparazzi`
+    2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi`
+    3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -Precord -PscreenshotLibrary=shot`
+    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots`
 2. **Verify**:
-   1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug`
-   2. Shot: `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
-   3. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
+   1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug -PscreenshotLibrary=paparazzi`
+   2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyRoborazziDebug -PscreenshotLibrary=roborazzi`
+   3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
+   4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
 
-To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-beta02](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-beta03](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 
