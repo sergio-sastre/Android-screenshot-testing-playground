@@ -349,8 +349,8 @@ That's why you'll find some tests in this repo with the following annotations, w
 2. `@HappyPath`
 
 In order to run filtered tests, execute the following gradle tasks, for the given annotation, for example,`@UnhappyPath` with shot:
-1. **Record**: `./gradlew :module_name:shot:executeScreenshotTests -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.UnhappyPath -Precord`
-2. **Verify**: `./gradlew :module_name:shot:executeScreenshotTests -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.UnhappyPath`
+1. **Record**: `./gradlew :module_name:shot:executeScreenshotTests -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath -Precord`
+2. **Verify**: `./gradlew :module_name:shot:executeScreenshotTests -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath`
 
 The same goes for `@HappyPath`
 
