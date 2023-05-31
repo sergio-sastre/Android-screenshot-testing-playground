@@ -5,6 +5,7 @@ import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setDisplaySize
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
@@ -40,6 +41,8 @@ class CoffeeDrinkListComposableTestParameterHappyPathTest(
 
     @Test
     fun snapComposable() {
+        paparazzi.context.setDisplaySize(testItem.item.displaySize)
+
         paparazzi.snapshot(name = "CoffeeDrinkListComposable_${testItem.name}_TestParameter") {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
@@ -67,6 +70,8 @@ class CoffeeDrinkListComposableTestParameterUnhappyPathTest(
 
     @Test
     fun snapComposable() {
+        paparazzi.context.setDisplaySize(testItem.item.displaySize)
+
         paparazzi.snapshot(name = "CoffeeDrinkListComposable_${testItem.name}_TestParameter") {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)

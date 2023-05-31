@@ -10,6 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioConfigurator
@@ -59,6 +60,7 @@ class MemoriseViewHolderHappyPathTest {
         )
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapViewHolder() {
         val activity = activityScenarioForViewRule.activity
@@ -87,6 +89,7 @@ class MemoriseViewHolderHappyPathTest {
 class MemoriseViewHolderUnhappyPathTest {
 
     @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
     @Test
     fun snapViewHolder() {
 

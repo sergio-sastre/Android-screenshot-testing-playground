@@ -3,6 +3,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazz
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.DisplaySize
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.PhoneOrientation
 
 data class DeviceConfig(
@@ -10,6 +11,7 @@ data class DeviceConfig(
     val fontScale: Float = 1.0f,
     val locale: String = "en",
     val phoneOrientation: PhoneOrientation,
+    val displaySize: DisplaySize,
 )
 
 enum class HappyPathTestItem(val item: DeviceConfig) {
@@ -19,6 +21,7 @@ enum class HappyPathTestItem(val item: DeviceConfig) {
             phoneOrientation = PhoneOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 1.0f,
+            displaySize = DisplaySize.NORMAL,
         ),
     )
 }
@@ -30,6 +33,7 @@ enum class UnhappyPathTestItem(val item: DeviceConfig) {
             phoneOrientation = PhoneOrientation.LANDSCAPE,
             nightMode = NightMode.NIGHT,
             fontScale = 1.0f,
+            displaySize = DisplaySize.NORMAL,
         ),
     ),
     HUGE(
@@ -38,6 +42,7 @@ enum class UnhappyPathTestItem(val item: DeviceConfig) {
             phoneOrientation = PhoneOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 1.3f,
+            displaySize = DisplaySize.NORMAL,
         ),
     ),
     SMALL(
@@ -46,6 +51,7 @@ enum class UnhappyPathTestItem(val item: DeviceConfig) {
             phoneOrientation = PhoneOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 0.85f,
+            displaySize = DisplaySize.NORMAL,
         ),
     )
 }

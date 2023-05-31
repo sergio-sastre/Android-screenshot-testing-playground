@@ -6,10 +6,12 @@ import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.DisplaySize
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.PhoneOrientation
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setDisplaySize
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
-import org.junit.Test
 import org.junit.Rule
+import org.junit.Test
 
 class CoffeeDrinkAppBarHappyPathTest {
     @get:Rule
@@ -27,6 +29,8 @@ class CoffeeDrinkAppBarHappyPathTest {
 
     @Test
     fun snapComposable() {
+        paparazzi.context.setDisplaySize(DisplaySize.LARGER)
+
         paparazzi.snapshot(name = "CoffeeDrinkAppBar_Happy") {
             AppTheme {
                 CoffeeDrinkAppBar()
@@ -50,6 +54,8 @@ class CoffeeDrinkAppBarUnhappyPathTest {
 
     @Test
     fun snapComposable() {
+        paparazzi.context.setDisplaySize(DisplaySize.LARGER)
+
         paparazzi.snapshot(name = "CoffeeDrinkAppBar_Unhappy") {
             AppTheme {
                 CoffeeDrinkAppBar()

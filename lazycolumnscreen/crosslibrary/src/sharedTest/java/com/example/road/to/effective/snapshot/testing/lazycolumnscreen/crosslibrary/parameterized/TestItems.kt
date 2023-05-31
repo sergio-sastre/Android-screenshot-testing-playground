@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslib
 
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
+import sergio.sastre.uitesting.utils.common.DisplaySize
 
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
 import sergio.sastre.uitesting.utils.common.FontSize
@@ -15,6 +16,7 @@ enum class HappyPathTestItem(val item: ScreenshotConfig) {
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
             fontScale = FontSize.NORMAL,
+            displaySize = DisplaySize.NORMAL,
         ),
     )
 }
@@ -26,6 +28,7 @@ enum class UnhappyPathTestItem(val item: ScreenshotConfig) {
             orientation = Orientation.LANDSCAPE,
             uiMode = UiMode.NIGHT,
             fontScale = FontSize.NORMAL,
+            displaySize = DisplaySize.NORMAL,
         ),
     ),
     HUGE(
@@ -34,6 +37,7 @@ enum class UnhappyPathTestItem(val item: ScreenshotConfig) {
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
             fontScale = FontSize.HUGE,
+            displaySize = DisplaySize.LARGEST,
         ),
     ),
     SMALL(
@@ -42,6 +46,7 @@ enum class UnhappyPathTestItem(val item: ScreenshotConfig) {
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
             fontScale = FontSize.SMALL,
+            displaySize = DisplaySize.SMALL,
         ),
     )
 }
