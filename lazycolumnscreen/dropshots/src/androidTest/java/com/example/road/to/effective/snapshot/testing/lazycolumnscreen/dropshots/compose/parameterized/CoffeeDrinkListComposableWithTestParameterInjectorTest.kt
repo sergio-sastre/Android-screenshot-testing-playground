@@ -6,6 +6,7 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.setContent
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -15,6 +16,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 import sergio.sastre.uitesting.utils.utils.waitForComposeView
+
+/**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ComposableTest -Pdropshots.record
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ComposableTest
+ */
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -39,6 +48,7 @@ class CoffeeDrinkListComposableTestParameterHappyPathTest(
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)
 
     @HappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {
@@ -68,6 +78,7 @@ class CoffeeDrinkListComposableTestParameterInjectorUnhappyPathTest(
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)
 
     @UnhappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {

@@ -1,6 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.fragment
 
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.karumi.shot.ScreenshotTest
@@ -9,6 +10,14 @@ import org.junit.Test
 import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+
+/**
+ * Execute the command below to run only FragmentTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest -Precord
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest
+ */
 
 /**
  * Example of Parameterized test with Parameterized Runner.
@@ -36,6 +45,7 @@ class RecyclerViewFragmentParameterizedHappyPathTest(
         fragmentScenarioConfiguratorRule<RecyclerViewFragment>(config = testItem.item)
 
     @HappyPath
+    @FragmentTest
     @Test
     fun snapFragment() {
         compareScreenshot(
@@ -61,6 +71,7 @@ class RecyclerViewFragmentParameterizedUnhappyPathTest(
         fragmentScenarioConfiguratorRule<RecyclerViewFragment>(config = testItem.item)
 
     @UnhappyPath
+    @FragmentTest
     @Test
     fun snapFragment() {
         compareScreenshot(

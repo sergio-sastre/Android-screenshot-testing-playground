@@ -18,6 +18,14 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmap
 import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 
 /**
+ * Execute the command below to run only BitmapTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest -Pdropshots.record
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest
+ */
+
+/**
  * Example of Tests for Bitmaps to take more realistic screenshots.
  * For that, we draw the Views under tests to bitmaps using PixelCopy & Canvas,each of them
  * obtaining different results:
