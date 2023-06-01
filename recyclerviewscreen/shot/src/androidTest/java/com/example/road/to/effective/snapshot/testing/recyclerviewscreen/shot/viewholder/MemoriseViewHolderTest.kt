@@ -5,6 +5,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.vi
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
+import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
@@ -18,6 +19,14 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.inflateAndWaitForIdle
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
+
+/**
+ * Execute the command below to run only ViewHolderTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ViewHolderTest -Precord
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ViewHolderTest
+ */
 
 /**
  * Example with ActivityScenarioForViewRule of AndroidUiTestingUtils
@@ -36,6 +45,7 @@ class MemoriseViewHolderHappyPathTest : ScreenshotTest {
         )
 
     @HappyPath
+    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val activity = activityScenarioForViewRule.activity
@@ -66,6 +76,7 @@ class MemoriseViewHolderHappyPathTest : ScreenshotTest {
  */
 class MemoriseViewHolderUnhappyPathTest : ScreenshotTest {
     @UnhappyPath
+    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val activityScenario = ActivityScenarioConfigurator.ForView()

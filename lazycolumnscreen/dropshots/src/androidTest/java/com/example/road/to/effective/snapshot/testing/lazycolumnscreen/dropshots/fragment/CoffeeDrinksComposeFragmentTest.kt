@@ -5,6 +5,7 @@ import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Rule
@@ -17,6 +18,14 @@ import sergio.sastre.uitesting.utils.fragmentscenario.FragmentConfigItem
 import sergio.sastre.uitesting.utils.fragmentscenario.FragmentScenarioConfigurator
 import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
 import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
+
+/**
+ * Execute the command below to run only FragmentTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest -Pdropshots.record
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest
+ */
 
 /**
  * Example with fragmentScenarioConfiguratorRule of AndroidUiTestingUtils
@@ -42,6 +51,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
         )
 
     @HappyPath
+    @FragmentTest
     @Test
     fun snapFragment() {
         dropshots.assertSnapshot(
@@ -62,6 +72,7 @@ class CoffeeDrinksComposeFragmentUnhappyPathTest {
     )
 
     @UnhappyPath
+    @FragmentTest
     @Test
     fun snapFragment() {
         val fragmentScenario =

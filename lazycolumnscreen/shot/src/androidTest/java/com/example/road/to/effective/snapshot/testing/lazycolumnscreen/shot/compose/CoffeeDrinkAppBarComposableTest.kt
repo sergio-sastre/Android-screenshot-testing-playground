@@ -6,6 +6,7 @@ import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
+import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.karumi.shot.ScreenshotTest
@@ -19,6 +20,14 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.waitForActivity
+
+/**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ComposableTest -Precord
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ComposableTest
+ */
 
 /**
  * Example with ActivityScenarioForComposableRule() of AndroidUiTestingUtils
@@ -39,6 +48,7 @@ class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
         )
 
     @HappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {
@@ -65,6 +75,7 @@ class CoffeeDrinkAppBarUnhappyPathTest : ScreenshotTest {
     val composeTestRule = createEmptyComposeRule()
 
     @UnhappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         val activityScenario =

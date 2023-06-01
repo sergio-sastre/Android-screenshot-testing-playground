@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.a
 
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -11,6 +12,14 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
+
+/**
+ * Execute the command below to run only ActivityTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest -Precord
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest
+ */
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -32,6 +41,7 @@ class RecyclerViewActivityTestParameterHappyPathTest(
         activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
 
     @HappyPath
+    @ActivityTest
     @Test
     fun snapActivity() {
         val activity = activityScenarioForActivityRule.activity
@@ -57,6 +67,7 @@ class RecyclerViewActivityTestParameterUnhappyPathTest(
         activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
 
     @UnhappyPath
+    @ActivityTest
     @Test
     fun snapActivity() {
         val activity = activityScenarioForActivityRule.activity

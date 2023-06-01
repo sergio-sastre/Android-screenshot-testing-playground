@@ -5,6 +5,7 @@ import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -13,6 +14,14 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
+
+/**
+ * Execute the command below to run only FragmentTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest -Pdropshots.record
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest
+ */
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -38,6 +47,7 @@ class RecyclerViewActivityTestParameterHappyPathTest(
         activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
 
     @HappyPath
+    @ActivityTest
     @Test
     fun snapActivity() {
         dropshots.assertSnapshot(
@@ -62,6 +72,7 @@ class RecyclerViewActivityTestParameterUnhappyPathTest(
         activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
 
     @UnhappyPath
+    @ActivityTest
     @Test
     fun snapActivity() {
         dropshots.assertSnapshot(
