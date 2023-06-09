@@ -20,6 +20,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.inflateAndWaitForIdle
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
+
 /**
  * Execute the command below to run only ViewHolderTests
  * 1. Record:

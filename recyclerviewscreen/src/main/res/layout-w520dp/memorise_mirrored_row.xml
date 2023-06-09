@@ -30,7 +30,7 @@
             android:padding="12dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageView"
+                android:id="@+id/landmark"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_gravity="end"
@@ -50,12 +50,12 @@
                 android:layout_height="20dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="2dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintBottom_toBottomOf="@+id/landmark"
                 app:layout_constraintEnd_toStartOf="@+id/trainingIcon"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/body"
                 app:layout_constraintStart_toStartOf="@id/startGuideline"
-                app:layout_constraintTop_toTopOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/landmark"
                 app:layout_constraintVertical_bias="0.5"
                 app:srcCompat="@drawable/ic_germany_flag_48dp" />
 
@@ -66,7 +66,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
                 app:layout_constraintBottom_toBottomOf="@id/sourceLangImage"
-                app:layout_constraintEnd_toStartOf="@id/imageView"
+                app:layout_constraintEnd_toStartOf="@id/landmark"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/sourceLangImage"
                 app:layout_constraintTop_toTopOf="@+id/sourceLangImage"
@@ -101,7 +101,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/endBarrier"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="title_sample" />
+                tools:text="title sample" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/body"
@@ -115,7 +115,7 @@
                 app:layout_constraintStart_toEndOf="@+id/endBarrier"
                 app:layout_constraintTop_toBottomOf="@id/title"
                 app:layout_constraintVertical_bias="1.0"
-                tools:text="lorem_ipsum2" />
+                tools:text="lorem ipsum2 lorem ipsum2 lorem ipsum2 lorem ipsum2 lorem ipsum2 lorem ipsum2 lorem ipsum2 lorem ipsum2" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/trainingInfo"

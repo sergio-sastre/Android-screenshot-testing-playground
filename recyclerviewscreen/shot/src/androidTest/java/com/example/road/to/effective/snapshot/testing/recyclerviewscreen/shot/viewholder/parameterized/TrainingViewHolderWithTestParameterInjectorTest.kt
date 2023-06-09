@@ -42,7 +42,7 @@ class TrainingViewHolderTestParameterHappyPathTest(
     val rule = ActivityScenarioForViewRule(config = testItem.item.viewConfig)
 
     @HappyPath
-    //@ViewHolderTest
+    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
@@ -71,7 +71,7 @@ class TrainingViewHolderTestParameterUnhappyPath(
     val rule = ActivityScenarioForViewRule(config = testItem.item.viewConfig)
 
     @UnhappyPath
-    //@ViewHolderTest
+    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)

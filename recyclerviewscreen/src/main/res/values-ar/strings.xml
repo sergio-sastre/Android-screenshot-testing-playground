@@ -14,4 +14,9 @@
     <string name="trillions">ترليون</string>
     <string name="million_millions">P</string>
     <string name="million_billion">E</string>
+
+    <!-- content description -->
+    <string name="landmark_image">صورة بارزة</string>
+    <string name="text_source_language">لغة مصدر النص</string>
+    <string name="training_icon">رمز التدريب</string>
 </resources>
