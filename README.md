@@ -178,7 +178,7 @@ On the other hand, on-device screenshot testing has its own issues as well. Most
 
 Nevertheless, you can solve/mitigate such issues as follows:
 1. Hardware acceleration can be enabled/disabled at different levels e.g. Activity, Window, View... to reduce such issues. Keep in mind that this affects how the screenshots are rendered.
-2. Most libraries provide a "tolerance/maxPixelDiff" mechanism to set some error threshold when verifying the screenshot. Although it isn't a real fix, you could use it to mitigate such issues. There is an [interesting thread](https://github.com/ndtp/android-testify/issues/101) in android-testify about this.
+2. Most libraries provide a "tolerance/maxPixelDiff" mechanism to set some error threshold when verifying the screenshot. Although it isn't a real fix, you could use it to mitigate such issues. There is an [interesting blog](https://ndtp.github.io/android-testify/blog/platform-differences) on android-testify about this.
 3. The safest solution is to generate the screenshots only on the CI, then pushing them in a new commit on your PRs. Same goes for "verify". This ensures that the screenshots are always generated using the same hardware.
 
 Read more about hardware acceleration in the [official Android documentation](https://developer.android.com/topic/performance/hardware-accel)
