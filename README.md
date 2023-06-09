@@ -44,7 +44,7 @@ In order to do that, it contains the same/similar examples but written with diff
 
 **BONUS**:
 It also contains an example of a **Cross-Library Screenshot Tests**: *the very same screenshot test running with multiple libraries, namely: Paparazzi, Roborazzi, Shot & Dropshots*.
-For that it uses [Android UI Testing Utils 2.0.0-beta02](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
+For that it uses [Android UI Testing Utils 2.0.0-beta03](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
 
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
