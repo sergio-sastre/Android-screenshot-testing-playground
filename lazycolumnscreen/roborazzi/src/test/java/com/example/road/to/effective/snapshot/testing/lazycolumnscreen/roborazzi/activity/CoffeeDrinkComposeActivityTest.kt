@@ -21,6 +21,14 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.rootView
 
 /**
+ * Execute the command below to run only ActivityTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Activity*'
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Activity*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  *
  * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).

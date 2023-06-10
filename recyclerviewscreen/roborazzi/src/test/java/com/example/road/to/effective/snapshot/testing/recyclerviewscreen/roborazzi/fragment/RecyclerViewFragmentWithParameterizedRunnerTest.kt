@@ -14,6 +14,14 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
 import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentScenarioConfiguratorRule
 
 /**
+ * Execute the command below to run only FragmentTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Fragment*'
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Fragment*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *

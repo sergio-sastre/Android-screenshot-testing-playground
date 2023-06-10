@@ -10,6 +10,14 @@ import org.junit.Rule
 import org.junit.runner.RunWith
 
 /**
+ * Execute the command below to run only DialogTests
+ * 1. Record:
+ *    ./gradlew :dialogs:paparazzi:recordPaparazziDebug --tests '*Dialog*'
+ * 2. Verify:
+ *    ./gradlew :dialogs:paparazzi:verifyPaparazziDebug --tests '*Dialog*'
+ */
+
+/**
  * Example of Parameterized test with TestParameterInjector Runner.
  *
  * Unlike Parameterized Runner, the test methods admit arguments, although we do not use them here.

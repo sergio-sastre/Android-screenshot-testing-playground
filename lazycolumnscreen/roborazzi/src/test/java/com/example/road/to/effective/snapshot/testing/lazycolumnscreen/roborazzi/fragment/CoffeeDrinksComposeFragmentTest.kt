@@ -22,6 +22,14 @@ import sergio.sastre.uitesting.robolectric.fragmentscenario.RobolectricFragmentS
 import sergio.sastre.uitesting.robolectric.fragmentscenario.waitForFragment
 
 /**
+ * Execute the command below to run only FragmentTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Fragment*'
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Fragment*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  *
  * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
