@@ -14,14 +14,18 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparaz
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 
 /**
+ * Execute the command below to run only ViewHolderTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug --tests '*ViewHolder*'
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug --tests '*ViewHolder*'
+ */
+
+/**
  * Example of Parameterized test with Parameterized Runner.
  *
  * Unlike TestParameterInjector, the testItem is used in all @Tests (the test methods do not admit
  * arguments).
- *
- * On the other hand, ParameterizedRunner is compatible with instrumented test of any API level,
- * whereas TestParameterInjector requires API 24+, throwing
- * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
 class TrainingViewHolderParameterizedHappyPathTest(

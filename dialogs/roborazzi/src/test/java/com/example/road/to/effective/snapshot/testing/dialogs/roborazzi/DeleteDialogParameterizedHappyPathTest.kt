@@ -18,6 +18,14 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 import java.io.File
 
 /**
+ * Execute the command below to run only DialogTests
+ * 1. Record:
+ *    ./gradlew :dialogs:roborazzi:recordRoborazziDebug --tests '*Dialog*'
+ * 2. Verify:
+ *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Dialog*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *

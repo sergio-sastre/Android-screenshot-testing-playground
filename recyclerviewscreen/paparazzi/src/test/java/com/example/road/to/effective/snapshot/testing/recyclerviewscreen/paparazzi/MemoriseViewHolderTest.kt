@@ -16,6 +16,14 @@ import org.junit.Rule
 import org.junit.Test
 
 /**
+ * Execute the command below to run only ViewHolderTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug --tests '*ViewHolder*'
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug --tests '*ViewHolder*'
+ */
+
+/**
  * Example with ActivityScenarioForViewRule of AndroidUiTestingUtils
  */
 class MemoriseViewHolderHappyPathTest {

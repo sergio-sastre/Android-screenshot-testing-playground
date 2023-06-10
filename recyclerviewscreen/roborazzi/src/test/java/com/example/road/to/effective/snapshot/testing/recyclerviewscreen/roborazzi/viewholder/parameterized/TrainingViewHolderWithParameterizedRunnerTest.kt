@@ -17,6 +17,14 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
+ * Execute the command below to run only ViewHolderTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*ViewHolder*'
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*ViewHolder*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *

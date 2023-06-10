@@ -25,6 +25,14 @@ import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 
 /**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Composable*'
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Composable*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  *
  * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
@@ -41,7 +49,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
  *  }
  */
 @RunWith(RobolectricTestRunner::class)
-class CoffeeDrinkAppBarHappyPathTest {
+class CoffeeDrinkAppBarComposableHappyPathTest {
 
     @get:Rule
     val activityScenarioForComposableRule =
@@ -79,7 +87,7 @@ class CoffeeDrinkAppBarHappyPathTest {
  *  of AndroidUiTestingUtils:robolectric
  */
 @RunWith(RobolectricTestRunner::class)
-class CoffeeDrinkAppBarUnhappyPathTest {
+class CoffeeDrinkAppBarComposableUnhappyPathTest {
 
     @get:Rule
     val composeTestRule = createEmptyComposeRule()

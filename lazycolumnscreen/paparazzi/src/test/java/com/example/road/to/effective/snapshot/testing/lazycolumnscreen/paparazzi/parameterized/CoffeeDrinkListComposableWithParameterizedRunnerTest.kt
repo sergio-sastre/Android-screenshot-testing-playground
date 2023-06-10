@@ -13,17 +13,21 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 /**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:paparazzi:recordPaparazziDebug --tests '*Composable*'
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug --tests '*Composable*'
+ */
+
+/**
  * Example of Parameterized test with Parameterized Runner.
  *
  * Unlike TestParameterInjector, the testItem is used in all @Tests (the test methods do not admit
- * arguments). Therefore, we need to create 2 different classes to separate @UnhappyPath and
- * @HappyPath tests
- *
- * On the other hand, ParameterizedRunner is compatible with instrumented test of any API level,
- * whereas TestParameterInjector requires API 24+
+ * arguments).
  */
 @RunWith(Parameterized::class)
-class CoffeeDrinkAppBarParameterizedHappyPathTest(
+class CoffeeDrinkListComposableParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) {
     companion object {

@@ -14,6 +14,14 @@ import sergio.sastre.uitesting.robolectric.activityscenario.robolectricActivityS
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_5
 
 /**
+ * Execute the command below to run only ActivityTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Activity*'
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Activity*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *

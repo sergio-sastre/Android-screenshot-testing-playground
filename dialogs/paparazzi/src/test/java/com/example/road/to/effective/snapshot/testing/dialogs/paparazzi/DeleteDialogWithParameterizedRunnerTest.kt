@@ -8,6 +8,20 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
+/**
+ * Execute the command below to run only DialogTests
+ * 1. Record:
+ *    ./gradlew :dialogs:paparazzi:recordPaparazziDebug --tests '*Dialog*'
+ * 2. Verify:
+ *    ./gradlew :dialogs:paparazzi:verifyPaparazziDebug --tests '*Dialog*'
+ */
+
+/**
+ * Example of Parameterized test with Parameterized Runner.
+ *
+ * Unlike TestParameterInjector, the testItem is used in all @Tests (the test methods do not admit
+ * arguments).
+ */
 @RunWith(Parameterized::class)
 class DeleteDialogParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,

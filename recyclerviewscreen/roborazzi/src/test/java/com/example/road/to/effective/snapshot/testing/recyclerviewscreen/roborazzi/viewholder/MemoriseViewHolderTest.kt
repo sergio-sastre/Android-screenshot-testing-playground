@@ -27,6 +27,14 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
+ * Execute the command below to run only ViewHolderTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*ViewHolder*'
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*ViewHolder*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  *
  * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).

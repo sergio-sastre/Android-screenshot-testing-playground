@@ -17,6 +17,14 @@ import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityS
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
 
 /**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Composable*'
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Composable*'
+ */
+
+/**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *
