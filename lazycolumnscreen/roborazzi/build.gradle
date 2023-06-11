@@ -49,6 +49,12 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
+            all {
+                // Enable running tests in parallel
+                if (project.hasProperty("parallel")) {
+                    maxParallelForks = Runtime.runtime.availableProcessors() / 2
+                }
+            }
         }
     }
 }

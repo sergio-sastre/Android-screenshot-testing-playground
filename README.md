@@ -232,6 +232,11 @@ Run the following gradle tasks depending on the module:
    2. `./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug`
    3. `./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug`
 
+> Note
+> You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
+> `./gradlew :module_name:paparazzi:recordPaparazziDebug -Pparallel`
+> Please note that running tests in parallel is only worthwhile when dealing with a large number of tests.
+
 ### [Dropshots](https://github.com/dropbox/dropshots)
 Start the emulators.
 Then run the following gradle tasks depending on the module:
@@ -274,6 +279,11 @@ Run the following gradle tasks depending on the module:
     3. `./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug`
 
 In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
+
+> Note
+> You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
+> `./gradlew :module_name:roborazzi:recordRoborazziDebug -Pparallel`
+> Please note that running tests in parallel is only worthwhile when dealing with a large number of tests. 
 
 ### Cross-Library
 Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot & Dropshots. 
