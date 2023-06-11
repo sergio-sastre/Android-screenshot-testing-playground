@@ -5,6 +5,7 @@ import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -44,6 +45,7 @@ class DeleteDialogTestParameterHappyPathTest(
         )
 
     @HappyPath
+    @DialogTest
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
@@ -83,6 +85,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
         )
 
     @UnhappyPath
+    @DialogTest
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
