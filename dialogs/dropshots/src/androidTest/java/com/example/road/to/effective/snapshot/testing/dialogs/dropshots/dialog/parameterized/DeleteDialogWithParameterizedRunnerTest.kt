@@ -5,6 +5,7 @@ import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Test
@@ -13,6 +14,14 @@ import org.junit.Rule
 import org.junit.runners.Parameterized
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
+
+/**
+ * Execute the command below to run only DialogTests
+ * 1. Record:
+ *    ./gradlew :dialogs:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest -Pdropshots.record
+ * 2. Verify:
+ *    ./gradlew :dialogs:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
+ */
 
 /**
  * Example of Parameterized test with Parameterized Runner.
@@ -50,6 +59,7 @@ class DeleteDialogParameterizedHappyPathTest(
         )
 
     @HappyPath
+    @DialogTest
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
@@ -95,6 +105,7 @@ class DeleteDialogParameterizedUnhappyPathTest(
         )
 
     @UnhappyPath
+    @DialogTest
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity

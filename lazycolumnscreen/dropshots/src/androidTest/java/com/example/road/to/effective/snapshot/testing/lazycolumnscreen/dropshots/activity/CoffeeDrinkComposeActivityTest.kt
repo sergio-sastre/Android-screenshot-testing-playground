@@ -23,11 +23,11 @@ import sergio.sastre.uitesting.utils.testrules.uiMode.UiModeTestRule
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
- * Execute the command below to run only these tests
+ * Execute the command below to run only ActivityTests
  * 1. Record:
- *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest -Pdropshots.record
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest -Pdropshots.record
  * 2. Verify:
- *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
  */
 
 /**
