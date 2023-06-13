@@ -32,7 +32,7 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposa
  * On the other hand, ParameterizedRunner is compatible with instrumented test of any API level,
  * whereas TestParameterInjector requires API 24+
  */
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 @RunWith(Parameterized::class)
 class CoffeeDrinkListComposableParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
@@ -64,7 +64,7 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     }
 }
 
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 @RunWith(Parameterized::class)
 class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,

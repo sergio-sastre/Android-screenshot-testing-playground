@@ -46,9 +46,10 @@ fun PreviewListItem() {
 
 @Composable
 fun CoffeeDrinkList(
+    modifier: Modifier = Modifier,
     coffeeDrink: CoffeeDrinkItem
 ) {
-    Column {
+    Column(modifier = modifier) {
         CoffeeDrinkListItem(
             coffeeDrink = coffeeDrink
         )
