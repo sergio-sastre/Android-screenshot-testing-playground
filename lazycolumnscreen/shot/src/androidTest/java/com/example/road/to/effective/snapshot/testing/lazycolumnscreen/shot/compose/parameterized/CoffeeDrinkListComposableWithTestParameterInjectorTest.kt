@@ -32,7 +32,7 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposa
  * It throws java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder in lower APIs.
  * Parameterized Runner is compatible with instrumented test of any API level
  */
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 @RunWith(TestParameterInjector::class)
 class CoffeeDrinkListComposableTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
@@ -58,7 +58,7 @@ class CoffeeDrinkListComposableTestParameterHappyPathTest(
     }
 }
 
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 @RunWith(TestParameterInjector::class)
 class CoffeeDrinkListComposableTestParameterUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,

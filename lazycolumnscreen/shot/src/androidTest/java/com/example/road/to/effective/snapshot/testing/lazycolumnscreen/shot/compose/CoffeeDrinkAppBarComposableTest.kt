@@ -32,7 +32,7 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
 /**
  * Example with ActivityScenarioForComposableRule() of AndroidUiTestingUtils
  */
-@SdkSuppress(minSdkVersion = 26) // Compose tests with shot require API 26+
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
 
     @get:Rule
@@ -68,7 +68,7 @@ class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
  * Example with ActivityScenarioConfigurator.ForComposable() of AndroidUiTestingUtils
  * This is an alternative if we cannot use ActivityScenarioForComposableRule()
  */
-@SdkSuppress(minSdkVersion = 26) // Compose tests with shot require API 26+
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 class CoffeeDrinkAppBarUnhappyPathTest : ScreenshotTest {
 
     @get:Rule
