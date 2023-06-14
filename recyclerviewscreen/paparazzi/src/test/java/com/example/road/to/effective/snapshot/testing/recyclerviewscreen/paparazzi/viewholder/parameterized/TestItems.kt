@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.parameterized
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.viewholder.parameterized
 
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language

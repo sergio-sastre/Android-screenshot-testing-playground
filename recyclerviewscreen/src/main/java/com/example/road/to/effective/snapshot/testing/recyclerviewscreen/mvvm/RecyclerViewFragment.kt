@@ -107,7 +107,7 @@ class RecyclerViewFragment : Fragment(),
         }
 
     private fun showNonSupportedActionSnackbar(){
-        make(this.requireView(), "Non Supported Action", LENGTH_SHORT).show()
+        make(requireView(), "Non Supported Action", LENGTH_SHORT).show()
     }
 
 }

@@ -12,4 +12,8 @@ class RecyclerViewAsyncDiffAdapter(
     init {
         delegatesManager.run { delegates.map { addDelegate(it) } }
     }
+
+    override fun setItems(items: MutableList<RowType>?) {
+        super.setItems(items)
+    }
 }

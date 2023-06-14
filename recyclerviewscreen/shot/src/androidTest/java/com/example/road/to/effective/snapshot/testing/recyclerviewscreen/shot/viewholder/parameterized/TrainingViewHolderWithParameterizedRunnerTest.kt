@@ -17,9 +17,9 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 /**
  * Execute the command below to run only ViewHolderTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ViewHolderTest -Precord
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest -Precord
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ViewHolderTest
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
  */
 
 /**
@@ -48,7 +48,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
     val rule = ActivityScenarioForViewRule(config = testItem.item.viewConfig)
 
     @HappyPath
-    @ViewHolderTest
+    //@ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
@@ -82,7 +82,7 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     val rule = ActivityScenarioForViewRule(config = testItem.item.viewConfig)
 
     @UnhappyPath
-    @ViewHolderTest
+    //@ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)

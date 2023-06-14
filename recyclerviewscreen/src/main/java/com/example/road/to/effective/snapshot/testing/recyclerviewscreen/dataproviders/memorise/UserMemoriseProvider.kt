@@ -57,7 +57,7 @@ class UserMemoriseProvider(private val context: Context) : MemoriseProvider {
                 title = context.getString(R.string.german_memorise_title),
                 text = context.getString(R.string.german_memorise_body),
                 translations = germanTransl.repeated(1)
-            )
+            ),
         )
     }
 
