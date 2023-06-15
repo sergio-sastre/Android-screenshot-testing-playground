@@ -1,7 +1,8 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.recyclerview
 
+import android.view.View
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.utils.drawFullScrollableToBitmap
 import com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest
 import com.karumi.shot.ScreenshotTest
@@ -19,19 +20,17 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
 class FullRecyclerViewTest : ScreenshotTest {
 
     @get:Rule
-    val fragmentScenarioForActivityRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>()
+    val fragmentScenarioConfiguratorRule =
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>()
 
     @RecyclerViewTest
     @Test
     fun snapFullRecyclerView() {
-        val fragmentView = fragmentScenarioForActivityRule.fragment.requireView()
-
-        val recyclerViewBitmap =
-            drawFullScrollableToBitmap { fragmentView.findViewById(R.id.memoriseList) }
+        val fragmentView = fragmentScenarioConfiguratorRule.fragment.requireView()
+        val recyclerView: View = fragmentView.findViewById(R.id.memoriseList)
 
         compareScreenshot(
-            bitmap = recyclerViewBitmap,
+            bitmap = recyclerView.drawFullScrollableToBitmap(),
             name = "FullRecyclerView"
         )
     }

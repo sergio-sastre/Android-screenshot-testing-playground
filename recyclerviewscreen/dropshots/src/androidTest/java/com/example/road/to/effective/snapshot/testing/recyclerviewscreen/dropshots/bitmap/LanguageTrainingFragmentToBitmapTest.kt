@@ -1,8 +1,10 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.bitmap
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.bitmap
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import com.dropbox.dropshots.Dropshots
+import com.dropbox.dropshots.ThresholdValidator
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
-import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.utils.common.DisplaySize
@@ -17,9 +19,9 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 /**
  * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest -Precord
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Pdropshots.record
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  */
 
 /**
@@ -30,17 +32,23 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
  * - PixelCopy: draws UI components to bitmap considering elevation. However, use carefully if
  * screenshooting Dialogs/Views/Composables whose size goes beyond the device screen (e.g. ScrollViews).
  * PixelCopy resizes the UI component under test to fit it inside the window. Better use Canvas instead.
- * Moreover, PixelCopy requires API 26+, defaulting to Canvas (no elevation) in lower APIs.
+ * Moreover, PixelCopy requires API 26+.
+ * drawToBitmapWithElevation() uses PixelCopy but defaults to Canvas (i.e. no elevation) in lower APIs.
  *
  * - Canvas: draws UI components to bitmap without considering elevation. Unlike PixelCopy, it fully
  * screenshots the UI component under tests without resizing it even though it goes beyond the device
  * screen
  */
-class RecyclerViewFragmentToBitmapTest: ScreenshotTest {
+class LanguageTrainingFragmentToBitmapTest {
+
+    @get:Rule
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>(
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(
             config = FragmentConfigItem(
                 locale = "en",
                 uiMode = UiMode.DAY,
@@ -53,19 +61,19 @@ class RecyclerViewFragmentToBitmapTest: ScreenshotTest {
     // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithPixelCopy(){
-        compareScreenshot(
+    fun snapActivityWithPixelCopy(){
+        dropshots.assertSnapshot(
             bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmapWithElevation(),
-            name = "RecyclerViewFragment_BitmapWithElevation"
+            name = "LanguageTrainingFragment_BitmapWithElevation"
         )
     }
 
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithCanvas(){
-        compareScreenshot(
+    fun snapActivityWithCanvas(){
+        dropshots.assertSnapshot(
             bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmap(),
-            name = "RecyclerViewFragment_BitmapWithoutElevation"
+            name = "LanguageTrainingFragment_BitmapWithoutElevation"
         )
     }
 }

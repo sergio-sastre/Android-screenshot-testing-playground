@@ -1,10 +1,12 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.fragment
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.fragment
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import com.dropbox.dropshots.Dropshots
+import com.dropbox.dropshots.ThresholdValidator
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
@@ -14,9 +16,9 @@ import org.junit.runners.Parameterized
 /**
  * Execute the command below to run only FragmentTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest -Precord
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest -Pdropshots.record
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
  */
 
 /**
@@ -30,10 +32,9 @@ import org.junit.runners.Parameterized
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
-class RecyclerViewFragmentParameterizedHappyPathTest(
+class LanguageTrainingFragmentParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
-) : ScreenshotTest {
-
+) {
     companion object {
         @JvmStatic
         @Parameterized.Parameters
@@ -41,24 +42,29 @@ class RecyclerViewFragmentParameterizedHappyPathTest(
     }
 
     @get:Rule
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
+
+    @get:Rule
     val fragmentScenarioConfiguratorRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>(config = testItem.item)
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(config = testItem.item)
 
     @HappyPath
     @FragmentTest
     @Test
     fun snapFragment() {
-        compareScreenshot(
-            fragment = fragmentScenarioConfiguratorRule.fragment,
-            name = "RecyclerViewFragment_${testItem.name}_Parameterized",
+        dropshots.assertSnapshot(
+            view = fragmentScenarioConfiguratorRule.fragment.requireView(),
+            name = "LanguageTrainingFragment_${testItem.name}_Parameterized",
         )
     }
 }
 
 @RunWith(Parameterized::class)
-class RecyclerViewFragmentParameterizedUnhappyPathTest(
+class LanguageTrainingFragmentParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
-) : ScreenshotTest {
+) {
 
     companion object {
         @JvmStatic
@@ -67,16 +73,21 @@ class RecyclerViewFragmentParameterizedUnhappyPathTest(
     }
 
     @get:Rule
+    val dropshots = DropshotsAPI29Fix(
+        Dropshots(resultValidator = ThresholdValidator(0.15f))
+    )
+
+    @get:Rule
     val fragmentScenarioConfiguratorRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>(config = testItem.item)
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(config = testItem.item)
 
     @UnhappyPath
     @FragmentTest
     @Test
     fun snapFragment() {
-        compareScreenshot(
-            fragment = fragmentScenarioConfiguratorRule.fragment,
-            name = "RecyclerViewFragment_${testItem.name}_Parameterized",
+        dropshots.assertSnapshot(
+            view = fragmentScenarioConfiguratorRule.fragment.requireView(),
+            name = "LanguageTrainingFragment_${testItem.name}_Parameterized",
         )
     }
 }

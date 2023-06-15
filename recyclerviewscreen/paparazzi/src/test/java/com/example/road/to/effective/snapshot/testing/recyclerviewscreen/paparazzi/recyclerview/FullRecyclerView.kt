@@ -33,7 +33,7 @@ class RecyclerViewTest {
         )
 
     @Test
-    fun snapRecyclerView() {
+    fun snapFullRecyclerView() {
         // prepare the Items
         val memoriseItems: List<MemoriseItem> =
             UserMemoriseProvider(paparazzi.context).getMemorises().toMemoriseItems()

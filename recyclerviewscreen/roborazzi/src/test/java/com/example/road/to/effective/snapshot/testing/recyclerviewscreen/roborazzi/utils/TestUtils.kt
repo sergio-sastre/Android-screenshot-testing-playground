@@ -12,5 +12,5 @@ fun filePath(name: String): String {
     return file.path
 }
 
-fun drawFullScrollableToBitmap(scrollableView: () -> View): Bitmap =
-    waitForMeasuredView { scrollableView() }.drawToBitmap()
+fun View.drawFullScrollableToBitmap(): Bitmap =
+    waitForMeasuredView { this }.drawToBitmap()

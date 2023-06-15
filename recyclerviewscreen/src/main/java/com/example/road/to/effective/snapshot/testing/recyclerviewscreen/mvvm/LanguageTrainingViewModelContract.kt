@@ -6,7 +6,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Me
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.Event
 
-interface RecyclerViewViewModelContract : ViewModelStateProvider {
+interface LanguageTrainingViewModelContract : ViewModelStateProvider {
 
     fun getClickableActionData(): LiveData<Event<ClickAction>>
 

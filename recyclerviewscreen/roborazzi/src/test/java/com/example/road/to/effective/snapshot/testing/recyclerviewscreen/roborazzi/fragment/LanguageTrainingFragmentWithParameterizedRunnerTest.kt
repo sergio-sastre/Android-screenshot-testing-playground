@@ -1,6 +1,6 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.activity
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.fragment
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
@@ -10,15 +10,15 @@ import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
-import sergio.sastre.uitesting.robolectric.activityscenario.robolectricActivityScenarioForActivityRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_5
+import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentScenarioConfiguratorRule
 
 /**
- * Execute the command below to run only ActivityTests
+ * Execute the command below to run only FragmentTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Activity*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Fragment*'
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Activity*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Fragment*'
  */
 
 /**
@@ -39,7 +39,7 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
  *  }
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
-class RecyclerViewActivityParameterizedHappyPathTest(
+class LanguageTrainingFragmentParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) {
 
@@ -50,8 +50,8 @@ class RecyclerViewActivityParameterizedHappyPathTest(
     }
 
     @get:Rule
-    val activityScenarioForActivityRule =
-        robolectricActivityScenarioForActivityRule<RecyclerViewActivity>(
+    val fragmentScenarioConfiguratorRule =
+        robolectricFragmentScenarioConfiguratorRule<LanguageTrainingFragment>(
             config = testItem.item,
             deviceScreen = PIXEL_5,
         )
@@ -60,16 +60,15 @@ class RecyclerViewActivityParameterizedHappyPathTest(
     @Config(sdk = [30])
     @Test
     fun snapActivity() {
-        activityScenarioForActivityRule
-            .rootView
+        fragmentScenarioConfiguratorRule.fragment.requireView()
             .captureRoboImage(
-                filePath("RecyclerViewActivity_${testItem.name}_Parameterized")
+                filePath("LanguageTrainingFragment_${testItem.name}_Parameterized")
             )
     }
 }
 
 @RunWith(ParameterizedRobolectricTestRunner::class)
-class RecyclerViewActivityParameterizedUnhappyPathTest(
+class LanguageTrainingFragmentParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
 ) {
 
@@ -80,8 +79,8 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
     }
 
     @get:Rule
-    val activityScenarioForActivityRule =
-        robolectricActivityScenarioForActivityRule<RecyclerViewActivity>(
+    val fragmentScenarioConfiguratorRule =
+        robolectricFragmentScenarioConfiguratorRule<LanguageTrainingFragment>(
             config = testItem.item,
             deviceScreen = PIXEL_5,
         )
@@ -90,10 +89,9 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
     @Config(sdk = [30])
     @Test
     fun snapActivity() {
-        activityScenarioForActivityRule
-            .rootView
+        fragmentScenarioConfiguratorRule.fragment.requireView()
             .captureRoboImage(
-                filePath("RecyclerViewActivity_${testItem.name}_Parameterized")
+                filePath("LanguageTrainingFragment_${testItem.name}_Parameterized")
             )
     }
 }

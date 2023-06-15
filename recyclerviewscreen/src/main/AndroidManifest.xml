@@ -6,7 +6,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadToEffectiveSnapshotTesting">
         <activity
-            android:name=".mvvm.RecyclerViewActivity"
+            android:name=".mvvm.LanguageTrainingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="action.recyclerviewscreen.open" />

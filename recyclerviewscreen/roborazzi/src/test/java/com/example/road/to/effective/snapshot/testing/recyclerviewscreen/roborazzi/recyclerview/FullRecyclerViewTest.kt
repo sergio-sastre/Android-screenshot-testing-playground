@@ -1,7 +1,8 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.recyclerview
 
+import android.view.View
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.drawFullScrollableToBitmap
 import com.github.takahirom.roborazzi.captureRoboImage
@@ -41,19 +42,21 @@ import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentS
  *  }
  */
 @RunWith(RobolectricTestRunner::class)
-class RecyclerViewFragmentParameterizedHappyPathTest {
+class FullRecyclerViewTest {
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
-        robolectricFragmentScenarioConfiguratorRule<RecyclerViewFragment>(deviceScreen = PIXEL_XL)
+        robolectricFragmentScenarioConfiguratorRule<LanguageTrainingFragment>(deviceScreen = PIXEL_XL)
 
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapActivity() {
+    fun snapFullRecyclerView() {
         val fragmentView = fragmentScenarioConfiguratorRule.fragment.requireView()
+        val recyclerView: View = fragmentView.findViewById(R.id.memoriseList)
 
-        drawFullScrollableToBitmap { fragmentView.findViewById(R.id.memoriseList) }
+        recyclerView
+            .drawFullScrollableToBitmap()
             .captureRoboImage(filePath("FullRecyclerView"))
     }
 }

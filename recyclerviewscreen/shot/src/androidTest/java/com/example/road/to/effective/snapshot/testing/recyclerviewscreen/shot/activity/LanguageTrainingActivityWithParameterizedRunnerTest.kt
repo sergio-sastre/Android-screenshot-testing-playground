@@ -1,16 +1,14 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.activity
 
-import androidx.test.filters.SdkSuppress
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.google.testing.junit.testparameterinjector.TestParameter
-import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 
 /**
@@ -22,23 +20,29 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
  */
 
 /**
- * Example of Parameterized test with TestParameterInjector Runner.
+ * Example of Parameterized test with Parameterized Runner.
  *
- * Unlike Parameterized Runner, the test methods admit arguments, although we do not use them here.
+ * Unlike TestParameterInjector, the testItem is used in all @Tests (the test methods do not admit
+ * arguments).
  *
- * On the other hand, TestParameterInjector requires API 24+ to run with instrumented tests.
- * It throws java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder in lower APIs.
- * Parameterized Runner is compatible with instrumented test of any API level
+ * On the other hand, ParameterizedRunner is compatible with instrumented test of any API level,
+ * whereas TestParameterInjector requires API 24+, throwing
+ * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
-@SdkSuppress(minSdkVersion = 24)
-@RunWith(TestParameterInjector::class)
-class RecyclerViewActivityTestParameterHappyPathTest(
-    @TestParameter val configItem: HappyPathTestItem,
+@RunWith(Parameterized::class)
+class LanguageTrainingActivityParameterizedHappyPathTest(
+    private val testItem: HappyPathTestItem,
 ) : ScreenshotTest {
+
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+    }
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(testItem.item)
 
     @HappyPath
     @ActivityTest
@@ -51,20 +55,25 @@ class RecyclerViewActivityTestParameterHappyPathTest(
             activity = activity,
             heightInPx = activityView.measuredHeight,
             widthInPx = activityView.measuredWidth,
-            name = "RecyclerViewActivity_${configItem.name}_TestParameter"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
         )
     }
 }
 
-@SdkSuppress(minSdkVersion = 24)
-@RunWith(TestParameterInjector::class)
-class RecyclerViewActivityTestParameterUnhappyPathTest(
-    @TestParameter val configItem: UnhappyPathTestItem,
+@RunWith(Parameterized::class)
+class LanguageTrainingActivityParameterizedUnhappyPathTest(
+    private val testItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
+
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+    }
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(testItem.item)
 
     @UnhappyPath
     @ActivityTest
@@ -77,7 +86,7 @@ class RecyclerViewActivityTestParameterUnhappyPathTest(
             activity = activity,
             heightInPx = activityView.measuredHeight,
             widthInPx = activityView.measuredWidth,
-            name = "RecyclerViewActivity_${configItem.name}_TestParameter"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
         )
     }
 }

@@ -3,7 +3,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -33,7 +33,7 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
-class RecyclerViewActivityParameterizedHappyPathTest(
+class LanguageTrainingActivityParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) {
 
@@ -50,7 +50,7 @@ class RecyclerViewActivityParameterizedHappyPathTest(
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(testItem.item)
 
     @HappyPath
     @ActivityTest
@@ -58,23 +58,13 @@ class RecyclerViewActivityParameterizedHappyPathTest(
     fun snapActivity() {
         dropshots.assertSnapshot(
             activity = activityScenarioForActivityRule.activity,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
-        )
-    }
-
-    @HappyPath
-    @ActivityTest
-    @Test
-    fun snapRecyclerView() {
-        dropshots.assertSnapshot(
-            view = activityScenarioForActivityRule.activity.findViewById(R.id.memoriseList),
-            name = "RecyclerView_${testItem.name}_Parameterized"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
         )
     }
 }
 
 @RunWith(Parameterized::class)
-class RecyclerViewActivityParameterizedUnhappyPathTest(
+class LanguageTrainingActivityParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
 ) {
 
@@ -91,7 +81,7 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(testItem.item)
 
     @UnhappyPath
     @ActivityTest
@@ -99,7 +89,7 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
     fun snapActivity() {
         dropshots.assertSnapshot(
             activity = activityScenarioForActivityRule.activity,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
         )
     }
 }

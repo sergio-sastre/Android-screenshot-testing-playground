@@ -16,7 +16,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.La
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.memorise.UserMemoriseProvider
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.setting.UserSettingsProvider
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.ClickAction.ShowNotSupportedActionSnackbar
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingViewModelContract.ClickAction.ShowNotSupportedActionSnackbar
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.RecyclerViewAsyncDiffAdapter
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.RecyclerViewDiffUtilCallback
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.RowBuilder
@@ -26,18 +26,18 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.EventObserver
 import com.google.android.material.snackbar.Snackbar.*
 
-class RecyclerViewFragment : Fragment(),
+class LanguageTrainingFragment : Fragment(),
     LanguageFilterClickedListener,
     DeleteMemoriseListener,
     MemoriseClickedListener,
     TrainAllClickedListener {
 
     companion object {
-        fun newInstance() = RecyclerViewFragment()
+        fun newInstance() = LanguageTrainingFragment()
     }
 
-    private val viewModel: RecyclerViewViewModel by viewModels {
-        RecyclerViewViewModelFactory(
+    private val viewModel: LanguageTrainingViewModel by viewModels {
+        LanguageTrainingViewModelFactory(
             UserMemoriseProvider(requireContext()),
             UserSettingsProvider()
         )
@@ -99,7 +99,7 @@ class RecyclerViewFragment : Fragment(),
         viewModel.clickOnTrainAll()
     }
 
-    private fun handleNavigateAction(action: RecyclerViewViewModelContract.ClickAction): Unit =
+    private fun handleNavigateAction(action: LanguageTrainingViewModelContract.ClickAction): Unit =
         when (action) {
             is ShowNotSupportedActionSnackbar -> {
                 showNonSupportedActionSnackbar()

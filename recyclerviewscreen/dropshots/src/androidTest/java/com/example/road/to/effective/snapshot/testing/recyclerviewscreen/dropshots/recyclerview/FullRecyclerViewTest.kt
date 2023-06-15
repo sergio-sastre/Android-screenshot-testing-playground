@@ -1,11 +1,12 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.recyclerview
 
+import android.view.View
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.drawFullScrollableToBitmap
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest
 import org.junit.Rule
 import org.junit.Test
@@ -27,18 +28,16 @@ class FullRecyclerViewTest {
 
     @get:Rule
     val fragmentScenarioForActivityRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>()
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>()
 
     @RecyclerViewTest
     @Test
     fun snapFullRecyclerView() {
         val fragmentView = fragmentScenarioForActivityRule.fragment.requireView()
-
-        val recyclerViewBitmap =
-            drawFullScrollableToBitmap { fragmentView.findViewById(R.id.memoriseList) }
+        val recyclerView: View = fragmentView.findViewById(R.id.memoriseList)
 
         dropshots.assertSnapshot(
-            bitmap = recyclerViewBitmap,
+            bitmap = recyclerView.drawFullScrollableToBitmap(),
             name = "FullRecyclerView"
         )
     }
