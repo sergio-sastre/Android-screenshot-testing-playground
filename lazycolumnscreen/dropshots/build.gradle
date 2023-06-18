@@ -39,6 +39,9 @@ android {
     // Not reliable on every API. Seems to work only from API 25 on.
     // Better to disable through developer settings
     testOptions {
+        if (project.hasProperty("useOrchestrator")) {
+            execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        }
         animationsDisabled = true
     }
 
@@ -66,4 +69,6 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.5.0'
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
     androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta03'
+
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
 }
