@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.viewholder.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
@@ -24,9 +24,9 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 /**
  * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest -Pdropshots.record
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Pdropshots.record
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  */
 
 /**

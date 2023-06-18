@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils
 
 import android.Manifest
 import android.app.Activity

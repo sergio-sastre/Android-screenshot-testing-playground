@@ -1,6 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.activity
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -14,9 +14,9 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
 /**
  * Execute the command below to run only ActivityTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest -Precord
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest -Precord
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
  */
 
 /**
@@ -30,7 +30,7 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
-class RecyclerViewActivityParameterizedHappyPathTest(
+class LanguageTrainingActivityParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) : ScreenshotTest {
 
@@ -42,7 +42,7 @@ class RecyclerViewActivityParameterizedHappyPathTest(
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(testItem.item)
 
     @HappyPath
     @ActivityTest
@@ -55,13 +55,13 @@ class RecyclerViewActivityParameterizedHappyPathTest(
             activity = activity,
             heightInPx = activityView.measuredHeight,
             widthInPx = activityView.measuredWidth,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
         )
     }
 }
 
 @RunWith(Parameterized::class)
-class RecyclerViewActivityParameterizedUnhappyPathTest(
+class LanguageTrainingActivityParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
 
@@ -73,7 +73,7 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(testItem.item)
 
     @UnhappyPath
     @ActivityTest
@@ -86,7 +86,7 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
             activity = activity,
             heightInPx = activityView.measuredHeight,
             widthInPx = activityView.measuredWidth,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
         )
     }
 }

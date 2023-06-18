@@ -1,7 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.fragment
 
 import androidx.test.filters.SdkSuppress
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewFragment
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -16,9 +16,9 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
 /**
  * Execute the command below to run only FragmentTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest -Precord
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest -Precord
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.FragmentTest
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
  */
 
 /**
@@ -32,13 +32,13 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
  */
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewFragmentTestParameterHappyPathTest(
+class LanguageTrainingFragmentTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
 ) : ScreenshotTest {
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>(config = configItem.item)
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(config = configItem.item)
 
     @HappyPath
     @FragmentTest
@@ -46,20 +46,20 @@ class RecyclerViewFragmentTestParameterHappyPathTest(
     fun snapFragment() {
         compareScreenshot(
             fragment = fragmentScenarioConfiguratorRule.fragment,
-            name = "RecyclerViewFragment_${configItem.name}_TestParameter",
+            name = "LanguageTrainingFragment_${configItem.name}_TestParameter",
         )
     }
 }
 
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewFragmentTestParameterUnhappyPathTest(
+class LanguageTrainingFragmentTestParameterUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
-        fragmentScenarioConfiguratorRule<RecyclerViewFragment>(config = configItem.item)
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(config = configItem.item)
 
     @UnhappyPath
     @FragmentTest
@@ -67,7 +67,7 @@ class RecyclerViewFragmentTestParameterUnhappyPathTest(
     fun snapFragment() {
         compareScreenshot(
             fragment = fragmentScenarioConfiguratorRule.fragment,
-            name = "RecyclerViewFragment_${configItem.name}_TestParameter",
+            name = "LanguageTrainingFragment_${configItem.name}_TestParameter",
         )
     }
 }

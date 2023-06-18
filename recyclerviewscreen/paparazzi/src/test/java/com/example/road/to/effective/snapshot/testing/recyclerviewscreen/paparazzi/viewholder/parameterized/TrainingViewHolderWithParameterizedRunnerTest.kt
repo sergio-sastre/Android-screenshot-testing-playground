@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.parameterized
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.viewholder.parameterized
 
 import android.view.View
 import app.cash.paparazzi.DeviceConfig
@@ -7,11 +7,11 @@ import com.android.ide.common.rendering.api.SessionParams
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
+import org.junit.runners.Parameterized.Parameters
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.setPhoneOrientation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
-import com.google.testing.junit.testparameterinjector.TestParameter
-import com.google.testing.junit.testparameterinjector.TestParameterInjector
 
 /**
  * Execute the command below to run only ViewHolderTests
@@ -22,16 +22,23 @@ import com.google.testing.junit.testparameterinjector.TestParameterInjector
  */
 
 /**
- * Example of Parameterized test with TestParameterInjector Runner.
+ * Example of Parameterized test with Parameterized Runner.
  *
- * Unlike Parameterized Runner, the test methods admit arguments, although we do not use them here.
+ * Unlike TestParameterInjector, the testItem is used in all @Tests (the test methods do not admit
+ * arguments).
  */
-@RunWith(TestParameterInjector::class)
-class TrainingViewHolderTestParameterHappyPathTest(
-    @TestParameter val testItem: HappyPathTestItem
+@RunWith(Parameterized::class)
+class TrainingViewHolderParameterizedHappyPathTest(
+    private val testItem: HappyPathTestItem
 ) {
     private val deviceConfig
         get() = testItem.item.deviceConfig
+
+    companion object {
+        @JvmStatic
+        @Parameters
+        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+    }
 
     @get:Rule
     val paparazzi = Paparazzi(
@@ -58,18 +65,24 @@ class TrainingViewHolderTestParameterHappyPathTest(
 
         paparazzi.snapshot(
             view = viewHolder.itemView,
-            offsetMillis = 1_500,
-            name = "${testItem.name}_TestParameter",
+            offsetMillis = 3_000,
+            name = "${testItem.name}_Parameterized",
         )
     }
 }
 
-@RunWith(TestParameterInjector::class)
-class TrainingViewHolderTestParameterUnhappyPathTest(
-    @TestParameter val testItem: UnhappyPathTestItem
+@RunWith(Parameterized::class)
+class TrainingViewHolderParameterizedUnhappyPathTest(
+    private val testItem: UnhappyPathTestItem
 ) {
     private val deviceConfig
         get() = testItem.item.deviceConfig
+
+    companion object {
+        @JvmStatic
+        @Parameters
+        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+    }
 
     @get:Rule
     val paparazzi = Paparazzi(
@@ -96,8 +109,11 @@ class TrainingViewHolderTestParameterUnhappyPathTest(
 
         paparazzi.snapshot(
             view = viewHolder.itemView,
-            offsetMillis = 1_500,
-            name = "${testItem.name}_TestParameter",
+            offsetMillis = 3_000,
+            name = "${testItem.name}_Parameterized",
         )
     }
 }
+
+
+

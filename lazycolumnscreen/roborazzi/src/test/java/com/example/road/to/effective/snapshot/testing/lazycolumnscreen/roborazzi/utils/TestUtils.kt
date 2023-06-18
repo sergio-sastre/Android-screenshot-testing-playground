@@ -1,11 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.activity.compose.setContent
-import androidx.compose.material.Scaffold
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.test.core.app.ActivityScenario
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule

@@ -55,6 +55,8 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
+    androidTestImplementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
+
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
     androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta03'
 }

@@ -1,26 +1,25 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.bitmap
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.utils.activityscenario.ActivityConfigItem
-import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
-import sergio.sastre.uitesting.utils.testrules.locale.InAppLocaleTestRule
+import sergio.sastre.uitesting.utils.fragmentscenario.FragmentConfigItem
+import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
 import sergio.sastre.uitesting.utils.utils.drawToBitmap
 import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 
 /**
  * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest -Precord
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Precord
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  */
 
 /**
@@ -37,16 +36,13 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
  * screenshots the UI component under tests without resizing it even though it goes beyond the device
  * screen
  */
-class RecyclerViewActivityToBitmapTest: ScreenshotTest {
+class LanguageTrainingFragmentToBitmapTest: ScreenshotTest {
 
     @get:Rule
-    val inAppLocale = InAppLocaleTestRule("en")
-
-    @get:Rule
-    val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(
-            config = ActivityConfigItem(
-                systemLocale = "en",
+    val fragmentScenarioConfiguratorRule =
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(
+            config = FragmentConfigItem(
+                locale = "en",
                 uiMode = UiMode.DAY,
                 orientation = Orientation.PORTRAIT,
                 fontSize = FontSize.NORMAL,
@@ -57,19 +53,19 @@ class RecyclerViewActivityToBitmapTest: ScreenshotTest {
     // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithPixelCopy(){
+    fun snapActivityWithPixelCopy(){
         compareScreenshot(
-            bitmap = activityScenarioForActivityRule.activity.drawToBitmapWithElevation(),
-            name = "RecyclerViewActivity_BitmapWithElevation"
+            bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmapWithElevation(),
+            name = "LanguageTrainingFragment_BitmapWithElevation"
         )
     }
 
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithCanvas(){
-         compareScreenshot(
-            bitmap = activityScenarioForActivityRule.activity.drawToBitmap(),
-            name = "RecyclerViewActivity_BitmapWithoutElevation"
+    fun snapActivityWithCanvas(){
+        compareScreenshot(
+            bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmap(),
+            name = "LanguageTrainingFragment_BitmapWithoutElevation"
         )
     }
 }

@@ -48,6 +48,8 @@ dependencies {
     implementation project(':testannotations')
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
+
+    androidTestImplementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
     
     androidTestImplementation 'androidx.test:rules:1.5.0'
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'

@@ -4,9 +4,9 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.La
 
 data class Memorise(
     val id: Int,
-    val srcLang: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language = English,
-    val destLang: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language = English,
-    val translations: List<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation> = emptyList(),
+    val srcLang: Language = English,
+    val destLang: Language = English,
+    val translations: List<Translation> = emptyList(),
     val title: String = "",
     val text: String = "",
     val landmark: Int = 0

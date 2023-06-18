@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.viewholder
 
 import android.view.View
 import app.cash.paparazzi.DeviceConfig

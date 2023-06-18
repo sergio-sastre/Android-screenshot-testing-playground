@@ -1,7 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.activity
 
 import androidx.test.filters.SdkSuppress
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -16,9 +16,9 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
 /**
  * Execute the command below to run only ActivityTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest -Precord
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest -Precord
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
  */
 
 /**
@@ -32,13 +32,13 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
  */
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewActivityTestParameterHappyPathTest(
+class LanguageTrainingActivityTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
 ) : ScreenshotTest {
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(configItem.item)
 
     @HappyPath
     @ActivityTest
@@ -58,13 +58,13 @@ class RecyclerViewActivityTestParameterHappyPathTest(
 
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
-class RecyclerViewActivityTestParameterUnhappyPathTest(
+class LanguageTrainingActivityTestParameterUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,
 ) : ScreenshotTest {
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(configItem.item)
+        activityScenarioForActivityRule<LanguageTrainingActivity>(configItem.item)
 
     @UnhappyPath
     @ActivityTest

@@ -15,7 +15,7 @@ object MemoriseTestItemGenerator {
      * Otherwise, the UI might be affected. For instance in this method,
      * the string will not be correctly localized with the locale of the Activity
      */
-    private fun generateMemorise(activity: Context) =
+    fun generateMemorise(activity: Context) =
         Memorise(
             id = 2,
             landmark = 4,

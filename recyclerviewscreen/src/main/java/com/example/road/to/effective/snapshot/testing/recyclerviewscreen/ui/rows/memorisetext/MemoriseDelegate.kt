@@ -8,7 +8,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.inflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
-class MemoriseDelegate<T>(val listeners: T) :
+class MemoriseDelegate<T>(val listeners: T?) :
     AbsListItemAdapterDelegate<MemoriseItem, RowType, MemoriseViewHolder<T>>()
         where T : DeleteMemoriseListener, T : MemoriseClickedListener {
     override fun isForViewType(item: RowType, items: MutableList<RowType>, position: Int): Boolean =

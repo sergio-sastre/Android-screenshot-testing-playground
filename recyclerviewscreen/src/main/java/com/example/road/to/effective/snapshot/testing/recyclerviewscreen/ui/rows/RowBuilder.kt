@@ -1,7 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.MemoriseListViewState
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.TrainingViewState
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingViewModelContract.MemoriseListViewState
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingViewModelContract.TrainingViewState
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.ViewModelStateProvider
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.header.HeaderItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.header.HeaderType

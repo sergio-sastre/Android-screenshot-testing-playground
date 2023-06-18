@@ -6,16 +6,15 @@ import androidx.lifecycle.ViewModel
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.memorise.MemoriseProvider
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.setting.SettingsProvider
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.*
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewViewModelContract.ClickAction.ShowNotSupportedActionSnackbar
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingViewModelContract.*
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingViewModelContract.ClickAction.ShowNotSupportedActionSnackbar
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.Event
 
-
-class RecyclerViewViewModel(
+class LanguageTrainingViewModel(
     private val memoriseProvider: MemoriseProvider,
     private val settingsProvider: SettingsProvider
 ) : ViewModel(),
-    RecyclerViewViewModelContract {
+    LanguageTrainingViewModelContract {
 
     private var memorisesFetched = false
     private var memorises: MutableList<Memorise> = mutableListOf()

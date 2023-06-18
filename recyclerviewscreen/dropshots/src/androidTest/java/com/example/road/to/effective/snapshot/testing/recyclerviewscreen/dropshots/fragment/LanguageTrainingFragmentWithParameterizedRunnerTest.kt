@@ -1,24 +1,24 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.activity
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.fragment
 
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.DropshotsAPI29Fix
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
-import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
+import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Rule
 import org.junit.Test
+import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 
 /**
- * Execute the command below to run only ActivityTests
+ * Execute the command below to run only FragmentTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest -Pdropshots.record
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest -Pdropshots.record
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.ActivityTest
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
  */
 
 /**
@@ -32,10 +32,9 @@ import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivit
  * java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder error in lower APIs
  */
 @RunWith(Parameterized::class)
-class RecyclerViewActivityParameterizedHappyPathTest(
+class LanguageTrainingFragmentParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) {
-
     companion object {
         @JvmStatic
         @Parameterized.Parameters
@@ -48,22 +47,22 @@ class RecyclerViewActivityParameterizedHappyPathTest(
     )
 
     @get:Rule
-    val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+    val fragmentScenarioConfiguratorRule =
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(config = testItem.item)
 
     @HappyPath
-    @ActivityTest
+    @FragmentTest
     @Test
-    fun snapActivity() {
+    fun snapFragment() {
         dropshots.assertSnapshot(
-            activity = activityScenarioForActivityRule.activity,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
+            view = fragmentScenarioConfiguratorRule.fragment.requireView(),
+            name = "LanguageTrainingFragment_${testItem.name}_Parameterized",
         )
     }
 }
 
 @RunWith(Parameterized::class)
-class RecyclerViewActivityParameterizedUnhappyPathTest(
+class LanguageTrainingFragmentParameterizedUnhappyPathTest(
     private val testItem: UnhappyPathTestItem,
 ) {
 
@@ -79,16 +78,16 @@ class RecyclerViewActivityParameterizedUnhappyPathTest(
     )
 
     @get:Rule
-    val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(testItem.item)
+    val fragmentScenarioConfiguratorRule =
+        fragmentScenarioConfiguratorRule<LanguageTrainingFragment>(config = testItem.item)
 
     @UnhappyPath
-    @ActivityTest
+    @FragmentTest
     @Test
-    fun snapActivity() {
+    fun snapFragment() {
         dropshots.assertSnapshot(
-            activity = activityScenarioForActivityRule.activity,
-            name = "RecyclerViewActivity_${testItem.name}_Parameterized"
+            view = fragmentScenarioConfiguratorRule.fragment.requireView(),
+            name = "LanguageTrainingFragment_${testItem.name}_Parameterized",
         )
     }
 }

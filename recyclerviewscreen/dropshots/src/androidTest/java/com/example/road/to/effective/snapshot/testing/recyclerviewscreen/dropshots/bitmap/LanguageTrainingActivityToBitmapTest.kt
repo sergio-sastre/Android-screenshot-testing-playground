@@ -2,8 +2,8 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
 
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.DropshotsAPI29Fix
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.RecyclerViewActivity
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
 import org.junit.Test
@@ -20,9 +20,9 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 /**
  * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest -Pdropshots.record
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Pdropshots.record
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.utils.testannotations.BitmapTest
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  */
 
 /**
@@ -40,7 +40,7 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
  * screenshots the UI component under tests without resizing it even though it goes beyond the device
  * screen
  */
-class RecyclerViewActivityToBitmapTest {
+class LanguageTrainingActivityToBitmapTest {
 
     @get:Rule
     val dropshots = DropshotsAPI29Fix(
@@ -52,7 +52,7 @@ class RecyclerViewActivityToBitmapTest {
 
     @get:Rule
     val activityScenarioForActivityRule =
-        activityScenarioForActivityRule<RecyclerViewActivity>(
+        activityScenarioForActivityRule<LanguageTrainingActivity>(
             config = ActivityConfigItem(
                 systemLocale = "en",
                 uiMode = UiMode.DAY,
@@ -65,19 +65,19 @@ class RecyclerViewActivityToBitmapTest {
     // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithPixelCopy(){
+    fun snapActivityWithPixelCopy(){
         dropshots.assertSnapshot(
             bitmap = activityScenarioForActivityRule.activity.drawToBitmapWithElevation(),
-            name = "RecyclerViewActivity_BitmapWithElevation"
+            name = "LanguageTrainingActivity_BitmapWithElevation"
         )
     }
 
     @BitmapTest
     @Test
-    fun snapRecyclerViewActivityWithCanvas(){
+    fun snapActivityWithCanvas(){
         dropshots.assertSnapshot(
             bitmap = activityScenarioForActivityRule.activity.drawToBitmap(),
-            name = "RecyclerViewActivity_BitmapWithoutElevation"
+            name = "LanguageTrainingActivity_BitmapWithoutElevation"
         )
     }
 }
