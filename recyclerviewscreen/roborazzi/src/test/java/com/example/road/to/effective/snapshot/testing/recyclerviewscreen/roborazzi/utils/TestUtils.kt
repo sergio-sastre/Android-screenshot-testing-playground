@@ -1,5 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils
 
+import com.github.takahirom.roborazzi.RoborazziOptions
 import android.graphics.Bitmap
 import android.view.View
 import androidx.core.view.drawToBitmap
@@ -14,3 +15,10 @@ fun filePath(name: String): String {
 
 fun View.drawFullScrollableToBitmap(): Bitmap =
     waitForMeasuredView { this }.drawToBitmap()
+
+val roborazziAccessibilityOptions: RoborazziOptions =
+    RoborazziOptions(
+        captureType = RoborazziOptions.CaptureType.Dump(
+            explanation = RoborazziOptions.CaptureType.Dump.AccessibilityExplanation,
+        )
+    )

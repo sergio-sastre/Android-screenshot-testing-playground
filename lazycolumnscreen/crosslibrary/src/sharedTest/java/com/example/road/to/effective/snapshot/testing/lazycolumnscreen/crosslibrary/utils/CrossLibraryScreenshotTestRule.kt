@@ -10,7 +10,6 @@ import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
 import sergio.sastre.uitesting.sharedtest.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.sharedtest.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
-import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRule

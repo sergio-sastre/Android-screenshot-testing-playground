@@ -86,7 +86,7 @@ private fun CoffeeDrinkLogo(@DrawableRes id: Int) {
         Image(
             painter = BitmapPainter(ImageBitmap.imageResource(id = id)),
             modifier = Modifier.fillMaxSize(),
-            contentDescription = null
+            contentDescription = "Coffee Drink image"
         )
     }
 }

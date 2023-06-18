@@ -42,7 +42,7 @@ class MemoriseViewHolder<T>(
 
     private val sourceLangImage: AppCompatImageView = container.findViewById(R.id.sourceLangImage)
 
-    private val landmarkImage: AppCompatImageView = container.findViewById(R.id.imageView)
+    private val landmarkImage: AppCompatImageView = container.findViewById(R.id.landmark)
 
     private val textInfo: TextView = container.findViewById(R.id.textInfo)
     private val trainingInfo: TextView = container.findViewById(R.id.trainingInfo)

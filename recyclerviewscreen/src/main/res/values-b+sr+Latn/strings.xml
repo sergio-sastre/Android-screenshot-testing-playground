@@ -14,4 +14,9 @@
     <string name="trillions">bil.</string>
     <string name="million_millions">P</string>
     <string name="million_billion">E</string>
+
+    <!-- content description -->
+    <string name="landmark_image">Znamenita slika</string>
+    <string name="text_source_language">Zvorni jezik teksta</string>
+    <string name="training_icon">Ikona za obuku</string>
 </resources>
