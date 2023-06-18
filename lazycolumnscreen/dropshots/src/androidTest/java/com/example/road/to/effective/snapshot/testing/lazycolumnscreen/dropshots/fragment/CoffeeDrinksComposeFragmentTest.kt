@@ -55,7 +55,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
     @Test
     fun snapFragment() {
         dropshots.assertSnapshot(
-            view = fragmentScenarioConfiguratorRule.fragment.view!!,
+            view = fragmentScenarioConfiguratorRule.fragment.requireView(),
             name = "CoffeeDrinksFragment_HappyPath"
         )
     }
@@ -88,7 +88,7 @@ class CoffeeDrinksComposeFragmentUnhappyPathTest {
                 )
 
         dropshots.assertSnapshot(
-            view = fragmentScenario.waitForFragment().view!!,
+            view = fragmentScenario.waitForFragment().requireView(),
             name = "CoffeeDrinksFragment_UnhappyPath",
         )
 

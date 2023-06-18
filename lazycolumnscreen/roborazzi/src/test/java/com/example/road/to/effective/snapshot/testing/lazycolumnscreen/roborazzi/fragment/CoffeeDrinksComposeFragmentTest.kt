@@ -67,7 +67,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
     @Test
     fun snapFragment() {
         fragmentScenarioConfiguratorRule.fragment
-            .view!!
+            .requireView()
             .captureRoboImage(
                 filePath("CoffeeDrinksFragment_HappyPath")
             )
@@ -98,7 +98,7 @@ class CoffeeDrinksComposeFragmentUnhappyPathTest {
                 )
 
         fragmentScenario.waitForFragment()
-            .view!!
+            .requireView()
             .captureRoboImage(filePath("CoffeeDrinksFragment_UnhappyPath"))
 
         fragmentScenario.close()
