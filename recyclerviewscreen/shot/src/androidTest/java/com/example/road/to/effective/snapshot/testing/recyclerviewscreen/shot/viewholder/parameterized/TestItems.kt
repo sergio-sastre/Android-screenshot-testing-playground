@@ -33,12 +33,12 @@ private fun translation(): Translation =
         Language.English
     )
 
-private val oneMillionWordsTrainingItem = TrainingItem(
+val oneMillionWordsPerLangTrainingItem = TrainingItem(
     trainingByLang = translationsPerLang(999_999),
     activeLangs = Language.values().toSet()
 )
 
-private val wordsInSomeLangsTrainingItem = TrainingItem(
+val wordsInSomeLangsTrainingItem = TrainingItem(
     trainingByLang = mapOf(
         Language.English to translations(3),
         Language.Russian to translations(5),
@@ -98,7 +98,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             viewConfig = ViewConfigItem(
                 locale = "en_XA",
             ),
-            trainingItem = oneMillionWordsTrainingItem,
+            trainingItem = oneMillionWordsPerLangTrainingItem,
         ),
     ),
     HUGE_1M_WORDS_IN_ALL_LANGS(
@@ -107,7 +107,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
                 locale = "en",
                 fontSize = FontSize.HUGE,
             ),
-            trainingItem = oneMillionWordsTrainingItem,
+            trainingItem = oneMillionWordsPerLangTrainingItem,
         ),
     ),
     NIGHT_LANDSCAPE_1M_WORDS_IN_ALL_LANGS(
@@ -117,7 +117,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
                 orientation = Orientation.LANDSCAPE,
                 uiMode = UiMode.NIGHT,
             ),
-            trainingItem = oneMillionWordsTrainingItem,
+            trainingItem = oneMillionWordsPerLangTrainingItem,
         ),
     ),
 }

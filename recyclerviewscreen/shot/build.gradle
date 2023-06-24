@@ -48,7 +48,6 @@ android {
 }
 
 shot {
-    tolerance = 0.15 // Tests pass if less than 0,15% of the pixels differ
     applicationId = "com.example.road.to.effective.snapshot.testing"
 }
 

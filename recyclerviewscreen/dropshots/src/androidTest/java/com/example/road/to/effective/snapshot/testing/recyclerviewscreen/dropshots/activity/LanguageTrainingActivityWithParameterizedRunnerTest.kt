@@ -7,12 +7,12 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.La
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
+
 
 /**
  * Execute the command below to run only ActivityTests

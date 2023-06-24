@@ -47,7 +47,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
     val dropshots = Dropshots(resultValidator = ThresholdValidator(0.15f))
 
     @get:Rule
-    val rule = ActivityScenarioForViewRule(config = testItem.item.viewConfig)
+    val rule = ActivityScenarioForViewRule()
 
     @HappyPath
     @ViewHolderTest
