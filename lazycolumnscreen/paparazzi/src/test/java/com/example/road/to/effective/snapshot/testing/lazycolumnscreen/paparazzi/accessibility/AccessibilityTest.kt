@@ -6,7 +6,7 @@ import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.parameterized.coffeeDrink
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.compose.parameterized.coffeeDrink
 import org.junit.Rule
 import org.junit.Test
 

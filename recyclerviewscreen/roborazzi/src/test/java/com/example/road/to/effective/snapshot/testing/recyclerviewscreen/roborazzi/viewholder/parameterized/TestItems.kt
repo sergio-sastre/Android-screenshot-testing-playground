@@ -33,18 +33,23 @@ private fun translation(): Translation =
         Language.English
     )
 
-private val oneMillionWordsTrainingItem = TrainingItem(
+val oneMillionWordsTrainingItem = TrainingItem(
     trainingByLang = translationsPerLang(999_999),
     activeLangs = Language.values().toSet()
 )
 
-private val wordsInSomeLangsTrainingItem = TrainingItem(
+val wordsInSomeLangsTrainingItem = TrainingItem(
     trainingByLang = mapOf(
         Language.English to translations(3),
         Language.Russian to translations(5),
         Language.German to translations(1)
     ),
     activeLangs = setOf(Language.Russian, Language.German)
+)
+
+val emptyTrainingItem = TrainingItem(
+    trainingByLang = mapOf(),
+    activeLangs = emptySet()
 )
 
 enum class HappyPathTestItem(val item: TrainingTestItem) {

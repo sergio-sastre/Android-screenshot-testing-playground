@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.parameterized
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.compose.parameterized
 
 import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R

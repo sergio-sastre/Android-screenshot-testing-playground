@@ -9,4 +9,6 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshot
  *
  * Execute tests in this package only by adding the following to the previous command
  * -Pandroid.testInstrumentationRunnerArguments.package=com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.workshop
+ *
+ * ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pdropshots.record -Pandroid.testInstrumentationRunnerArguments.package=com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.workshop
  */

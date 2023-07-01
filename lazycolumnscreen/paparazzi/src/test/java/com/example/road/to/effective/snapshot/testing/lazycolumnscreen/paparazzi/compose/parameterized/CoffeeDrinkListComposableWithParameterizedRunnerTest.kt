@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.parameterized
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.compose.parameterized
 
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi

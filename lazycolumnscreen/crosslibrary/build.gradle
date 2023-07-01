@@ -56,8 +56,6 @@ android {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files

@@ -10,6 +10,8 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import org.junit.runners.Parameterized.Parameters
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.DisplaySize
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.setDisplaySize
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.setPhoneOrientation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 
@@ -56,6 +58,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
 
     @Test
     fun snapViewHolder() {
+        paparazzi.setDisplaySize(DisplaySize.LARGE)
         val layout = paparazzi.inflate<View>(R.layout.training_row)
 
         val viewHolder =
