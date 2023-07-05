@@ -9,5 +9,9 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazz
  * Execute tests in this package only by adding the following to the previous command
  * --tests '*ScreenshotTest'
  *
- * ./gradlew :lazycolumnscreen:paparazzi:recordPaparazziDebug --tests '*ScreenshotTest'
+ * Record:
+ *    ./gradlew :lazycolumnscreen:paparazzi:recordPaparazziDebug --tests '*ScreenshotTest'
+ * Verify:
+ *    ./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug --tests '*ScreenshotTest'
+ *
  */

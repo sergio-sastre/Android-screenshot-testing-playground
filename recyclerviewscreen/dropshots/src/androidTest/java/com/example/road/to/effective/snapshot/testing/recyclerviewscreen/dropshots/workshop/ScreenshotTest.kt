@@ -10,7 +10,11 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
  * Execute tests in thi-Pandroid.testInstrumentationRunnerArguments.package=com.example.road.to.es package only by adding the following to the previous command
  * -Pdropshots.record -Pandroid.testInstrumentationRunnerArguments.package=com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.workshop
  *
+ * Record:
  * ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pdropshots.record -Pandroid.testInstrumentationRunnerArguments.package=com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.workshop
+ *
+ * Verify:
+ * ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.package=com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.workshop
  */
 
 import com.dropbox.dropshots.Dropshots
