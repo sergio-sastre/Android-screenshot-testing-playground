@@ -4,15 +4,15 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.La
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
 
-class MemorisesInfoCollector(private val list: List<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise>) {
+class MemorisesInfoCollector(private val list: List<Memorise>) {
 
-    private fun getTranslationsToTrain(): List<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation> {
-        return list.toMutableList().fold(emptyList<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation>())
+    private fun getTranslationsToTrain(): List<Translation> {
+        return list.toMutableList().fold(emptyList<Translation>())
         { acc, translations -> acc + translations.translations }
             .toList()
     }
 
-    fun getTranslationsToTrainByDestLang(): Map<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language, List<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation>> {
+    fun getTranslationsToTrainByDestLang(): Map<Language, List<Translation>> {
         return getTranslationsToTrain().groupBy { it.destLang }
     }
 

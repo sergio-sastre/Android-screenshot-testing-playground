@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.test.core.app.ActivityScenario
+import com.github.takahirom.roborazzi.RoborazziOptions
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import java.io.File
 
@@ -19,3 +20,10 @@ fun RobolectricActivityScenarioForComposableRule.setContent(
     activityScenario.onActivity {
         it.setContent { content() }
     }
+
+val roborazziAccessibilityOptions: RoborazziOptions =
+    RoborazziOptions(
+        captureType = RoborazziOptions.CaptureType.Dump(
+            explanation = RoborazziOptions.CaptureType.Dump.AccessibilityExplanation,
+        )
+    )

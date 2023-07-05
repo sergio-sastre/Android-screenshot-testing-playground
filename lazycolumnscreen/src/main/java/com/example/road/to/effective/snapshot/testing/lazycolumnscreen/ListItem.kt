@@ -46,9 +46,10 @@ fun PreviewListItem() {
 
 @Composable
 fun CoffeeDrinkList(
+    modifier: Modifier = Modifier,
     coffeeDrink: CoffeeDrinkItem
 ) {
-    Column {
+    Column(modifier = modifier) {
         CoffeeDrinkListItem(
             coffeeDrink = coffeeDrink
         )
@@ -85,7 +86,7 @@ private fun CoffeeDrinkLogo(@DrawableRes id: Int) {
         Image(
             painter = BitmapPainter(ImageBitmap.imageResource(id = id)),
             modifier = Modifier.fillMaxSize(),
-            contentDescription = null
+            contentDescription = "Coffee Drink image"
         )
     }
 }

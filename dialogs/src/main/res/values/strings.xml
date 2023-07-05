@@ -4,4 +4,5 @@
     <string name="delete_action">Delete</string>
     <string name="cancel_button">Cancel</string>
     <string name="delete_button">Delete</string>
+    <string name="delete_icon">delete_icon</string>
 </resources>

@@ -35,6 +35,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    // Enable running tests in parallel
+    testOptions {
+        unitTests.all {
+            if (project.hasProperty("parallel")) {
+                maxParallelForks = Runtime.runtime.availableProcessors() / 2
+            }
+        }
+    }
 }
 
 dependencies {

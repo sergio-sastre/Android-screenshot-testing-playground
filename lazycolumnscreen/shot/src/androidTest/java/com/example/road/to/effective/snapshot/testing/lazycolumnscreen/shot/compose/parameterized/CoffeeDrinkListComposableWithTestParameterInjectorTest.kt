@@ -4,6 +4,7 @@ import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
+import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -15,6 +16,14 @@ import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 
 /**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest -Precord
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
+ */
+
+/**
  * Example of Parameterized test with TestParameterInjector Runner.
  *
  * Unlike Parameterized Runner, the test methods admit arguments, although we do not use them here.
@@ -23,7 +32,7 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposa
  * It throws java.lang.NoClassDefFoundError: com.google.common.cache.CacheBuilder in lower APIs.
  * Parameterized Runner is compatible with instrumented test of any API level
  */
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 @RunWith(TestParameterInjector::class)
 class CoffeeDrinkListComposableTestParameterHappyPathTest(
     @TestParameter val configItem: HappyPathTestItem,
@@ -33,6 +42,7 @@ class CoffeeDrinkListComposableTestParameterHappyPathTest(
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)
 
     @HappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {
@@ -48,7 +58,7 @@ class CoffeeDrinkListComposableTestParameterHappyPathTest(
     }
 }
 
-@SdkSuppress(minSdkVersion = 26) // Shot requires API 26+ for testing Composables
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 @RunWith(TestParameterInjector::class)
 class CoffeeDrinkListComposableTestParameterUnhappyPathTest(
     @TestParameter val configItem: UnhappyPathTestItem,
@@ -58,6 +68,7 @@ class CoffeeDrinkListComposableTestParameterUnhappyPathTest(
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(configItem.item)
 
     @UnhappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {

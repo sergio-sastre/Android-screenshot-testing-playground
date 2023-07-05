@@ -10,9 +10,18 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
+import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
+
+/**
+ * Execute the command below to run only ViewHolderTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest -Precord
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
+ */
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -33,6 +42,7 @@ class TrainingViewHolderTestParameterHappyPathTest(
     val rule = ActivityScenarioForViewRule(config = testItem.item.viewConfig)
 
     @HappyPath
+    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)
@@ -61,6 +71,7 @@ class TrainingViewHolderTestParameterUnhappyPath(
     val rule = ActivityScenarioForViewRule(config = testItem.item.viewConfig)
 
     @UnhappyPath
+    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = rule.inflateAndWaitForIdle(R.layout.training_row)

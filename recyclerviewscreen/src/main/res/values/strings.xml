@@ -16,6 +16,11 @@
     <string name="million_millions">P</string>
     <string name="million_billion">E</string>
 
+    <!-- content description -->
+    <string name="landmark_image">Landmark image</string>
+    <string name="text_source_language">Text source language</string>
+    <string name="training_icon">Training icon</string>
+
     <!-- sample text -->
     <string name="english_memorise_title" translatable="false">
         Where can I get some Lorem Ipsum?

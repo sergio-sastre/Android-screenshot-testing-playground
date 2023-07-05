@@ -1,10 +1,10 @@
 package com.example.road.to.effective.snapshot.testing.dialogs.shot.parameterized
 
-import android.graphics.Color
 import android.graphics.Color.TRANSPARENT
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.shot.utils.compareDialogScreenshot
+import com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -15,6 +15,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
+
+/**
+ * Execute the command below to run only DialogTests
+ * 1. Record:
+ *    ./gradlew :dialogs:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest -Precord
+ * 2. Verify:
+ *    ./gradlew :dialogs:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
+ */
 
 /**
  * Example of Parameterized test with TestParameterInjector Runner.
@@ -41,6 +49,7 @@ class DeleteDialogTestParameterHappyPathTest(
         )
 
     @HappyPath
+    @DialogTest
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
@@ -76,6 +85,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
         )
 
     @UnhappyPath
+    @DialogTest
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity

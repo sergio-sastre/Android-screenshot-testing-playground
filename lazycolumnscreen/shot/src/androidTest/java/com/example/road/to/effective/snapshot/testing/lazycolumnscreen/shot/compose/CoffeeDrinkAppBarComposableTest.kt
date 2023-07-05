@@ -6,6 +6,7 @@ import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
+import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.karumi.shot.ScreenshotTest
@@ -21,9 +22,17 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest -Precord
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
+ */
+
+/**
  * Example with ActivityScenarioForComposableRule() of AndroidUiTestingUtils
  */
-@SdkSuppress(minSdkVersion = 26) // Compose tests with shot require API 26+
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
 
     @get:Rule
@@ -39,6 +48,7 @@ class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
         )
 
     @HappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {
@@ -58,13 +68,14 @@ class CoffeeDrinkAppBarHappyPathTest : ScreenshotTest {
  * Example with ActivityScenarioConfigurator.ForComposable() of AndroidUiTestingUtils
  * This is an alternative if we cannot use ActivityScenarioForComposableRule()
  */
-@SdkSuppress(minSdkVersion = 26) // Compose tests with shot require API 26+
+@SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 class CoffeeDrinkAppBarUnhappyPathTest : ScreenshotTest {
 
     @get:Rule
     val composeTestRule = createEmptyComposeRule()
 
     @UnhappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         val activityScenario =

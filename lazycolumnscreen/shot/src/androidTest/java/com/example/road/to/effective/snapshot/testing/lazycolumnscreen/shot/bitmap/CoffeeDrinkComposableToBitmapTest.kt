@@ -21,6 +21,14 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
 import sergio.sastre.uitesting.utils.utils.waitForComposeView
 
 /**
+ * Execute the command below to run only BitmapTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Precord
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
+ */
+
+/**
  * Example of Tests for Bitmaps to take more realistic screenshots.
  * For that, we draw the Views under tests to bitmaps using PixelCopy & Canvas,each of them
  * obtaining different results:

@@ -3,5 +3,5 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.datapr
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
 
 interface MemoriseProvider {
-    fun getMemorises(): List<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise>
+    fun getMemorises(): List<Memorise>
 }

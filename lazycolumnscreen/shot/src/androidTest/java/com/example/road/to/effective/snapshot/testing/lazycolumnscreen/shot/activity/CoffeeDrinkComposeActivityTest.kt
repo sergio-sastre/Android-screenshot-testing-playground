@@ -20,6 +20,14 @@ import sergio.sastre.uitesting.utils.testrules.uiMode.UiModeTestRule
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
+ * Execute the command below to run only ActivityTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest -Precord
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
+ */
+
+/**
  * Example with ActivityScenarioForActivityRule() of AndroidUiTestingUtils
  */
 class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {

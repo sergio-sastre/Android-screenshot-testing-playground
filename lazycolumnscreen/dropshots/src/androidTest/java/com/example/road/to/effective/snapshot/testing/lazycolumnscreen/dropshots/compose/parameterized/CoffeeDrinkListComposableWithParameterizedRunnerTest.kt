@@ -6,6 +6,7 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.setContent
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
+import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Rule
@@ -14,6 +15,14 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 import sergio.sastre.uitesting.utils.utils.waitForComposeView
+
+/**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest -Pdropshots.record
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
+ */
 
 /**
  * Example of Parameterized test with Parameterized Runner.
@@ -45,6 +54,7 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(testItem.item)
 
     @HappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {
@@ -80,6 +90,7 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule(testItem.item)
 
     @UnhappyPath
+    @ComposableTest
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.setContent {

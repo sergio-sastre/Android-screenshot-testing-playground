@@ -44,14 +44,23 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.0'
     }
+
+    // Enable running tests in parallel
+    testOptions {
+        unitTests.all {
+            if (project.hasProperty("parallel")) {
+                maxParallelForks = Runtime.runtime.availableProcessors() / 2
+            }
+        }
+    }
 }
 
 dependencies {
     implementation project(':lazycolumnscreen')
 
     // Jetpack Compose
-    implementation platform('androidx.compose:compose-bom:2023.03.00')
-    implementation "androidx.compose.runtime:runtime"
+    testImplementation platform('androidx.compose:compose-bom:2023.03.00')
+    testImplementation "androidx.compose.material:material"
 
     testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
 }

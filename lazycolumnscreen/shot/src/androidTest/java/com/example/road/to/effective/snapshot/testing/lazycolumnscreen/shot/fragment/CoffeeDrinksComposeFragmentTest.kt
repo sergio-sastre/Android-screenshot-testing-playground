@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.fra
 
 import androidx.core.os.bundleOf
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
+import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.karumi.shot.ScreenshotTest
@@ -15,6 +16,14 @@ import sergio.sastre.uitesting.utils.fragmentscenario.FragmentConfigItem
 import sergio.sastre.uitesting.utils.fragmentscenario.FragmentScenarioConfigurator
 import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
 import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
+
+/**
+ * Execute the command below to run only FragmentTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest -Precord
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
+ */
 
 /**
  * Example with fragmentScenarioConfiguratorRule of AndroidUiTestingUtils
@@ -34,6 +43,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest : ScreenshotTest {
         )
 
     @HappyPath
+    @FragmentTest
     @Test
     fun snapFragment() {
         compareScreenshot(
@@ -48,6 +58,7 @@ class CoffeeDrinksComposeFragmentHappyPathTest : ScreenshotTest {
  */
 class CoffeeDrinksComposeFragmentUnhappyPathTest : ScreenshotTest {
     @UnhappyPath
+    @FragmentTest
     @Test
     fun snapFragment() {
         val fragmentScenario =

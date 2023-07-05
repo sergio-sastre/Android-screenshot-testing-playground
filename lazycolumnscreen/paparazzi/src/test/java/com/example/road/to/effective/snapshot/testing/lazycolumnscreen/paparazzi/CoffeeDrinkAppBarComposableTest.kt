@@ -13,7 +13,14 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi
 import org.junit.Rule
 import org.junit.Test
 
-class CoffeeDrinkAppBarHappyPathTest {
+/**
+ * Execute the command below to run only ComposableTests
+ * 1. Record:
+ *    ./gradlew :lazycolumnscreen:paparazzi:recordPaparazziDebug --tests '*Composable*'
+ * 2. Verify:
+ *    ./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug --tests '*Composable*'
+ */
+class CoffeeDrinkAppBarComposableHappyPathTest {
     @get:Rule
     val paparazzi =
         Paparazzi(
@@ -39,7 +46,7 @@ class CoffeeDrinkAppBarHappyPathTest {
     }
 }
 
-class CoffeeDrinkAppBarUnhappyPathTest {
+class CoffeeDrinkAppBarComposableUnhappyPathTest {
     @get:Rule
     val paparazzi =
         Paparazzi(
