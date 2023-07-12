@@ -25,8 +25,8 @@ Requests.
 <br clear="left"/>
 <br/>
 
-[<img align="left" width="100" src="https://www.emergetools.com/images/emergetoolsstandard.png">](https://docs.emergetools.com/docs/snapshot-management-diffing)
 Thanks to [EmergeTools](https://www.emergetools.com) for their support!
+[<img align="left" width="100" src="https://www.emergetools.com/images/emergetoolsstandard.png">](https://docs.emergetools.com/docs/snapshot-management-diffing)
 
 Emerge automatically generates and diffs snapshots on your behalf, eliminating complicated CI setup with Emulators, file storage, and golden/diffing management.
 <br clear="left"/>
