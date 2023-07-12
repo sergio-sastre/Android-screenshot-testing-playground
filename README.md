@@ -13,6 +13,25 @@ part of blog posts</br>
 
 A sample repo to introduce screenshot testing in Android. It contains a wide variety of examples written with different screenshot testing libraries for a beter comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
+## Sponsors
+
+Thanks to [Screenshotbot](https://screenshotbot.io) for their support!
+[<img align="left" width="100" src="https://user-images.githubusercontent.com/6097181/192350235-b3b5dc63-e7e7-48da-bdb6-851a130aaf8d.png">](https://screenshotbot.io)
+
+By using Screenshotbot instead of the in-build record/verify modes provided by most screenshot
+libraries, you'll give your colleages a better developer experience, since they will not be required
+to manually record screenshots after every run, instead getting notifications on their Pull
+Requests.
+<br clear="left"/>
+<br/>
+
+[<img align="left" width="100" src="https://www.emergetools.com/images/emergetoolsstandard.png">](https://docs.emergetools.com/docs/snapshot-management-diffing)
+Thanks to [EmergeTools](https://www.emergetools.com) for their support!
+
+Emerge automatically generates and diffs snapshots on your behalf, eliminating complicated CI setup with Emulators, file storage, and golden/diffing management.
+<br clear="left"/>
+
+
 # Introduction
 This repo showcases how to snapshot test Dialogs, ViewHolders, Activities, Fragments and **Jetpack Compose**!.
 And even better: It is ready for you to add your own examples and try screenshot testing on your own!
