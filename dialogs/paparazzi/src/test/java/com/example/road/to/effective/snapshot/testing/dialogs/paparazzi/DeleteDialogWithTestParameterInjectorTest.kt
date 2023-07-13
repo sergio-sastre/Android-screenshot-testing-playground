@@ -34,6 +34,7 @@ class DeleteDialogTestParameterHappyPathTest(
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
+        showSystemUi = false,
         theme = "Theme.RoadToEffectiveSnapshotTesting",
     )
 
@@ -64,6 +65,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
+        showSystemUi = false,
         theme = "Theme.RoadToEffectiveSnapshotTesting",
     )
 

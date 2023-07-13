@@ -49,6 +49,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
             locale = deviceConfig.locale,
             fontScale = deviceConfig.fontScale,
         ).setPhoneOrientation(deviceConfig.orientation),
+        showSystemUi = false,
         theme = deviceConfig.theme,
         supportsRtl = true, // needed for "ar" locale
         renderingMode = SessionParams.RenderingMode.V_SCROLL,
@@ -93,6 +94,7 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
             locale = deviceConfig.locale,
             fontScale = deviceConfig.fontScale,
         ).setPhoneOrientation(deviceConfig.orientation),
+        showSystemUi = false,
         supportsRtl = true, // needed for "ar" locale
         theme = deviceConfig.theme,
         renderingMode = SessionParams.RenderingMode.V_SCROLL,

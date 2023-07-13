@@ -22,6 +22,7 @@ class AccessibilityTest {
     val paparazzi = Paparazzi(
         // For Accessibility, better to use devices in landscape with Paparazzi
         deviceConfig = DeviceConfig.NEXUS_5_LAND.copy(softButtons = false),
+        showSystemUi = false,
         theme = "Theme.RoadToEffectiveSnapshotTesting",
         renderExtensions = setOf(AccessibilityRenderExtension())
     )

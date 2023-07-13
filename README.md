@@ -69,7 +69,10 @@ More screenshot test examples, as well as examples with other libraries will be 
 
 <sup>1</sup> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
 
-<sup>2</sup> Paparazzi does not support screenshot tests for Activities and Fragments
+<sup>2</sup> Paparazzi does not support screenshot tests 
+   1. For Activities and Fragments, due to clashes with Robolectric, which is required by Activity/FragmentScenarios to run on the JVM.
+   2. With Pseudolocales, due to layoutlib.
+
 
 ## Table of Contents
 
@@ -257,7 +260,7 @@ Run the following gradle tasks depending on the module:
 > Please note that running tests in parallel is only worthwhile when dealing with a large number of tests.
 
 ### [Dropshots](https://github.com/dropbox/dropshots)
-Start the emulators.
+Start the emulator.
 Then run the following gradle tasks depending on the module:
 1. **Record**: `./gradlew :module_name:dropshots:connectedAndroidTest -Pdropshots.record`. For instance:
    1. `./gradlew :dialogs:dropshots:connectedAndroidTest -Pdropshots.record`
@@ -268,8 +271,13 @@ Then run the following gradle tasks depending on the module:
    2. `./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest`
    3. `./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest`
 
+> **Note**
+> Thanks to Dropshots plugin, it is also possible to record/verify these tests directly from Android Studio.
+> By default, it will execute the verify task. For recording, you need to add `dropshots.record` in your `gradle.properties` file.
+> Remember to record before verifying, to have a reference to compare with.
+
 ### [Shot](https://github.com/pedrovgs/Shot)
-Start the emulators. 
+Start the emulator. 
 Then run the following gradle tasks depending on the module:
 1. **Record**: `./gradlew :module_name:shot:executeScreenshotTests -Precord`. For instance:
    1. `./gradlew :dialogs:shot:executeScreenshotTests -Precord`
@@ -299,7 +307,13 @@ Run the following gradle tasks depending on the module:
 
 In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
 
-> Note
+> **Note 1**
+> Thanks to Roborazzi plugin, it is also possible to record/verify these tests directly from Android Studio.
+> For recording, you need to add `roborazzi.test.record=true` in your `gradle.properties` file.
+> For verifying, you need to add `roborazzi.test.verify=true` in your `gradle.properties` file.
+> Remember to record before verifying, to have a reference to compare with.
+
+> **Note 2**
 > You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
 > `./gradlew :module_name:roborazzi:recordRoborazziDebug -Pparallel`
 > Please note that running tests in parallel is only worthwhile when dealing with a large number of tests. 

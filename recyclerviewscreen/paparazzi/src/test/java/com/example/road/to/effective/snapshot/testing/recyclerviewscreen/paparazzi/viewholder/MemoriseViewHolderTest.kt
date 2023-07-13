@@ -34,6 +34,7 @@ class MemoriseViewHolderHappyPathTest {
                 softButtons = false,
                 locale = "en",
             ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
+            showSystemUi = false,
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )
@@ -74,6 +75,7 @@ class MemoriseViewHolderUnhappyPathTest {
                 nightMode = NightMode.NIGHT,
                 locale = "en",
             ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
+            showSystemUi = false,
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )
