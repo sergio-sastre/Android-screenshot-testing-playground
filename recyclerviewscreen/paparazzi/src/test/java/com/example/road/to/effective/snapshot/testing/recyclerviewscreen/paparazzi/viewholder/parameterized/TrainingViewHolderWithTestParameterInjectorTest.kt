@@ -59,7 +59,7 @@ class TrainingViewHolderTestParameterHappyPathTest(
         paparazzi.snapshot(
             view = viewHolder.itemView,
             offsetMillis = 1_500,
-            name = "${testItem.name}_TestParameter",
+            name = "${testItem.name}_TestParam",
         )
     }
 }
@@ -97,7 +97,7 @@ class TrainingViewHolderTestParameterUnhappyPathTest(
         paparazzi.snapshot(
             view = viewHolder.itemView,
             offsetMillis = 1_500,
-            name = "${testItem.name}_TestParameter",
+            name = "${testItem.name}_TestParam",
         )
     }
 }
