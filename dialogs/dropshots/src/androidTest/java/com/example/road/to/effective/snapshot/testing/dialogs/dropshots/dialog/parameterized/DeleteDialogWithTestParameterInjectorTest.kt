@@ -17,6 +17,14 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRul
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
 /**
+ * Execute the command below to run only DialogTests
+ * 1. Record:
+ *    ./gradlew :dialogs:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest -Pdropshots.record
+ * 2. Verify:
+ *    ./gradlew :dialogs:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
+ */
+
+/**
  * Example of Parameterized test with TestParameterInjector Runner.
  *
  * Unlike Parameterized Runner, the test methods admit arguments, although we do not use them here.

@@ -25,6 +25,8 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
  *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Accessibility*'
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
+ *
+ * See results under "Project" View
  */
 
 /**

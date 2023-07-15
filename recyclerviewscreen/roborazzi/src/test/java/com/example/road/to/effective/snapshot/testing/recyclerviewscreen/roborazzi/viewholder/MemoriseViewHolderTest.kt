@@ -32,6 +32,8 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
  *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*ViewHolder*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*ViewHolder*'
+ *
+ * See results under "Project" View
  */
 
 /**

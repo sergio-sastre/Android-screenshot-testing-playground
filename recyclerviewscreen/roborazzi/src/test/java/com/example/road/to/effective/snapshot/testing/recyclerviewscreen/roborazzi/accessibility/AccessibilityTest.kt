@@ -24,6 +24,8 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
  *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Accessibility*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
+ *
+ * See results under "Project" View
  */
 
 /**

@@ -23,11 +23,14 @@ import java.io.File
  *    ./gradlew :dialogs:roborazzi:recordRoborazziDebug --tests '*Dialog*'
  * 2. Verify:
  *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Dialog*'
+ *
+ * See results under "Project" View
  */
 
 /**
+ * You can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
+ *
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
- * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *
  * Moreover, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,

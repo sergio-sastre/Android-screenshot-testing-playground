@@ -11,7 +11,7 @@ part of blog posts</br>
 
 ![snapshotVsUiTests](https://user-images.githubusercontent.com/6097181/144911921-bae6182b-dae7-4f59-9dba-c88c9052b9b7.gif)
 
-A sample repo to introduce screenshot testing in Android. It contains a wide variety of examples written with different screenshot testing libraries for a beter comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
+A sample repo to introduce screenshot testing in Android. It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 ## Sponsors
 
@@ -34,7 +34,7 @@ Emerge automatically generates and diffs snapshots on your behalf, eliminating c
 
 # Introduction
 This repo showcases how to snapshot test Dialogs, ViewHolders, Activities, Fragments and **Jetpack Compose**!.
-And even better: It is ready for you to add your own examples and try screenshot testing on your own!
+And even better: It is ready for you to add your own examples and try screenshot testing with many libraries on your own!
 
 In order to help find the desire examples, the app is modularized accordingly:
 1. `:dialogs`: Showcases how to screenshot test dialogs created with DialogBuilder from the android View system. Examples for Compose dialogs will be added as well
@@ -43,7 +43,7 @@ In order to help find the desire examples, the app is modularized accordingly:
 
 Each of these modules contains submodules. Each submodule name corresponds to a screenshot testing library. You'll find screenshot test examples with that library in it. 
 
-As of May 2023, there are many screenshot testing libraries that facilitate automated screenshot testing, namely:
+As of July 2023, there are many screenshot testing libraries that facilitate automated screenshot testing, namely:
 1. Cashapp [Paparazzi](https://github.com/cashapp/paparazzi)
 2. Dropbox [Dropshots](https://github.com/dropbox/dropshots)
 3. [Shot from pedrovgs](https://github.com/pedrovgs/Shot)
@@ -84,10 +84,11 @@ More screenshot test examples, as well as examples with other libraries will be 
   - [Paparazzi vs. on-device screenshot testing libraries](#paparazzi-vs-on-device-screenshot-testing-libraries)
     - [Summary: Pros and Cons](#summary-pros-and-cons)
 - [Recording and verifying screenshots](#recording-and-verifying-screenshots)
+  - [On-device tests with Android Orchestrator](#on-device-tests-with-android-orchestrator) 
   - [Paparazzi](#paparazzihttpsgithubcomcashapppaparazzi)
+  - [Roborazzi](#roborazzihttpsgithubcomtakahiromroborazzi)
   - [Dropshots](#dropshotshttpsgithubcomdropboxdropshots)
   - [Shot](#shothttpsgithubcompedrovgsshot)
-  - [Roborazzi](#roborazzihttpsgithubcomtakahiromroborazzi)
   - [Cross-library](#cross-library)
 - [Parameterized screenshot tests](#parameterized-screenshot-tests)
 - [Filtered parameterized screenshot tests](#filtered-parameterized-screenshot-tests)
@@ -108,7 +109,7 @@ If reading is not your thing, you can always watch my 2021 Droidcon tech-talks o
 ### Emulators
 
 For instrumented screenshot testing (which excludes Paparazzi), I've been using emulators running API 27-31.
-Moreover, if you are running screenshot tests on a Windows machine, beware that Shot 5.14.1 still may have [some issues on API 29](https://github.com/pedrovgs/Shot/issues/244)
+Moreover, if you are running screenshot tests on a Windows machine, beware that Shot had some [issues in the past](https://github.com/pedrovgs/Shot/issues/244), although they should be already solved.
 
 #### Animations
 
@@ -242,6 +243,20 @@ All Screenshot testing frameworks provide at least these 2 tasks.
 > **Warning**</br>
 > All the commands in the description are for MacOS. You might need to adjust them depending on the operating system of your machine.
 
+### On-device tests with Android Orchestrator
+By default, Android Orchestrator is disabled.
+That's because it makes the screenshot test run much slower, while adding no value. Android orchestrator might make
+sense when running screenshot test that might influence each other. For instance, when screenshot testing Activities or Fragments
+where we fetch some data.
+
+For screenshot test that inflate a view and populate it with some data before the snapshot, it makes little sense.
+
+However, you can run Dropshots & Shot screenshot tests with Android Orchestrator in this repo by adding the following to the corresponding command:
+`-PuseOrchestrator`
+
+For instance, to record with Dropshots:
+`./gradlew :dialogs:dropshots:connectedAndroidTest -Pdropshots.record -PuseOrchestrator`
+
 ### [Paparazzi](https://github.com/cashapp/paparazzi)
 No emulators required.
 Run the following gradle tasks depending on the module:
@@ -257,6 +272,31 @@ Run the following gradle tasks depending on the module:
 > Note
 > You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
 > `./gradlew :module_name:paparazzi:recordPaparazziDebug -Pparallel`
+> Please note that running tests in parallel is only worthwhile when dealing with a large number of tests.
+
+### [Roborazzi](https://github.com/takahirom/roborazzi)
+No emulators required.
+Run the following gradle tasks depending on the module:
+1. **Record**: `./gradlew :module_name:roborazzi:recordRoborazziDebug`. For instance:
+    1. `./gradlew :dialogs::roborazzi:recordRoborazziDebug`
+    2. `./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug`
+    3. `./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug`
+2. **Verify**: `./gradlew :module_name:roborazzi:verifyRoborazziDebug`. For instance:
+    1. `./gradlew :dialogs:roborazzi:verifyRoborazziDebug`
+    2. `./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug`
+    3. `./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug`
+
+In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
+
+> **Note 1**
+> Thanks to Roborazzi plugin, it is also possible to record/verify these tests directly from Android Studio.
+> For recording, you need to add `roborazzi.test.record=true` in your `gradle.properties` file.
+> For verifying, you need to add `roborazzi.test.verify=true` in your `gradle.properties` file.
+> Remember to record before verifying, to have a reference to compare with.
+
+> **Note 2**
+> You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
+> `./gradlew :module_name:roborazzi:recordRoborazziDebug -Pparallel`
 > Please note that running tests in parallel is only worthwhile when dealing with a large number of tests.
 
 ### [Dropshots](https://github.com/dropbox/dropshots)
@@ -293,31 +333,6 @@ Then run the following gradle tasks depending on the module:
 > However, it is wrong. The record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/record/index.html`
 > The path for the verification reports is right though.
 
-### [Roborazzi](https://github.com/takahirom/roborazzi)
-No emulators required.
-Run the following gradle tasks depending on the module:
-1. **Record**: `./gradlew :module_name:roborazzi:recordRoborazziDebug`. For instance:
-    1. `./gradlew :dialogs::roborazzi:recordRoborazziDebug`
-    2. `./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug`
-    3. `./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug`
-2. **Verify**: `./gradlew :module_name:roborazzi:verifyRoborazziDebug`. For instance:
-    1. `./gradlew :dialogs:roborazzi:verifyRoborazziDebug`
-    2. `./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug`
-    3. `./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug`
-
-In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
-
-> **Note 1**
-> Thanks to Roborazzi plugin, it is also possible to record/verify these tests directly from Android Studio.
-> For recording, you need to add `roborazzi.test.record=true` in your `gradle.properties` file.
-> For verifying, you need to add `roborazzi.test.verify=true` in your `gradle.properties` file.
-> Remember to record before verifying, to have a reference to compare with.
-
-> **Note 2**
-> You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
-> `./gradlew :module_name:roborazzi:recordRoborazziDebug -Pparallel`
-> Please note that running tests in parallel is only worthwhile when dealing with a large number of tests. 
-
 ### Cross-Library
 Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot & Dropshots. 
 Since it configures 2 on-device & 2 JVM screenshot libraries, you need to pass the library name via command line for its correct execution:
@@ -353,10 +368,9 @@ With Parameterized snapshot test we can write the test once and run it for all t
 configurations! You can read more about how we can profit from it here:
 - [Design a pixel perfect Android app 🎨](https://sergiosastre.hashnode.dev/design-a-pixel-perfect-android-app-with-screenshot-testing)
 
-This can be achieved by using either `org.junit.runners.Parameterized`
-or `com.google.testing.junit.testparameterinjector.TestParameterInjector`, as you'll find in most examples in this repo.
+This can be achieved by using either `org.junit.runners.Parameterized`, `com.google.testing.junit.testparameterinjector.TestParameterInjector` or in case of Roborazzi via `org.robolectric.ParameterizedRobolectricTestRunner`, as you'll find in most examples in this repo.
 
-Dropshots, Shot and Roborazzi do not offer the possibility to set such configurations (Paparazzi does though). However, we can set the desired configurations for those libraries with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
+Dropshots & Shot do not offer the possibility to set such configurations (Paparazzi and Roborazzi do though). However, we can set the desired configurations for those libraries with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
 
 > **Remark**
 > The Parameterized runner injects the parameter passed in the Test class constructor to every

@@ -22,6 +22,8 @@ import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentS
  *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*RecyclerView*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*RecyclerView*'
+ *
+ * See results under "Project" View
  */
 
 /**
