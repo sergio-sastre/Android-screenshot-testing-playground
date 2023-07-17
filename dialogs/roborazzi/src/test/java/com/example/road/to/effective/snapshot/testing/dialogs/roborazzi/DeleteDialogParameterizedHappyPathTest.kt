@@ -83,7 +83,7 @@ class DeleteDialogParameterizedHappyPathTest(
         dialog
             .drawToBitmap()
             .captureRoboImage(
-                filePath("DeleteDialog_${testItem.name}_Parameterized.png")
+                filePath("DeleteDialog_${testItem.name}_Parameterized")
             )
     }
 }
