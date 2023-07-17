@@ -15,22 +15,26 @@ object MemoriseTestItemGenerator {
      * Otherwise, the UI might be affected. For instance in this method,
      * the string will not be correctly localized with the locale of the Activity
      */
-    private fun generateMemorise(activity: Context) =
-        Memorise(
+    private fun generateMemorise(activity: Context, titleSuffix: String = ""): Memorise {
+        val memoriseTitle = activity.getString(R.string.english_memorise_title)
+        val titleText = if (titleSuffix.isBlank()) memoriseTitle else "$memoriseTitle $titleSuffix"
+        return Memorise(
             id = 2,
             landmark = 4,
             srcLang = Language.English,
-            title = activity.getString(R.string.english_memorise_title),
+            title = titleText,
             text = activity.getString(R.string.english_memorise_body),
             translations = englishTransl.repeated(3)
         )
+    }
 
     fun generateMemoriseItem(
         activity: Context,
-        rightAligned: Boolean
+        rightAligned: Boolean,
+        titleSuffix: String = ""
     ) =
         MemoriseItem(
-            memorise = generateMemorise(activity),
+            memorise = generateMemorise(activity, titleSuffix),
             rightAligned = rightAligned,
             currentTime = 0L
         )
