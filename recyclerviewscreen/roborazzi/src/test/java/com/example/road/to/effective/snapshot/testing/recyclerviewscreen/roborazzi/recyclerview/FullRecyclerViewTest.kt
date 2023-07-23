@@ -4,7 +4,6 @@ import android.view.View
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.drawFullScrollableToBitmap
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
@@ -15,6 +14,7 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_XL
 import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentScenarioConfiguratorRule
+import sergio.sastre.uitesting.utils.utils.drawFullScrollableToBitmap
 
 /**
  * Execute the command below to run only RecyclerViewTests
@@ -22,6 +22,8 @@ import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentS
  *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*RecyclerView*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*RecyclerView*'
+ *
+ * See results under "Project" View
  */
 
 /**

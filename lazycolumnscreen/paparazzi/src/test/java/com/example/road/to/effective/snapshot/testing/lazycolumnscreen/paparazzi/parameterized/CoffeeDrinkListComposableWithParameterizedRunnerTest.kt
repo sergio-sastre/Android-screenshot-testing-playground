@@ -40,7 +40,6 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     val paparazzi =
         Paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
-                softButtons = false,
                 nightMode = testItem.item.nightMode,
                 fontScale = testItem.item.fontScale,
                 locale = testItem.item.locale,
@@ -74,7 +73,6 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     @get:Rule
     val paparazzi = Paparazzi(
         deviceConfig = DeviceConfig.PIXEL_5.copy(
-            softButtons = false,
             nightMode = testItem.item.nightMode,
             fontScale = testItem.item.fontScale,
             locale = testItem.item.locale,

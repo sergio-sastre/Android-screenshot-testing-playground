@@ -24,6 +24,8 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
  *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Accessibility*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
+ *
+ * See results under "Project" View
  */
 
 /**
@@ -54,7 +56,7 @@ class AccessibilityTest {
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapMemoriseViewHolderWithAccessibility() {
+    fun snapMemoriseVHWithAccessibility() {
         val activity = activityScenarioForViewRule.activity
         val layout = activityScenarioForViewRule.inflateAndWaitForIdle(R.layout.memorise_row)
 
@@ -79,7 +81,7 @@ class AccessibilityTest {
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapTrainingViewHolderWithAccessibility() {
+    fun snapTrainingVHWithAccessibility() {
         val layout = activityScenarioForViewRule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForMeasuredViewHolder {

@@ -6,14 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,7 +19,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             pseudoLocalesEnabled true
@@ -43,7 +40,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerExtensionVersion '1.4.7'
     }
 
     testOptions {
@@ -69,7 +66,7 @@ dependencies {
     testImplementation "androidx.compose.material:material"
 
     testImplementation "org.robolectric:robolectric:4.10.3"
-    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.2.0"
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta03')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0-beta03')
+    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.4.0-alpha-5"
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta03'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0-beta03'
 }

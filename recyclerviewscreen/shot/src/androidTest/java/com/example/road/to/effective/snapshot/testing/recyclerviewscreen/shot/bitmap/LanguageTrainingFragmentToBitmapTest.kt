@@ -20,6 +20,9 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
  *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Precord
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
+ *
+ * To run them using Android Orchestrator, add the following at the end of the command:
+ * -PuseOrchestrator
  */
 
 /**

@@ -1,8 +1,12 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.accessibility
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.ui.Modifier
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
+import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
@@ -22,24 +26,29 @@ class AccessibilityTest {
     val paparazzi =
         Paparazzi(
             // For Accessibility, better to use devices in landscape with Paparazzi
-            deviceConfig = DeviceConfig.NEXUS_5_LAND.copy(softButtons = false),
+            deviceConfig = DeviceConfig.NEXUS_5_LAND,
+            renderingMode = SessionParams.RenderingMode.V_SCROLL,
             renderExtensions = setOf(AccessibilityRenderExtension())
         )
 
     @Test
-    fun snapCoffeeDrinkAppBarComposableWithAccessibility() {
+    fun snapCoffeeDrinkAppBarWithAccessibility() {
         paparazzi.snapshot(name = "CoffeeDrinkAppBarComposable_Accessibility") {
             AppTheme {
-                CoffeeDrinkAppBar()
+                Box(modifier = Modifier.wrapContentSize()) {
+                    CoffeeDrinkAppBar()
+                }
             }
         }
     }
 
     @Test
-    fun snapCoffeeDrinkListComposableWithAccessibility() {
+    fun snapCoffeeDrinkListWithAccessibility() {
         paparazzi.snapshot(name = "CoffeeDrinkListComposable_Accessibility") {
             AppTheme {
-                CoffeeDrinkList(coffeeDrink = coffeeDrink)
+                Box(modifier = Modifier.wrapContentSize()) {
+                    CoffeeDrinkList(coffeeDrink = coffeeDrink)
+                }
             }
         }
     }

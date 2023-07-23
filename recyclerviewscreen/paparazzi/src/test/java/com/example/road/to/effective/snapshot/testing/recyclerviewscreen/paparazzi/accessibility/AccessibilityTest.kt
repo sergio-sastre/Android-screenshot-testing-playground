@@ -28,13 +28,13 @@ class AccessibilityTest {
             //
             // As side effect, this will screenshot a landscape layout. This might differ from the
             // portrait one, as it is the case with R.layout.memorise_row
-            deviceConfig = DeviceConfig.NEXUS_5_LAND.copy(softButtons = false),
+            deviceConfig = DeviceConfig.NEXUS_5_LAND,
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderExtensions = setOf(AccessibilityRenderExtension())
         )
 
     @Test
-    fun snapMemoriseViewHolderWithAccessibility() {
+    fun snapMemoriseVHWithAccessibility() {
         val layout = paparazzi.inflate<View>(R.layout.memorise_row)
         val view = MemoriseViewHolder(
             container = layout,
@@ -56,7 +56,7 @@ class AccessibilityTest {
     }
 
     @Test
-    fun snapTrainingViewHolderWithAccessibility() {
+    fun snapTrainingVHWithAccessibility() {
         val trainingTestItem = HappyPathTestItem.HAPPY_EN_WITH_WORDS.item
 
         val layout = paparazzi.inflate<View>(R.layout.training_row)

@@ -22,12 +22,19 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import org.junit.Rule
 import org.junit.Test
 
+/**
+ * Execute the command below to run only AccessibilityTests
+ * 1. Record:
+ *    ./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug --tests '*RecyclerView*'
+ * 2. Verify:
+ *    ./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug --tests '*RecyclerView*'
+ */
 class RecyclerViewTest {
 
     @get:Rule
     val paparazzi =
         Paparazzi(
-            deviceConfig = PIXEL_XL.copy(softButtons = false),
+            deviceConfig = PIXEL_XL,
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )

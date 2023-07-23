@@ -44,7 +44,6 @@ class TrainingViewHolderParameterizedHappyPathTest(
     val paparazzi = Paparazzi(
         deviceConfig =
         DeviceConfig.PIXEL_5.copy(
-            softButtons = false,
             nightMode = deviceConfig.nightMode,
             locale = deviceConfig.locale,
             fontScale = deviceConfig.fontScale,
@@ -88,7 +87,6 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     val paparazzi = Paparazzi(
         deviceConfig =
         DeviceConfig.PIXEL_5.copy(
-            softButtons = false,
             nightMode = deviceConfig.nightMode,
             locale = deviceConfig.locale,
             fontScale = deviceConfig.fontScale,

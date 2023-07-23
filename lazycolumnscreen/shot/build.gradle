@@ -6,14 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
 
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
     }
@@ -21,7 +19,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             pseudoLocalesEnabled true
@@ -52,7 +49,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerExtensionVersion '1.4.7'
     }
 }
 
@@ -66,7 +63,7 @@ dependencies {
     implementation project(':lazycolumnscreen')
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation "androidx.navigation:navigation-compose:2.5.3"
+    implementation 'androidx.navigation:navigation-compose:2.6.0'
 
     // Jetpack Compose
     androidTestImplementation platform('androidx.compose:compose-bom:2023.03.00')

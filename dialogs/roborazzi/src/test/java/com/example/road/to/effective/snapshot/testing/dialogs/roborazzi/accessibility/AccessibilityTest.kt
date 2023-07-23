@@ -27,11 +27,12 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredView
  *    ./gradlew :dialogs:roborazzi:recordRoborazziDebug --tests '*Accessibility*'
  * 2. Verify:
  *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
+ *
+ * See results under "Project" View
  */
 
 /**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
- * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *
  * Moreover, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
@@ -59,7 +60,7 @@ class AccessibilityTest {
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapDialog() {
+    fun snapWithAccessibility() {
         val activity = activityScenarioForViewRule.activity
 
         val dialogView = waitForMeasuredView {

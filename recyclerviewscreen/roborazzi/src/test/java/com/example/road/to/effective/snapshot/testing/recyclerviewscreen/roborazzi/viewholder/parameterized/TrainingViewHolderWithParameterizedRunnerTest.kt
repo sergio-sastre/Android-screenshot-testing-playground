@@ -22,11 +22,14 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
  *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*ViewHolder*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*ViewHolder*'
+ *
+ * See results under "Project" View
  */
 
 /**
+ * You can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
+ *
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
- * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *
  * Moreover, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,

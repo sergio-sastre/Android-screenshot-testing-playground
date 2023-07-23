@@ -2,6 +2,8 @@ package com.example.road.to.effective.snapshot.testing.dialogs.paparazzi
 
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
+import app.cash.paparazzi.androidHome
+import app.cash.paparazzi.detectEnvironment
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import org.junit.Rule
 import org.junit.Test
@@ -36,12 +38,16 @@ class DeleteDialogParameterizedHappyPathTest(
     @get:Rule
     val paparazzi = Paparazzi(
         deviceConfig = DeviceConfig.PIXEL_5.copy(
-            softButtons = false,
             screenWidth = testItem.deleteItem.screenWidth.widthInPx,
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
+        // Needed to avoid crashes due to compileSdk 34
+        environment = detectEnvironment().copy(
+            platformDir = "${androidHome()}/platforms/android-33",
+            compileSdkVersion = 33
+        ),
     )
 
     @Test
@@ -74,7 +80,6 @@ class DeleteDialogParameterizedUnhappyPathTest(
     @get:Rule
     val paparazzi = Paparazzi(
         deviceConfig = DeviceConfig.PIXEL_5.copy(
-            softButtons = false,
             screenWidth = testItem.deleteItem.screenWidth.widthInPx,
             nightMode = testItem.deleteItem.deviceConfig.nightMode,
             fontScale = testItem.deleteItem.deviceConfig.fontScale,

@@ -26,6 +26,8 @@ import sergio.sastre.uitesting.utils.utils.rootView
  *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Activity*'
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Activity*'
+ *
+ * See results under "Project" View
  */
 
 /**
