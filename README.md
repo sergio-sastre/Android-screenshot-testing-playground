@@ -272,7 +272,7 @@ Run the following gradle tasks depending on the module:
    2. `./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug`
    3. `./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug`
 
-> Note
+> **Note**</br>
 > You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
 > `./gradlew :module_name:paparazzi:recordPaparazziDebug -Pparallel`
 > Please note that running tests in parallel is only worthwhile when dealing with a large number of tests.
@@ -291,13 +291,13 @@ Run the following gradle tasks depending on the module:
 
 In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
 
-> **Note 1**
+> **Note 1**</br>
 > Thanks to Roborazzi plugin, it is also possible to record/verify these tests directly from Android Studio.
 > For recording, you need to add `roborazzi.test.record=true` in your `gradle.properties` file.
 > For verifying, you need to add `roborazzi.test.verify=true` in your `gradle.properties` file.
 > Remember to record before verifying, to have a reference to compare with.
 
-> **Note 2**
+> **Note 2**</br>
 > You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
 > `./gradlew :module_name:roborazzi:recordRoborazziDebug -Pparallel`
 > Please note that running tests in parallel is only worthwhile when dealing with a large number of tests.
@@ -314,7 +314,7 @@ Then run the following gradle tasks depending on the module:
    2. `./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest`
    3. `./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest`
 
-> **Note**
+> **Note**</br>
 > Thanks to Dropshots plugin, it is also possible to record/verify these tests directly from Android Studio.
 > By default, it will execute the verify task. For recording, you need to add `dropshots.record` in your `gradle.properties` file.
 > Remember to record before verifying, to have a reference to compare with.
@@ -331,7 +331,7 @@ Then run the following gradle tasks depending on the module:
    2. `./gradlew :recyclerviewscreen:shot:executeScreenshotTests`
    3. `./gradlew :lazycolumnscreen:shot:executeScreenshotTests`
 
-> **Note** </br>
+> **Note**</br>
 > The library says the record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/index.html`
 > However, it is wrong. The record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/record/index.html`
 > The path for the verification reports is right though.
