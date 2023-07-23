@@ -26,7 +26,6 @@ class CoffeeDrinkAppBarComposableHappyPathTest {
         Paparazzi(
             deviceConfig =
             DeviceConfig.PIXEL_5.copy(
-                softButtons = false,
                 nightMode = NightMode.NOTNIGHT,
                 fontScale = 1.0f,
                 locale = "en",
@@ -51,7 +50,6 @@ class CoffeeDrinkAppBarComposableUnhappyPathTest {
     val paparazzi =
         Paparazzi(
             deviceConfig = DeviceConfig.PIXEL_5.copy(
-                softButtons = false,
                 nightMode = NightMode.NIGHT,
                 fontScale = 1.3f,
                 locale = "en",

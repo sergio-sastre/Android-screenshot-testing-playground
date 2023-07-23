@@ -3,12 +3,12 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.r
 import android.view.View
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot.utils.drawFullScrollableToBitmap
 import com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
+import sergio.sastre.uitesting.utils.utils.drawFullScrollableToBitmap
 
 /**
  * Execute the command below to run only RecyclerViewTests
@@ -16,6 +16,9 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
  *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest -Precord
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest
+ *
+ * To run them using Android Orchestrator, add the following at the end of the command:
+ * -PuseOrchestrator
  */
 class FullRecyclerViewTest : ScreenshotTest {
 

@@ -5,12 +5,12 @@ import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.drawFullScrollableToBitmap
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfiguratorRule
+import sergio.sastre.uitesting.utils.utils.drawFullScrollableToBitmap
 
 /**
  * Execute the command below to run only RecyclerViewTests
@@ -18,6 +18,9 @@ import sergio.sastre.uitesting.utils.fragmentscenario.fragmentScenarioConfigurat
  *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest -Pdropshots.record
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest
+ *
+ * To run them using Android Orchestrator, add the following at the end of the command:
+ * -PuseOrchestrator
  */
 class FullRecyclerViewTest {
 

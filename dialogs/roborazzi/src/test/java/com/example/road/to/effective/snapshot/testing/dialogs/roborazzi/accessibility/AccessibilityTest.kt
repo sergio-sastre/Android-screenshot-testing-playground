@@ -60,7 +60,7 @@ class AccessibilityTest {
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapDialog() {
+    fun snapWithAccessibility() {
         val activity = activityScenarioForViewRule.activity
 
         val dialogView = waitForMeasuredView {

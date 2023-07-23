@@ -56,7 +56,7 @@ class AccessibilityTest {
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapMemoriseViewHolderWithAccessibility() {
+    fun snapMemoriseVHWithAccessibility() {
         val activity = activityScenarioForViewRule.activity
         val layout = activityScenarioForViewRule.inflateAndWaitForIdle(R.layout.memorise_row)
 
@@ -81,7 +81,7 @@ class AccessibilityTest {
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapTrainingViewHolderWithAccessibility() {
+    fun snapTrainingVHWithAccessibility() {
         val layout = activityScenarioForViewRule.inflateAndWaitForIdle(R.layout.training_row)
 
         val viewHolder = waitForMeasuredViewHolder {

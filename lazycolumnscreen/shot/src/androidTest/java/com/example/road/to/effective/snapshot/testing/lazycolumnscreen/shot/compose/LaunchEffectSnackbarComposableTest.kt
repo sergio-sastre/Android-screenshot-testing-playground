@@ -17,6 +17,9 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposa
  *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest -Precord
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
+ *
+ * To run them using Android Orchestrator, add the following at the end of the command:
+ * -PuseOrchestrator
  */
 @SdkSuppress(minSdkVersion = 26) // ScreenshotTest.compareScreenshot(rule = ...) requires API 26+
 class SnackbarComposableTest : ScreenshotTest {

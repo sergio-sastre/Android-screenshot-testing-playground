@@ -6,14 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.shot'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
 
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
     }

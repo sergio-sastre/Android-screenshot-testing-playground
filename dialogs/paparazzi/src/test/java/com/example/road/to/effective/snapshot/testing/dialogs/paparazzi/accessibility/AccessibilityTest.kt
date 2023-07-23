@@ -3,6 +3,8 @@ package com.example.road.to.effective.snapshot.testing.dialogs.paparazzi.accessi
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
+import app.cash.paparazzi.androidHome
+import app.cash.paparazzi.detectEnvironment
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.R
 import com.example.road.to.effective.snapshot.testing.dialogs.paparazzi.itemArray
@@ -21,14 +23,18 @@ class AccessibilityTest {
     @get:Rule
     val paparazzi = Paparazzi(
         // For Accessibility, better to use devices in landscape with Paparazzi
-        deviceConfig = DeviceConfig.NEXUS_5_LAND.copy(softButtons = false),
-        showSystemUi = false,
+        deviceConfig = DeviceConfig.NEXUS_5_LAND,
         theme = "Theme.RoadToEffectiveSnapshotTesting",
+        // Needed to avoid crashes due to compileSdk 34
+        environment = detectEnvironment().copy(
+            platformDir = "${androidHome()}/platforms/android-33",
+            compileSdkVersion = 33
+        ),
         renderExtensions = setOf(AccessibilityRenderExtension())
     )
 
     @Test
-    fun snapDialogWithAccessibility() {
+    fun snapWithAccessibility() {
         val dialog =
             DialogBuilder.buildDeleteDialog(
                 ctx = paparazzi.context,
