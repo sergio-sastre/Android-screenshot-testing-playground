@@ -228,7 +228,7 @@ Let's summarize.
 **Cons**
 1. Cannot screenshot Activities or Fragments
 2. Rendering problems
-   1. Incorrect screenshots for UI components that use View.animate() or ObjectAnimator.ofPropertyValuesHolder()
+   1. Incorrect screenshots for UI components that call View.animate() or ObjectAnimator.ofPropertyValuesHolder() several times.
    2. Only renders what the Compose @Previews can display
 3. Fragile to AGP & Jetpack Compose updates
 4. No support for Pseudolocales

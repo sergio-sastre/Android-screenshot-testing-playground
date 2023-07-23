@@ -6,14 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.recyclerviewscreen.shot'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
 
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
     }
@@ -60,7 +58,7 @@ dependencies {
     androidTestImplementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
 
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta03'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta04'
 
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
 }

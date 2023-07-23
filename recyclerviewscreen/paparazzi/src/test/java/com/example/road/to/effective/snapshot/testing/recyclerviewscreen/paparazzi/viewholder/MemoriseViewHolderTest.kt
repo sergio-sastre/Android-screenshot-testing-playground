@@ -30,11 +30,7 @@ class MemoriseViewHolderHappyPathTest {
     @get:Rule
     val paparazzi =
         Paparazzi(
-            deviceConfig = DeviceConfig.PIXEL_5.copy(
-                softButtons = false,
-                locale = "en",
-            ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
-            showSystemUi = false,
+            deviceConfig = DeviceConfig.PIXEL_5.setPhoneOrientation(PhoneOrientation.LANDSCAPE),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )
@@ -71,11 +67,8 @@ class MemoriseViewHolderUnhappyPathTest {
         Paparazzi(
             deviceConfig =
             DeviceConfig.PIXEL_5.copy(
-                softButtons = false,
                 nightMode = NightMode.NIGHT,
-                locale = "en",
             ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
-            showSystemUi = false,
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )

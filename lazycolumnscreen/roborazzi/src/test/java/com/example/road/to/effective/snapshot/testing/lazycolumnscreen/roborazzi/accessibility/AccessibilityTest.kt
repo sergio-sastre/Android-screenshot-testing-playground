@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazz
 
 import androidx.compose.ui.test.onRoot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose.parameterized.HappyPathTestItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose.parameterized.coffeeDrink
@@ -58,7 +59,26 @@ class AccessibilityTest {
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapComposableWithAccessibility() {
+    fun snapCoffeeDrinkAppBarWithAccessibility() {
+        activityScenarioForComposableRule.setContent {
+            AppTheme {
+                CoffeeDrinkAppBar()
+            }
+
+        }
+
+        activityScenarioForComposableRule.composeRule
+            .onRoot()
+            .captureRoboImage(
+                filePath = filePath("CoffeeDrinkAppBarComposable_Accessibility"),
+                roborazziOptions = roborazziAccessibilityOptions,
+            )
+    }
+
+    @GraphicsMode(NATIVE)
+    @Config(sdk = [30])
+    @Test
+    fun snapCoffeeDrinkListWithAccessibility() {
         activityScenarioForComposableRule.setContent {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)

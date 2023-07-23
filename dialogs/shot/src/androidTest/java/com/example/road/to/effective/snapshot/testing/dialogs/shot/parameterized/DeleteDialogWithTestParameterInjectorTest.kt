@@ -22,6 +22,9 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
  *    ./gradlew :dialogs:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest -Precord
  * 2. Verify:
  *    ./gradlew :dialogs:shot:executeScreenshotTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
+ *
+ * To run them using Android Orchestrator, add the following at the end of the command:
+ * -PuseOrchestrator
  */
 
 /**

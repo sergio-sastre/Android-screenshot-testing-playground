@@ -1,6 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi
 
 import app.cash.paparazzi.DeviceConfig
+import app.cash.paparazzi.InstantAnimationsRule
 import app.cash.paparazzi.Paparazzi
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.ActionNotSupportedSnackbar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
@@ -19,7 +20,7 @@ class SnackbarComposableTest {
 
     @get:Rule
     val paparazzi =
-        Paparazzi(deviceConfig = DeviceConfig.PIXEL_5.copy(softButtons = false))
+        Paparazzi(deviceConfig = DeviceConfig.PIXEL_5)
 
     @Test
     fun snapComposable() {

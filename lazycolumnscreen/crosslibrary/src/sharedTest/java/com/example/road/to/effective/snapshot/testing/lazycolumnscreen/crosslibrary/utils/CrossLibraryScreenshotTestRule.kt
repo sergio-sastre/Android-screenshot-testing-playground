@@ -7,32 +7,40 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibr
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
+import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.sharedtest.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.sharedtest.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
-import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRule
-import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTestRule
+import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleForComposable
+import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTestRuleForComposable
 import java.io.File
 
 /**
- * A [SharedScreenshotTestRule] that decides which library runs the instrumented screenshot tests
+ * A [SharedScreenshotTestRuleForComposable] that decides which library runs the instrumented screenshot tests
  * based on the -PscreenshotLibrary argument passed via command line.
+ *
+ * It required some extra configuration in the gradle file
+ * Take a look at the :lazycolumnscreen:crosslibrary gradle file to see how it is configured
  */
 
 class CrossLibraryScreenshotTestRule(
     override val config: ScreenshotConfig,
-) : SharedScreenshotTestRule(config) {
+) : SharedScreenshotTestRuleForComposable(config) {
 
-    override fun getInstrumentedScreenshotTestRule(config: ScreenshotConfig): ScreenshotTestRule =
+    override fun getInstrumentedScreenshotTestRule(
+        config: ScreenshotConfig,
+    ): ScreenshotTestRuleForComposable =
         when (instrumentationScreenshotLibraryName) {
             BuildConfig.SHOT -> shotScreenshotTestRule
             BuildConfig.DROPSHOTS -> dropshotsScreenshotTestRule
             else -> throw ScreenshotLibraryArgumentMissingException()
         }
 
-    override fun getJvmScreenshotTestRule(config: ScreenshotConfig): ScreenshotTestRule =
+    override fun getJvmScreenshotTestRule(
+        config: ScreenshotConfig,
+    ): ScreenshotTestRuleForComposable =
         when (jvmScreenshotLibraryName) {
             BuildConfig.PAPARAZZI -> paparazziScreenshotTestRule
             BuildConfig.ROBORAZZI -> roborazziScreenshotTestRule
@@ -54,7 +62,7 @@ class CrossLibraryScreenshotTestRule(
 
  fun defaultCrossLibraryScreenshotTestRule(
      config: ScreenshotConfig,
- ): ScreenshotTestRule =
+ ): ScreenshotTestRuleForComposable =
     CrossLibraryScreenshotTestRule(config)
         // Optional: configure for the libraries you use
         .configure(
@@ -69,6 +77,7 @@ class CrossLibraryScreenshotTestRule(
         ).configure(
             PaparazziConfig(
                 deviceConfig = DeviceConfig.NEXUS_4,
+                renderingMode = RenderingMode.SHRINK,
             )
         ).configure(
             RoborazziConfig(
