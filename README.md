@@ -13,7 +13,7 @@ part of blog posts</br>
 
 A sample repo to introduce screenshot testing in Android. It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
-> WARNING
+> **Warning**
 > It is configured with AGP 8.x, so it requires Android Studio Flamingo or higher!
 
 ## Sponsors
