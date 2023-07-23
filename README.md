@@ -13,6 +13,9 @@ part of blog posts</br>
 
 A sample repo to introduce screenshot testing in Android. It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
+> WARNING
+> It is configured with AGP 8.x, so it requires Android Studio Flamingo or higher!
+
 ## Sponsors
 
 Thanks to [Screenshotbot](https://screenshotbot.io) for their support!
@@ -63,7 +66,7 @@ In order to do that, it contains the same/similar examples but written with diff
 
 **BONUS**:
 It also contains an example of a **Cross-Library Screenshot Tests**: *the very same screenshot test running with multiple libraries, namely: Paparazzi, Roborazzi, Shot & Dropshots*.
-For that it uses [Android UI Testing Utils 2.0.0-beta03](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
+For that it uses [Android UI Testing Utils 2.0.0-beta04](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
 
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
@@ -347,7 +350,7 @@ Since it configures 2 on-device & 2 JVM screenshot libraries, you need to pass t
    3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
 
-To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-beta03](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-beta04](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 
