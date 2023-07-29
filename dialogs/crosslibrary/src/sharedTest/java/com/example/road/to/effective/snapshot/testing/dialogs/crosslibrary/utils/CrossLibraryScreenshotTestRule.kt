@@ -1,9 +1,9 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils
+package com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils
 
 import androidx.test.platform.app.InstrumentationRegistry.*
 
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.BuildConfig
+import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.BuildConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
@@ -12,9 +12,10 @@ import sergio.sastre.uitesting.sharedtest.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.sharedtest.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
-import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
-import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleForComposable
+import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
+import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleForView
 import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTestRuleForComposable
+import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTestRuleForView
 import java.io.File
 
 /**
@@ -22,16 +23,16 @@ import java.io.File
  * based on the -PscreenshotLibrary argument passed via command line.
  *
  * It required some extra configuration in the gradle file
- * Take a look at the :lazycolumnscreen:crosslibrary gradle file to see how it is configured
+ * Take a look at the :dialogs:crosslibrary gradle file to see how it is configured
  */
 
 class CrossLibraryScreenshotTestRule(
-    override val config: ScreenshotConfigForComposable,
-) : SharedScreenshotTestRuleForComposable(config) {
+    override val config: ScreenshotConfigForView,
+) : SharedScreenshotTestRuleForView(config) {
 
     override fun getInstrumentedScreenshotTestRule(
-        config: ScreenshotConfigForComposable,
-    ): ScreenshotTestRuleForComposable =
+        config: ScreenshotConfigForView,
+    ): ScreenshotTestRuleForView =
         when (instrumentationScreenshotLibraryName) {
             BuildConfig.SHOT -> shotScreenshotTestRule
             BuildConfig.DROPSHOTS -> dropshotsScreenshotTestRule
@@ -39,8 +40,8 @@ class CrossLibraryScreenshotTestRule(
         }
 
     override fun getJvmScreenshotTestRule(
-        config: ScreenshotConfigForComposable,
-    ): ScreenshotTestRuleForComposable =
+        config: ScreenshotConfigForView,
+    ): ScreenshotTestRuleForView =
         when (jvmScreenshotLibraryName) {
             BuildConfig.PAPARAZZI -> paparazziScreenshotTestRule
             BuildConfig.ROBORAZZI -> roborazziScreenshotTestRule
@@ -61,8 +62,8 @@ class CrossLibraryScreenshotTestRule(
 }
 
  fun defaultCrossLibraryScreenshotTestRule(
-     config: ScreenshotConfigForComposable,
- ): ScreenshotTestRuleForComposable =
+     config: ScreenshotConfigForView,
+ ): ScreenshotTestRuleForView =
     CrossLibraryScreenshotTestRule(config)
         // Optional: configure for the libraries you use
         .configure(

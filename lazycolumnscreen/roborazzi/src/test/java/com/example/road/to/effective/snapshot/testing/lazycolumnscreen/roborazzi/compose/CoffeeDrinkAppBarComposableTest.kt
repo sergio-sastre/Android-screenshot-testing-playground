@@ -76,7 +76,8 @@ class CoffeeDrinkAppBarComposableHappyPathTest {
             }
         }
 
-        activityScenarioForComposableRule.composeRule
+        activityScenarioForComposableRule
+            .composeRule
             .onRoot()
             .captureRoboImage(
                 filePath("CoffeeDrinkAppBar_Happy")

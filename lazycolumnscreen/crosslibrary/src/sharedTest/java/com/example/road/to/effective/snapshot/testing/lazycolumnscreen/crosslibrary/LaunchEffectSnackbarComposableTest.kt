@@ -10,8 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.RenderingMode
-import sergio.sastre.uitesting.shot.ShotConfig
-import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
+import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
 import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshotTestRunner
 
 /**
@@ -37,8 +36,7 @@ class SnackbarComposableTest {
 
     @get:Rule
     val screenshotRule =
-        defaultCrossLibraryScreenshotTestRule(ScreenshotConfig())
-            .configure(ShotConfig(/*no pixel copy -> otherwise Shot cannot render Snackbar*/))
+        defaultCrossLibraryScreenshotTestRule(ScreenshotConfigForComposable())
             .configure(PaparazziConfig(renderingMode = RenderingMode.NORMAL))
 
     @ComposableTest
