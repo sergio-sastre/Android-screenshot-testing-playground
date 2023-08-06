@@ -1,10 +1,10 @@
 package com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary
 
-
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils.defaultCrossLibraryScreenshotTestRule
 import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils.sdkVersion
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
+import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Test
 import org.junit.Rule
 import org.junit.runner.RunWith
@@ -27,14 +27,15 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  *
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
- *  src/test/resources/com/example/road/to/effective/snapshot/testing/dialogs/crosslibrary/parameterized
+ *  src/test/resources/com/example/road/to/effective/snapshot/testing/dialogs/crosslibrary/
  */
 @RunWith(ParameterizedCrossLibraryScreenshotTestRunner::class)
-class DeleteDialogParameterizedTest(
+class DeleteDialogParameterizedHappyPathTest(
     private val testItem: HappyPathTestItem,
 ) {
     private val deleteItem
         get() = testItem.deleteItem
+
     companion object {
         @JvmStatic
         @Parameterized.Parameters
@@ -46,6 +47,44 @@ class DeleteDialogParameterizedTest(
         defaultCrossLibraryScreenshotTestRule(config = deleteItem.viewConfig)
 
     @HappyPath
+    @Test
+    fun snapDialog() {
+        val context = screenshotRule.context
+
+        val dialog =
+            screenshotRule.waitForMeasuredDialog {
+                DialogBuilder.buildDeleteDialog(
+                    ctx = context,
+                    onDeleteClicked = {},
+                    bulletTexts = itemArray(context, deleteItem.bulletTexts)
+                )
+            }
+
+        screenshotRule.snapshotDialog(
+            dialog = dialog,
+            name = "CoffeeDrinkListComposable_${testItem.name}_Parameterized_API_$sdkVersion"
+        )
+    }
+}
+
+@RunWith(ParameterizedCrossLibraryScreenshotTestRunner::class)
+class DeleteDialogParameterizedUnhappyPathTest(
+    private val testItem: UnhappyPathTestItem,
+) {
+    private val deleteItem
+        get() = testItem.deleteItem
+
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+    }
+
+    @get:Rule
+    val screenshotRule =
+        defaultCrossLibraryScreenshotTestRule(config = deleteItem.viewConfig)
+
+    @UnhappyPath
     @Test
     fun snapDialog() {
         val context = screenshotRule.context

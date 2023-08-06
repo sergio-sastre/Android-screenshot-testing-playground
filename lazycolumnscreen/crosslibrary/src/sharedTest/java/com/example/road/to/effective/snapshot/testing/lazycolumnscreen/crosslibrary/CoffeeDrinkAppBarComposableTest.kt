@@ -13,7 +13,7 @@ import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
-import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
+import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
 import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshotTestRunner
 
 /**
@@ -40,7 +40,7 @@ class CoffeeDrinkAppBarHappyPathTest {
     @get:Rule
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(
-            config = ScreenshotConfig(
+            config = ScreenshotConfigForComposable(
                 locale = "en",
                 uiMode = UiMode.DAY,
                 orientation = Orientation.PORTRAIT,
@@ -66,7 +66,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
     @get:Rule
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(
-            config = ScreenshotConfig(
+            config = ScreenshotConfigForComposable(
                 locale = "en",
                 uiMode = UiMode.NIGHT,
                 orientation = Orientation.LANDSCAPE,

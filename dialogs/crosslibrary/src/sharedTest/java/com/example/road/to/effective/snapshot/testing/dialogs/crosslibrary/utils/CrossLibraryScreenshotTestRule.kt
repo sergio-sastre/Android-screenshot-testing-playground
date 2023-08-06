@@ -1,12 +1,14 @@
 package com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils
 
 import androidx.test.platform.app.InstrumentationRegistry.*
+import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.androidHome
 
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.BuildConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
+import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.Environment
 import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.sharedtest.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.sharedtest.roborazzi.wrapper.screen.DeviceScreen
@@ -79,6 +81,10 @@ class CrossLibraryScreenshotTestRule(
             PaparazziConfig(
                 deviceConfig = DeviceConfig.NEXUS_4,
                 renderingMode = RenderingMode.SHRINK,
+                environment = Environment(
+                    platformDir = "${androidHome()}/platforms/android-33",
+                    compileSdkVersion = 33,
+                )
             )
         ).configure(
             RoborazziConfig(

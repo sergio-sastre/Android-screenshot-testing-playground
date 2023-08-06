@@ -6,16 +6,9 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
 
-enum class DialogWidth(val widthInPx: Int?) {
-    NARROW(800),
-    NORMAL(1_200),
-    WIDE(1_600),
-}
-
 data class DeleteDialogTestItem(
     val viewConfig: ScreenshotConfigForView = ScreenshotConfigForView(),
     val bulletTexts: List<Int>,
-    val dialogWidth: DialogWidth,
 )
 
 private fun repeatedItem(timesRepeated: Int, @StringRes resource: Int): List<Int> =
@@ -29,31 +22,31 @@ fun itemArray(context: Context, @StringRes resources: List<Int>): Array<String> 
 enum class HappyPathTestItem(val deleteItem: DeleteDialogTestItem) {
     NORMAL(
         DeleteDialogTestItem(
+            viewConfig = ScreenshotConfigForView(theme = "Theme.RoadToEffectiveSnapshotTesting"),
             bulletTexts = listOf(R.string.largest, R.string.middle, R.string.shortest),
-            dialogWidth = DialogWidth.NORMAL,
         )
     ),
 }
 
 enum class UnhappyPathTestItem(val deleteItem: DeleteDialogTestItem) {
-    SPACIOUS_NIGHT(
+    SMALL_NIGHT(
         DeleteDialogTestItem(
             viewConfig = ScreenshotConfigForView(
                 fontSize = FontSize.SMALL,
                 uiMode = UiMode.NIGHT,
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
             bulletTexts = listOf(R.string.shortest),
-            dialogWidth = DialogWidth.WIDE,
         ),
     ),
-    SUFFOCATED_NIGHT(
+    HUGE_NIGHT(
         DeleteDialogTestItem(
             viewConfig = ScreenshotConfigForView(
                 fontSize = FontSize.HUGE,
                 uiMode = UiMode.NIGHT,
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
             bulletTexts = repeatedItem(7, R.string.largest),
-            dialogWidth = DialogWidth.NARROW,
         ),
     ),
 }
