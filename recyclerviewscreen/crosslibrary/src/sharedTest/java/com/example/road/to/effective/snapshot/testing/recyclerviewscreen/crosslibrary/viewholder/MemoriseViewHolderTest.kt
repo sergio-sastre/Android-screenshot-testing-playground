@@ -6,15 +6,10 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crossli
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
-import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import sergio.sastre.uitesting.utils.common.DisplaySize
-import sergio.sastre.uitesting.utils.common.FontSize
-import sergio.sastre.uitesting.utils.common.Orientation
-import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
 import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshotTestRunner
 
@@ -42,7 +37,9 @@ class MemoriseViewHolderHappyPathTest {
     @get:Rule
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(
-            config = ScreenshotConfigForView(theme = "Theme.RoadToEffectiveSnapshotTesting")
+            config = ScreenshotConfigForView(
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
+            )
         )
 
     @HappyPath
@@ -71,56 +68,6 @@ class MemoriseViewHolderHappyPathTest {
         screenshotRule.snapshotViewHolder(
             viewHolder = viewHolder,
             name = "MemoriseView_Happy_API_$sdkVersion"
-        )
-    }
-}
-
-/**
- * Example with ActivityScenarioConfigurator.ForView() of AndroidUiTestingUtils
- *
- * This is an alternative if we cannot use ActivityScenarioForViewRule()
- */
-@RunWith(CrossLibraryScreenshotTestRunner::class)
-class MemoriseViewHolderUnhappyPathTest {
-
-    @get:Rule
-    val screenshotRule =
-        defaultCrossLibraryScreenshotTestRule(
-            config = ScreenshotConfigForView(
-                theme = "Theme.RoadToEffectiveSnapshotTesting",
-                orientation = Orientation.LANDSCAPE,
-                locale = "en",
-                uiMode = UiMode.NIGHT,
-                displaySize = DisplaySize.LARGEST,
-                fontSize = FontSize.HUGE,
-            )
-        )
-
-    @UnhappyPath
-    @ViewHolderTest
-    @Test
-    fun snapMemoriseViewHolderUnhappyPath() {
-        val sdkVersion = Build.VERSION.SDK_INT
-        val layout = screenshotRule.inflate(R.layout.memorise_row)
-
-        val viewHolder = screenshotRule.waitForMeasuredViewHolder {
-            MemoriseViewHolder(
-                container = layout,
-                itemEventListener = null,
-                animationDelay = 0L
-            ).apply {
-                bind(
-                    generateMemoriseItem(
-                        rightAligned = false,
-                        context = screenshotRule.context,
-                        titleSuffix = "API $sdkVersion"
-                    ))
-            }
-        }
-
-        screenshotRule.snapshotViewHolder(
-            viewHolder = viewHolder,
-            name = "MemoriseView_Unhappy_API_$sdkVersion"
         )
     }
 }

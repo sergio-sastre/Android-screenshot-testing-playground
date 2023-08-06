@@ -8,7 +8,6 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crossli
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
-import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.sharedtest.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.sharedtest.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
@@ -79,6 +78,7 @@ fun defaultCrossLibraryScreenshotTestRule(
         ).configure(
             PaparazziConfig(
                 deviceConfig = DeviceConfig.NEXUS_4,
+                snapshotViewOffsetMillis = 3_000L,
             )
         ).configure(
             RoborazziConfig(

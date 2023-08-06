@@ -80,7 +80,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
         TrainingTestItem(
             viewConfig = ScreenshotConfigForView(
                 locale = "sr-Latn-RS",
-                theme = "Theme_Custom",
+                theme = "Theme.Custom",
             ),
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
@@ -89,7 +89,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
         TrainingTestItem(
             viewConfig = ScreenshotConfigForView(
                 locale = "sr-Cyrl-RS",
-                theme = "Theme_Custom",
+                theme = "Theme.Custom",
                 uiMode = UiMode.NIGHT,
             ),
             trainingItem = wordsInSomeLangsTrainingItem,
