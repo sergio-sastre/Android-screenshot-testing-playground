@@ -63,9 +63,9 @@ class CrossLibraryScreenshotTestRule(
         )
 }
 
- fun defaultCrossLibraryScreenshotTestRule(
-     config: ScreenshotConfigForView,
- ): ScreenshotTestRuleForView =
+fun defaultCrossLibraryScreenshotTestRule(
+    config: ScreenshotConfigForView,
+): ScreenshotTestRuleForView =
     CrossLibraryScreenshotTestRule(config)
         // Optional: configure for the libraries you use
         .configure(

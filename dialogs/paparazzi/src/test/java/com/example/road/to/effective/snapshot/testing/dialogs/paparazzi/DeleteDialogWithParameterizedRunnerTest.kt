@@ -46,7 +46,7 @@ class DeleteDialogParameterizedHappyPathTest(
         // Needed to avoid crashes due to compileSdk 34
         environment = detectEnvironment().copy(
             platformDir = "${androidHome()}/platforms/android-33",
-            compileSdkVersion = 33
+            compileSdkVersion = 33,
         ),
     )
 

@@ -62,7 +62,7 @@ class DeleteDialogParameterizedHappyPathTest(
 
         screenshotRule.snapshotDialog(
             dialog = dialog,
-            name = "CoffeeDrinkListComposable_${testItem.name}_Parameterized_API_$sdkVersion"
+            name = "DeleteDialog_${testItem.name}_Parameterized_API_$sdkVersion"
         )
     }
 }
@@ -100,7 +100,7 @@ class DeleteDialogParameterizedUnhappyPathTest(
 
         screenshotRule.snapshotDialog(
             dialog = dialog,
-            name = "CoffeeDrinkListComposable_${testItem.name}_Parameterized_API_$sdkVersion"
+            name = "DeleteDialog_${testItem.name}_Parameterized_API_$sdkVersion"
         )
     }
 }
