@@ -1,28 +1,22 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.viewholder.parameterized
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crosslibrary.viewholder.parameterized
 
-import com.android.resources.NightMode
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.PhoneOrientation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
-
-data class DeviceConfig(
-    val nightMode: NightMode = NightMode.NOTNIGHT,
-    val fontScale: Float = 1.0f,
-    val theme: String = "Theme.RoadToEffectiveSnapshotTesting",
-    val locale: String = "en",
-    val orientation: PhoneOrientation = PhoneOrientation.PORTRAIT
-)
+import sergio.sastre.uitesting.utils.common.FontSize
+import sergio.sastre.uitesting.utils.common.Orientation
+import sergio.sastre.uitesting.utils.common.UiMode
+import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
 
 data class TrainingTestItem(
-    val deviceConfig: DeviceConfig,
+    val viewConfig: ScreenshotConfigForView,
     val trainingItem: TrainingItem = TrainingItem(
         trainingByLang = mapOf(),
         activeLangs = emptySet()
     )
 )
 
-private fun translationsPerLang(count: Int) =
+private fun translationsPerLang(count: Int): Map<Language, List<Translation>> =
     Language.values().associateWith { translations(count) }
 
 private fun translations(amount: Int): List<Translation> {
@@ -53,17 +47,19 @@ private val wordsInSomeLangsTrainingItem = TrainingItem(
 )
 
 enum class HappyPathTestItem(val item: TrainingTestItem) {
-    HAPPY_EN_WITHOUT_WORDS(
+    WITHOUT_WORDS(
         TrainingTestItem(
-            deviceConfig = DeviceConfig(
+            viewConfig = ScreenshotConfigForView(
                 locale = "en",
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
         ),
     ),
-    HAPPY_EN_WITH_WORDS(
+    WITH_WORDS(
         TrainingTestItem(
-            deviceConfig = DeviceConfig(
+            viewConfig = ScreenshotConfigForView(
                 locale = "en",
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
@@ -71,59 +67,53 @@ enum class HappyPathTestItem(val item: TrainingTestItem) {
 }
 
 enum class UnhappyPathTestItem(val item: TrainingTestItem) {
-    AR_WITH_WORDS(
+    AR_WITH_WORDS_IN_SOME_LANGS(
         TrainingTestItem(
-            deviceConfig = DeviceConfig(
+            viewConfig = ScreenshotConfigForView(
                 locale = "ar",
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
     CUSTOM_THEME_DAY_SR_LATIN_WITH_WORDS(
         TrainingTestItem(
-            deviceConfig = DeviceConfig(
-                locale = "b+sr+Latn",
+            viewConfig = ScreenshotConfigForView(
+                locale = "sr-Latn-RS",
                 theme = "Theme.Custom",
             ),
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    CUSTOM_THEME_NIGHT_SR_CYRYL_WITH_WORDS(
+    CUSTOM_THEME_NIGHT_SR_CYRYL_CUSTOM_WITH_WORDS(
         TrainingTestItem(
-            deviceConfig = DeviceConfig(
-                locale = "b+sr+Cyrl",
+            viewConfig = ScreenshotConfigForView(
+                locale = "sr-Cyrl-RS",
                 theme = "Theme.Custom",
-                nightMode = NightMode.NIGHT,
+                uiMode = UiMode.NIGHT,
             ),
             trainingItem = wordsInSomeLangsTrainingItem,
-        ),
-    ),
-    WITH_1M_WORDS_IN_ALL_LANGS(
-        TrainingTestItem(
-            deviceConfig = DeviceConfig(
-                locale = "en",
-            ),
-            trainingItem = oneMillionWordsTrainingItem,
         ),
     ),
     HUGE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
-            deviceConfig = DeviceConfig(
+            viewConfig = ScreenshotConfigForView(
                 locale = "en",
-                fontScale = 1.3f,
+                fontSize = FontSize.HUGE,
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
             trainingItem = oneMillionWordsTrainingItem,
         ),
     ),
     NIGHT_LANDSCAPE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
-            deviceConfig = DeviceConfig(
+            viewConfig = ScreenshotConfigForView(
                 locale = "en",
-                orientation = PhoneOrientation.LANDSCAPE,
-                nightMode = NightMode.NIGHT,
+                orientation = Orientation.LANDSCAPE,
+                uiMode = UiMode.NIGHT,
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
             trainingItem = oneMillionWordsTrainingItem,
         ),
     ),
 }
-
