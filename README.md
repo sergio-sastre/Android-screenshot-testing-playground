@@ -11,7 +11,7 @@ part of blog posts</br>
 
 ![snapshotVsUiTests](https://user-images.githubusercontent.com/6097181/144911921-bae6182b-dae7-4f59-9dba-c88c9052b9b7.gif)
 
-A sample repo to introduce screenshot testing in Android, for Composables as well as for Android Views. It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
+A sample repo to introduce screenshot testing in Android.<br/> It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 > **Warning**</br>
 > It is configured with AGP 8.x, so it requires Android Studio Flamingo or higher!
@@ -36,12 +36,12 @@ Emerge automatically generates and diffs snapshots on your behalf, eliminating c
 
 
 # Introduction
-This repo showcases how to snapshot test Dialogs, ViewHolders, Activities, Fragments and **Jetpack Compose**!.
+This repo showcases how to snapshot test Dialogs, ViewHolders, RecyclerViews, Activities, Fragments and **Jetpack Compose**!<br/>
 And even better: It is ready for you to add your own examples and try screenshot testing with many libraries on your own!
 
 In order to help find the desired examples, the app is modularized accordingly:
 1. `:dialogs`: Showcases how to screenshot test dialogs created with DialogBuilder from the android View system. Examples for Compose dialogs will be added as well
-2. `:recyclerviewscreen`: Contains screenshot tests for Activities, Fragments, ViewHolders and RecyclerViews
+2. `:recyclerviewscreen`: Contains screenshot tests for Activities, Fragments, ViewHolders and RecyclerViews.
 3. `:lazycolumnscreen`: Includes Jetpack Compose screenshot tests examples, as well as examples for Activities & Fragments.
 
 Each of these modules contains submodules. Each submodule name corresponds to a screenshot testing library. You'll find screenshot test examples with that library in it. 
