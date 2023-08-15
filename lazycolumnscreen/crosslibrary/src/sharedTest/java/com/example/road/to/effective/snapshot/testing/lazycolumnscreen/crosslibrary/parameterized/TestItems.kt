@@ -4,14 +4,14 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDri
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import sergio.sastre.uitesting.utils.common.DisplaySize
 
-import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
+import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
 
-enum class HappyPathTestItem(val item: ScreenshotConfig) {
+enum class HappyPathTestItem(val item: ScreenshotConfigForComposable) {
     PORTRAIT(
-        ScreenshotConfig(
+        ScreenshotConfigForComposable(
             locale = "en",
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
@@ -21,9 +21,9 @@ enum class HappyPathTestItem(val item: ScreenshotConfig) {
     )
 }
 
-enum class UnhappyPathTestItem(val item: ScreenshotConfig) {
+enum class UnhappyPathTestItem(val item: ScreenshotConfigForComposable) {
     LANDSCAPE_NIGHT(
-        ScreenshotConfig(
+        ScreenshotConfigForComposable(
             locale = "en",
             orientation = Orientation.LANDSCAPE,
             uiMode = UiMode.NIGHT,
@@ -32,7 +32,7 @@ enum class UnhappyPathTestItem(val item: ScreenshotConfig) {
         ),
     ),
     HUGE(
-        ScreenshotConfig(
+        ScreenshotConfigForComposable(
             locale = "en",
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
@@ -41,7 +41,7 @@ enum class UnhappyPathTestItem(val item: ScreenshotConfig) {
         ),
     ),
     SMALL(
-        ScreenshotConfig(
+        ScreenshotConfigForComposable(
             locale = "en",
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,

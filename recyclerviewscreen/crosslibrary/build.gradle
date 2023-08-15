@@ -1,0 +1,148 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+ext {
+    SCREENSHOT_LIBRARY = "screenshotLibrary"
+
+    SHOT = "shot"
+    DROPSHOTS = "dropshots"
+    PAPARAZZI = "paparazzi"
+    ROBORAZZI = "roborazzi"
+}
+
+Boolean screenshotLibrary(String libName) {
+    return project.hasProperty(SCREENSHOT_LIBRARY) &&
+            project.property(SCREENSHOT_LIBRARY) == libName
+}
+
+String screenshotLibraryName() {
+    if (project.hasProperty(SCREENSHOT_LIBRARY)) {
+        return project.property(SCREENSHOT_LIBRARY)
+    } else {
+        return ""
+    }
+}
+
+// Apply screenshot library plugins conditionally:
+// Shot plugin does not work properly if Dropshots plugin is also applied.
+// Thus, apply screenshot library plugins based on the argument passed via command line
+if (screenshotLibrary(SHOT)) {
+    apply plugin: 'shot'
+    shot {
+        tolerance = 0.15 // Tests pass if less than 0,15% of the pixels differ
+        applicationId = "com.example.road.to.effective.snapshot.testing"
+    }
+}
+
+if (screenshotLibrary(DROPSHOTS)) {
+    apply plugin: 'com.dropbox.dropshots'
+}
+
+if (screenshotLibrary(PAPARAZZI)) {
+    apply plugin: 'app.cash.paparazzi'
+}
+
+if (screenshotLibrary(ROBORAZZI)) {
+    apply plugin: 'io.github.takahirom.roborazzi'
+}
+
+
+android {
+    namespace 'com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crosslibrary'
+    compileSdk 34
+
+    defaultConfig {
+        testApplicationId "com.example.road.to.effective.snapshot.testing"
+        minSdk 23
+        targetSdk 34
+
+        // make gradle constants available in Tests via BuildConfig to make changes consistent
+        // among build and test files
+        buildConfigField "String", "SCREENSHOT_LIBRARY", "\"${SCREENSHOT_LIBRARY}\""
+        buildConfigField "String", "SHOT", "\"${SHOT}\""
+        buildConfigField "String", "DROPSHOTS", "\"${DROPSHOTS}\""
+        buildConfigField "String", "PAPARAZZI", "\"${PAPARAZZI}\""
+        buildConfigField "String", "ROBORAZZI", "\"${ROBORAZZI}\""
+
+        // make gradle property available in Android Tests via InstrumentationRegistry.getArguments()
+        testInstrumentationRunnerArguments = [(SCREENSHOT_LIBRARY): screenshotLibraryName()]
+
+        if (screenshotLibrary(SHOT)) {
+            testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
+        } else {
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    testOptions {
+        // Not reliable on every API. Seems to work only from API 25 on.
+        // Better to disable through developer settings
+        animationsDisabled = true
+
+        unitTests {
+            // Avoid loading class clashes with Paparazzi
+            if (screenshotLibrary(ROBORAZZI)) {
+                includeAndroidResources = true
+            }
+            all {
+                // Do not run out of memory when running Roborazzi tests for different api levels
+                jvmArgs '-Xmx1g'
+
+                // make gradle property available in unit tests via System.getProperty
+                systemProperty SCREENSHOT_LIBRARY, screenshotLibraryName()
+
+                if (screenshotLibrary(ROBORAZZI)) {
+                    systemProperty 'robolectric.graphicsMode', 'NATIVE'
+                }
+            }
+        }
+    }
+
+    // required for shared tests in this module: on-device + JVM screenshot tests
+    sourceSets {
+        test {
+            java.srcDir 'src/sharedTest/java'
+        }
+        androidTest {
+            java.srcDir 'src/sharedTest/java'
+        }
+    }
+}
+
+dependencies {
+    debugImplementation project(path: ':recyclerviewscreen')
+    implementation project(':testannotations')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-rc1')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-rc1')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-rc1')
+
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0-rc1')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.0.0-rc1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.0.0-rc1')
+
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-rc1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.0.0-rc1')
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+}

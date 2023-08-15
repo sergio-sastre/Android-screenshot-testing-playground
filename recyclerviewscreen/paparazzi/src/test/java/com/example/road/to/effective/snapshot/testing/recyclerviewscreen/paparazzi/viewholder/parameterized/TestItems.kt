@@ -83,7 +83,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "b+sr+Latn",
-                theme = "Theme_Custom",
+                theme = "Theme.Custom",
             ),
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
@@ -92,7 +92,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
         TrainingTestItem(
             deviceConfig = DeviceConfig(
                 locale = "b+sr+Cyrl",
-                theme = "Theme_Custom",
+                theme = "Theme.Custom",
                 nightMode = NightMode.NIGHT,
             ),
             trainingItem = wordsInSomeLangsTrainingItem,

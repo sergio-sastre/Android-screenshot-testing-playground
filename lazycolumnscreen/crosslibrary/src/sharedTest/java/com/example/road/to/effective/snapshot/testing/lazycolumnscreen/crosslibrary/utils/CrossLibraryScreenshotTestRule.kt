@@ -5,20 +5,20 @@ import androidx.test.platform.app.InstrumentationRegistry.*
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.BuildConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
-import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
-import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
-import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.RenderingMode
-import sergio.sastre.uitesting.sharedtest.roborazzi.RoborazziConfig
-import sergio.sastre.uitesting.sharedtest.roborazzi.wrapper.screen.DeviceScreen
+import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
+import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
+import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
+import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
-import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfig
+import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
 import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleForComposable
-import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTestRuleForComposable
+import sergio.sastre.uitesting.utils.crosslibrary.testrules.implementations.shared.SharedScreenshotLibraryTestRuleForComposable
 import java.io.File
 
 /**
- * A [SharedScreenshotTestRuleForComposable] that decides which library runs the instrumented screenshot tests
+ * A [SharedScreenshotLibraryTestRuleForComposable] that decides which library runs the instrumented screenshot tests
  * based on the -PscreenshotLibrary argument passed via command line.
  *
  * It required some extra configuration in the gradle file
@@ -26,11 +26,11 @@ import java.io.File
  */
 
 class CrossLibraryScreenshotTestRule(
-    override val config: ScreenshotConfig,
-) : SharedScreenshotTestRuleForComposable(config) {
+    override val config: ScreenshotConfigForComposable,
+) : SharedScreenshotLibraryTestRuleForComposable(config) {
 
-    override fun getInstrumentedScreenshotTestRule(
-        config: ScreenshotConfig,
+    override fun getInstrumentedScreenshotLibraryTestRule(
+        config: ScreenshotConfigForComposable,
     ): ScreenshotTestRuleForComposable =
         when (instrumentationScreenshotLibraryName) {
             BuildConfig.SHOT -> shotScreenshotTestRule
@@ -38,8 +38,8 @@ class CrossLibraryScreenshotTestRule(
             else -> throw ScreenshotLibraryArgumentMissingException()
         }
 
-    override fun getJvmScreenshotTestRule(
-        config: ScreenshotConfig,
+    override fun getJvmScreenshotLibraryTestRule(
+        config: ScreenshotConfigForComposable,
     ): ScreenshotTestRuleForComposable =
         when (jvmScreenshotLibraryName) {
             BuildConfig.PAPARAZZI -> paparazziScreenshotTestRule
@@ -61,7 +61,7 @@ class CrossLibraryScreenshotTestRule(
 }
 
  fun defaultCrossLibraryScreenshotTestRule(
-     config: ScreenshotConfig,
+     config: ScreenshotConfigForComposable,
  ): ScreenshotTestRuleForComposable =
     CrossLibraryScreenshotTestRule(config)
         // Optional: configure for the libraries you use
@@ -81,8 +81,8 @@ class CrossLibraryScreenshotTestRule(
             )
         ).configure(
             RoborazziConfig(
-                filePath = File(userTestFilePath()).path,
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
+                filePath = File(userTestFilePath()).path,
             )
         )
 
