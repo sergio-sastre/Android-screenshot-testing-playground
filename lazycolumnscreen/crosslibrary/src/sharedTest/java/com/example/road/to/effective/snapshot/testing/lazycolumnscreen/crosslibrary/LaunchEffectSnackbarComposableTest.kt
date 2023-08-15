@@ -8,8 +8,8 @@ import com.example.road.to.effective.snapshot.testing.testannotations.Composable
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
-import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.RenderingMode
+import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
+import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
 import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshotTestRunner
 

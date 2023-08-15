@@ -6,20 +6,19 @@ import androidx.test.platform.app.InstrumentationRegistry.*
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crosslibrary.BuildConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
-import sergio.sastre.uitesting.sharedtest.paparazzi.PaparazziConfig
-import sergio.sastre.uitesting.sharedtest.paparazzi.wrapper.DeviceConfig
-import sergio.sastre.uitesting.sharedtest.roborazzi.RoborazziConfig
-import sergio.sastre.uitesting.sharedtest.roborazzi.wrapper.screen.DeviceScreen
+import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
+import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
+import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
 import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleForView
-import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTestRuleForComposable
-import sergio.sastre.uitesting.utils.crosslibrary.testrules.SharedScreenshotTestRuleForView
+import sergio.sastre.uitesting.utils.crosslibrary.testrules.implementations.shared.SharedScreenshotLibraryTestRuleForView
 import java.io.File
 
 /**
- * A [SharedScreenshotTestRuleForComposable] that decides which library runs the instrumented screenshot tests
+ * A [SharedScreenshotLibraryTestRuleForView] that decides which library runs the instrumented screenshot tests
  * based on the -PscreenshotLibrary argument passed via command line.
  *
  * It required some extra configuration in the gradle file
@@ -28,9 +27,9 @@ import java.io.File
 
 class CrossLibraryScreenshotTestRule(
     override val config: ScreenshotConfigForView,
-) : SharedScreenshotTestRuleForView(config) {
+) : SharedScreenshotLibraryTestRuleForView(config) {
 
-    override fun getInstrumentedScreenshotTestRule(
+    override fun getInstrumentedScreenshotLibraryTestRule(
         config: ScreenshotConfigForView,
     ): ScreenshotTestRuleForView =
         when (instrumentationScreenshotLibraryName) {
@@ -39,7 +38,7 @@ class CrossLibraryScreenshotTestRule(
             else -> throw ScreenshotLibraryArgumentMissingException()
         }
 
-    override fun getJvmScreenshotTestRule(
+    override fun getJvmScreenshotLibraryTestRule(
         config: ScreenshotConfigForView,
     ): ScreenshotTestRuleForView =
         when (jvmScreenshotLibraryName) {

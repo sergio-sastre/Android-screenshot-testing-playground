@@ -129,34 +129,18 @@ dependencies {
     debugImplementation project(path: ':dialogs')
     implementation project(':testannotations')
 
-    debugImplementation('com.github.sergio-sastre:utils:2.0.0-beta04')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-rc1')
 
-    debugImplementation('com.github.sergio-sastre:shot:2.0.0-beta04')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-rc1')
 
-    debugImplementation('com.github.sergio-sastre:dropshots:2.0.0-beta04')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-rc1')
 
-    testImplementation('com.github.sergio-sastre:robolectric:2.0.0-beta04')
-    testImplementation('com.github.sergio-sastre:roborazzi:2.0.0-beta04')
-    debugImplementation('com.github.sergio-sastre:sharedtest-roborazzi:2.0.0-beta04')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0-rc1')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.0.0-rc1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.0.0-rc1')
 
-    testImplementation('com.github.sergio-sastre:paparazzi:2.0.0-beta04')
-    debugImplementation('com.github.sergio-sastre:sharedtest-paparazzi:2.0.0-beta04')
-
-    /*
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-beta04')
-
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0-beta04')
-
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.0-beta04')
-
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0-beta04')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.0.0-beta04')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-roborazzi:2.0.0-beta04')
-
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-beta04')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:sharedtest-paparazzi:2.0.0-beta04')
-
-     */
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.0-rc1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.0.0-rc1')
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
