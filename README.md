@@ -11,7 +11,7 @@ part of blog posts</br>
 
 ![snapshotVsUiTests](https://user-images.githubusercontent.com/6097181/144911921-bae6182b-dae7-4f59-9dba-c88c9052b9b7.gif)
 
-A sample repo to introduce screenshot testing in Android. It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
+A sample repo to introduce screenshot testing in Android, for Composables as well as for Android Views. It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 > **Warning**</br>
 > It is configured with AGP 8.x, so it requires Android Studio Flamingo or higher!
@@ -39,14 +39,14 @@ Emerge automatically generates and diffs snapshots on your behalf, eliminating c
 This repo showcases how to snapshot test Dialogs, ViewHolders, Activities, Fragments and **Jetpack Compose**!.
 And even better: It is ready for you to add your own examples and try screenshot testing with many libraries on your own!
 
-In order to help find the desire examples, the app is modularized accordingly:
+In order to help find the desired examples, the app is modularized accordingly:
 1. `:dialogs`: Showcases how to screenshot test dialogs created with DialogBuilder from the android View system. Examples for Compose dialogs will be added as well
-2. `:recyclerviewscreen`: Contains screenshot tests for Activities, Fragments and ViewHolders
+2. `:recyclerviewscreen`: Contains screenshot tests for Activities, Fragments, ViewHolders and RecyclerViews
 3. `:lazycolumnscreen`: Includes Jetpack Compose screenshot tests examples, as well as examples for Activities & Fragments.
 
 Each of these modules contains submodules. Each submodule name corresponds to a screenshot testing library. You'll find screenshot test examples with that library in it. 
 
-As of July 2023, there are many screenshot testing libraries that facilitate automated screenshot testing, namely:
+As of August 2023, there are many screenshot testing libraries that facilitate automated screenshot testing, namely:
 1. Cashapp [Paparazzi](https://github.com/cashapp/paparazzi)
 2. Dropbox [Dropshots](https://github.com/dropbox/dropshots)
 3. [Shot from pedrovgs](https://github.com/pedrovgs/Shot)
@@ -65,14 +65,14 @@ In order to do that, it contains the same/similar examples but written with diff
 4. [Roborazzi](https://github.com/takahirom/roborazzi)
 
 **BONUS**:
-It also contains an example of a **Cross-Library Screenshot Tests**: *the very same screenshot test running with multiple libraries, namely: Paparazzi, Roborazzi, Shot & Dropshots*.
-For that it uses [Android UI Testing Utils 2.0.0-beta04](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
+It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests running with multiple libraries, namely: Paparazzi, Roborazzi, Shot & Dropshots*.
+For that it uses [Android UI Testing Utils 2.0.0-rc1](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
 
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
 <sup>1</sup> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
 
-<sup>2</sup> Paparazzi does not support screenshot tests 
+<sup>2</sup> Paparazzi does not support screenshot tests... 
    1. For Activities and Fragments, due to clashes with Robolectric, which is required by Activity/FragmentScenarios to run on the JVM.
    2. With Pseudolocales, due to layoutlib.
 
@@ -81,6 +81,7 @@ More screenshot test examples, as well as examples with other libraries will be 
 
 - [Before you start...](#before-you-start)
     - [The need for screenshot testing](#the-need-for-screenshot-testing)
+    - [Roborazzi tests on Windows](#roborazzi-tests-on-windows)
     - [Emulators](#emulators)
       - [Animations](#animations)
 - [Comparing screenshot testing libraries](#comparing-screenshot-testing-libraries)
@@ -102,12 +103,18 @@ More screenshot test examples, as well as examples with other libraries will be 
 - [Attribution of icons in the app](#attribution-of-icons-in-the-app)
 
 ## Before you start...
-### The need for screenshot testing 
+### The need for screenshot testing
 I strongly recommend to have a look at my blog series on [snapshot testing](https://sergiosastre.hashnode.dev/an-introduction-to-snapshot-testing-on-android-in-2021)
 
 If reading is not your thing, you can always watch my 2021 Droidcon tech-talks on the matter:
 1. [Droidcon Berlin 2021](https://www.droidcon.com/2021/11/10/an-introduction-to-effective-snapshot-testing-on-android/)
 2. [Droidcon London 2021](https://www.droidcon.com/2021/11/17/an-introduction-to-effective-snapshot-testing-on-android-2/)
+
+### Roborazzi tests on Windows
+
+If you are running screenshot tests on a Windows machine, you must know that Roborazzi tests will fail.
+That's because it is built based on Robolectric Native Graphics (RNG), which does not support Windows currently.
+This issues has already been reported [here](https://github.com/robolectric/robolectric/issues/8312).
 
 ### Emulators
 
@@ -173,11 +180,11 @@ You can find such examples in this repo, under the `bitmap` folder under any `:d
 
 **Screenshot testing Activites and Fragments**
 
-ActivityScenarios and FragmentScenarios are compatible with Robolectric, which mocks the Android framework to run instrumented tests on the JVM.
+ActivityScenarios and FragmentScenarios are compatible with Robolectric, which stubs the Android framework to run instrumented tests on the JVM.
 Therefore, we could also use Robolectric to run Activity/Fragment screenshot tests on the JVM with Paparazzi, theoretically.
-However, it crashes in doing so with some Byte Buddy exception, likely due to some conflicts with Robolectric.
+However, it crashes in doing so with some Byte Buddy exception at runtime, likely due to some clashes with Robolectric.
 
-Roborazzi, on the other hand, is built on top of Robolectric, so ActivityScenarios and FragmentScenarios are also compatible with it.
+Roborazzi, on the other hand, is built on top of Robolectric, so ActivityScenarios and FragmentScenarios are compatible with it.
 
 This means, only on-device screenshot testing frameworks & Roborazzi can be used for snapshoting Activites/Fragments. Only Paparazzi cannot.
 
@@ -187,16 +194,16 @@ Paparazzi relies on layoutlib to record screenshots. That's a private library us
 This comes with some limitations.
 For example,
 1. [Composables using NavHost cannot be rendered](https://github.com/cashapp/paparazzi/issues/635) in the @Preview, and therefore, Paparazzi cannot either, for now.
-2. Renders incorrectly UI elements that use `View.animate()` or `ObjectAnimator.ofPropertyValuesHolder()`. You can notice them when running
+2. Renders incorrectly UI elements that use multiple `View.animate()` or `ObjectAnimator.ofPropertyValuesHolder()`. You can check it out yourself by running
 `./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug` in this repo. For instance:
 
 | View.animate()                                                   |                View.animate() + ObjectAnimator                |
 |------------------------------------------------------------------|:-------------------------------------------------------------:|
 | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678715-c7356e7b-7d4c-413a-942f-76e42e445d0b.png"> | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678760-b84bb060-03fb-4050-b283-ab2e28415df7.png"> |
 
-3. Doesn't support **Pseudolocales**. We can use pseudolocales to detect layout alignment issues without the need to render the screen in several languages. If set while testing, such tests crash. You can read more in the [official android documentation](https://developer.android.com/guide/topics/resources/pseudolocales).
+3. Doesn't support **Pseudolocales**. We can use pseudolocales to detect layout alignment issues without the need to render the screen in all languages our app supports. If set while testing, such Paparazzi tests crash. You can read more about pseudolocales in the [official android documentation](https://developer.android.com/guide/topics/resources/pseudolocales).
 
-On the other hand, on-device screenshot testing has its own issues as well. Most of them happen due to the **hardware accelerated drawing model**. This happens for example, when running the same test on machines with different architectures<sup>1</sup> e.g. Macbook Pro with M1 chip vs. Intel x64. It might cause issues like:
+On the other hand, on-device screenshot testing has its own issues as well. Most of them happen due to the **hardware accelerated drawing model**. This happens for example, when running the same test on machines with different architectures<sup>1</sup> e.g. Macbook Pro with M1 chip vs. Intel x64. It might cause issues related to:
 1. Shadows & elevation
 2. Font smoothing & anti-aliasing
 3. Image decompression and rendering
@@ -216,7 +223,7 @@ Read more about hardware acceleration in the [official Android documentation](ht
 Unfortunately, any Android Gradle Plugin (a.k.a. AGP) or Compose update can make your working Paparazzi screenshot tests break... or fix those broken.
 For instance:
 1. When updating to Compose runtime 1.4.x: [this issue](https://github.com/cashapp/paparazzi/issues/641) & [the corresponding fix](https://github.com/cashapp/paparazzi/pull/650/files)
-2. Before updating AGP to that of Android Studio Dolphin:
+2. Before updating AGP to that required by Android Studio Dolphin:
 [Compose Dialog rendering issue](https://github.com/cashapp/paparazzi/issues/619)
 
 #### Summary: Pros and Cons
@@ -373,7 +380,7 @@ configurations! You can read more about how we can profit from it here:
 
 This can be achieved by using either `org.junit.runners.Parameterized`, `com.google.testing.junit.testparameterinjector.TestParameterInjector` or in case of Roborazzi via `org.robolectric.ParameterizedRobolectricTestRunner`, as you'll find in most examples in this repo.
 
-Dropshots & Shot do not offer the possibility to set such configurations (Paparazzi and Roborazzi do though). However, we can set the desired configurations for those libraries with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
+Dropshots & Shot do not offer the possibility to set such configurations; Paparazzi and Roborazzi (via Robolectric) do though. Nevertheless, we can set the desired configurations for those libraries with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
 
 > **Remark**
 > The Parameterized runner injects the parameter passed in the Test class constructor to every
