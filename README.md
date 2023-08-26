@@ -357,7 +357,7 @@ Since it configures 2 on-device & 2 JVM screenshot libraries, you need to pass t
    3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
 
-To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-beta04](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-rc1](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 
