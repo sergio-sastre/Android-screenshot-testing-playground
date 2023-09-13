@@ -6,6 +6,8 @@ part of blog posts</br>
 </a><a href="https://androidweekly.net/issues/issue-512">
 <img src="https://androidweekly.net/issues/issue-512/badge">
 </a>
+<img src="https://androidweekly.net/issues/issue-558/badge">
+</a>
 
 # Android screenshot testing playground </br>
 
@@ -66,7 +68,10 @@ In order to do that, it contains the same/similar examples but written with diff
 
 **BONUS**:
 It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests running with multiple libraries, namely: Paparazzi, Roborazzi, Shot & Dropshots*.
-For that it uses [Android UI Testing Utils 2.0.0-rc1](https://github.com/sergio-sastre/AndroidUiTestingUtils) 
+For that it uses [Android UI Testing Utils 2.0.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+
+You can read more about it in this blog post series:
+1. [A World Beyond Libraries: Cross-Library Screenshot tests on android](https://sergiosastre.hashnode.dev/a-world-beyond-libraries-cross-library-screenshot-tests-on-android)
 
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
@@ -194,11 +199,11 @@ Paparazzi relies on layoutlib to record screenshots. That's a private library us
 This comes with some limitations.
 For example,
 1. [Composables using NavHost cannot be rendered](https://github.com/cashapp/paparazzi/issues/635) in the @Preview, and therefore, Paparazzi cannot either, for now.
-2. Renders incorrectly UI elements that use multiple `View.animate()` or `ObjectAnimator.ofPropertyValuesHolder()`. You can check it out yourself by running
+2. Renders incorrectly UI elements that use multiple `View.animate()` and/or `ObjectAnimator.ofPropertyValuesHolder()` for animations. You can check it out yourself by running
 `./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug` in this repo. For instance:
 
-| View.animate()                                                   |                View.animate() + ObjectAnimator                |
-|------------------------------------------------------------------|:-------------------------------------------------------------:|
+| View.animate()                                                                                       |                View.animate() + ObjectAnimator                |
+|----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------:|
 | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678715-c7356e7b-7d4c-413a-942f-76e42e445d0b.png"> | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678760-b84bb060-03fb-4050-b283-ab2e28415df7.png"> |
 
 3. Doesn't support **Pseudolocales**. We can use pseudolocales to detect layout alignment issues without the need to render the screen in all languages our app supports. If set while testing, such Paparazzi tests crash. You can read more about pseudolocales in the [official android documentation](https://developer.android.com/guide/topics/resources/pseudolocales).
@@ -344,8 +349,13 @@ Then run the following gradle tasks depending on the module:
 > The path for the verification reports is right though.
 
 ### Cross-Library
-Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot & Dropshots. 
-Since it configures 2 on-device & 2 JVM screenshot libraries, you need to pass the library name via command line for its correct execution:
+Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot & Dropshots.</br>
+The most common scenario is to use 1 on-device (e.g. Shot, Dropshots) and 1 JVM (e.g. Paparazzi, Roborazzi) screenshot library.
+For that, check the corresponding submodules e.g. `:dropshots+paparazzi`, `:shot+roborazzi`, `:dropshots+roborazzi`</br>
+You would execute such tests as you would do for the corresponding library e.g. `./gradlew :lazycolumnscreen:dropshots+paparazzi:recordPaparazziDebug` would record with Paparazzi.</br>
+
+For examples containing 2+ on-device and/or 2+ JVM screenshot libraries, check the corresponding `:crosslibrary` modules.</br>
+Since they configure 2 on-device & 2 JVM screenshot libraries, you need to pass the library name via command line for its correct execution:
 1. **Record**:
     1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordPaparazziDebug -PscreenshotLibrary=paparazzi`
     2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi`
@@ -357,7 +367,7 @@ Since it configures 2 on-device & 2 JVM screenshot libraries, you need to pass t
    3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
 
-To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0-rc1](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 

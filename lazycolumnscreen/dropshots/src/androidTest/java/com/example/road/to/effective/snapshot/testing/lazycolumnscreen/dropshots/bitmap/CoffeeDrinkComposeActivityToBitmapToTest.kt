@@ -4,7 +4,6 @@ import androidx.core.view.drawToBitmap
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
 import org.junit.Test
@@ -47,9 +46,8 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 class CoffeeDrinkComposeActivityToBitmapToTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule
@@ -74,7 +72,8 @@ class CoffeeDrinkComposeActivityToBitmapToTest {
         val activityView = activityScenarioForActivityRule.activity.window.decorView
         dropshots.assertSnapshot(
             bitmap = activityView.drawToBitmapWithElevation(),
-            name = "CoffeeDrinkComposeActivity_BitmapWithElevation"
+            name = "CoffeeDrinkComposeActivity_BitmapWithElevation",
+            filePath = "bitmap",
         )
     }
 
@@ -84,7 +83,8 @@ class CoffeeDrinkComposeActivityToBitmapToTest {
         val activityView = activityScenarioForActivityRule.activity.window.decorView
         dropshots.assertSnapshot(
             bitmap = activityView.drawToBitmap(),
-            name = "CoffeeDrinkComposeActivity_BitmapWithoutElevation"
+            name = "CoffeeDrinkComposeActivity_BitmapWithoutElevation",
+            filePath = "bitmap",
         )
     }
 }

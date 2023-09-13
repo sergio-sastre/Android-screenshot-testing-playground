@@ -4,7 +4,6 @@ import androidx.core.os.bundleOf
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -36,9 +35,8 @@ import sergio.sastre.uitesting.utils.fragmentscenario.waitForFragment
 class CoffeeDrinksComposeFragmentHappyPathTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
@@ -59,7 +57,8 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
     fun snapFragment() {
         dropshots.assertSnapshot(
             view = fragmentScenarioConfiguratorRule.fragment.requireView(),
-            name = "CoffeeDrinksFragment_HappyPath"
+            name = "CoffeeDrinksFragment_HappyPath",
+            filePath = "fragment",
         )
     }
 }
@@ -70,9 +69,8 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
 class CoffeeDrinksComposeFragmentUnhappyPathTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @UnhappyPath
     @FragmentTest
@@ -93,6 +91,7 @@ class CoffeeDrinksComposeFragmentUnhappyPathTest {
         dropshots.assertSnapshot(
             view = fragmentScenario.waitForFragment().requireView(),
             name = "CoffeeDrinksFragment_UnhappyPath",
+            filePath = "fragment",
         )
 
         fragmentScenario.close()

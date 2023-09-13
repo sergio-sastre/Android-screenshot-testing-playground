@@ -3,7 +3,6 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshot
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -35,14 +34,12 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
 
 /**
  * Example with ActivityScenarioForActivityRule() of AndroidUiTestingUtils
- *
  */
 class CoffeeDrinkComposeActivityHappyPathTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule
@@ -66,7 +63,8 @@ class CoffeeDrinkComposeActivityHappyPathTest {
     fun snapActivity() {
         dropshots.assertSnapshot(
             activity = activityScenarioForActivityRule.activity,
-            name = "CoffeeDrinksComposeActivity_HappyPath"
+            name = "CoffeeDrinksComposeActivity_HappyPath",
+            filePath = "activity",
         )
     }
 }
@@ -80,9 +78,8 @@ class CoffeeDrinkComposeActivityHappyPathTest {
 class CoffeeDrinkComposeActivityUnhappyPathTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule
@@ -108,6 +105,7 @@ class CoffeeDrinkComposeActivityUnhappyPathTest {
         dropshots.assertSnapshot(
             activity = activityScenario.waitForActivity(),
             name = "CoffeeDrinksComposeActivity_Unhappy",
+            filePath = "activity",
         )
 
         activityScenario.close()

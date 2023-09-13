@@ -4,7 +4,6 @@ import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.ActionNotSupportedSnackbar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.SnackbarScaffold
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.setContent
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
@@ -25,9 +24,8 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposa
 class SnackbarComposableTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val activityScenarioForComposableRule = ActivityScenarioForComposableRule()
@@ -49,6 +47,7 @@ class SnackbarComposableTest {
         dropshots.assertSnapshot(
             view = activityScenarioForComposableRule.composeView,
             name = "ActionNotSupportedSnackbar",
+            filePath = "compose",
         )
     }
 }

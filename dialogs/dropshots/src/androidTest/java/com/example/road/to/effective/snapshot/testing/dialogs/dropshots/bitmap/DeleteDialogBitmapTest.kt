@@ -7,7 +7,6 @@ import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.R
 import com.example.road.to.effective.snapshot.testing.dialogs.dropshots.dialog.parameterized.itemArray
-import com.example.road.to.effective.snapshot.testing.dialogs.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
 import org.junit.Test
@@ -50,9 +49,8 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 class DeleteDialogBitmapTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val activityScenarioForViewRule =
@@ -89,6 +87,7 @@ class DeleteDialogBitmapTest {
         dropshots.assertSnapshot(
             bitmap = inflateDialog().drawToBitmapWithElevation(),
             name = "DeleteDialog_BitmapWithElevation",
+            filePath = "bitmap",
         )
     }
 
@@ -98,6 +97,7 @@ class DeleteDialogBitmapTest {
         dropshots.assertSnapshot(
             bitmap = inflateDialog().drawToBitmap(),
             name = "DeleteDialog_BitmapWithoutElevation",
+            filePath = "bitmap",
         )
     }
 }

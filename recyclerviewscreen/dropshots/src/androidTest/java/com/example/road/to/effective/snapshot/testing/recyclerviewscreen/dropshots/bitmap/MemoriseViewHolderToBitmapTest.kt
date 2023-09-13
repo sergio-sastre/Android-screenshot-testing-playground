@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.viewholder.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
@@ -50,9 +49,8 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 class MemoriseViewHolderToBitmapTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val activityScenarioForViewRule =
@@ -88,7 +86,8 @@ class MemoriseViewHolderToBitmapTest {
     fun snapViewHolderWithPixelCopy() {
         dropshots.assertSnapshot(
             bitmap = inflateViewHolder().drawToBitmapWithElevation(),
-            name = "MemoriseViewHolder_BitmapWithElevation"
+            name = "MemoriseViewHolder_BitmapWithElevation",
+            filePath = "bitmap",
         )
     }
 
@@ -97,7 +96,8 @@ class MemoriseViewHolderToBitmapTest {
     fun snapViewHolderWithCanvas() {
         dropshots.assertSnapshot(
             bitmap = inflateViewHolder().drawToBitmap(),
-            name = "MemoriseViewHolder_BitmapWithoutElevation"
+            name = "MemoriseViewHolder_BitmapWithoutElevation",
+            filePath = "bitmap",
         )
     }
 }

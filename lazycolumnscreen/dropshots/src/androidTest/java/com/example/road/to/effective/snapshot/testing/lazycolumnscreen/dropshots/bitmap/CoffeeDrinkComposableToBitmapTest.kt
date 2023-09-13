@@ -8,7 +8,6 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.compose.parameterized.coffeeDrink
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.setContent
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
 import org.junit.Test
@@ -52,9 +51,8 @@ import sergio.sastre.uitesting.utils.utils.waitForComposeView
 class CoffeeDrinkComposableToBitmapTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val activityScenarioForComposableRule =
@@ -83,7 +81,8 @@ class CoffeeDrinkComposableToBitmapTest {
     fun snapComposableWithPixelCopy() {
         dropshots.assertSnapshot(
             bitmap = inflateComposable().drawToBitmapWithElevation(),
-            name = "CoffeeDrinkListComposable_BitmapWithElevation"
+            name = "CoffeeDrinkListComposable_BitmapWithElevation",
+            filePath = "bitmap",
         )
     }
 
@@ -92,7 +91,8 @@ class CoffeeDrinkComposableToBitmapTest {
     fun snapComposableWithCanvas() {
         dropshots.assertSnapshot(
             bitmap = inflateComposable().drawToBitmap(),
-            name = "CoffeeDrinkListComposable_BitmapWithoutElevation"
+            name = "CoffeeDrinkListComposable_BitmapWithoutElevation",
+            filePath = "bitmap",
         )
     }
 }
