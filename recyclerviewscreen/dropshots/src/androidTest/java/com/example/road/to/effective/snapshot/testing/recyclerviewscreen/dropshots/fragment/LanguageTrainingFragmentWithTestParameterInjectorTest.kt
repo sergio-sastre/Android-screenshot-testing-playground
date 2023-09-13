@@ -3,7 +3,6 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
 import androidx.test.filters.SdkSuppress
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
@@ -42,9 +41,8 @@ class LanguageTrainingFragmentTestParameterHappyPathTest(
 ) {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
@@ -57,6 +55,7 @@ class LanguageTrainingFragmentTestParameterHappyPathTest(
         dropshots.assertSnapshot(
             view = fragmentScenarioConfiguratorRule.fragment.requireView(),
             name = "RecyclerViewFragment_${configItem.name}_TestParameter",
+            filePath = "fragment",
         )
     }
 }
@@ -68,9 +67,8 @@ class LanguageTrainingFragmentTestParameterIUnhappyPathTest(
 )  {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
@@ -83,6 +81,7 @@ class LanguageTrainingFragmentTestParameterIUnhappyPathTest(
         dropshots.assertSnapshot(
             view = fragmentScenarioConfiguratorRule.fragment.requireView(),
             name = "RecyclerViewFragment_${configItem.name}_TestParameter",
+            filePath = "fragment",
         )
     }
 }

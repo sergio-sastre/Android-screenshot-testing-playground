@@ -69,7 +69,7 @@ dependencies {
     testImplementation "androidx.compose.material:material"
 
     testImplementation "org.robolectric:robolectric:4.10.3"
-    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.4.0-alpha-5"
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0-rc1'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0-rc1'
+    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.5.0-rc-1"
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0'
 }

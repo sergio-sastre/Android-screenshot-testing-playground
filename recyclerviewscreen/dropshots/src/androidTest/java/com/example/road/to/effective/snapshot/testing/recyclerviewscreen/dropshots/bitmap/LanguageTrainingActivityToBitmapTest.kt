@@ -2,7 +2,6 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
 
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
@@ -46,9 +45,8 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 class LanguageTrainingActivityToBitmapTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val inAppLocale = InAppLocaleTestRule("en")
@@ -71,7 +69,8 @@ class LanguageTrainingActivityToBitmapTest {
     fun snapActivityWithPixelCopy(){
         dropshots.assertSnapshot(
             bitmap = activityScenarioForActivityRule.activity.drawToBitmapWithElevation(),
-            name = "LanguageTrainingActivity_BitmapWithElevation"
+            name = "LanguageTrainingActivity_BitmapWithElevation",
+            filePath = "bitmap",
         )
     }
 
@@ -80,7 +79,8 @@ class LanguageTrainingActivityToBitmapTest {
     fun snapActivityWithCanvas(){
         dropshots.assertSnapshot(
             bitmap = activityScenarioForActivityRule.activity.drawToBitmap(),
-            name = "LanguageTrainingActivity_BitmapWithoutElevation"
+            name = "LanguageTrainingActivity_BitmapWithoutElevation",
+            filePath = "bitmap",
         )
     }
 }

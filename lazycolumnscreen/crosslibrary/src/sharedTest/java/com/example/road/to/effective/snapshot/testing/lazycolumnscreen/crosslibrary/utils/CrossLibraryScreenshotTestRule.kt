@@ -73,6 +73,7 @@ class CrossLibraryScreenshotTestRule(
             DropshotsConfig(
                 bitmapCaptureMethod = PixelCopy(),
                 resultValidator = ThresholdValidator(0.15f),
+                filePath = "dropshots",
             )
         ).configure(
             PaparazziConfig(
@@ -82,7 +83,7 @@ class CrossLibraryScreenshotTestRule(
         ).configure(
             RoborazziConfig(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
-                filePath = File(userTestFilePath()).path,
+                filePath = userTestFilePath(),
             )
         )
 

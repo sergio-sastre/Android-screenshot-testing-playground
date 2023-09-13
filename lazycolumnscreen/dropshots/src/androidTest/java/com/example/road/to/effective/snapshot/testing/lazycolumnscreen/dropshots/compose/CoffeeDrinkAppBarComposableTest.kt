@@ -7,7 +7,6 @@ import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.setContent
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -40,9 +39,8 @@ import sergio.sastre.uitesting.utils.utils.waitForComposeView
 class CoffeeDrinkAppBarHappyPathTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val activityScenarioForComposableRule =
@@ -69,6 +67,7 @@ class CoffeeDrinkAppBarHappyPathTest {
         dropshots.assertSnapshot(
             view = activityScenarioForComposableRule.composeView,
             name = "CoffeeDrinkAppBar_Happy",
+            filePath = "compose",
         )
     }
 }
@@ -80,9 +79,8 @@ class CoffeeDrinkAppBarHappyPathTest {
 class CoffeeDrinkAppBarUnhappyPathTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val composeTestRule = createEmptyComposeRule()
@@ -110,6 +108,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
         dropshots.assertSnapshot(
             view = activityScenario.waitForActivity().waitForComposeView(),
             name = "CoffeeDrinkAppBar_Unhappy",
+            filePath = "compose",
         )
 
         activityScenario.close()

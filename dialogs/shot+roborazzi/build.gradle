@@ -1,0 +1,91 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+
+    // 1 on-device + 1 JVM screenshot test library
+    id 'shot'
+    id 'io.github.takahirom.roborazzi'
+}
+
+android {
+    namespace 'com.example.road.to.effective.snapshot.testing.dialogs.sharedtests'
+    compileSdk 34
+
+    defaultConfig {
+        testApplicationId "com.example.road.to.effective.snapshot.testing"
+        minSdk 23
+        targetSdk 34
+
+        // Warning: For Dropshots, replace it with testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    testOptions {
+        // Not reliable on every API. Seems to work only from API 25 on.
+        // Better to disable through developer settings
+        animationsDisabled = true
+
+        // Warning. You can remove this block if using Paparazzi
+        unitTests {
+            // Necessary for RNG-based libraries like Roborazzi
+            includeAndroidResources = true
+
+            all {
+                // Do not run out of memory when running Roborazzi tests for different api levels
+                jvmArgs '-Xmx1g'
+
+                // Enable RNG for Roborazzi tests
+                systemProperty 'robolectric.graphicsMode', 'NATIVE'
+            }
+        }
+    }
+
+    // required for shared tests in this module: on-device + JVM screenshot tests
+    sourceSets {
+        test {
+            java.srcDir 'src/sharedTest/java'
+        }
+        androidTest {
+            java.srcDir 'src/sharedTest/java'
+        }
+    }
+}
+
+shot {
+    tolerance = 0.15 // Tests pass if less than 0,15% of the pixels differ
+    applicationId = "com.example.road.to.effective.snapshot.testing"
+}
+
+dependencies {
+    debugImplementation project(path: ':dialogs')
+    implementation project(':testannotations')
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.0')
+
+    // Support for Shot
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.0')
+
+    // Support for Roborazzi
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.0.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.0.0')
+}

@@ -4,7 +4,6 @@ import androidx.core.os.bundleOf
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import org.junit.Rule
 import org.junit.Test
@@ -34,9 +33,8 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 class CoffeeDrinksComposeFragmentToBitmapTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
@@ -57,7 +55,8 @@ class CoffeeDrinksComposeFragmentToBitmapTest {
     fun snapFragmentWithPixelCopy() {
         dropshots.assertSnapshot(
             bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmapWithElevation(),
-            name = "CoffeeDrinksFragment_BitmapWithElevation"
+            name = "CoffeeDrinksFragment_BitmapWithElevation",
+            filePath = "bitmap",
         )
     }
 
@@ -66,7 +65,8 @@ class CoffeeDrinksComposeFragmentToBitmapTest {
     fun snapFragmentWithCanvas() {
         dropshots.assertSnapshot(
             bitmap = fragmentScenarioConfiguratorRule.fragment.drawToBitmap(),
-            name = "CoffeeDrinksFragment_BitmapWithoutElevation"
+            name = "CoffeeDrinksFragment_BitmapWithoutElevation",
+            filePath = "bitmap",
         )
     }
 }

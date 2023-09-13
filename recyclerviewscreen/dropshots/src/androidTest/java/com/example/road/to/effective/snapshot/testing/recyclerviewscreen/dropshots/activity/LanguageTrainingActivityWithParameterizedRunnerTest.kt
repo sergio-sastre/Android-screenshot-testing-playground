@@ -2,12 +2,10 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropsh
 
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -47,9 +45,8 @@ class LanguageTrainingActivityParameterizedHappyPathTest(
     }
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val activityScenarioForActivityRule =
@@ -61,7 +58,8 @@ class LanguageTrainingActivityParameterizedHappyPathTest(
     fun snapActivity() {
         dropshots.assertSnapshot(
             activity = activityScenarioForActivityRule.activity,
-            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized",
+            filePath = "activity",
         )
     }
 }
@@ -78,9 +76,8 @@ class LanguageTrainingActivityParameterizedUnhappyPathTest(
     }
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val activityScenarioForActivityRule =
@@ -92,7 +89,8 @@ class LanguageTrainingActivityParameterizedUnhappyPathTest(
     fun snapActivity() {
         dropshots.assertSnapshot(
             activity = activityScenarioForActivityRule.activity,
-            name = "LanguageTrainingActivity_${testItem.name}_Parameterized"
+            name = "LanguageTrainingActivity_${testItem.name}_Parameterized",
+            filePath = "activity",
         )
     }
 }

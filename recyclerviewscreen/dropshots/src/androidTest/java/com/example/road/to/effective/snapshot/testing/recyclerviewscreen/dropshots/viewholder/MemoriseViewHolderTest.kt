@@ -70,7 +70,8 @@ class MemoriseViewHolderHappyPathTest {
 
         dropshots.assertSnapshot(
             view = viewHolder.itemView,
-            name = "MemoriseView_Happy"
+            name = "MemoriseView_Happy",
+            filePath = "viewholder",
         )
     }
 }
@@ -113,7 +114,8 @@ class MemoriseViewHolderUnhappyPathTest {
 
         dropshots.assertSnapshot(
             view = viewHolder.itemView,
-            name = "MemoriseView_Unhappy"
+            name = "MemoriseView_Unhappy",
+            filePath = "viewholder",
         )
 
         activityScenario.close()

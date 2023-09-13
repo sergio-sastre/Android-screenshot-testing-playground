@@ -4,7 +4,6 @@ import android.view.View
 import com.dropbox.dropshots.Dropshots
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots.utils.DropshotsAPI29Fix
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.RecyclerViewTest
 import org.junit.Rule
@@ -25,9 +24,8 @@ import sergio.sastre.uitesting.utils.utils.drawFullScrollableToBitmap
 class FullRecyclerViewTest {
 
     @get:Rule
-    val dropshots = DropshotsAPI29Fix(
+    val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-    )
 
     @get:Rule
     val fragmentScenarioForActivityRule =
@@ -41,7 +39,8 @@ class FullRecyclerViewTest {
 
         dropshots.assertSnapshot(
             bitmap = recyclerView.drawFullScrollableToBitmap(),
-            name = "FullRecyclerView"
+            name = "FullRecyclerView",
+            filePath = "recyclerview",
         )
     }
 }

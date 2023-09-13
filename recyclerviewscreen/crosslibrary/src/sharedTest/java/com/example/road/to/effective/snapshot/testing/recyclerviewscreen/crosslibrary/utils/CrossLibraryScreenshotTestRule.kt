@@ -83,7 +83,7 @@ fun defaultCrossLibraryScreenshotTestRule(
             RoborazziConfig(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
                 backgroundColor = Color.TRANSPARENT,
-                filePath = File(userTestFilePath()).path,
+                filePath = userTestFilePath(),
             )
         )
 

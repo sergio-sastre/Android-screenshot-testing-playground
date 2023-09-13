@@ -67,6 +67,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
         dropshots.assertSnapshot(
             view = viewHolder.itemView,
             name = "${testItem.name}_Parameterized", // testItem names are already long
+            filePath = "viewholder",
         )
     }
 }
@@ -102,6 +103,7 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
         dropshots.assertSnapshot(
             view = viewHolder.itemView,
             name = "${testItem.name}_Parameterized", // testItem names are already long
+            filePath = "viewholder",
         )
     }
 }
