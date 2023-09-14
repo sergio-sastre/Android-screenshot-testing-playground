@@ -12,6 +12,9 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
 /**
  * Execute the command below to run only ComposableTests
@@ -20,6 +23,8 @@ import org.junit.Test
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug --tests '*Composable*'
  */
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [33])
 class CoffeeDrinkAppBarComposableHappyPathTest {
     @get:Rule
     val paparazzi =

@@ -44,9 +44,12 @@ android {
 
     // Enable running tests in parallel
     testOptions {
-        unitTests.all {
-            if (project.hasProperty("parallel")) {
-                maxParallelForks = Runtime.runtime.availableProcessors() / 2
+        unitTests {
+            includeAndroidResources = true
+            all {
+                if (project.hasProperty("parallel")) {
+                    maxParallelForks = Runtime.runtime.availableProcessors() / 2
+                }
             }
         }
     }
@@ -54,6 +57,8 @@ android {
 
 dependencies {
     implementation project(':lazycolumnscreen')
+
+    testImplementation "org.robolectric:robolectric:4.10.3"
 
     // Jetpack Compose
     testImplementation platform('androidx.compose:compose-bom:2023.03.00')
