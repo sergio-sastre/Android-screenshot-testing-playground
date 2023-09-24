@@ -38,7 +38,12 @@ private val oneMillionWordsTrainingItem = TrainingItem(
     activeLangs = Language.values().toSet()
 )
 
-private val wordsInSomeLangsTrainingItem = TrainingItem(
+val noWords = TrainingItem(
+    trainingByLang = mapOf(),
+    activeLangs = emptySet()
+)
+
+val wordsInSomeLangsTrainingItem = TrainingItem(
     trainingByLang = mapOf(
         Language.English to translations(3),
         Language.Russian to translations(5),
