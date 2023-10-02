@@ -34,6 +34,7 @@ android {
 }
 
 testify {
+    moduleName ":recyclerviewscreen:android-testify"
     applicationPackageId 'com.example.road.to.effective.snapshot.testing'
     testPackageId 'com.example.road.to.effective.snapshot.testing'
 }

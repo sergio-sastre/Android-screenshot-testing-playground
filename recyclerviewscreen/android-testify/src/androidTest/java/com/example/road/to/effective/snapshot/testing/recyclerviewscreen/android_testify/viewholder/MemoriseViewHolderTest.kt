@@ -13,6 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioConfigurator
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioConfigurator.PortraitSnapshotConfiguredActivity
 
 /**
  * Execute the command below to run only ViewHolderTests
@@ -32,9 +33,8 @@ import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioConfigurat
 class MemoriseViewHolderHappyPathTest {
 
     @get:Rule
-    var screenshotRule = ScreenshotRule(
-        ActivityScenarioConfigurator.PortraitSnapshotConfiguredActivity::class.java
-    )
+    var screenshotRule =
+        ScreenshotRule(PortraitSnapshotConfiguredActivity::class.java)
 
     @HappyPath
     @ViewHolderTest
@@ -43,19 +43,24 @@ class MemoriseViewHolderHappyPathTest {
     fun snapMemoriseViewHolderHappyPath() {
 
         screenshotRule
-                .setTargetLayoutId(R.layout.memorise_row)
-                .setViewModifications {
-                    MemoriseViewHolder(
-                            container = it,
-                            itemEventListener = null,
-                            animationDelay = 0L
-                    ).apply {
-                        bind(generateMemoriseItem(
-                                rightAligned = false,
-                                activity = screenshotRule.activity
-                        ))
-                    }
+            .setTargetLayoutId(R.layout.memorise_row)
+            .setViewModifications { targetLayout ->
+                MemoriseViewHolder(
+                    container = targetLayout,
+                    itemEventListener = null,
+                    animationDelay = 0L
+                ).apply {
+                    bind(
+                        generateMemoriseItem(
+                            rightAligned = false,
+                            activity = screenshotRule.activity
+                        )
+                    )
                 }
-                .assertSame()
+            }
+            .setScreenshotViewProvider {
+                it.getChildAt(0)
+            }
+            .assertSame()
     }
 }
