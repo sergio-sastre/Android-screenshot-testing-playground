@@ -1,6 +1,5 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.accessibility
 
-import androidx.compose.ui.test.onRoot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
@@ -8,17 +7,16 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose.parameterized.coffeeDrink
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.roborazziAccessibilityOptions
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.setContent
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import com.github.takahirom.roborazzi.captureRoboImage
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
+import sergio.sastre.uitesting.roborazzi.captureRoboImage
 
 /**
  * Execute the command below to run only AccessibilityTests
@@ -27,7 +25,7 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -52,7 +50,7 @@ class AccessibilityTest {
 
     @get:Rule
     val activityScenarioForComposableRule = RobolectricActivityScenarioForComposableRule(
-        config = HappyPathTestItem.PORTRAIT.item,
+        config = HappyPathTestItem.PORTRAIT.configItem,
         deviceScreen = PIXEL_4A,
     )
 
@@ -60,37 +58,28 @@ class AccessibilityTest {
     @Config(sdk = [30])
     @Test
     fun snapCoffeeDrinkAppBarWithAccessibility() {
-        activityScenarioForComposableRule.setContent {
+        activityScenarioForComposableRule.captureRoboImage(
+            filePath = filePath("CoffeeDrinkAppBarComposable_Accessibility"),
+            roborazziOptions = roborazziAccessibilityOptions,
+        ) {
             AppTheme {
                 CoffeeDrinkAppBar()
             }
 
         }
-
-        activityScenarioForComposableRule.composeRule
-            .onRoot()
-            .captureRoboImage(
-                filePath = filePath("CoffeeDrinkAppBarComposable_Accessibility"),
-                roborazziOptions = roborazziAccessibilityOptions,
-            )
     }
 
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
     fun snapCoffeeDrinkListWithAccessibility() {
-        activityScenarioForComposableRule.setContent {
+        activityScenarioForComposableRule.captureRoboImage(
+            filePath = filePath("CoffeeDrinkListComposable_Accessibility"),
+            roborazziOptions = roborazziAccessibilityOptions,
+        ) {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
             }
-
         }
-
-        activityScenarioForComposableRule.composeRule
-            .onRoot()
-            .captureRoboImage(
-                filePath = filePath("CoffeeDrinkListComposable_Accessibility"),
-                roborazziOptions = roborazziAccessibilityOptions,
-            )
     }
 }

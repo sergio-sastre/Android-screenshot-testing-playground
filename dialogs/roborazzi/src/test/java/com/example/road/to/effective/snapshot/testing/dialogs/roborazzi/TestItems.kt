@@ -19,7 +19,7 @@ data class DeleteDialogTestItem(
     val dialogWidth: DialogWidth,
 )
 
-private fun repeatedItem(timesRepeated: Int, @StringRes resource: Int): List<Int> =
+fun repeatedItem(timesRepeated: Int, @StringRes resource: Int): List<Int> =
     emptyList<Int>().toMutableList().apply {
         repeat(timesRepeated) { add(resource) }
     }

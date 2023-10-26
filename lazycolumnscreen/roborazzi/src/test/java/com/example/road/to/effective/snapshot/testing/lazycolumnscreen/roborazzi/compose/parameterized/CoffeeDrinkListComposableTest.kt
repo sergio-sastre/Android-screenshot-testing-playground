@@ -1,20 +1,18 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose.parameterized
 
-import androidx.compose.ui.test.onRoot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.setContent
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
-import com.github.takahirom.roborazzi.captureRoboImage
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
+import sergio.sastre.uitesting.roborazzi.captureRoboImage
 
 /**
  * Execute the command below to run only ComposableTests
@@ -23,7 +21,7 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Composable*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -57,7 +55,7 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
 
     @get:Rule
     val activityScenarioForComposableRule = RobolectricActivityScenarioForComposableRule(
-        config = testItem.item,
+        config = testItem.configItem,
         deviceScreen = PIXEL_4A,
     )
 
@@ -65,17 +63,13 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     @Config(sdk = [30])
     @Test
     fun snapComposable() {
-        activityScenarioForComposableRule.setContent {
+        activityScenarioForComposableRule.captureRoboImage(
+            filePath("CoffeeDrinkListComposable_${testItem.name}")
+        ) {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
             }
         }
-
-        activityScenarioForComposableRule.composeRule
-            .onRoot()
-            .captureRoboImage(
-                filePath("CoffeeDrinkListComposable_${testItem.name}")
-            )
     }
 }
 
@@ -101,16 +95,12 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     @Config(sdk = [30])
     @Test
     fun snapComposable() {
-        activityScenarioForComposableRule.setContent {
+        activityScenarioForComposableRule.captureRoboImage(
+            filePath("CoffeeDrinkListComposable_${testItem.name}")
+        ) {
             AppTheme {
                 CoffeeDrinkList(coffeeDrink = coffeeDrink)
             }
         }
-
-        activityScenarioForComposableRule.composeRule
-            .onRoot()
-            .captureRoboImage(
-                filePath("CoffeeDrinkListComposable_${testItem.name}")
-            )
     }
 }

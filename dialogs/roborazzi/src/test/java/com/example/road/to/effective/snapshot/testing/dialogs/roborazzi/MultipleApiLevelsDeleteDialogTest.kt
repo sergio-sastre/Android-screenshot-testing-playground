@@ -27,7 +27,7 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
  * 2. Verify:
  *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Dialog*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -35,7 +35,7 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
  *  This is possible due to Robolectric's annotation @Config(sdk = [30, 31])
  */
 @RunWith(RobolectricTestRunner::class)
-class DifferentApiLevelsDeleteDialogTest {
+class MultipleApiLevelsDeleteDialogTest {
 
     @get:Rule
     val activityScenarioForViewRule =

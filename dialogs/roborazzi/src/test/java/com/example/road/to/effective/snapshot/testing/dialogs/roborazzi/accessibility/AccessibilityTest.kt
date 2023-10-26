@@ -6,9 +6,9 @@ import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.R
 import com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.filePath
 import com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.itemArray
+import com.github.takahirom.roborazzi.Dump
+import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RoborazziOptions
-import com.github.takahirom.roborazzi.RoborazziOptions.CaptureType.Dump
-import com.github.takahirom.roborazzi.RoborazziOptions.CaptureType.Dump.Companion.AccessibilityExplanation
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +28,7 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredView
  * 2. Verify:
  *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -57,6 +57,7 @@ class AccessibilityTest {
             deviceScreen = PIXEL_5,
         )
 
+    @OptIn(ExperimentalRoborazziApi::class)
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
@@ -80,7 +81,9 @@ class AccessibilityTest {
             .captureRoboImage(
                 filePath = filePath("DeleteDialog_Accessibility"),
                 roborazziOptions = RoborazziOptions(
-                    captureType = Dump(explanation = AccessibilityExplanation)
+                    captureType = RoborazziOptions.CaptureType.Dump(
+                        explanation = Dump.Companion.AccessibilityExplanation
+                    )
                 )
             )
     }

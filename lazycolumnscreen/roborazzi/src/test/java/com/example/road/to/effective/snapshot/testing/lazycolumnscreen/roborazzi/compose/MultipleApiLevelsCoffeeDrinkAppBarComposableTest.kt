@@ -1,12 +1,9 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose
 
 import android.os.Build
-import androidx.compose.ui.test.onRoot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.setContent
-import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,6 +12,7 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen
+import sergio.sastre.uitesting.roborazzi.captureRoboImage
 import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
@@ -28,7 +26,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Composable*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -36,7 +34,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
  *  This is possible due to Robolectric's annotation @Config(sdk = [30, 31])
  */
 @RunWith(RobolectricTestRunner::class)
-class DifferentApiLevelsCoffeeDrinkAppBarComposableTest {
+class MultipleApiLevelsCoffeeDrinkAppBarComposableTest {
 
     @get:Rule
     val activityScenarioForComposableRule =
@@ -47,6 +45,7 @@ class DifferentApiLevelsCoffeeDrinkAppBarComposableTest {
                 orientation = Orientation.PORTRAIT,
                 fontSize = FontSize.NORMAL,
                 displaySize = DisplaySize.NORMAL,
+
             ),
             deviceScreen = DeviceScreen.Phone.PIXEL_4A,
         )
@@ -56,16 +55,12 @@ class DifferentApiLevelsCoffeeDrinkAppBarComposableTest {
     @Test
     fun snapComposableInDifferentApiLevels() {
         val sdkVersion = Build.VERSION.SDK_INT
-        activityScenarioForComposableRule.setContent {
+        activityScenarioForComposableRule.captureRoboImage(
+            filePath("CoffeeDrinkAppBar_API_$sdkVersion")
+        ){
             AppTheme {
                 CoffeeDrinkAppBar(coffeeShopName = "API $sdkVersion")
             }
         }
-
-        activityScenarioForComposableRule.composeRule
-            .onRoot()
-            .captureRoboImage(
-                filePath("CoffeeDrinkAppBar_API_$sdkVersion")
-            )
     }
 }
