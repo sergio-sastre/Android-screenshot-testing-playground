@@ -23,7 +23,7 @@ import sergio.sastre.uitesting.utils.utils.drawFullScrollableToBitmap
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*RecyclerView*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**

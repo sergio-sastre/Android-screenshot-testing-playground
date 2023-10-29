@@ -28,7 +28,7 @@ import sergio.sastre.uitesting.robolectric.fragmentscenario.waitForFragment
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Fragment*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**

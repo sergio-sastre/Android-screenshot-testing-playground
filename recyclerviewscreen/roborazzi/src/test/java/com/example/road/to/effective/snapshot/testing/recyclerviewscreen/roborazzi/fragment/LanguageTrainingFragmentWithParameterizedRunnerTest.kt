@@ -20,7 +20,7 @@ import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentS
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Fragment*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -61,7 +61,7 @@ class LanguageTrainingFragmentParameterizedHappyPathTest(
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapActivity() {
+    fun snapFragment() {
         fragmentScenarioConfiguratorRule.fragment.requireView()
             .captureRoboImage(
                 filePath("LanguageTrainingFragment_${testItem.name}_Parameterized")
@@ -90,7 +90,7 @@ class LanguageTrainingFragmentParameterizedUnhappyPathTest(
     @GraphicsMode(NATIVE)
     @Config(sdk = [30])
     @Test
-    fun snapActivity() {
+    fun snapFragment() {
         fragmentScenarioConfiguratorRule.fragment.requireView()
             .captureRoboImage(
                 filePath("LanguageTrainingFragment_${testItem.name}_Parameterized")

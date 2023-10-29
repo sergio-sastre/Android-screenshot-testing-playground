@@ -1,12 +1,9 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose
 
-import androidx.compose.ui.test.onRoot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.ActionNotSupportedSnackbar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.SnackbarScaffold
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.setContent
-import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,6 +12,7 @@ import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
+import sergio.sastre.uitesting.roborazzi.captureRoboImage
 
 /**
  * Execute the command below to run only ComposableTests
@@ -23,7 +21,7 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Composable*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -53,7 +51,9 @@ class SnackbarComposableTest {
     @Config(sdk = [30])
     @Test
     fun snapComposable() {
-        activityScenarioForComposableRule.setContent {
+        activityScenarioForComposableRule.captureRoboImage(
+            filePath("ActionNotSupportedSnackbar")
+        ) {
             AppTheme {
                 SnackbarScaffold { snackbarHostState ->
                     ActionNotSupportedSnackbar(
@@ -63,11 +63,5 @@ class SnackbarComposableTest {
                 }
             }
         }
-
-        activityScenarioForComposableRule.composeRule
-            .onRoot()
-            .captureRoboImage(
-                filePath("ActionNotSupportedSnackbar")
-            )
     }
 }

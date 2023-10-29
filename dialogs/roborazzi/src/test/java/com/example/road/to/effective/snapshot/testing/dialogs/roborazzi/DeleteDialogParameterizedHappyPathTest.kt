@@ -24,7 +24,7 @@ import java.io.File
  * 2. Verify:
  *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Dialog*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**

@@ -1,5 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose.parameterized
 
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrink
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
@@ -8,7 +9,7 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 
-enum class HappyPathTestItem(val item: ComposableConfigItem) {
+enum class HappyPathTestItem(val configItem: ComposableConfigItem) {
     PORTRAIT(
         ComposableConfigItem(
             locale = "en",

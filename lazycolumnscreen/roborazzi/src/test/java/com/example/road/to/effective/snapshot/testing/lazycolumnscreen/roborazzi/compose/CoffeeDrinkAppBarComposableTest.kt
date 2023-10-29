@@ -6,7 +6,6 @@ import androidx.compose.ui.test.onRoot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.setContent
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
@@ -18,6 +17,7 @@ import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioConfigurator
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
+import sergio.sastre.uitesting.roborazzi.captureRoboImage
 import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
@@ -31,7 +31,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Composable*'
  *
- * See results under "Project" View
+ * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
@@ -70,18 +70,13 @@ class CoffeeDrinkAppBarComposableHappyPathTest {
     @Config(sdk = [30])
     @Test
     fun snapComposable() {
-        activityScenarioForComposableRule.setContent {
+        activityScenarioForComposableRule.captureRoboImage(
+            filePath("CoffeeDrinkAppBar_Happy")
+        ) {
             AppTheme {
                 CoffeeDrinkAppBar()
             }
         }
-
-        activityScenarioForComposableRule
-            .composeRule
-            .onRoot()
-            .captureRoboImage(
-                filePath("CoffeeDrinkAppBar_Happy")
-            )
     }
 }
 

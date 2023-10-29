@@ -1,11 +1,8 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils
 
-import android.app.Activity
-import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.test.core.app.ActivityScenario
+import com.github.takahirom.roborazzi.Dump
+import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RoborazziOptions
-import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import java.io.File
 
 fun filePath(name: String): String {
@@ -14,16 +11,10 @@ fun filePath(name: String): String {
     return file.path
 }
 
-fun RobolectricActivityScenarioForComposableRule.setContent(
-    content: @Composable () -> Unit
-): ActivityScenario<out Activity> =
-    activityScenario.onActivity {
-        it.setContent { content() }
-    }
-
+@OptIn(ExperimentalRoborazziApi::class)
 val roborazziAccessibilityOptions: RoborazziOptions =
     RoborazziOptions(
         captureType = RoborazziOptions.CaptureType.Dump(
-            explanation = RoborazziOptions.CaptureType.Dump.AccessibilityExplanation,
+            explanation = Dump.Companion.AccessibilityExplanation
         )
     )
