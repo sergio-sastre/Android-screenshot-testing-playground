@@ -8,6 +8,9 @@ part of blog posts</br>
 </a>
 <img src="https://androidweekly.net/issues/issue-558/badge">
 </a>
+<a href="https://androidweekly.net/issues/issue-596">
+<img src="https://androidweekly.net/issues/issue-596/badge">
+</a>
 
 # Android screenshot testing playground </br>
 
@@ -54,7 +57,7 @@ As of August 2023, there are many screenshot testing libraries that facilitate a
 3. [Shot from pedrovgs](https://github.com/pedrovgs/Shot)
 4. [Roborazzi from takahirom](https://github.com/takahirom/roborazzi)
 5. Facebook [screenshot-tests-for-android](https://github.com/facebook/screenshot-tests-for-android)
-6. Ndtp [android-testify](https://github.com/ndtp/android-testify) <sup>1<sup/>
+6. Ndtp [Android-testify](https://github.com/ndtp/android-testify) <sup>1<sup/>
 7. [Snappy from QuickBird](https://github.com/QuickBirdEng/kotlin-snapshot-testing)
 
 All of them have their own pros and cons.
@@ -65,14 +68,15 @@ In order to do that, it contains the same/similar examples but written with diff
 2. [Dropshots](https://github.com/dropbox/dropshots)
 3. [Shot](https://github.com/pedrovgs/Shot)
 4. [Roborazzi](https://github.com/takahirom/roborazzi)
+5. [Android-testify](https://github.com/ndtp/android-testify)
 
 **BONUS**:
-It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests running with multiple libraries, namely: Paparazzi, Roborazzi, Shot & Dropshots*.
+It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests running with multiple libraries, namely: Paparazzi, Roborazzi, Shot, Dropshots & Android-Testify*.
 For that it uses [Android UI Testing Utils 2.0.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 You can read more about it in this blog post series:
 1. [A World Beyond Libraries: Cross-Library Screenshot tests on android](https://sergiosastre.hashnode.dev/a-world-beyond-libraries-cross-library-screenshot-tests-on-android)
-
+2. [Write Once, Test Everywhere: Cross-Library Screenshot Testing with AndroidUiTestingUtils 2.0.0](https://sergiosastre.hashnode.dev/write-once-test-everywhere-cross-library-screenshot-testing-with-androiduitestingutils)
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
 <sup>1</sup> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
@@ -94,10 +98,11 @@ More screenshot test examples, as well as examples with other libraries will be 
     - [Summary: Pros and Cons](#summary-pros-and-cons)
 - [Recording and verifying screenshots](#recording-and-verifying-screenshots)
   - [On-device tests with Android Orchestrator](#on-device-tests-with-android-orchestrator) 
-  - [Paparazzi](#paparazzihttpsgithubcomcashapppaparazzi)
-  - [Roborazzi](#roborazzihttpsgithubcomtakahiromroborazzi)
-  - [Dropshots](#dropshotshttpsgithubcomdropboxdropshots)
-  - [Shot](#shothttpsgithubcompedrovgsshot)
+  - [Paparazzi](#paparazzi)
+  - [Roborazzi](#roborazzi)
+  - [Dropshots](#dropshots)
+  - [Shot](#shot)
+  - [Android-Testify](#android-testify)
   - [Cross-library](#cross-library)
 - [Parameterized screenshot tests](#parameterized-screenshot-tests)
 - [Filtered parameterized screenshot tests](#filtered-parameterized-screenshot-tests)
@@ -179,7 +184,7 @@ And the resulting screenshot would render elevation
 <img width="350" src="https://user-images.githubusercontent.com/6097181/209678214-9e4664b7-f898-4173-a9f7-36dfc764b035.png">
 </p>
 
-You can find such examples in this repo, under the `bitmap` folder under any `:dropshots` & `:shot` module.
+You can find such examples in this repo, under the `bitmap` folder under any `:dropshots`, `:shot` and `:android-testify` module.
 
 <sup>1</sup> Shot doesn't use Canvas when using `compareScreenshot(composeRule)`, so those screenshots draw elevation. It does use Canvas for Views, Activities, Fragments & Dialogs though.
 
@@ -266,7 +271,7 @@ where we fetch some data.
 
 For screenshot test that inflate a view and populate it with some data before the snapshot, it makes little sense.
 
-However, you can run Dropshots & Shot screenshot tests with Android Orchestrator in this repo by adding the following to the corresponding command:
+However, you can run Dropshots, Shot and Android-testify screenshot tests with Android Orchestrator in this repo by adding the following to the corresponding command:
 `-PuseOrchestrator`
 
 For instance, to record with Dropshots:
@@ -348,9 +353,38 @@ Then run the following gradle tasks depending on the module:
 > However, it is wrong. The record reports can be reviewed at `RoadToEffectiveSnapshotTesting/dialogs/shot/build/reports/shot/debug/record/index.html`
 > The path for the verification reports is right though.
 
+### [Android-Testify](https://github.com/ndtp/android-testify)
+Currently this is the only library that supports Gradle Managed Devices.
+You can do it by directly running the following command:
+1. **Record**: `./gradlew :module_name:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`. For instance:
+    1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`
+    2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`
+    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`
+2. **Verify**: `./gradlew :module_name:android-testify:pixel3api30DebugAndroidTest`. For instance:
+    1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest`
+    2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest`
+    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest`
+
+> **Note**</br>
+> Before verifying, you need to copy the files saved under the corresponding module's 
+> build/outputs/managed_device_android_test_additional_output/...) to the correct location, as
+> specified here: https://ndtp.github.io/android-testify/docs/recipes/gmd
+
+If you do not want to use Gradle Managed Devices, do as below:
+First, start the emulator.
+Then run the following gradle tasks depending on the module:
+1. **Record**: `./gradlew :module_name:android-testify:screenshotRecord`. For instance:
+    1. `./gradlew :dialogs:android-testify:screenshotRecord`
+    2. `./gradlew :recyclerviewscreen:android-testify:screenshotRecord`
+    3. `./gradlew :lazycolumnscreen:android-testify:screenshotRecord`
+2. **Verify**: `./gradlew :module_name:android-testify:screenshotTest`. For instance:
+    1. `./gradlew :dialogs:android-testify:screenshotTest`
+    2. `./gradlew :recyclerviewscreen:android-testify:screenshotTest`
+    3. `./gradlew :lazycolumnscreen:android-testify:screenshotTest`
+
 ### Cross-Library
-Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot & Dropshots.</br>
-The most common scenario is to use 1 on-device (e.g. Shot, Dropshots) and 1 JVM (e.g. Paparazzi, Roborazzi) screenshot library.
+Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot, Dropshots or Android-Testify.</br>
+The most common scenario is to use 1 on-device (e.g. Shot, Dropshots, Android-Testify) and 1 JVM (e.g. Paparazzi, Roborazzi) screenshot library.
 For that, check the corresponding submodules e.g. `:dropshots+paparazzi`, `:shot+roborazzi`, `:dropshots+roborazzi`</br>
 You would execute such tests as you would do for the corresponding library e.g. `./gradlew :lazycolumnscreen:dropshots+paparazzi:recordPaparazziDebug` would record with Paparazzi.</br>
 
@@ -361,13 +395,21 @@ Since they configure 2 on-device & 2 JVM screenshot libraries, you need to pass 
     2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi`
     3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -Precord -PscreenshotLibrary=shot`
     4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots`
+    5. Testify:   `./gradlew :lazycolumnscreen:crosslibrary:screenshotRecord -PscreenshotLibrary=android-testify`
 2. **Verify**:
    1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug -PscreenshotLibrary=paparazzi`
    2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyRoborazziDebug -PscreenshotLibrary=roborazzi`
    3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
+   5. Testify:   `./gradlew :lazycolumnscreen:crosslibrary:screenshotTest -PscreenshotLibrary=android-testify`
 
-To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.0.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+> **Note**</br>
+> You can also record and verify via Gradle Managed Devices with Android-Testify as specified in the previous section:
+> 1. Record: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PrecordModeGmd`
+> 2. Verify: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest`
+> specified here: https://ndtp.github.io/android-testify/docs/recipes/gmd
+
+To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.1.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 
@@ -390,7 +432,7 @@ configurations! You can read more about how we can profit from it here:
 
 This can be achieved by using either `org.junit.runners.Parameterized`, `com.google.testing.junit.testparameterinjector.TestParameterInjector` or in case of Roborazzi via `org.robolectric.ParameterizedRobolectricTestRunner`, as you'll find in most examples in this repo.
 
-Dropshots & Shot do not offer the possibility to set such configurations; Paparazzi and Roborazzi (via Robolectric) do though. Nevertheless, we can set the desired configurations for those libraries with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
+Dropshots & Shot do not offer the possibility to set such configurations; Android-Testify only partially; Paparazzi and Roborazzi (via Robolectric) do though. Nevertheless, we can set the desired configurations for those libraries with [Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils), as seen in the examples.
 
 > **Remark**
 > The Parameterized runner injects the parameter passed in the Test class constructor to every
@@ -409,7 +451,7 @@ bugs), and still get notified of the non-blocking bugs once a day.
 We can accomplish this by filtering our tests accordingly.
 
 ### Instrumented tests
-This applies for tests running on emulators/physical devices i.e. those using Dropshots or Shot.
+This applies for tests running on emulators/physical devices i.e. those using Dropshots, Shot or Android-Testify
 
 In order to filter tests, we need to provide the corresponding test instrumentation arguments. A straightforward means to do that is to use custom annotations. For instance:
 1. `-Pandroid.testInstrumentationRunnerArguments.annotation=com.your.package.YourAnnotation`

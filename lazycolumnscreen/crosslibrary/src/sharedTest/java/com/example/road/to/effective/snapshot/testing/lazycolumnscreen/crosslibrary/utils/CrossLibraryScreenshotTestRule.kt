@@ -4,6 +4,7 @@ import androidx.test.platform.app.InstrumentationRegistry.*
 
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.BuildConfig
+import sergio.sastre.uitesting.android_testify.AndroidTestifyConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
@@ -35,7 +36,8 @@ class CrossLibraryScreenshotTestRule(
         when (instrumentationScreenshotLibraryName) {
             BuildConfig.SHOT -> shotScreenshotTestRule
             BuildConfig.DROPSHOTS -> dropshotsScreenshotTestRule
-            else -> throw ScreenshotLibraryArgumentMissingException()
+            BuildConfig.ANDROID_TESTIFY -> androidTestifyScreenshotTestRule
+            else -> androidTestifyScreenshotTestRule
         }
 
     override fun getJvmScreenshotLibraryTestRule(
@@ -74,6 +76,10 @@ class CrossLibraryScreenshotTestRule(
                 bitmapCaptureMethod = PixelCopy(),
                 resultValidator = ThresholdValidator(0.15f),
                 filePath = "dropshots",
+            )
+        ).configure(
+            AndroidTestifyConfig(
+                bitmapCaptureMethod = PixelCopy(),
             )
         ).configure(
             PaparazziConfig(

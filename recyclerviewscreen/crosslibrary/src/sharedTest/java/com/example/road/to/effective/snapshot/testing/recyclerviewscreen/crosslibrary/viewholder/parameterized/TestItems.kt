@@ -70,7 +70,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
     AR_WITH_WORDS_IN_SOME_LANGS(
         TrainingTestItem(
             viewConfig = ScreenshotConfigForView(
-                locale = "ar",
+                locale = "en",
                 theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),
             trainingItem = wordsInSomeLangsTrainingItem,

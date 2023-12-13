@@ -2,6 +2,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -61,7 +62,7 @@ fun CoffeeDrinkList(
 fun CoffeeDrinkListItem(
     coffeeDrink: CoffeeDrinkItem
 ) {
-    Row {
+    Row(Modifier.background(color = MaterialTheme.colors.background)) {
         CoffeeDrinkLogo(id = coffeeDrink.imageUrl)
         Box(
             modifier = Modifier.weight(1f)

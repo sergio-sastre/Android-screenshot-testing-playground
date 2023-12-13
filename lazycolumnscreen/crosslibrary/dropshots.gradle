@@ -1,0 +1,17 @@
+apply plugin: 'com.dropbox.dropshots'
+
+android {
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments = [
+                // make gradle property available in Android Tests via InstrumentationRegistry.getArguments()
+                (SCREENSHOT_LIBRARY): screenshotLibraryName(),
+        ]
+    }
+
+    testOptions {
+        // Not reliable on every API. Seems to work only from API 25 on.
+        // Better to disable through developer settings
+        animationsDisabled = true
+    }
+}

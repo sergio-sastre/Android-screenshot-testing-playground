@@ -1,10 +1,12 @@
 package com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils
 
+import android.graphics.Color
 import androidx.test.platform.app.InstrumentationRegistry.*
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.androidHome
 
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.BuildConfig
+import sergio.sastre.uitesting.android_testify.AndroidTestifyConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
@@ -13,6 +15,7 @@ import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
+import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
 import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleForView
@@ -37,7 +40,10 @@ class CrossLibraryScreenshotTestRule(
         when (instrumentationScreenshotLibraryName) {
             BuildConfig.SHOT -> shotScreenshotTestRule
             BuildConfig.DROPSHOTS -> dropshotsScreenshotTestRule
-            else -> throw ScreenshotLibraryArgumentMissingException()
+            BuildConfig.ANDROID_TESTIFY -> androidTestifyScreenshotTestRule
+            // Unfortunately, android-testify does read instrumentation test runner arguments,
+            // so if null, we assume it is android-testify
+            else -> androidTestifyScreenshotTestRule
         }
 
     override fun getJvmScreenshotLibraryTestRule(
@@ -58,7 +64,7 @@ class CrossLibraryScreenshotTestRule(
     private class ScreenshotLibraryArgumentMissingException :
         RuntimeException(
             "You must specify a screenshot library when executing screenshot tests " +
-                    "via gradle property. For instance -PscreenshotLibrary=shot"
+                    "via gradle property. For instance -PscreenshotLibrary=shot."
         )
 }
 
@@ -69,15 +75,23 @@ fun defaultCrossLibraryScreenshotTestRule(
         // Optional: configure for the libraries you use
         .configure(
             ShotConfig(
+                backgroundColor = Color.TRANSPARENT,
                 bitmapCaptureMethod = PixelCopy(),
             )
         ).configure(
             DropshotsConfig(
+                backgroundColor = Color.TRANSPARENT,
                 bitmapCaptureMethod = PixelCopy(),
                 resultValidator = ThresholdValidator(0.15f),
                 filePath = "dropshots",
             )
         ).configure(
+            AndroidTestifyConfig(
+                backgroundColor = Color.TRANSPARENT,
+                bitmapCaptureMethod = PixelCopy(),
+            )
+        )
+        .configure(
             PaparazziConfig(
                 deviceConfig = DeviceConfig.NEXUS_4,
                 renderingMode = RenderingMode.SHRINK,

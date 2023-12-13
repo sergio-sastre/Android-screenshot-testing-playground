@@ -10,6 +10,7 @@ import org.junit.Test
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot
 import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibraryScreenshotTestRunner
 
 /**
@@ -19,12 +20,18 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  *  2. Roborazzi: ./gradlew :lazycolumnscreen:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi
  *  3. Shot:      ./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTest -Precord -PscreenshotLibrary=shot
  *  4. Dropshots: ./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots
+ *  5. Testify:   ./gradlew :lazycolumnscreen:crosslibrary:screenshotRecord -PscreenshotLibrary=android-testify
+ *     Testify via gradle manages devices (saved under this module's build/outputs/managed_device_android_test_additional_output/...):
+ *                ./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PscreenshotLibrary=android-testify -PrecordModeGmd
  *
  * 2. Verify task:
  *  1. Paparazzi: ./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug -PscreenshotLibrary=paparazzi
  *  2. Roborazzi: ./gradlew :lazycolumnscreen:crosslibrary:verifyRoborazziDebug -PscreenshotLibrary=roborazzi
  *  3. Shot:      ./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTest -PscreenshotLibrary=shot
  *  4. Dropshots: ./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots
+ *  5. Testify:   ./gradlew :lazycolumnscreen:crosslibrary:screenshotTest -PscreenshotLibrary=android-testify
+ *     Testify via gradle manages devices (move screenshot files first -> https://ndtp.github.io/android-testify/docs/recipes/gmd)
+ *                ./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PscreenshotLibrary=android-testify
  *
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
@@ -45,6 +52,7 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(config = testItem.item)
 
+    @CrossLibraryScreenshot
     @HappyPath
     @Test
     fun snapComposable() {
@@ -73,6 +81,7 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(config = testItem.item)
 
+    @CrossLibraryScreenshot
     @UnhappyPath
     @Test
     fun snapComposable() {
