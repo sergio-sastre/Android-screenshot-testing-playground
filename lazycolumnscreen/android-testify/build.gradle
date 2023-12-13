@@ -109,8 +109,8 @@ dependencies {
     androidTestImplementation "dev.testify:testify-compose:2.0.0-rc03"
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
 
-    androidTestImplementation 'com.github.sergio-sastre:utils:2.0.1'
-    androidTestImplementation 'com.github.sergio-sastre:android-testify:2.0.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.1.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.1.0'
 
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
     // for Gradle Managed Devices
