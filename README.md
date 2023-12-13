@@ -76,7 +76,7 @@ For that it uses [Android UI Testing Utils 2.0.0](https://github.com/sergio-sast
 
 You can read more about it in this blog post series:
 1. [A World Beyond Libraries: Cross-Library Screenshot tests on android](https://sergiosastre.hashnode.dev/a-world-beyond-libraries-cross-library-screenshot-tests-on-android)
-2. [Write Once, Test Everywhere: Cross-Library Screenshot Testing with AndroidUiTestingUtils 2.0.0](https://sergiosastre.hashnode.dev/write-once-test-everywhere-cross-library-screenshot-testing-with-androiduitestingutils)
+2. [Write Once, Test Everywhere: Cross-Library Screenshot Testing with AndroidUiTestingUtils 2.0.0](https://sergiosastre.hashnode.dev/write-once-test-everywhere-cross-library-screenshot-testing-with-androiduitestingutils)</br></br>
 More screenshot test examples, as well as examples with other libraries will be continuously added.
 
 <sup>1</sup> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
