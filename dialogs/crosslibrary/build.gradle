@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.ManagedVirtualDevice
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
@@ -8,13 +10,14 @@ ext {
 
     SHOT = "shot"
     DROPSHOTS = "dropshots"
+    ANDROID_TESTIFY = "android-testify"
     PAPARAZZI = "paparazzi"
     ROBORAZZI = "roborazzi"
 }
 
-Boolean screenshotLibrary(String libName) {
-    return project.hasProperty(SCREENSHOT_LIBRARY) &&
-            project.property(SCREENSHOT_LIBRARY) == libName
+// For use of Gradle Managed Devices with android-testify
+ext {
+    ANDROID_TESTIFY_RECORD_MODE_GMD = "recordModeGmd"
 }
 
 String screenshotLibraryName() {
@@ -23,29 +26,6 @@ String screenshotLibraryName() {
     } else {
         return ""
     }
-}
-
-// Apply screenshot library plugins conditionally:
-// Shot plugin does not work properly if Dropshots plugin is also applied.
-// Thus, apply screenshot library plugins based on the argument passed via command line
-if (screenshotLibrary(SHOT)) {
-    apply plugin: 'shot'
-    shot {
-        tolerance = 0.15 // Tests pass if less than 0,15% of the pixels differ
-        applicationId = "com.example.road.to.effective.snapshot.testing"
-    }
-}
-
-if (screenshotLibrary(DROPSHOTS)) {
-    apply plugin: 'com.dropbox.dropshots'
-}
-
-if (screenshotLibrary(PAPARAZZI)) {
-    apply plugin: 'app.cash.paparazzi'
-}
-
-if (screenshotLibrary(ROBORAZZI)) {
-    apply plugin: 'io.github.takahirom.roborazzi'
 }
 
 android {
@@ -62,17 +42,9 @@ android {
         buildConfigField "String", "SCREENSHOT_LIBRARY", "\"${SCREENSHOT_LIBRARY}\""
         buildConfigField "String", "SHOT", "\"${SHOT}\""
         buildConfigField "String", "DROPSHOTS", "\"${DROPSHOTS}\""
+        buildConfigField "String", "ANDROID_TESTIFY", "\"${ANDROID_TESTIFY}\""
         buildConfigField "String", "PAPARAZZI", "\"${PAPARAZZI}\""
         buildConfigField "String", "ROBORAZZI", "\"${ROBORAZZI}\""
-
-        // make gradle property available in Android Tests via InstrumentationRegistry.getArguments()
-        testInstrumentationRunnerArguments = [(SCREENSHOT_LIBRARY): screenshotLibraryName()]
-
-        if (screenshotLibrary(SHOT)) {
-            testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
-        } else {
-            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        }
     }
 
     buildTypes {
@@ -91,24 +63,14 @@ android {
     }
 
     testOptions {
-        // Not reliable on every API. Seems to work only from API 25 on.
-        // Better to disable through developer settings
-        animationsDisabled = true
-
-        unitTests {
-            // Avoid loading class clashes with Paparazzi
-            if (screenshotLibrary(ROBORAZZI)) {
-                includeAndroidResources = true
-            }
-            all {
-                // Do not run out of memory when running Roborazzi tests for different api levels
-                jvmArgs '-Xmx1g'
-
-                // make gradle property available in unit tests via System.getProperty
-                systemProperty SCREENSHOT_LIBRARY, screenshotLibraryName()
-
-                if (screenshotLibrary(ROBORAZZI)) {
-                    systemProperty 'robolectric.graphicsMode', 'NATIVE'
+        // Warning: Only android-testify supports gradle managed devices.
+        // However, it does not support shards for now
+        managedDevices {
+            devices {
+                pixel3api30(ManagedVirtualDevice) {
+                    device = "Pixel 3"
+                    apiLevel = 30
+                    systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
         }
@@ -125,23 +87,51 @@ android {
     }
 }
 
+// Apply screenshot library plugins conditionally.
+// Each plugin is configured in its own gradle file
+//
+// WARNING: Shot plugin does not work properly if Dropshots plugin is also applied.
+// Thus, apply screenshot library plugins based on the argument passed via command line
+switch (screenshotLibraryName()) {
+    case PAPARAZZI:
+        apply from: 'paparazzi.gradle'
+        break
+    case ROBORAZZI:
+        apply from: 'roborazzi.gradle'
+        break
+    case SHOT:
+        apply from: 'shot.gradle'
+        break
+    case DROPSHOTS:
+        apply from: 'dropshots.gradle'
+        break
+    case ANDROID_TESTIFY:
+        apply from: 'android-testify.gradle'
+        break
+}
+
 dependencies {
     debugImplementation project(path: ':dialogs')
     implementation project(':testannotations')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.0.1')
-
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.0.1')
-
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.0.1')
-
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.0.1')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.0.1')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.0.1')
-
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.0.1')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.0.1')
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.1.0')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.1.0')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.1.0')
+
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.1.0')
+
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.1.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.1.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.1.0')
+
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.1.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.1.0')
+
+    // for Gradle Managed Devices
+    androidTestUtil('androidx.test.services:test-services:1.4.2')
 }

@@ -1,0 +1,19 @@
+apply plugin: 'io.github.takahirom.roborazzi'
+
+android {
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+
+            all {
+                // Do not run out of memory when running Roborazzi tests for different api levels
+                jvmArgs '-Xmx1g'
+
+                // make gradle property available in unit tests via System.getProperty
+                systemProperty SCREENSHOT_LIBRARY, screenshotLibraryName()
+
+                systemProperty 'robolectric.graphicsMode', 'NATIVE'
+            }
+        }
+    }
+}

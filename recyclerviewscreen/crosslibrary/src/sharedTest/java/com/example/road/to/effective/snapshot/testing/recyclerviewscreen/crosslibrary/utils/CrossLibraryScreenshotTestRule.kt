@@ -1,14 +1,18 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crosslibrary.utils
 
-import android.graphics.Color
+import android.graphics.Color.TRANSPARENT
 import androidx.test.platform.app.InstrumentationRegistry.*
 
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crosslibrary.BuildConfig
+import sergio.sastre.uitesting.android_testify.AndroidTestifyConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.CompareOptions
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.ComparisonStyle
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RoborazziOptions
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
@@ -35,7 +39,10 @@ class CrossLibraryScreenshotTestRule(
         when (instrumentationScreenshotLibraryName) {
             BuildConfig.SHOT -> shotScreenshotTestRule
             BuildConfig.DROPSHOTS -> dropshotsScreenshotTestRule
-            else -> throw ScreenshotLibraryArgumentMissingException()
+            BuildConfig.ANDROID_TESTIFY -> androidTestifyScreenshotTestRule
+            // Unfortunately, android-testify does not read instrumentation test runner arguments,
+            // so if null, we assume it is android-testify
+            else -> androidTestifyScreenshotTestRule
         }
 
     override fun getJvmScreenshotLibraryTestRule(
@@ -67,14 +74,22 @@ fun defaultCrossLibraryScreenshotTestRule(
         // Optional: configure for the libraries you use
         .configure(
             ShotConfig(
+                backgroundColor = TRANSPARENT,
                 bitmapCaptureMethod = PixelCopy(),
             )
         ).configure(
             DropshotsConfig(
+                backgroundColor = TRANSPARENT,
                 bitmapCaptureMethod = PixelCopy(),
                 resultValidator = ThresholdValidator(0.15f),
             )
         ).configure(
+            AndroidTestifyConfig(
+                backgroundColor = TRANSPARENT,
+                bitmapCaptureMethod = PixelCopy(),
+            )
+        )
+        .configure(
             PaparazziConfig(
                 deviceConfig = DeviceConfig.NEXUS_4,
                 snapshotViewOffsetMillis = 3_000L,
@@ -82,7 +97,10 @@ fun defaultCrossLibraryScreenshotTestRule(
         ).configure(
             RoborazziConfig(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
-                backgroundColor = Color.TRANSPARENT,
+                backgroundColor = TRANSPARENT,
+                roborazziOptions = RoborazziOptions(
+                    compareOptions = CompareOptions(comparisonStyle = ComparisonStyle.Simple)
+                ),
                 filePath = userTestFilePath(),
             )
         )

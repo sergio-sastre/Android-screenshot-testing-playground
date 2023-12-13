@@ -1,0 +1,32 @@
+apply plugin: 'dev.testify'
+
+android {
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments = [
+                // make gradle property available in Android Tests via InstrumentationRegistry.getArguments()
+                (SCREENSHOT_LIBRARY) : screenshotLibraryName(),
+                // if using gradle managed devices with android-testify
+                useTestStorageService: "true"
+        ]
+    }
+
+    testOptions {
+        // Not reliable on every API
+        // Better to disable through developer settings
+        animationsDisabled = true
+    }
+}
+
+testify {
+    moduleName ":recyclerviewscreen:crosslibrary"
+    applicationPackageId 'com.example.road.to.effective.snapshot.testing'
+    testPackageId 'com.example.road.to.effective.snapshot.testing'
+
+    // Necessary to execute cross library screenshot tests
+    screenshotAnnotation 'sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot'
+
+    // For Gradle Managed Devices
+    useTestStorage = true
+    recordMode = project.hasProperty(ANDROID_TESTIFY_RECORD_MODE_GMD)
+}
