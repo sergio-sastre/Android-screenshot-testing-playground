@@ -25,9 +25,9 @@ import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
  *
  * With Gradle Managed Devices (API 27+)
  * 1. Record (saved under this module's build/outputs/managed_device_android_test_additional_output/...):
- *    ./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd
+ *    ./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd
  * 2. Verify (move recorded screenshot files first -> https://ndtp.github.io/android-testify/docs/recipes/gmd):
- *    ./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest
+ *    ./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage
  *
  * WARNING: filtering tests by custom annotation not working with Gradle Managed Devices
  *

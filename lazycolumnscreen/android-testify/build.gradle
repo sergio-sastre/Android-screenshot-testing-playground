@@ -9,6 +9,7 @@ plugins {
 ext {
     SCREENSHOT_ANNOTATION = "screenshotAnnotation"
     RECORD_MODE_GMD = "recordModeGmd"
+    USE_TEST_STORAGE = "useTestStorage"
 }
 
 String filterAnnotation() {
@@ -91,7 +92,7 @@ testify {
 
     // for Gradle Managed Devices
     recordMode = project.hasProperty(RECORD_MODE_GMD)
-    useTestStorage = true
+    useTestStorage = project.hasProperty(USE_TEST_STORAGE)
 }
 
 dependencies {

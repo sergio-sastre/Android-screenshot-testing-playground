@@ -27,6 +27,6 @@ testify {
     screenshotAnnotation 'sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot'
 
     // For Gradle Managed Devices
-    useTestStorage = true
+    useTestStorage = project.hasProperty(ANDROID_TESTIFY_USE_TEST_STORAGE)
     recordMode = project.hasProperty(ANDROID_TESTIFY_RECORD_MODE_GMD)
 }
