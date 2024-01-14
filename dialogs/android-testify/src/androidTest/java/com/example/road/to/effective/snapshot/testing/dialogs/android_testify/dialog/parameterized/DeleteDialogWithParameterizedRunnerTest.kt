@@ -9,7 +9,6 @@ import com.example.road.to.effective.snapshot.testing.dialogs.android_testify.it
 import com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.TestifyFeatures
 import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import org.junit.Test
@@ -30,9 +29,9 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
  *
  * With Gradle Managed Devices (API 27+)
  * 1. Record (saved under this module's build/outputs/managed_device_android_test_additional_output/...):
- *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd
+ *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd
  * 2. Verify (move recorded screenshot files first -> https://ndtp.github.io/android-testify/docs/recipes/gmd):
- *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest
+ *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage
  *
  * To run them using Android Orchestrator, add the following at the end of the command:
  * -PuseOrchestrator

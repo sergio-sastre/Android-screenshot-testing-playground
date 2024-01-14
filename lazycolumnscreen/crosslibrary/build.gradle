@@ -17,6 +17,7 @@ ext {
 
 ext {
     ANDROID_TESTIFY_RECORD_MODE_GMD = "recordModeGmd"
+    ANDROID_TESTIFY_USE_TEST_STORAGE = "useTestStorage"
 }
 
 String screenshotLibraryName() {
