@@ -19,7 +19,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
- * Execute the command below to run only ViewHolderTests
+ * Execute the command below to run only ComposableTests
  * 1. Record:
  *    ./gradlew :lazycolumnscreen:android-testify:screenshotRecord -PscreenshotAnnotation=com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
  * 2. Verify:
@@ -46,7 +46,7 @@ class CoffeeDrinkAppBarHappyPathTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val rule = ComposableScreenshotRuleWithConfiguration(
+    val screenshotRule = ComposableScreenshotRuleWithConfiguration(
         exactness = 0.85f,
         config = ComposableConfigItem(
             locale = "en",
@@ -62,7 +62,7 @@ class CoffeeDrinkAppBarHappyPathTest {
     @ComposableTest
     @Test
     fun snapComposable() {
-        rule
+        screenshotRule
             .setCompose { AppTheme { CoffeeDrinkAppBar() } }
             .withExperimentalFeatureEnabled(GenerateDiffs)
             .assertSame(
@@ -77,7 +77,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val rule = ComposableScreenshotRuleWithConfiguration(
+    val screenshotRule = ComposableScreenshotRuleWithConfiguration(
         exactness = 0.85f,
         config = ComposableConfigItem(
             locale = "en_XA",
@@ -93,7 +93,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
     @ComposableTest
     @Test
     fun snapComposable() {
-        rule
+        screenshotRule
             .setCompose { AppTheme { CoffeeDrinkAppBar() } }
             .withExperimentalFeatureEnabled(GenerateDiffs)
             .assertSame(

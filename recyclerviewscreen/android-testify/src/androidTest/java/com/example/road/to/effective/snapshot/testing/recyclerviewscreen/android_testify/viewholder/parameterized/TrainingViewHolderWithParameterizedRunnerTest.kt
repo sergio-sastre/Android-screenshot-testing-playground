@@ -10,7 +10,6 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
-import dev.testify.TestifyFeatures
 import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView

@@ -38,7 +38,7 @@ class SnackbarComposableTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val rule = ComposableScreenshotRuleWithConfiguration(
+    val screenshotRule = ComposableScreenshotRuleWithConfiguration(
         exactness = 0.85f,
         config = ComposableConfigItem(
             locale = "en",
@@ -50,7 +50,7 @@ class SnackbarComposableTest {
     @ComposableTest
     @Test
     fun snapComposable() {
-        rule
+        screenshotRule
             .setCompose {
                 AppTheme {
                     SnackbarScaffold { snackbarHostState ->

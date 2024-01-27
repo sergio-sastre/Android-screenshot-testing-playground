@@ -71,12 +71,9 @@ class DeleteDialogParameterizedHappyPathTest(
     )
 
     @ScreenshotInstrumentation
-    @Test
-    // You can also filter tests by custom annotation (not working with Gradle Managed Devices though)
-    // For that, pass the annotation to the command. For instance, for DialogTest:
-    // -PscreenshotAnnotation=com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
     @HappyPath
     @DialogTest
+    @Test
     fun snapDialog() {
         screenshotRule
             .setScreenshotViewProvider {
@@ -124,12 +121,9 @@ class DeleteDialogParameterizedUnhappyPathTest(
     )
 
     @ScreenshotInstrumentation
-    @Test
-    // You can also filter tests by custom annotation (not working with Gradle Managed Devices though)
-    // For that, pass the annotation to the command. For instance, for DialogTest:
-    // -PscreenshotAnnotation=com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
     @UnhappyPath
     @DialogTest
+    @Test
     fun snapDialog() {
         screenshotRule
             .setScreenshotViewProvider {

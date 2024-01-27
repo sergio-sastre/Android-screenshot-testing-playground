@@ -3,8 +3,6 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.androi
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
-import org.junit.runners.Parameterized.Parameters
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
@@ -12,7 +10,6 @@ import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPat
 import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
-import dev.testify.TestifyFeatures
 import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView

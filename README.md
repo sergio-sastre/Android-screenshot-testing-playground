@@ -63,7 +63,7 @@ As of August 2023, there are many screenshot testing libraries that facilitate a
 All of them have their own pros and cons.
 The ultimate goal of this repo is to help you choose the libraries that better meet your project's needs!
 
-In order to do that, it contains the same/similar examples but written with different libraries<sup>2</sup>:
+In order to do that, it contains the same/similar examples but written with different libraries:
 1. [Paparazzi](https://github.com/cashapp/paparazzi)
 2. [Dropshots](https://github.com/dropbox/dropshots)
 3. [Shot](https://github.com/pedrovgs/Shot)
@@ -83,7 +83,6 @@ More screenshot test examples, as well as examples with other libraries will be 
 
 <sup>2</sup> Paparazzi does not support screenshot tests... 
    1. For Activities and Fragments, due to clashes with Robolectric, which is required by Activity/FragmentScenarios to run on the JVM.
-   2. With Pseudolocales, due to layoutlib.
 
 
 ## Table of Contents
@@ -211,8 +210,6 @@ For example,
 |----------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------:|
 | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678715-c7356e7b-7d4c-413a-942f-76e42e445d0b.png"> | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678760-b84bb060-03fb-4050-b283-ab2e28415df7.png"> |
 
-3. Doesn't support **Pseudolocales**. We can use pseudolocales to detect layout alignment issues without the need to render the screen in all languages our app supports. If set while testing, such Paparazzi tests crash. You can read more about pseudolocales in the [official android documentation](https://developer.android.com/guide/topics/resources/pseudolocales).
-
 On the other hand, on-device screenshot testing has its own issues as well. Most of them happen due to the **hardware accelerated drawing model**. This happens for example, when running the same test on machines with different architectures<sup>1</sup> e.g. Macbook Pro with M1 chip vs. Intel x64. It might cause issues related to:
 1. Shadows & elevation
 2. Font smoothing & anti-aliasing
@@ -251,7 +248,6 @@ Let's summarize.
    1. Incorrect screenshots for UI components that call View.animate() or ObjectAnimator.ofPropertyValuesHolder() several times.
    2. Only renders what the Compose @Previews can display
 3. Fragile to AGP & Jetpack Compose updates
-4. No support for Pseudolocales
 
 ## Recording and verifying screenshots
 For screenshot testing, 2 tasks are required:
@@ -356,14 +352,14 @@ Then run the following gradle tasks depending on the module:
 ### [Android-Testify](https://github.com/ndtp/android-testify)
 Currently this is the only library that supports Gradle Managed Devices.
 You can do it by directly running the following command:
-1. **Record**: `./gradlew :module_name:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`. For instance:
-    1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`
-    2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`
-    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PrecordModeGmd`
+1. **Record**: `./gradlew :module_name:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`. For instance:
+    1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
+    2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
+    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
 2. **Verify**: `./gradlew :module_name:android-testify:pixel3api30DebugAndroidTest`. For instance:
-    1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest`
-    2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest`
-    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest`
+    1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
+    2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
+    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
 
 > **Note**</br>
 > Before verifying, you need to copy the files saved under the corresponding module's 
@@ -405,8 +401,8 @@ Since they configure 2 on-device & 2 JVM screenshot libraries, you need to pass 
 
 > **Note**</br>
 > You can also record and verify via Gradle Managed Devices with Android-Testify as specified in the previous section:
-> 1. Record: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PrecordModeGmd`
-> 2. Verify: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest`
+> 1. Record: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
+> 2. Verify: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PuseTestStorage`
 > specified here: https://ndtp.github.io/android-testify/docs/recipes/gmd
 
 To enable cross-library screenshot testing, it uses [Android UI Testing Utils 2.1.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)

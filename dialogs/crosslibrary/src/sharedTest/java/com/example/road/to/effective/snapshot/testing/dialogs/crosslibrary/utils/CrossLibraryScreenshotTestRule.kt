@@ -15,7 +15,6 @@ import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
-import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
 import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleForView

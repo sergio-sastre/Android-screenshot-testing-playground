@@ -12,7 +12,6 @@ import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
-import dev.testify.TestifyFeatures
 import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import org.junit.Test
@@ -68,12 +67,9 @@ class DeleteDialogTestParameterHappyPathTest(
     )
 
     @ScreenshotInstrumentation
-    @Test
-    // You can also filter tests by custom annotation (not working with Gradle Managed Devices though)
-    // For that, pass the annotation to the command. For instance, for DialogTest:
-    // -PscreenshotAnnotation=com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
     @HappyPath
     @DialogTest
+    @Test
     fun snapDialog() {
         screenshotRule
             .setScreenshotViewProvider {
@@ -116,12 +112,9 @@ class DeleteDialogTestParameterUnhappyPathTest(
     )
 
     @ScreenshotInstrumentation
-    @Test
-    // You can also filter tests by custom annotation (not working with Gradle Managed Devices though)
-    // For that, pass the annotation to the command. For instance, for DialogTest:
-    // -PscreenshotAnnotation=com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
     @UnhappyPath
     @DialogTest
+    @Test
     fun snapDialog() {
         screenshotRule
             .setScreenshotViewProvider {
