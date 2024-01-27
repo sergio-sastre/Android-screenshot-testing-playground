@@ -6,6 +6,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
+import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import org.junit.Rule
 import org.junit.Test
@@ -78,6 +79,7 @@ class MemoriseViewHolderHappyPathTest {
                 }
             }
             .setScreenshotFirstView()
+            .withExperimentalFeatureEnabled(GenerateDiffs)
             .assertSame(name = "MemoriseViewHolderHappy")
     }
 }
@@ -121,6 +123,7 @@ class MemoriseViewHolderUnhappyPathTest {
                 }
             }
             .setScreenshotFirstView()
+            .withExperimentalFeatureEnabled(GenerateDiffs)
             .assertSame(name = "MemoriseViewHolderUnhappy")
     }
 }

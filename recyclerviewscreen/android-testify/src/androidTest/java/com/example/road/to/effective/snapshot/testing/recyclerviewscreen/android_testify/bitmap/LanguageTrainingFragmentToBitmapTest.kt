@@ -1,13 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.bitmap
 
-import android.app.Activity
-import android.graphics.Color.TRANSPARENT
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.viewholder.MemoriseTestItemGenerator
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
@@ -15,12 +8,8 @@ import dev.testify.core.processor.capture.canvasCapture
 import dev.testify.core.processor.capture.pixelCopyCapture
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
+import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
 import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.setViewHolderForScreenshot
-import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
-import sergio.sastre.uitesting.utils.common.Orientation
-import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -32,7 +21,7 @@ import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
  *
  * With Gradle Managed Devices (API 27+)
  * 1. Record (saved under this module's build/outputs/managed_device_android_test_additional_output/...):
- *    ./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd
+ *    ./gradlew :recyclerviewscreen:andFroid-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd
  * 2. Verify (move recorded screenshot files first -> https://ndtp.github.io/android-testify/docs/recipes/gmd):
  *    ./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage
  *
@@ -56,62 +45,34 @@ import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
  * screenshots the UI component under tests without resizing it even though it goes beyond the device
  * screen
  */
-class MemoriseViewHolderToBitmapTest {
+class LanguageTrainingFragmentToBitmapTest {
 
     @get:Rule(order = 0)
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        activityBackgroundColor = TRANSPARENT,
+    var screenshotRule = ScreenshotRuleWithConfigurationForFragment(
         exactness = 0.85f,
-        config = ViewConfigItem(
-            uiMode = UiMode.DAY,
-            locale = "en",
-            orientation = Orientation.PORTRAIT,
-        ),
+        fragmentClass = LanguageTrainingFragment::class.java
     )
-
-    private fun createMemoriseViewHolder(
-        activity: Activity,
-        container: ViewGroup
-    ): RecyclerView.ViewHolder =
-        MemoriseViewHolder(
-            container = container,
-            itemEventListener = null,
-            animationDelay = 0L
-        ).apply {
-            bind(
-                MemoriseTestItemGenerator.generateMemoriseItem(
-                    rightAligned = false,
-                    activity = activity
-                )
-            )
-        }
 
     @ScreenshotInstrumentation
     @BitmapTest
     @Test
-    fun snapViewHolderWithCanvas() {
+    fun snapFragmentWithCanvas() {
         screenshotRule
-            .setViewHolderForScreenshot(R.layout.memorise_row) { targetLayout ->
-                createMemoriseViewHolder(screenshotRule.activity, targetLayout)
-            }
             .configure { this@configure.captureMethod = ::canvasCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
-            .assertSame(name = "MemoriseViewHolder_BitmapWithoutElevation")
+            .assertSame(name = "LanguageTrainingFragment_BitmapWithoutElevation")
     }
 
     @ScreenshotInstrumentation
     @BitmapTest
     @Test
-    fun snapViewHolderWithPixelCopy() {
+    fun snapFragmentWithPixelCopy() {
         screenshotRule
-            .setViewHolderForScreenshot(R.layout.memorise_row) { targetLayout ->
-                createMemoriseViewHolder(screenshotRule.activity, targetLayout)
-            }
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
-            .assertSame(name = "MemoriseViewHolder_BitmapWithElevation")
+            .assertSame(name = "LanguageTrainingFragment_BitmapWithElevation")
     }
 }

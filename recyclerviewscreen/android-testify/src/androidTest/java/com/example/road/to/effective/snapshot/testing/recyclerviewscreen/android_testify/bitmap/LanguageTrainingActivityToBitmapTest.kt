@@ -1,26 +1,16 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.bitmap
 
-import android.app.Activity
-import android.graphics.Color.TRANSPARENT
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
-
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.viewholder.MemoriseTestItemGenerator
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
+import dev.testify.ScreenshotRule
 import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
 import dev.testify.core.processor.capture.canvasCapture
 import dev.testify.core.processor.capture.pixelCopyCapture
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
 import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.setViewHolderForScreenshot
-import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
-import sergio.sastre.uitesting.utils.common.Orientation
-import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -56,62 +46,34 @@ import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
  * screenshots the UI component under tests without resizing it even though it goes beyond the device
  * screen
  */
-class MemoriseViewHolderToBitmapTest {
+class LanguageTrainingActivityToBitmapTest {
 
     @get:Rule(order = 0)
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        activityBackgroundColor = TRANSPARENT,
-        exactness = 0.85f,
-        config = ViewConfigItem(
-            uiMode = UiMode.DAY,
-            locale = "en",
-            orientation = Orientation.PORTRAIT,
-        ),
+    var screenshotRule = ScreenshotRule(
+        configuration = TestifyConfiguration(exactness = 0.85f),
+        activityClass = LanguageTrainingActivity::class.java,
     )
-
-    private fun createMemoriseViewHolder(
-        activity: Activity,
-        container: ViewGroup
-    ): RecyclerView.ViewHolder =
-        MemoriseViewHolder(
-            container = container,
-            itemEventListener = null,
-            animationDelay = 0L
-        ).apply {
-            bind(
-                MemoriseTestItemGenerator.generateMemoriseItem(
-                    rightAligned = false,
-                    activity = activity
-                )
-            )
-        }
 
     @ScreenshotInstrumentation
     @BitmapTest
     @Test
-    fun snapViewHolderWithCanvas() {
+    fun snapActivityWithCanvas() {
         screenshotRule
-            .setViewHolderForScreenshot(R.layout.memorise_row) { targetLayout ->
-                createMemoriseViewHolder(screenshotRule.activity, targetLayout)
-            }
             .configure { this@configure.captureMethod = ::canvasCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
-            .assertSame(name = "MemoriseViewHolder_BitmapWithoutElevation")
+            .assertSame(name = "LanguageTrainingActivity_BitmapWithoutElevation")
     }
 
     @ScreenshotInstrumentation
     @BitmapTest
     @Test
-    fun snapViewHolderWithPixelCopy() {
+    fun snapActivityWithPixelCopy() {
         screenshotRule
-            .setViewHolderForScreenshot(R.layout.memorise_row) { targetLayout ->
-                createMemoriseViewHolder(screenshotRule.activity, targetLayout)
-            }
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
-            .assertSame(name = "MemoriseViewHolder_BitmapWithElevation")
+            .assertSame(name = "LanguageTrainingActivity_BitmapWithElevation")
     }
 }
