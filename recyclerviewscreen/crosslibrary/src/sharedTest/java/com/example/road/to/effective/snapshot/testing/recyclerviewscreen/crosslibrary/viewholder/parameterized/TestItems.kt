@@ -3,6 +3,7 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crossl
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingItem
+import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode

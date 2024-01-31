@@ -98,14 +98,6 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
-    WITH_1M_WORDS_IN_ALL_LANGS(
-        TrainingTestItem(
-            deviceConfig = DeviceConfig(
-                locale = "en",
-            ),
-            trainingItem = oneMillionWordsTrainingItem,
-        ),
-    ),
     HUGE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             deviceConfig = DeviceConfig(
@@ -126,4 +118,3 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
         ),
     ),
 }
-

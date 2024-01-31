@@ -19,6 +19,9 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
  *    ./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug --tests '*ViewHolder*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug --tests '*ViewHolder*'
+ *
+ * WARNING: Running these tests with pseudolocales (i.e. locale = "en-rXA" or locale = "ar-rXB")
+ *          throws an exception
  */
 
 /**
@@ -112,6 +115,3 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
         )
     }
 }
-
-
-

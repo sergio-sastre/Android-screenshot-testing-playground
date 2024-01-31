@@ -59,7 +59,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(
             config = ScreenshotConfigForComposable(
-                locale = "en",
+                locale = "ar_XB",
                 uiMode = UiMode.NIGHT,
                 orientation = Orientation.LANDSCAPE,
                 fontScale = FontSize.HUGE,

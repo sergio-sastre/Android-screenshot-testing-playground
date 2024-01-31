@@ -52,7 +52,7 @@ class CoffeeDrinkAppBarComposableUnhappyPathTest {
             deviceConfig = DeviceConfig.PIXEL_5.copy(
                 nightMode = NightMode.NIGHT,
                 fontScale = 1.3f,
-                locale = "en",
+                locale = "ar-rXB",
             ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )

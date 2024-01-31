@@ -52,6 +52,9 @@ android {
         release {
             minifyEnabled false
         }
+        debug {
+            pseudoLocalesEnabled true
+        }
     }
 
     compileOptions {
