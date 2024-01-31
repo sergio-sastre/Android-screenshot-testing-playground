@@ -40,9 +40,9 @@ enum class UnhappyPathTestItem(val item: ScreenshotConfigForComposable) {
             displaySize = DisplaySize.LARGEST,
         ),
     ),
-    SMALL(
+    AR_XB_SMALL(
         ScreenshotConfigForComposable(
-            locale = "en",
+            locale = "ar_XB",
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
             fontScale = FontSize.SMALL,

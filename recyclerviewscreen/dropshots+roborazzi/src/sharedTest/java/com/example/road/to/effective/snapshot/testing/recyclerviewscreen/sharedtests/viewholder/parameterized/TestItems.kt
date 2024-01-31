@@ -95,6 +95,15 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
             trainingItem = wordsInSomeLangsTrainingItem,
         ),
     ),
+    EN_XA_WITH_1M_WORDS_IN_ALL_LANGS(
+        TrainingTestItem(
+            viewConfig = ScreenshotConfigForView(
+                locale = "en_XA",
+                theme = "Theme.RoadToEffectiveSnapshotTesting",
+            ),
+            trainingItem = oneMillionWordsTrainingItem,
+        ),
+    ),
     HUGE_1M_WORDS_IN_ALL_LANGS(
         TrainingTestItem(
             viewConfig = ScreenshotConfigForView(

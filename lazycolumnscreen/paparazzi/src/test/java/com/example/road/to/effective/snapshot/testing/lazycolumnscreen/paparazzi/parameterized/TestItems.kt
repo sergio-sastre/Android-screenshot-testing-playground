@@ -45,9 +45,9 @@ enum class UnhappyPathTestItem(val item: DeviceConfig) {
             displaySize = DisplaySize.NORMAL,
         ),
     ),
-    SMALL(
+    AR_XB_SMALL(
         DeviceConfig(
-            locale = "en",
+            locale = "ar-rXB",
             phoneOrientation = PhoneOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 0.85f,

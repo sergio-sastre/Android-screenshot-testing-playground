@@ -8,7 +8,7 @@ class LanguageRadioButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : MaterialCheckBox(context, attrs, defStyleAttr) {
 
-    var animationDuration = ANIMATION_DURATION
+    private var animationDuration = ANIMATION_DURATION
 
     companion object {
         const val CHECKED_ALPHA = 1f
