@@ -114,6 +114,16 @@ switch (screenshotLibraryName()) {
         break
 }
 
+// Android-Testify:
+// Create task to move screenshots generated via Gradle Managed Devices to the right location
+// before verifying them
+def devices = project.hasProperty("devices") ? project.devices : "pixel3api30"
+
+tasks.register('copyScreenshots', Copy) {
+    from "build/outputs/managed_device_android_test_additional_output/debug/${devices}/images"
+    into "src/androidTest/assets"
+}
+
 dependencies {
     debugImplementation project(path: ':recyclerviewscreen')
     implementation project(':testannotations')
