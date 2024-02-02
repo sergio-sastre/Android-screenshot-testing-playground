@@ -467,13 +467,14 @@ That works for Shot, Dropshots and Android-Testify with Gradle Managed Devices.
 
 For Android-Testify without Gradle Managed Devices, you need to configure it, otherwise it uses `@ScreenshotInstrumentation`:
 ```groovy
-def filterAnnotation = project.hasProperty("screenshotAnnotation") ? project.filterAnnotation : null
+def filterAnnotation = project.hasProperty("filterAnnotation") ? project.filterAnnotation : null
+
 testify {
     screenshotAnnotation = filterAnnotation
 }
 ```
 and then run the record/verify command with
-`-PscreenshotAnnotation=com.your.package.YourAnnotation`
+`-PfilterAnnotation=com.your.package.YourAnnotation`
 
 > **Warning**</br>
 > These arguments are supported by `org.junit.runners.Parameterized` and `com.google.testing.junit.testparameterinjector.TestParameterInjector`, but not by all
