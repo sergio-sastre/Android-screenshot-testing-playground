@@ -8,6 +8,7 @@ import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPat
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
 import dev.testify.TestifyFeatures.GenerateDiffs
+import dev.testify.annotation.ScreenshotInstrumentation
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -51,6 +52,7 @@ class LanguageTrainingFragmentTestParameterHappyPathTest(
             config = configItem.item,
         )
 
+    @ScreenshotInstrumentation
     @HappyPath
     @FragmentTest
     @Test
@@ -80,6 +82,7 @@ class LanguageTrainingFragmentTestParameterUnhappyPathTest(
             config = configItem.item,
         )
 
+    @ScreenshotInstrumentation
     @UnhappyPath
     @FragmentTest
     @Test

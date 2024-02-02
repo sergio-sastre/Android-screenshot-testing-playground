@@ -7,6 +7,7 @@ import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import dev.testify.ScreenshotRule
 import dev.testify.TestifyFeatures
+import dev.testify.annotation.ScreenshotInstrumentation
 import dev.testify.core.TestifyConfiguration
 import org.junit.Rule
 import org.junit.Test
@@ -50,6 +51,7 @@ class LanguageTrainingActivityHappyPathTest {
             activityClass = LanguageTrainingActivity::class.java,
         )
 
+    @ScreenshotInstrumentation
     @HappyPath
     @ActivityTest
     @Test
@@ -88,6 +90,7 @@ class LanguageTrainingActivityUnhappyPathTest {
             )
         )
 
+    @ScreenshotInstrumentation
     @UnhappyPath
     @ActivityTest
     @Test

@@ -6,6 +6,7 @@ import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTe
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import dev.testify.TestifyFeatures.GenerateDiffs
+import dev.testify.annotation.ScreenshotInstrumentation
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
@@ -56,6 +57,7 @@ class CoffeeDrinkComposeFragmentHappyPathTest {
             ),
         )
 
+    @ScreenshotInstrumentation
     @HappyPath
     @FragmentTest
     @Test
@@ -88,6 +90,7 @@ class CoffeeDrinkComposeFragmentUnhappyPathTest {
             ),
         )
 
+    @ScreenshotInstrumentation
     @UnhappyPath
     @FragmentTest
     @Test
