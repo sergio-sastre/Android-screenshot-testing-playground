@@ -30,14 +30,17 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  *  3. Shot:      ./gradlew :recyclerviewscreen:crosslibrary:executeScreenshotTest -PscreenshotLibrary=shot
  *  4. Dropshots: ./gradlew :recyclerviewscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots
  *  5. Testify:   ./gradlew :recyclerviewscreen:crosslibrary:screenshotTest -PscreenshotLibrary=android-testify
- *     Testify via gradle manages devices (move screenshot files first -> https://ndtp.github.io/android-testify/docs/recipes/gmd)
- *                ./gradlew :recyclerviewscreen:crosslibrary:pixel3api30DebugAndroidTest -PscreenshotLibrary=android-testify -PuseTestStorage
+ *     Testify via gradle manages devices (copy recorded screenshots + assert):
+ *          - Copy recorded screenshots in androidTest/assets -> https://ndtp.github.io/android-testify/docs/recipes/gmd
+ *               ./gradlew :recyclerviewscreen:crosslibrary:copyScreenshots -Pdevices=pixel3api30
+ *          - Assert
+ *               ./gradlew :recyclerviewscreen:crosslibrary:pixel3api30DebugAndroidTest -PscreenshotLibrary=android-testify -PuseTestStorage
  *
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
  *  src/test/resources/com/example/road/to/effective/snapshot/testing/recyclerviewscreen/crosslibrary/viewholder/parameterized
  *
- *  WARNING: Running these tests with pseudolocales (i.e. locale = "en-rXA" or locale = "ar-rXB")
+ *  WARNING: Running these tests with pseudolocales (i.e. locale = "en_XA" or locale = "ar_XB")
  *           throws an exception with Paparazzi ONLY
  */
 @RunWith(ParameterizedCrossLibraryScreenshotTestRunner::class)
