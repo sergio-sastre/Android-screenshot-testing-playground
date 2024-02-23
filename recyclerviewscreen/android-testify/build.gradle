@@ -101,8 +101,8 @@ dependencies {
     implementation project(':testannotations')
 
     androidTestImplementation 'androidx.test:rules:1.5.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.2.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.2.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.2.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.2.1'
 
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

@@ -10,8 +10,6 @@ import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.android_testify.ComposableScreenshotRuleWithConfiguration
 import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
-import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -39,13 +37,7 @@ class SnackbarComposableTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val screenshotRule = ComposableScreenshotRuleWithConfiguration(
-        exactness = 0.85f,
-        config = ComposableConfigItem(
-            locale = "en",
-            uiMode = UiMode.NIGHT,
-        )
-    )
+    val screenshotRule = ComposableScreenshotRuleWithConfiguration(exactness = 0.85f)
 
     @ScreenshotInstrumentation
     @ComposableTest

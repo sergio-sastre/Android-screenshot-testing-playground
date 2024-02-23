@@ -11,6 +11,7 @@ import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
 import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
@@ -64,6 +65,7 @@ class CoffeeDrinkComposeFragmentHappyPathTest {
     fun snapFragment() {
         activityScreenshotRule
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeFragment_HappyPath"
             )
@@ -97,6 +99,7 @@ class CoffeeDrinkComposeFragmentUnhappyPathTest {
     fun snapFragment() {
         activityScreenshotRule
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeFragment_UnhappyPath"
             )

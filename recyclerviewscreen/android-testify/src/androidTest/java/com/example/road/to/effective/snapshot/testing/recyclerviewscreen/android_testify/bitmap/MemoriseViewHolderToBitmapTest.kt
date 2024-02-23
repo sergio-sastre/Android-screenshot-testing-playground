@@ -18,6 +18,7 @@ import org.junit.Test
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
 import sergio.sastre.uitesting.android_testify.assertSame
 import sergio.sastre.uitesting.android_testify.setViewHolderForScreenshot
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
@@ -100,6 +101,7 @@ class MemoriseViewHolderToBitmapTest {
             }
             .configure { this@configure.captureMethod = ::canvasCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolder_BitmapWithoutElevation")
     }
 
@@ -113,6 +115,7 @@ class MemoriseViewHolderToBitmapTest {
             }
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolder_BitmapWithElevation")
     }
 }

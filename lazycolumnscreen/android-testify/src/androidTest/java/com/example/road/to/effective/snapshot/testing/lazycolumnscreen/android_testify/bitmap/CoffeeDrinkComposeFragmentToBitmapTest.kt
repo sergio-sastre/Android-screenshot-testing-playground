@@ -10,6 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
 import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -50,6 +51,7 @@ class CoffeeDrinkComposeFragmentToBitmapTest {
         activityScreenshotRule
             .configure { this@configure.captureMethod = ::canvasCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeFragment_WithoutElevation"
             )
@@ -62,6 +64,7 @@ class CoffeeDrinkComposeFragmentToBitmapTest {
         activityScreenshotRule
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeFragment_WithElevation"
             )

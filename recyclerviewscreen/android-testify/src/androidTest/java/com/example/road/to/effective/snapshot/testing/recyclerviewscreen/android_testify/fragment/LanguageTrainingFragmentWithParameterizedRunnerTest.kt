@@ -12,6 +12,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
 import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -61,6 +62,7 @@ class LanguageTrainingFragmentParameterizedHappyPathTest(
     fun snapFragment() {
         activityScreenshotRule
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "LanguageTrainingFragment_${testItem.name}_Parameterized"
             )
@@ -96,6 +98,7 @@ class LanguageTrainingFragmentParameterizedUnhappyPathTest(
     fun snapFragment() {
         activityScreenshotRule
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "LanguageTrainingFragment_${testItem.name}_Parameterized"
             )

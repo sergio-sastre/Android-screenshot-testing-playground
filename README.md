@@ -72,7 +72,7 @@ In order to do that, it contains the same/similar examples but written with diff
 
 **BONUS**:
 It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests running with multiple libraries, namely: Paparazzi, Roborazzi, Shot, Dropshots & Android-Testify*.
-For that it uses [Android UI Testing Utils 2.0.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+For that it uses [Android UI Testing Utils 2.x.x](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 You can read more about it in this blog post series:
 1. [A World Beyond Libraries: Cross-Library Screenshot tests on android](https://sergiosastre.hashnode.dev/a-world-beyond-libraries-cross-library-screenshot-tests-on-android)
@@ -149,7 +149,8 @@ I'm still evaluating Roborazzi, so this section refers to Paparazzi only, and wi
 
 Although running screenshot tests on the JVM comes with some speed wins, its main advantage is that one doesn't have to deal with emulator and their problems, such as:
 1. Emulators eventually freezing/crashing (specially on CI)
-2. "Insufficient storage" errors
+2. "Insufficient storage" exception
+3. "Out of Memory" exceptions
 
 **Rendering elevation in generated screenshots**
 
@@ -386,7 +387,7 @@ Then run the following gradle tasks depending on the module:
 ### Cross-Library
 Run the very same screenshot tests with the screenshot testing library of your choice, among Paparazzi, Roborazzi, Shot, Dropshots or Android-Testify.</br>
 The most common scenario is to use 1 on-device (e.g. Shot, Dropshots, Android-Testify) and 1 JVM (e.g. Paparazzi, Roborazzi) screenshot library.
-For that, check the corresponding submodules e.g. `:dropshots+paparazzi`, `:shot+roborazzi`, `:dropshots+roborazzi`</br>
+For that, check the corresponding submodules e.g. `:android-testify+paparazzi`, `:shot+roborazzi`, `:dropshots+roborazzi`</br>
 You would execute such tests as you would do for the corresponding library e.g. `./gradlew :lazycolumnscreen:dropshots+paparazzi:recordPaparazziDebug` would record with Paparazzi.</br>
 
 For examples containing 2+ on-device and/or 2+ JVM screenshot libraries, check the corresponding `:crosslibrary` modules.</br>

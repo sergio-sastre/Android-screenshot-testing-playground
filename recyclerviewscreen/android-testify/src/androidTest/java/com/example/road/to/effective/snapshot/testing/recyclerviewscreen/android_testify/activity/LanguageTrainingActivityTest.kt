@@ -12,6 +12,7 @@ import dev.testify.core.TestifyConfiguration
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
@@ -97,6 +98,7 @@ class LanguageTrainingActivityUnhappyPathTest {
     fun snapActivity() {
         activityScreenshotRule
             .withExperimentalFeatureEnabled(TestifyFeatures.GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "LanguageTrainingActivity_UnhappyPath")
     }
 }

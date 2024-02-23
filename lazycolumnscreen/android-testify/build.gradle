@@ -62,7 +62,6 @@ android {
         }
         animationsDisabled = true
 
-        // Warning: android-testify does not support shards with gradle managed devices for now
         managedDevices {
             devices {
                 pixel3api30(ManagedVirtualDevice) {
@@ -116,11 +115,11 @@ dependencies {
     androidTestImplementation "androidx.compose.material:material"
 
     androidTestImplementation 'androidx.test:rules:1.5.0'
-    androidTestImplementation "dev.testify:testify-compose:2.0.0-rc03"
+    androidTestImplementation "dev.testify:testify-compose:2.0.0"
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.2.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.2.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.2.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.2.1'
 
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
     // for Gradle Managed Devices

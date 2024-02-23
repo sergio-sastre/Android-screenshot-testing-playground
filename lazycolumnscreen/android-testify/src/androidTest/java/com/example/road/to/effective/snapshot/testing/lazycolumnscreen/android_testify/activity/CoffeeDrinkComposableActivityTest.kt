@@ -12,6 +12,7 @@ import dev.testify.core.TestifyConfiguration
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.fontsize.FontSizeTestRule
@@ -58,6 +59,7 @@ class CoffeeDrinkComposeActivityHappyPathTest {
     fun snapActivity() {
         activityScreenshotRule
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "CoffeeDrinksComposeActivity_HappyPath")
     }
 }
@@ -94,6 +96,7 @@ class CoffeeDrinkComposeActivityUnhappyPathTest {
     fun snapActivity() {
         activityScreenshotRule
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeActivity_UnhappyPath",
             )

@@ -13,6 +13,7 @@ import org.junit.Test
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
 import sergio.sastre.uitesting.android_testify.assertSame
 import sergio.sastre.uitesting.android_testify.setScreenshotFirstView
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
@@ -81,6 +82,7 @@ class MemoriseViewHolderHappyPathTest {
             }
             .setScreenshotFirstView()
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolderHappy")
     }
 }
@@ -125,6 +127,7 @@ class MemoriseViewHolderUnhappyPathTest {
             }
             .setScreenshotFirstView()
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolderUnhappy")
     }
 }

@@ -1,7 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtests.utils
 
-import com.dropbox.dropshots.ThresholdValidator
-import sergio.sastre.uitesting.dropshots.DropshotsConfig
+import sergio.sastre.uitesting.android_testify.AndroidTestifyConfig
 import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
@@ -24,12 +23,11 @@ class CrossLibraryScreenshotTestRule(
 
     override fun getInstrumentedScreenshotLibraryTestRule(
         config: ScreenshotConfigForComposable,
-    ): ScreenshotTestRuleForComposable = dropshotsScreenshotTestRule
+    ): ScreenshotTestRuleForComposable = androidTestifyScreenshotTestRule
 
     override fun getJvmScreenshotLibraryTestRule(
         config: ScreenshotConfigForComposable,
     ): ScreenshotTestRuleForComposable = paparazziScreenshotTestRule
-
 }
 
  fun defaultCrossLibraryScreenshotTestRule(
@@ -38,10 +36,8 @@ class CrossLibraryScreenshotTestRule(
     CrossLibraryScreenshotTestRule(config)
         // Optional: configure for the libraries you use
         .configure(
-            DropshotsConfig(
+            AndroidTestifyConfig(
                 bitmapCaptureMethod = PixelCopy(),
-                resultValidator = ThresholdValidator(0.15f),
-                filePath = "dropshots",
             )
         )
         .configure(

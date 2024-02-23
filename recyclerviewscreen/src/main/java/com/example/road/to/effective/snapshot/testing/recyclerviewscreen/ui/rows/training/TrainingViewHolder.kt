@@ -18,7 +18,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.view
 class TrainingViewHolder(
     private val container: View,
 ) : RecyclerView.ViewHolder(container) {
-    val contextWrapper =
+    private val contextWrapper =
         ContextThemeWrapper(container.context, R.style.FlagCheckMark)
 
     private var filterClickedListener: LanguageFilterClickedListener? = null
@@ -27,9 +27,8 @@ class TrainingViewHolder(
     fun <T> bind(
         item: TrainingItem,
         languageClickedListener: T?,
-
-        ) where T : TrainAllClickedListener,
-                T : LanguageFilterClickedListener {
+    ) where T : TrainAllClickedListener,
+            T : LanguageFilterClickedListener {
 
         filterClickedListener = languageClickedListener
         trainAllClickedListener = languageClickedListener
@@ -95,6 +94,7 @@ class TrainingViewHolder(
                 filterText.animate().setDuration(fadingOutDuration).alpha(invisibleAlpha)
                 emptyMemorisesImage.animate().setDuration(fadingInDuration).alpha(visibleAlpha)
             }
+
             else -> {
                 filterText.animate().setDuration(fadingInDuration).alpha(visibleAlpha)
                 emptyMemorisesImage.animate().setDuration(fadingOutDuration)
@@ -106,7 +106,7 @@ class TrainingViewHolder(
     private fun TrainingItem.getWordsToMemoriseAmount(): Long =
         trainingByLang
             .filterKeys { activeLangs.contains(it) }
-            .values.fold(emptyList<com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Translation>()) { acc, list -> acc + list }
+            .values.fold(emptyList<Translation>()) { acc, list -> acc + list }
             .size
             .toLong()
 }

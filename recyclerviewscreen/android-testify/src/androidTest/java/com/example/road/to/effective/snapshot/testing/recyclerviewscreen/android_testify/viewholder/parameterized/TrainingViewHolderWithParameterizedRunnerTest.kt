@@ -15,6 +15,7 @@ import dev.testify.annotation.ScreenshotInstrumentation
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
 import sergio.sastre.uitesting.android_testify.assertSame
 import sergio.sastre.uitesting.android_testify.setScreenshotFirstView
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -86,6 +87,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
             }
             .setScreenshotFirstView()
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "${testItem.name}_Parameterized"
             )
@@ -131,6 +133,7 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
             }
             .setScreenshotFirstView()
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(
                 name = "${testItem.name}_Parameterized"
             )

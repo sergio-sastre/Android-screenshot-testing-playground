@@ -19,6 +19,7 @@ import org.junit.runner.RunWith
 import org.junit.Rule
 import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
 import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
@@ -92,6 +93,7 @@ class DeleteDialogTestParameterHappyPathTest(
                 dialog.window!!.decorView
             }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "DeleteDialog_${testItem.name}_TestParameter")
     }
 }
@@ -137,6 +139,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
                 dialog.window!!.decorView
             }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "DeleteDialog_${testItem.name}_TestParameter")
     }
 }

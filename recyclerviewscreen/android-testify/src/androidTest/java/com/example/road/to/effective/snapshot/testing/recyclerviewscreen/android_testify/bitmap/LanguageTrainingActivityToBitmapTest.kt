@@ -11,6 +11,7 @@ import dev.testify.core.processor.capture.pixelCopyCapture
 import org.junit.Rule
 import org.junit.Test
 import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.waitForIdleSync
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -65,6 +66,7 @@ class LanguageTrainingActivityToBitmapTest {
         screenshotRule
             .configure { this@configure.captureMethod = ::canvasCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "LanguageTrainingActivity_BitmapWithoutElevation")
     }
 
@@ -75,6 +77,7 @@ class LanguageTrainingActivityToBitmapTest {
         screenshotRule
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
             .withExperimentalFeatureEnabled(GenerateDiffs)
+            .waitForIdleSync()
             .assertSame(name = "LanguageTrainingActivity_BitmapWithElevation")
     }
 }
