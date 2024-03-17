@@ -20,8 +20,11 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug --tests '*ViewHolder*'
  *
- * WARNING: Running these tests with pseudolocales (i.e. locale = "en-rXA" or locale = "ar-rXB")
- *          throws an exception
+ * WARNING 1: Running these tests with pseudolocales (i.e. locale = "en-rXA" or locale = "ar-rXB")
+ *            throws an exception
+ *
+ * WARNING 2: Paparazzi cannot handle the simultaneous animations properly and renders wrong screenshots
+ *            whereas Roborazzi, Shot, Dropshots and Android-Testify do render them correctly
  */
 
 /**
@@ -40,7 +43,7 @@ class TrainingViewHolderParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -83,7 +86,8 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule

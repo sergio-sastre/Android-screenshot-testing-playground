@@ -45,7 +45,8 @@ class DeleteDialogParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+                HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -91,7 +92,8 @@ class DeleteDialogParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule

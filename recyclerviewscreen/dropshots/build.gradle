@@ -53,7 +53,7 @@ dependencies {
 
     androidTestImplementation 'androidx.test:rules:1.5.0'
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.2.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.0'
 
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
 }

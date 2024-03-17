@@ -5,8 +5,6 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crossli
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crosslibrary.viewholder.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
-import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
-import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -40,6 +38,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshot
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
  *  src/test/resources/com/example/road/to/effective/snapshot/testing/recyclerviewscreen/crosslibrary/viewholder/parameterized
+ *  Therefore, these tests take longer (more tests + downloading of several SDKs)
  */
 @RunWith(CrossLibraryScreenshotTestRunner::class)
 class MemoriseViewHolderHappyPathTest {
@@ -53,8 +52,6 @@ class MemoriseViewHolderHappyPathTest {
         )
 
     @CrossLibraryScreenshot
-    @HappyPath
-    @ViewHolderTest
     @Test
     fun snapMemoriseViewHolderHappyPath() {
         val sdkVersion = Build.VERSION.SDK_INT

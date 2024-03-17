@@ -4,12 +4,11 @@ import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
+import com.android.resources.ScreenOrientation
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.DisplaySize
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.PhoneOrientation
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setDisplaySize
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Rule
 import org.junit.Test
 
@@ -29,8 +28,9 @@ class CoffeeDrinkAppBarComposableHappyPathTest {
                 nightMode = NightMode.NOTNIGHT,
                 fontScale = 1.0f,
                 locale = "en",
-            ).setPhoneOrientation(PhoneOrientation.PORTRAIT),
-            renderingMode = SessionParams.RenderingMode.V_SCROLL,
+                orientation = ScreenOrientation.PORTRAIT,
+            ),
+            renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 
     @Test
@@ -53,8 +53,9 @@ class CoffeeDrinkAppBarComposableUnhappyPathTest {
                 nightMode = NightMode.NIGHT,
                 fontScale = 1.3f,
                 locale = "ar-rXB",
-            ).setPhoneOrientation(PhoneOrientation.LANDSCAPE),
-            renderingMode = SessionParams.RenderingMode.V_SCROLL,
+                orientation = ScreenOrientation.LANDSCAPE
+            ),
+            renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 
     @Test

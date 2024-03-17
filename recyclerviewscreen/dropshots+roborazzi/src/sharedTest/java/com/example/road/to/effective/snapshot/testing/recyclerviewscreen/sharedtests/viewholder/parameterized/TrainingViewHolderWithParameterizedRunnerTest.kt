@@ -25,6 +25,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
  *  src/test/resources/com/example/road/to/effective/snapshot/testing/recyclerviewscreen/sharedtests/viewholder/parameterized
+ *  Therefore, these tests take longer (more tests + downloading of several SDKs)
  */
 @RunWith(ParameterizedCrossLibraryScreenshotTestRunner::class)
 class TrainingViewHolderParameterizedHappyPathTest(
@@ -33,7 +34,8 @@ class TrainingViewHolderParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+            HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -67,7 +69,8 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule

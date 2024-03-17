@@ -83,7 +83,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
         config = ComposableConfigItem(
             locale = "en_XA",
             uiMode = UiMode.NIGHT,
-            fontSize = FontSize.HUGE,
+            fontSize = FontSize.LARGEST,
             displaySize = DisplaySize.LARGER,
             orientation = Orientation.LANDSCAPE
         )

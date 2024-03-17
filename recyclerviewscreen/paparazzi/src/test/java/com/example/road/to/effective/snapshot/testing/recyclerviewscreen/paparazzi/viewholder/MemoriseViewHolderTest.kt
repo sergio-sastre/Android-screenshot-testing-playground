@@ -21,6 +21,7 @@ import org.junit.Test
  *    ./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug --tests '*ViewHolder*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug --tests '*ViewHolder*'
+ *
  */
 
 /**
@@ -30,7 +31,7 @@ class MemoriseViewHolderHappyPathTest {
     @get:Rule
     val paparazzi =
         Paparazzi(
-            deviceConfig = DeviceConfig.PIXEL_5.setPhoneOrientation(PhoneOrientation.LANDSCAPE),
+            deviceConfig = DeviceConfig.PIXEL_5.setPhoneOrientation(PhoneOrientation.PORTRAIT),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderingMode = SessionParams.RenderingMode.V_SCROLL,
         )

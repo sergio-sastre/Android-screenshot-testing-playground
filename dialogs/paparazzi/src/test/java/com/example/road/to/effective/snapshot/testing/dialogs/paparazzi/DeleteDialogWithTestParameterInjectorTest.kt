@@ -4,6 +4,8 @@ import app.cash.paparazzi.DeviceConfig.Companion.PIXEL_5
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.androidHome
 import app.cash.paparazzi.detectEnvironment
+import com.android.ide.common.rendering.api.SessionParams
+import com.android.ide.common.rendering.api.SessionParams.RenderingMode
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
@@ -41,6 +43,7 @@ class DeleteDialogTestParameterHappyPathTest(
             platformDir = "${androidHome()}/platforms/android-33",
             compileSdkVersion = 33
         ),
+        renderingMode = RenderingMode.SHRINK,
     )
 
     @Test
@@ -70,6 +73,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
+        renderingMode = RenderingMode.SHRINK,
     )
 
     @Test

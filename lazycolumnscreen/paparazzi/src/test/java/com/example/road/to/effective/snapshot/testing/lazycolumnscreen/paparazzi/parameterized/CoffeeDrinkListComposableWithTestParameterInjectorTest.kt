@@ -38,8 +38,9 @@ class CoffeeDrinkListComposableTestParameterHappyPathTest(
                 nightMode = testItem.item.nightMode,
                 fontScale = testItem.item.fontScale,
                 locale = testItem.item.locale,
-            ).setPhoneOrientation(testItem.item.phoneOrientation),
-            renderingMode = SessionParams.RenderingMode.V_SCROLL,
+                orientation = testItem.item.phoneOrientation,
+            ),
+            renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 
     @Test
@@ -66,8 +67,9 @@ class CoffeeDrinkListComposableTestParameterUnhappyPathTest(
                 nightMode = testItem.item.nightMode,
                 fontScale = testItem.item.fontScale,
                 locale = testItem.item.locale,
-            ).setPhoneOrientation(testItem.item.phoneOrientation),
-            renderingMode = SessionParams.RenderingMode.V_SCROLL,
+                orientation = testItem.item.phoneOrientation
+            ),
+            renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 
     @Test

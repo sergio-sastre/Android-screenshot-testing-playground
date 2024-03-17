@@ -51,7 +51,8 @@ class TrainingViewHolderParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+            HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -87,7 +88,8 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule

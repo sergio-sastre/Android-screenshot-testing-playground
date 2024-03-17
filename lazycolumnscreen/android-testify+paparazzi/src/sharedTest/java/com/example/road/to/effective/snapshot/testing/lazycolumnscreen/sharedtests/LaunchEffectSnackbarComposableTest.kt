@@ -4,7 +4,6 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.ActionNot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtests.utils.SnackbarScaffold
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtests.utils.defaultCrossLibraryScreenshotTestRule
-import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,6 +28,9 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshot
  *               ./gradlew :lazycolumnscreen:android-testify+paparazzi:copyScreenshots -Pdevices=pixel3api30
  *          - Assert
  *               ./gradlew :lazycolumnscreen:android-testify+paparazzi:pixel3api30DebugAndroidTest -PuseTestStorage
+ *
+ *   WARNING: Paparazzi is the only lib that cannot render the Snackbar.
+ *            That is because it relies on layoutlib (used in Compose Previews), and previews cannot render code in LaunchEffects
  */
 @RunWith(CrossLibraryScreenshotTestRunner::class)
 class SnackbarComposableTest {
@@ -36,7 +38,9 @@ class SnackbarComposableTest {
     @get:Rule
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(ScreenshotConfigForComposable())
-            .configure(PaparazziConfig(renderingMode = RenderingMode.NORMAL))
+            .configure(
+                PaparazziConfig(renderingMode = RenderingMode.NORMAL)
+            )
 
     @CrossLibraryScreenshot
     @Test

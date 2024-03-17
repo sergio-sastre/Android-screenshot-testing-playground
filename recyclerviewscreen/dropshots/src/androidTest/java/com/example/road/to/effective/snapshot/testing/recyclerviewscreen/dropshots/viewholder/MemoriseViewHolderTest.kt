@@ -94,7 +94,7 @@ class MemoriseViewHolderUnhappyPathTest {
             .setInitialOrientation(Orientation.LANDSCAPE)
             .setLocale("en_XA")
             .setUiMode(UiMode.NIGHT)
-            .setFontSize(FontSize.HUGE)
+            .setFontSize(FontSize.LARGEST)
             .setDisplaySize(DisplaySize.LARGEST)
             .launchConfiguredActivity()
 

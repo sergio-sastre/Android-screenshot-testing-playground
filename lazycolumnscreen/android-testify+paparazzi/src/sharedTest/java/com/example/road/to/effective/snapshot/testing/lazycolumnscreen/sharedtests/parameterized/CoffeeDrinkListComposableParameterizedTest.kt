@@ -35,7 +35,8 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+            HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -57,13 +58,15 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
 
 @RunWith(ParameterizedCrossLibraryScreenshotTestRunner::class)
 class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
+    // Remove DisplaySize if recording/verifying with Testify due to a bug
     private val testItem: UnhappyPathTestItem,
 ) {
 
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule

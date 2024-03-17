@@ -98,7 +98,7 @@ class MemoriseViewHolderUnhappyPathTest {
         config = ViewConfigItem(
             uiMode = UiMode.NIGHT,
             locale = "en_XA",
-            fontSize = FontSize.HUGE,
+            fontSize = FontSize.LARGEST,
             displaySize = DisplaySize.LARGEST,
             orientation = Orientation.LANDSCAPE,
         ),

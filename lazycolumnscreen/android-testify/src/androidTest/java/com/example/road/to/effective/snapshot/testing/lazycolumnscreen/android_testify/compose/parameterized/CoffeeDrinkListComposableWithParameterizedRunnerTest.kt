@@ -5,7 +5,6 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDri
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.ComposableScreenshotRule
 import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import org.junit.Rule
@@ -53,7 +52,8 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+            HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule(order = 0)
@@ -91,7 +91,8 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule(order = 0)

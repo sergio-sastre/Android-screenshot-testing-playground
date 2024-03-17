@@ -18,7 +18,7 @@ data class TrainingTestItem(
 )
 
 private fun translationsPerLang(count: Int) =
-    Language.values().associateWith { lang -> translations(count) }
+    Language.entries.associateWith { translations(count) }
 
 private fun translations(amount: Int): List<Translation> {
     val translation = translation()
@@ -35,7 +35,7 @@ private fun translation(): Translation =
 
 private val oneMillionWordsTrainingItem = TrainingItem(
     trainingByLang = translationsPerLang(999_999),
-    activeLangs = Language.values().toSet()
+    activeLangs = Language.entries.toSet()
 )
 
 val wordsInSomeLangsTrainingItem = TrainingItem(
@@ -105,7 +105,7 @@ enum class UnhappyPathTestItem(val item: TrainingTestItem) {
         TrainingTestItem(
             viewConfig = ViewConfigItem(
                 locale = "en",
-                fontSize = FontSize.HUGE,
+                fontSize = FontSize.LARGEST,
             ),
             trainingItem = oneMillionWordsTrainingItem,
         ),

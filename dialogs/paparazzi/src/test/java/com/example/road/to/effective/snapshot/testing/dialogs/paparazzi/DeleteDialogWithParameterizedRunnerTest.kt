@@ -4,6 +4,8 @@ import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.androidHome
 import app.cash.paparazzi.detectEnvironment
+import com.android.ide.common.rendering.api.SessionParams
+import com.android.ide.common.rendering.api.SessionParams.RenderingMode
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import org.junit.Rule
 import org.junit.Test
@@ -32,7 +34,8 @@ class DeleteDialogParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+            HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -48,6 +51,7 @@ class DeleteDialogParameterizedHappyPathTest(
             platformDir = "${androidHome()}/platforms/android-33",
             compileSdkVersion = 33,
         ),
+        renderingMode = RenderingMode.SHRINK,
     )
 
     @Test
@@ -74,7 +78,8 @@ class DeleteDialogParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -85,6 +90,7 @@ class DeleteDialogParameterizedUnhappyPathTest(
             fontScale = testItem.deleteItem.deviceConfig.fontScale,
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
+        renderingMode = RenderingMode.SHRINK,
     )
 
     @Test

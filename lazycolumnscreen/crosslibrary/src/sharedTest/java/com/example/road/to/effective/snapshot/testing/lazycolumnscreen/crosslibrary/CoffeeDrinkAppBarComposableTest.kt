@@ -43,6 +43,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshot
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
  *  src/test/resources/com/example/road/to/effective/snapshot/testing/lazycolumnscreen/crosslibrary/parameterized
+ *  Therefore, these tests take longer (more tests + downloading of several SDKs)
  */
 @RunWith(CrossLibraryScreenshotTestRunner::class)
 class CoffeeDrinkAppBarHappyPathTest {
@@ -81,7 +82,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
                 locale = "ar_XB",
                 uiMode = UiMode.NIGHT,
                 orientation = Orientation.LANDSCAPE,
-                fontScale = FontSize.HUGE,
+                fontScale = FontSize.LARGEST,
                 displaySize = DisplaySize.LARGEST,
             )
         )

@@ -22,8 +22,9 @@ fun DeviceConfig.setPhoneOrientation(
         )
     } else {
         this.copy(
-            screenHeight = 1,
-            orientation = ScreenOrientation.PORTRAIT,
+            screenHeight = this.screenWidth,
+            screenWidth = 1,
+            orientation = ScreenOrientation.LANDSCAPE,
         )
     }
 }

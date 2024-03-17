@@ -94,7 +94,7 @@ class CoffeeDrinkAppBarUnhappyPathTest {
                 .setLocale("ar_XB")
                 .setUiMode(UiMode.NIGHT)
                 .setInitialOrientation(Orientation.LANDSCAPE)
-                .setFontSize(FontSize.HUGE)
+                .setFontSize(FontSize.LARGEST)
                 .setDisplaySize(DisplaySize.LARGER)
                 .launchConfiguredActivity()
                 .onActivity {

@@ -6,7 +6,6 @@ import com.android.ide.common.rendering.api.SessionParams
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setDisplaySize
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.setPhoneOrientation
 import org.junit.Test
 import org.junit.Rule
 import org.junit.runner.RunWith
@@ -33,7 +32,8 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+                HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -43,8 +43,9 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
                 nightMode = testItem.item.nightMode,
                 fontScale = testItem.item.fontScale,
                 locale = testItem.item.locale,
-            ).setPhoneOrientation(testItem.item.phoneOrientation),
-            renderingMode = SessionParams.RenderingMode.V_SCROLL,
+                orientation = testItem.item.phoneOrientation,
+            ),
+            renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 
     @Test
@@ -67,7 +68,8 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -76,8 +78,9 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
             nightMode = testItem.item.nightMode,
             fontScale = testItem.item.fontScale,
             locale = testItem.item.locale,
-        ).setPhoneOrientation(testItem.item.phoneOrientation),
-        renderingMode = SessionParams.RenderingMode.V_SCROLL,
+            orientation = testItem.item.phoneOrientation,
+        ),
+        renderingMode = SessionParams.RenderingMode.SHRINK,
     )
 
     @Test

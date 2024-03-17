@@ -24,6 +24,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
  *  src/test/resources/com/example/road/to/effective/snapshot/testing/dialogs/sharedtests/
+ *  Therefore, these tests take longer (more tests + downloading of several SDKs)
  */
 @RunWith(ParameterizedCrossLibraryScreenshotTestRunner::class)
 class DeleteDialogParameterizedHappyPathTest(
@@ -35,7 +36,8 @@ class DeleteDialogParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+                HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -73,7 +75,8 @@ class DeleteDialogParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameterized.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule

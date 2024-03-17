@@ -1,6 +1,7 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.parameterized
 
 import com.android.resources.NightMode
+import com.android.resources.ScreenOrientation
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.DisplaySize
@@ -10,7 +11,7 @@ data class DeviceConfig(
     val nightMode: NightMode = NightMode.NOTNIGHT,
     val fontScale: Float = 1.0f,
     val locale: String = "en",
-    val phoneOrientation: PhoneOrientation,
+    val phoneOrientation: ScreenOrientation,
     val displaySize: DisplaySize,
 )
 
@@ -18,7 +19,7 @@ enum class HappyPathTestItem(val item: DeviceConfig) {
     PORTRAIT(
         DeviceConfig(
             locale = "en",
-            phoneOrientation = PhoneOrientation.PORTRAIT,
+            phoneOrientation = ScreenOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 1.0f,
             displaySize = DisplaySize.NORMAL,
@@ -30,7 +31,7 @@ enum class UnhappyPathTestItem(val item: DeviceConfig) {
     LANDSCAPE_NIGHT(
         DeviceConfig(
             locale = "en",
-            phoneOrientation = PhoneOrientation.LANDSCAPE,
+            phoneOrientation = ScreenOrientation.LANDSCAPE,
             nightMode = NightMode.NIGHT,
             fontScale = 1.0f,
             displaySize = DisplaySize.NORMAL,
@@ -39,7 +40,7 @@ enum class UnhappyPathTestItem(val item: DeviceConfig) {
     HUGE(
         DeviceConfig(
             locale = "en",
-            phoneOrientation = PhoneOrientation.PORTRAIT,
+            phoneOrientation = ScreenOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 1.3f,
             displaySize = DisplaySize.NORMAL,
@@ -48,7 +49,7 @@ enum class UnhappyPathTestItem(val item: DeviceConfig) {
     AR_XB_SMALL(
         DeviceConfig(
             locale = "ar-rXB",
-            phoneOrientation = PhoneOrientation.PORTRAIT,
+            phoneOrientation = ScreenOrientation.PORTRAIT,
             nightMode = NightMode.NOTNIGHT,
             fontScale = 0.85f,
             displaySize = DisplaySize.NORMAL,

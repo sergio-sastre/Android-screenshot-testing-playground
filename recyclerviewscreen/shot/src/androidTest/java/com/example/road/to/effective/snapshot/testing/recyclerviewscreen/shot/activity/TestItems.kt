@@ -33,7 +33,7 @@ enum class UnhappyPathTestItem(val item: ActivityConfigItem) {
             systemLocale = "ar_XB",
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.NIGHT,
-            fontSize = FontSize.HUGE,
+            fontSize = FontSize.LARGEST,
             displaySize = DisplaySize.LARGEST,
         ),
     ),

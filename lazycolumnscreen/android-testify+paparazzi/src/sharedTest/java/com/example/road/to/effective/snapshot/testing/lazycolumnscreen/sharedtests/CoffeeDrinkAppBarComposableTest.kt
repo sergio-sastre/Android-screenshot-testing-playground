@@ -30,6 +30,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshot
  *               ./gradlew :lazycolumnscreen:android-testify+paparazzi:copyScreenshots -Pdevices=pixel3api30
  *          - Assert
  *               ./gradlew :lazycolumnscreen:android-testify+paparazzi:pixel3api30DebugAndroidTest -PuseTestStorage
+ *
  */
 @RunWith(CrossLibraryScreenshotTestRunner::class)
 class CoffeeDrinkAppBarHappyPathTest {
@@ -67,8 +68,8 @@ class CoffeeDrinkAppBarUnhappyPathTest {
                 locale = "ar_XB",
                 uiMode = UiMode.NIGHT,
                 orientation = Orientation.LANDSCAPE,
-                fontScale = FontSize.HUGE,
-                displaySize = DisplaySize.LARGEST,
+                fontScale = FontSize.LARGEST,
+                displaySize = DisplaySize.LARGEST, // Remove this if recording/verifying with Testify due to a bug
             )
         )
 

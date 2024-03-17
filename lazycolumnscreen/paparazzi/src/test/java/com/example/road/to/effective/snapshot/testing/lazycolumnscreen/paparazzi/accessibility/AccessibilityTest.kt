@@ -7,6 +7,7 @@ import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
 import com.android.ide.common.rendering.api.SessionParams
+import com.android.resources.ScreenOrientation
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
@@ -25,9 +26,10 @@ class AccessibilityTest {
     @get:Rule
     val paparazzi =
         Paparazzi(
-            // For Accessibility, better to use devices in landscape with Paparazzi
-            deviceConfig = DeviceConfig.NEXUS_5_LAND,
-            renderingMode = SessionParams.RenderingMode.V_SCROLL,
+            deviceConfig = DeviceConfig.NEXUS_5.copy(
+                orientation = ScreenOrientation.LANDSCAPE
+            ),
+            renderingMode = SessionParams.RenderingMode.SHRINK,
             renderExtensions = setOf(AccessibilityRenderExtension())
         )
 

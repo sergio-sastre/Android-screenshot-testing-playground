@@ -19,7 +19,7 @@ part of blog posts</br>
 A sample repo to introduce screenshot testing in Android.<br/> It contains a wide variety of examples written with different screenshot testing libraries for a better comparison among them. These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 > **Warning**</br>
-> It is configured with AGP 8.2.0-beta05, so it requires Android Studio Hedgehog or higher!
+> It is configured with AGP 8.2.2, so it requires Android Studio Iguana or higher!
 
 ## Sponsors
 

@@ -23,7 +23,7 @@ data class TrainingTestItem(
 )
 
 private fun translationsPerLang(count: Int) =
-    Language.values().associateWith { translations(count) }
+    Language.entries.associateWith { translations(count) }
 
 private fun translations(amount: Int): List<Translation> {
     val translation = translation()
@@ -40,7 +40,7 @@ private fun translation(): Translation =
 
 private val oneMillionWordsTrainingItem = TrainingItem(
     trainingByLang = translationsPerLang(999_999),
-    activeLangs = Language.values().toSet()
+    activeLangs = Language.entries.toSet()
 )
 
 private val wordsInSomeLangsTrainingItem = TrainingItem(

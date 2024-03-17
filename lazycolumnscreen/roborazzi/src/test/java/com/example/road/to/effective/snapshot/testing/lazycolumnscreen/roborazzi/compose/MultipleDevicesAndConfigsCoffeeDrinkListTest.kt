@@ -40,7 +40,7 @@ class MultipleDevicesAndConfigsCoffeeDrinkListTest(
         @ParameterizedRobolectricTestRunner.Parameters
         fun testItemProvider(): Array<TestDataForComposable<CoffeeType>> =
             TestDataForComposableCombinator(
-                uiStates = CoffeeType.values()
+                uiStates = CoffeeType.entries.toTypedArray()
             )
                 .forDevices(
                     PIXEL_4A,
@@ -48,7 +48,7 @@ class MultipleDevicesAndConfigsCoffeeDrinkListTest(
                 )
                 .forConfigs(
                     ComposableConfigItem(uiMode = DAY, locale = "ar_XB"),
-                    ComposableConfigItem(uiMode = NIGHT, fontSize = FontSize.HUGE),
+                    ComposableConfigItem(uiMode = NIGHT, fontSize = FontSize.LARGEST),
                 )
                 .combineAll()
     }

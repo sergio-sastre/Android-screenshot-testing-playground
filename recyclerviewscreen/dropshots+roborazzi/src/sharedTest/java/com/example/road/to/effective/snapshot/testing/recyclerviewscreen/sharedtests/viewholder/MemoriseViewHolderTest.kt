@@ -26,6 +26,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshot
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
  *  src/test/resources/com/example/road/to/effective/snapshot/testing/recyclerviewscreen/sharedtests/viewholder/
+ *  Therefore, these tests take longer (more tests + downloading of several SDKs)
  */
 @RunWith(CrossLibraryScreenshotTestRunner::class)
 class MemoriseViewHolderHappyPathTest {

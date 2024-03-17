@@ -42,7 +42,7 @@ enum class UnhappyPathTestItem(val deleteItem: DeleteDialogTestItem) {
     HUGE_NIGHT(
         DeleteDialogTestItem(
             viewConfig = ScreenshotConfigForView(
-                fontSize = FontSize.HUGE,
+                fontSize = FontSize.LARGEST,
                 uiMode = UiMode.NIGHT,
                 theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),

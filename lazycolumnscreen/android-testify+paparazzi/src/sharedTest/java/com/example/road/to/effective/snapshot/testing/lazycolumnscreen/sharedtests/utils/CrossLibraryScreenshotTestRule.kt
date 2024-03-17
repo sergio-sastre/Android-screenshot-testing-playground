@@ -10,11 +10,8 @@ import sergio.sastre.uitesting.utils.crosslibrary.testrules.ScreenshotTestRuleFo
 import sergio.sastre.uitesting.utils.crosslibrary.testrules.implementations.shared.SharedScreenshotLibraryTestRuleForComposable
 
 /**
- * A [SharedScreenshotLibraryTestRuleForComposable] that decides which library runs the instrumented screenshot tests
- * based on the -PscreenshotLibrary argument passed via command line.
- *
- * It required some extra configuration in the gradle file
- * Take a look at the :lazycolumnscreen:dropshots+paparazzi gradle file to see how it is configured
+ * A [SharedScreenshotLibraryTestRuleForComposable] that can run the screenshot tests
+ * for the JVM and on-device libraries it is configured for.
  */
 
 class CrossLibraryScreenshotTestRule(
@@ -35,6 +32,7 @@ class CrossLibraryScreenshotTestRule(
  ): ScreenshotTestRuleForComposable =
     CrossLibraryScreenshotTestRule(config)
         // Optional: configure for the libraries you use
+        // You can override it for each library in every test
         .configure(
             AndroidTestifyConfig(
                 bitmapCaptureMethod = PixelCopy(),

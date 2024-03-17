@@ -35,7 +35,7 @@ enum class UnhappyPathTestItem(val item: ComposableConfigItem) {
             locale = "en",
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
-            fontSize = FontSize.HUGE,
+            fontSize = FontSize.LARGEST,
             displaySize = DisplaySize.NORMAL,
         ),
     ),

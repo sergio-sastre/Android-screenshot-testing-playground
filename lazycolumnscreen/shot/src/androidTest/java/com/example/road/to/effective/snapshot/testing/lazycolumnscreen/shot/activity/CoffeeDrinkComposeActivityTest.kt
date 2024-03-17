@@ -81,7 +81,7 @@ class CoffeeDrinkComposeActivityUnhappyPathTest : ScreenshotTest {
     val systemLocale = SystemLocaleTestRule("en_XA")
 
     @get:Rule
-    val fontSize = FontSizeTestRule(FontSize.HUGE)
+    val fontSize = FontSizeTestRule(FontSize.LARGEST)
 
     @get:Rule
     val uiMode = UiModeTestRule(UiMode.NIGHT)

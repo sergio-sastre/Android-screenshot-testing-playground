@@ -7,9 +7,6 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized.Parameters
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
-import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
-import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
 import sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot
 import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibraryScreenshotTestRunner
 
@@ -39,9 +36,13 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  *  NOTE: These tests run on different api levels when executed with Roborazzi.
  *  Those api levels are defined in the robolectric.properties file under
  *  src/test/resources/com/example/road/to/effective/snapshot/testing/recyclerviewscreen/crosslibrary/viewholder/parameterized
+ *  Therefore, these tests take longer (more tests + downloading of several SDKs)
  *
- *  WARNING: Running these tests with pseudolocales (i.e. locale = "en_XA" or locale = "ar_XB")
- *           throws an exception with Paparazzi ONLY
+ * WARNING 1: Running these tests with pseudolocales (i.e. locale = "en-rXA" or locale = "ar-rXB")
+ *            throws an exception with Paparazzi ONLY
+ *
+ * WARNING 2: Paparazzi cannot handle the simultaneous animations properly and renders wrong screenshots
+ *            whereas Roborazzi, Shot, Dropshots and Android-Testify do render them correctly
  */
 @RunWith(ParameterizedCrossLibraryScreenshotTestRunner::class)
 class TrainingViewHolderParameterizedHappyPathTest(
@@ -50,7 +51,8 @@ class TrainingViewHolderParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+                HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -59,8 +61,6 @@ class TrainingViewHolderParameterizedHappyPathTest(
     )
 
     @CrossLibraryScreenshot
-    @HappyPath
-    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = screenshotRule.inflate(R.layout.training_row)
@@ -85,7 +85,8 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -94,8 +95,6 @@ class TrainingViewHolderParameterizedUnhappyPathTest(
     )
 
     @CrossLibraryScreenshot
-    @UnhappyPath
-    @ViewHolderTest
     @Test
     fun snapViewHolder() {
         val layout = screenshotRule.inflate(R.layout.training_row)

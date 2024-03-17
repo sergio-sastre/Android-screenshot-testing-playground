@@ -70,7 +70,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion '1.5.0'
+        kotlinCompilerExtensionVersion '1.5.10'
     }
 
     testOptions {
@@ -135,23 +135,24 @@ dependencies {
     implementation project(':testannotations')
 
     // Jetpack Compose
-    debugImplementation platform('androidx.compose:compose-bom:2023.08.00')
+    debugImplementation platform('androidx.compose:compose-bom:2024.02.02')
     debugImplementation "androidx.compose.material:material"
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.2.0')
+    // screenshot libs
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.2.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.3.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.2.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.3.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.2.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.3.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.2.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.2.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.2.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.3.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.2.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.2.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.3.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.3.0')
 
     // for Gradle Managed Devices
     androidTestUtil('androidx.test.services:test-services:1.4.2')

@@ -2,7 +2,6 @@ package com.example.road.to.effective.snapshot.testing.dialogs.roborazzi
 
 import android.graphics.Color
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
-import com.example.road.to.effective.snapshot.testing.dialogs.R.*
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
@@ -55,7 +54,8 @@ class DeleteDialogParameterizedHappyPathTest(
     companion object {
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> = HappyPathTestItem.values()
+        fun testItemProvider(): Array<HappyPathTestItem> =
+            HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
@@ -98,7 +98,8 @@ class DeleteDialogParameterizedUnhappyPathTest(
     companion object {
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> = UnhappyPathTestItem.values()
+        fun testItemProvider(): Array<UnhappyPathTestItem> =
+            UnhappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule

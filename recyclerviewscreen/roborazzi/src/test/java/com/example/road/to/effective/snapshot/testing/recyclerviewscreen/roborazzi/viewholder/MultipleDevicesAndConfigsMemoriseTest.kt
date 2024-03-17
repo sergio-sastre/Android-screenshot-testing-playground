@@ -68,7 +68,7 @@ class MultipleDevicesAndConfigsMemoriseTest(
         @ParameterizedRobolectricTestRunner.Parameters
         fun testItemProvider(): Array<TestDataForView<TrainingUiState>> =
             TestDataForViewCombinator(
-                uiStates = TrainingUiState.values()
+                uiStates = TrainingUiState.entries.toTypedArray()
             )
                 .forDevices(
                     PIXEL_4A,

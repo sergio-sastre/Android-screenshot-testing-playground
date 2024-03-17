@@ -50,7 +50,7 @@ enum class UnhappyPathTestItem(val deleteItem: DeleteDialogTestItem) {
     SUFFOCATED_NIGHT(
         DeleteDialogTestItem(
             viewConfig = ViewConfigItem(
-                fontSize = FontSize.HUGE,
+                fontSize = FontSize.LARGEST,
                 uiMode = UiMode.NIGHT,
             ),
             bulletTexts = repeatedItem(7, R.string.largest),

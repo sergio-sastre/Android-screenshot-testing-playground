@@ -54,8 +54,8 @@ dependencies {
     implementation project(':recyclerviewscreen')
 
     testImplementation "org.robolectric:robolectric:4.11.1"
-    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.8.0-alpha-6"
+    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.10.1"
 
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.2.1'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.2.1'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.0'
 }

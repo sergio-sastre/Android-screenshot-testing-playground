@@ -3,6 +3,7 @@ package com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary
 import android.content.Context
 import androidx.annotation.StringRes
 import sergio.sastre.uitesting.utils.common.FontSize
+import sergio.sastre.uitesting.utils.common.FontSizeScale
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
 
@@ -42,7 +43,7 @@ enum class UnhappyPathTestItem(val deleteItem: DeleteDialogTestItem) {
     HUGE_NIGHT(
         DeleteDialogTestItem(
             viewConfig = ScreenshotConfigForView(
-                fontSize = FontSize.HUGE,
+                fontSize = FontSizeScale.Value(2f),
                 uiMode = UiMode.NIGHT,
                 theme = "Theme.RoadToEffectiveSnapshotTesting",
             ),

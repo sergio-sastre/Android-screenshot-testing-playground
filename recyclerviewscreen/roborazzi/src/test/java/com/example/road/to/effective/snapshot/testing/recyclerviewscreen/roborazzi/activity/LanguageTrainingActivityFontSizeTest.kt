@@ -1,5 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.activity
 
+import android.os.Build
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
 import com.github.takahirom.roborazzi.captureRoboImage
@@ -12,13 +13,17 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.robolectricActivityScenarioForActivityRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_5
+import sergio.sastre.uitesting.utils.activityscenario.ActivityConfigItem
+import sergio.sastre.uitesting.utils.common.FontSize
+import sergio.sastre.uitesting.utils.common.FontSizeScale
+import sergio.sastre.uitesting.utils.common.assumeSdkSupports
 
 /**
  * Execute the command below to run only ActivityTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Activity*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*FontSize*'
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Activity*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*FontSize*'
  *
  * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
@@ -41,63 +46,42 @@ import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXE
  *  }
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
-class LanguageTrainingActivityParameterizedHappyPathTest(
-    private val testItem: HappyPathTestItem,
+class LanguageTrainingActivityFontSizeTest(
+    private val fontSize: FontSizeScale
 ) {
 
     companion object {
         @JvmStatic
         @ParameterizedRobolectricTestRunner.Parameters
-        fun testItemProvider(): Array<HappyPathTestItem> =
-            HappyPathTestItem.entries.toTypedArray()
-    }
-
-    @get:Rule
-    val activityScenarioForActivityRule =
-        robolectricActivityScenarioForActivityRule<LanguageTrainingActivity>(
-            config = testItem.item,
-            deviceScreen = PIXEL_5,
-        )
-
-    @GraphicsMode(NATIVE)
-    @Config(sdk = [30])
-    @Test
-    fun snapActivity() {
-        activityScenarioForActivityRule
-            .rootView
-            .captureRoboImage(
-                filePath("LanguageTrainingActivity_${testItem.name}_Parameterized")
+        fun fontSizeProvider(): Array<FontSizeScale> =
+            arrayOf(
+                FontSize.XLARGE,             // same scale but scaling mode is SDK dependent (linear vs. non-linear)
+                FontSizeScale.Value(1.75f),  // skipped on API < 34 due to usage of assumeSDKSupports
+                FontSize.LARGEST             // API 34+ -> 2.0f, API < 34 -> 1.3f
             )
-    }
-}
-
-@RunWith(ParameterizedRobolectricTestRunner::class)
-class LanguageTrainingActivityParameterizedUnhappyPathTest(
-    private val testItem: UnhappyPathTestItem,
-) {
-
-    companion object {
-        @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters
-        fun testItemProvider(): Array<UnhappyPathTestItem> =
-            UnhappyPathTestItem.entries.toTypedArray()
+        // or use the method below...
+        // FontSizeScale.supportedValuesForCurrentSdk()
     }
 
     @get:Rule
     val activityScenarioForActivityRule =
         robolectricActivityScenarioForActivityRule<LanguageTrainingActivity>(
-            config = testItem.item,
+            config = ActivityConfigItem(
+                fontSize = fontSize
+            ),
             deviceScreen = PIXEL_5,
         )
 
     @GraphicsMode(NATIVE)
-    @Config(sdk = [30])
+    @Config(sdk = [33, 34])
     @Test
     fun snapActivity() {
+        assumeSdkSupports(fontSize)
+
         activityScenarioForActivityRule
             .rootView
             .captureRoboImage(
-                filePath("LanguageTrainingActivity_${testItem.name}_Parameterized")
+                filePath("LanguageTrainingActivity_FontSize_${fontSize.valueAsName()}_API${Build.VERSION.SDK_INT}")
             )
     }
 }

@@ -4,6 +4,7 @@ import android.view.View
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
+import com.android.resources.ScreenOrientation
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.utils.MemoriseTestItemGenerator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.paparazzi.viewholder.parameterized.HappyPathTestItem
@@ -28,7 +29,9 @@ class AccessibilityTest {
             //
             // As side effect, this will screenshot a landscape layout. This might differ from the
             // portrait one, as it is the case with R.layout.memorise_row
-            deviceConfig = DeviceConfig.NEXUS_5_LAND,
+            deviceConfig = DeviceConfig.NEXUS_5.copy(
+                orientation = ScreenOrientation.LANDSCAPE
+            ),
             theme = "Theme.RoadToEffectiveSnapshotTesting",
             renderExtensions = setOf(AccessibilityRenderExtension())
         )

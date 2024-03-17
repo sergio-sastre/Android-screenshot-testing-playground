@@ -63,7 +63,7 @@ class CrossLibraryScreenshotTestRule(
 }
 
  fun defaultCrossLibraryScreenshotTestRule(
-     config: ScreenshotConfigForComposable,
+     config: ScreenshotConfigForComposable = ScreenshotConfigForComposable(),
  ): ScreenshotTestRuleForComposable =
     CrossLibraryScreenshotTestRule(config)
         // Optional: configure for the libraries you use

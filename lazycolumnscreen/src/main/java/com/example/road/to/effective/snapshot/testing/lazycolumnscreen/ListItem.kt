@@ -30,7 +30,8 @@ import androidx.compose.ui.unit.sp
 
 private val COFFEE_DRINK_IMAGE_SIZE = 72.dp
 
-@Preview
+@Preview(apiLevel = 33)
+@Preview(apiLevel = 34)
 @Composable
 fun PreviewListItem() {
     val mapper = CoffeeDrinkItemMapper()

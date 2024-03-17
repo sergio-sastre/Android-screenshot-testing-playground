@@ -59,7 +59,7 @@ class MultipleDevicesAndConfigsDeleteDialogTest(
         @ParameterizedRobolectricTestRunner.Parameters
         fun testItemProvider(): Array<TestDataForView<DeleteDialogUiState>> =
             TestDataForViewCombinator(
-                uiStates = DeleteDialogUiState.values()
+                uiStates = DeleteDialogUiState.entries.toTypedArray()
             )
                 .forDevices(
                     PIXEL_4A,

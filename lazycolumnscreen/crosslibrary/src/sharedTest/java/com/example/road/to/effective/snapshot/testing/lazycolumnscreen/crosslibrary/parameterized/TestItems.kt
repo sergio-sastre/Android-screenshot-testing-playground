@@ -36,7 +36,7 @@ enum class UnhappyPathTestItem(val item: ScreenshotConfigForComposable) {
             locale = "en",
             orientation = Orientation.PORTRAIT,
             uiMode = UiMode.DAY,
-            fontScale = FontSize.HUGE,
+            fontScale = FontSize.LARGEST,
             displaySize = DisplaySize.LARGEST,
         ),
     ),

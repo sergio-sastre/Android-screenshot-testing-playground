@@ -37,7 +37,7 @@ enum class UnhappyPathTestItem(val item: FragmentConfigItem) {
         FragmentConfigItem(
             locale = "ar_XB",
             uiMode = UiMode.DAY,
-            fontSize = FontSize.HUGE,
+            fontSize = FontSize.LARGEST,
         ),
     ),
     LANDSCAPE_NIGHT(

@@ -76,7 +76,7 @@ class LanguageTrainingActivityUnhappyPathTest {
     val systemLocale = SystemLocaleTestRule("en_XA")
 
     @get:Rule(order = 3)
-    val fontSize = FontSizeTestRule(FontSize.HUGE)
+    val fontSize = FontSizeTestRule(FontSize.LARGEST)
 
     @get:Rule(order = 4)
     val uiMode = UiModeTestRule(UiMode.NIGHT)

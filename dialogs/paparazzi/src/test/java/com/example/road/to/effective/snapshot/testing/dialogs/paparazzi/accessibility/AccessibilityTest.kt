@@ -5,6 +5,8 @@ import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
 import app.cash.paparazzi.androidHome
 import app.cash.paparazzi.detectEnvironment
+import com.android.ide.common.rendering.api.SessionParams
+import com.android.resources.ScreenOrientation
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.R
 import com.example.road.to.effective.snapshot.testing.dialogs.paparazzi.itemArray
@@ -23,7 +25,9 @@ class AccessibilityTest {
     @get:Rule
     val paparazzi = Paparazzi(
         // For Accessibility, better to use devices in landscape with Paparazzi
-        deviceConfig = DeviceConfig.NEXUS_5_LAND,
+        deviceConfig = DeviceConfig.NEXUS_5.copy(
+            orientation = ScreenOrientation.LANDSCAPE
+        ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
         // Needed to avoid crashes due to compileSdk 34
         environment = detectEnvironment().copy(
