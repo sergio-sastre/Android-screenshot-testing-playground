@@ -5,7 +5,6 @@ import com.android.resources.ScreenOrientation
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.DisplaySize
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi.utils.PhoneOrientation
 
 data class DeviceConfig(
     val nightMode: NightMode = NightMode.NOTNIGHT,
