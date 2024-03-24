@@ -29,7 +29,6 @@ class AccessibilityTest {
             deviceConfig = DeviceConfig.NEXUS_5.copy(
                 orientation = ScreenOrientation.LANDSCAPE
             ),
-            renderingMode = SessionParams.RenderingMode.SHRINK,
             renderExtensions = setOf(AccessibilityRenderExtension())
         )
 
