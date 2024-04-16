@@ -121,9 +121,9 @@ If reading is not your thing, you can always watch my 2021 Droidcon tech-talks o
 
 ### Roborazzi tests on Windows
 
-If you are running screenshot tests on a Windows machine, you must know that Roborazzi tests will fail.
-That's because it is built based on Robolectric Native Graphics (RNG), which does not support Windows currently.
-This issues has already been reported [here](https://github.com/robolectric/robolectric/issues/8312).
+Starting from robolectric version [4.12](https://github.com/robolectric/robolectric/releases/tag/robolectric-4.12), Robolectric Native Graphics (RNG) is officially supported on Windows. 
+if you're on older version and you're running screenshot tests on a Windows machine, you must know that Roborazzi tests will fail.
+That's because RNG isn't supported on windows before 4.12.
 
 ### Emulators
 
