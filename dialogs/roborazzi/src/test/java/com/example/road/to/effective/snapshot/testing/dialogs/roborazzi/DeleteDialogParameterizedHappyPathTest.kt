@@ -12,7 +12,7 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForViewRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_5
-import sergio.sastre.uitesting.utils.utils.drawToBitmap
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 import java.io.File
 
@@ -27,13 +27,11 @@ import java.io.File
  */
 
 /**
- * You can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
- *
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  *
- * Moreover, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
+ * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
- * adding the following in the module's build.gradle:
+ * adding the corresponding system property in the module's build.gradle.
  *
  *  testOptions {
  *      unitTests {
@@ -43,6 +41,12 @@ import java.io.File
  *          }
  *      }
  *  }
+ *
+ *  That's how the experimental Robolectric feature "hardware rendering" is enabled in this module,
+ *  which enables rendering of shadows and elevation.
+ *  You can delete it or set it to false in the build.gradle:
+ *
+ *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class DeleteDialogParameterizedHappyPathTest(
@@ -67,7 +71,7 @@ class DeleteDialogParameterizedHappyPathTest(
         )
 
     @GraphicsMode(NATIVE)
-    @Config(sdk = [30])
+    @Config(sdk = [33])
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
@@ -81,7 +85,7 @@ class DeleteDialogParameterizedHappyPathTest(
         }
 
         dialog
-            .drawToBitmap()
+            .drawToBitmapWithElevation()
             .captureRoboImage(
                 filePath("DeleteDialog_${testItem.name}_Parameterized")
             )
@@ -111,7 +115,7 @@ class DeleteDialogParameterizedUnhappyPathTest(
         )
 
     @GraphicsMode(NATIVE)
-    @Config(sdk = [30])
+    @Config(sdk = [33])
     @Test
     fun snapDialog() {
         val activity = activityScenarioForViewRule.activity
@@ -125,7 +129,7 @@ class DeleteDialogParameterizedUnhappyPathTest(
         }
 
         dialog
-            .drawToBitmap()
+            .drawToBitmapWithElevation()
             .captureRoboImage(
                 filePath("DeleteDialog_${testItem.name}_Parameterized")
             )

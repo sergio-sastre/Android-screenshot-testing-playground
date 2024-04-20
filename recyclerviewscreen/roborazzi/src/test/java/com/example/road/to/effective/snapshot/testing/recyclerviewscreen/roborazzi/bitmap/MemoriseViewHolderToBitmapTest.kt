@@ -1,7 +1,8 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.viewholder
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.bitmap
 
 import android.graphics.Color.TRANSPARENT
-import android.os.Build
+import androidx.core.view.drawToBitmap
+import androidx.recyclerview.widget.RecyclerView
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.viewholder.MemoriseTestItemGenerator.generateMemoriseItem
@@ -21,14 +22,15 @@ import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
- * Execute the command below to run only ViewHolderTests
+ * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*ViewHolder*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Bitmap*'
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*ViewHolder*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Bitmap*'
  *
  * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
@@ -56,7 +58,7 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
  *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
-class MultipleApiLevelsMemoriseTest {
+class MemoriseViewHolderBitmapTest {
 
     @get:Rule
     val activityScenarioForViewRule =
@@ -72,32 +74,38 @@ class MultipleApiLevelsMemoriseTest {
             deviceScreen = PIXEL_4A,
         )
 
-    @GraphicsMode(NATIVE)
-    @Config(sdk = [33, 34])
-    @Test
-    fun snapViewHolder() {
-        val sdkVersion = Build.VERSION.SDK_INT
+    private fun inflateViewHolder(): RecyclerView.ViewHolder {
         val activity = activityScenarioForViewRule.activity
         val layout = activityScenarioForViewRule.inflateAndWaitForIdle(R.layout.memorise_row)
 
-        val viewHolder = waitForMeasuredViewHolder {
+        return waitForMeasuredViewHolder {
             MemoriseViewHolder(
                 container = layout,
                 itemEventListener = null,
                 animationDelay = 0L
             ).apply {
-                bind(
-                    generateMemoriseItem(
-                        rightAligned = false,
-                        activity = activity,
-                        titleSuffix = "API $sdkVersion"
-                    )
-                )
+                bind(generateMemoriseItem(rightAligned = false, activity = activity))
             }
         }
+    }
 
-        viewHolder
+    @GraphicsMode(NATIVE)
+    @Config(sdk = [33])
+    @Test
+    fun snapViewHolderWithPixelCopy() {
+        inflateViewHolder()
             .itemView
-            .captureRoboImage(filePath("MemoriseViewHolder_API_$sdkVersion"))
+            .drawToBitmapWithElevation()
+            .captureRoboImage(filePath("MemoriseViewHolder_BitmapWithElevation"))
+    }
+
+    @GraphicsMode(NATIVE)
+    @Config(sdk = [33])
+    @Test
+    fun snapViewHolderWithCanvas() {
+        inflateViewHolder()
+            .itemView
+            .drawToBitmap()
+            .captureRoboImage(filePath("MemoriseViewHolder_BitmapWithoutElevation"))
     }
 }

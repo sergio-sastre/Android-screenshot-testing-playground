@@ -1,14 +1,12 @@
-package com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.accessibility
+package com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.bitmap
 
+
+import android.app.Dialog
 import android.graphics.Color
-import android.view.ViewGroup
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.R
 import com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.filePath
 import com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.itemArray
-import com.github.takahirom.roborazzi.Dump
-import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
-import com.github.takahirom.roborazzi.RoborazziOptions
 import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
@@ -16,17 +14,18 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
-import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForViewRule
-import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_5
-import sergio.sastre.uitesting.utils.utils.waitForMeasuredView
+import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen
+import sergio.sastre.uitesting.utils.utils.drawToBitmap
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
 /**
- * Execute the command below to run only AccessibilityTests
+ * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :dialogs:roborazzi:recordRoborazziDebug --tests '*Accessibility*'
+ *    ./gradlew :dialogs:roborazzi:recordRoborazziDebug --tests '*Bitmap*'
  * 2. Verify:
- *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
+ *    ./gradlew :dialogs:roborazzi:verifyRoborazziDebug --tests '*Bitmap*'
  *
  * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
@@ -54,43 +53,46 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredView
  *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
-class AccessibilityTest {
+class DeleteDialogBitmapTest {
 
     @get:Rule
     val activityScenarioForViewRule =
         RobolectricActivityScenarioForViewRule(
             backgroundColor = Color.TRANSPARENT,
-            deviceScreen = PIXEL_5,
+            deviceScreen = DeviceScreen.Phone.PIXEL_5,
         )
 
-    @OptIn(ExperimentalRoborazziApi::class)
-    @GraphicsMode(NATIVE)
-    @Config(sdk = [33])
-    @Test
-    fun snapWithAccessibility() {
+    private fun createDialog(): Dialog {
         val activity = activityScenarioForViewRule.activity
 
-        val dialogView = waitForMeasuredView {
+        return waitForMeasuredDialog {
             DialogBuilder.buildDeleteDialog(
                 ctx = activity,
                 onDeleteClicked = {},
                 bulletTexts = itemArray(activity, listOf(R.string.shortest))
-            ).window!!.decorView
+            )
         }
+    }
 
-        // Dialogs and Activities are displayed in different windows.
-        // Roborazzi uses Espresso under the hood to render views in the Activity window.
-        // Thus, add the DialogView to the Activity window, so Espresso can find it.
-        (activity.window.decorView as ViewGroup).addView(dialogView)
-
-        dialogView
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Config(sdk = [33])
+    @Test
+    fun snapDialogWithPixelCopy() {
+        createDialog()
+            .drawToBitmapWithElevation()
             .captureRoboImage(
-                filePath = filePath("DeleteDialog_Accessibility"),
-                roborazziOptions = RoborazziOptions(
-                    captureType = RoborazziOptions.CaptureType.Dump(
-                        explanation = Dump.Companion.AccessibilityExplanation
-                    )
-                )
+                filePath("DeleteDialog_BitmapWithElevation")
+            )
+    }
+
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Config(sdk = [33])
+    @Test
+    fun snapDialogWithCanvas() {
+        createDialog()
+            .drawToBitmap()
+            .captureRoboImage(
+                filePath("DeleteDialog_BitmapWithoutElevation")
             )
     }
 }

@@ -36,16 +36,22 @@ import sergio.sastre.uitesting.utils.common.assumeSdkSupports
  *
  * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
- * adding the following in the module's build.gradle:
+ * adding the corresponding system property in the module's build.gradle.
  *
  *  testOptions {
  *      unitTests {
  *          includeAndroidResources = true
  *          all {
- *              systemProperty 'robolectric.graphicsMode', 'NATIVE'
+ *              systemProperty 'robolectric.graphicsMode', 'NATIVE' // this
  *          }
  *      }
  *  }
+ *
+ *  That's how the experimental Robolectric feature "hardware rendering" is enabled in this module,
+ *  which enables rendering of shadows and elevation.
+ *  You can delete it or set it to false in the build.gradle:
+ *
+ *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class CoffeeDrinkComposeActivityFontSizeTest(

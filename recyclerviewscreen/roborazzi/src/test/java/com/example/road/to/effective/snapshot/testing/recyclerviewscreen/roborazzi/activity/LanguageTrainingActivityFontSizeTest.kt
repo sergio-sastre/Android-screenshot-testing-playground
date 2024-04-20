@@ -30,11 +30,10 @@ import sergio.sastre.uitesting.utils.common.assumeSdkSupports
 
 /**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
- * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *
- * Moreover, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
+ * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
- * adding the following in the module's build.gradle:
+ * adding the corresponding system property in the module's build.gradle.
  *
  *  testOptions {
  *      unitTests {
@@ -44,6 +43,12 @@ import sergio.sastre.uitesting.utils.common.assumeSdkSupports
  *          }
  *      }
  *  }
+ *
+ *  That's how the experimental Robolectric feature "hardware rendering" is enabled in this module,
+ *  which enables rendering of shadows and elevation.
+ *  You can delete it or set it to false in the build.gradle:
+ *
+ *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class LanguageTrainingActivityFontSizeTest(

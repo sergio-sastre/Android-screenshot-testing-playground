@@ -29,7 +29,7 @@ import sergio.sastre.uitesting.roborazzi.captureRoboImage
  *
  * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
- * adding the following in the module's build.gradle:
+ * adding the corresponding system property in the module's build.gradle.
  *
  *  testOptions {
  *      unitTests {
@@ -39,6 +39,12 @@ import sergio.sastre.uitesting.roborazzi.captureRoboImage
  *          }
  *      }
  *  }
+ *
+ *  That's how the experimental Robolectric feature "hardware rendering" is enabled in this module,
+ *  which enables rendering of shadows and elevation.
+ *  You can delete it or set it to false in the build.gradle:
+ *
+ *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
 class SnackbarComposableTest {
@@ -48,7 +54,7 @@ class SnackbarComposableTest {
         RobolectricActivityScenarioForComposableRule(PIXEL_4A)
 
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
-    @Config(sdk = [30])
+    @Config(sdk = [31])
     @Test
     fun snapComposable() {
         activityScenarioForComposableRule.captureRoboImage(

@@ -89,7 +89,6 @@ More screenshot test examples, as well as examples with other libraries will be 
 
 - [Before you start...](#before-you-start)
     - [The need for screenshot testing](#the-need-for-screenshot-testing)
-    - [Roborazzi tests on Windows](#roborazzi-tests-on-windows)
     - [Emulators](#emulators)
       - [Animations](#animations)
 - [Comparing screenshot testing libraries](#comparing-screenshot-testing-libraries)
@@ -118,12 +117,6 @@ I strongly recommend to have a look at my blog series on [snapshot testing](http
 If reading is not your thing, you can always watch my 2021 Droidcon tech-talks on the matter:
 1. [Droidcon Berlin 2021](https://www.droidcon.com/2021/11/10/an-introduction-to-effective-snapshot-testing-on-android/)
 2. [Droidcon London 2021](https://www.droidcon.com/2021/11/17/an-introduction-to-effective-snapshot-testing-on-android-2/)
-
-### Roborazzi tests on Windows
-
-If you are running screenshot tests on a Windows machine, you must know that Roborazzi tests will fail.
-That's because it is built based on Robolectric Native Graphics (RNG), which does not support Windows currently.
-This issues has already been reported [here](https://github.com/robolectric/robolectric/issues/8312).
 
 ### Emulators
 

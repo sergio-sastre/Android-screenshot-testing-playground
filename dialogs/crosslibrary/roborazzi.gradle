@@ -13,6 +13,10 @@ android {
                 systemProperty SCREENSHOT_LIBRARY, screenshotLibraryName()
 
                 systemProperty 'robolectric.graphicsMode', 'NATIVE'
+
+                // Enable hardware rendering to display shadows and elevation. Still experimental
+                // Supported only on API 31+
+                systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
             }
         }
     }
