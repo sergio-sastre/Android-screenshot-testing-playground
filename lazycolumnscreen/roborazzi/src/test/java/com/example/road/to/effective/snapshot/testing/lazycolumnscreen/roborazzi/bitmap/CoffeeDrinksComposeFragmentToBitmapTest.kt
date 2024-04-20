@@ -1,6 +1,10 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.fragment
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.bitmap
 
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.os.bundleOf
+import androidx.core.view.drawToBitmap
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksFragment
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
 import com.github.takahirom.roborazzi.captureRoboImage
@@ -18,24 +22,24 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.fragmentscenario.FragmentConfigItem
-import sergio.sastre.uitesting.robolectric.fragmentscenario.RobolectricFragmentScenarioConfigurator
-import sergio.sastre.uitesting.robolectric.fragmentscenario.waitForFragment
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
+import sergio.sastre.uitesting.utils.utils.waitForActivity
+import sergio.sastre.uitesting.utils.utils.waitForComposeView
 
 /**
- * Execute the command below to run only FragmentTests
+ * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Fragment*'
+ *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Bitmap*'
  * 2. Verify:
- *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Fragment*'
+ *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Bitmap*'
  *
  * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
 
 /**
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
- * Therefore, you can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
  *
- * Moreover, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
+ * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
  * adding the corresponding system property in the module's build.gradle.
  *
@@ -55,7 +59,7 @@ import sergio.sastre.uitesting.robolectric.fragmentscenario.waitForFragment
  *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
-class CoffeeDrinksComposeFragmentHappyPathTest {
+class CoffeeDrinksComposeFragmentToBitmapTest {
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
@@ -74,42 +78,24 @@ class CoffeeDrinksComposeFragmentHappyPathTest {
     @GraphicsMode(NATIVE)
     @Config(sdk = [31])
     @Test
-    fun snapFragment() {
+    fun snapFragmentWithCanvas() {
         fragmentScenarioConfiguratorRule.fragment
             .requireView()
+            .drawToBitmap()
             .captureRoboImage(
-                filePath("CoffeeDrinksFragment_HappyPath")
+                filePath("CoffeeDrinksFragment_BitmapWithoutElevation")
             )
     }
-}
-
-/**
- * Example with RobolectricFragmentScenarioConfigurator of AndroidUiTestingUtils:robolectric
- */
-@RunWith(RobolectricTestRunner::class)
-class CoffeeDrinksComposeFragmentUnhappyPathTest {
 
     @GraphicsMode(NATIVE)
     @Config(sdk = [31])
     @Test
-    fun snapFragment() {
-        val fragmentScenario =
-            RobolectricFragmentScenarioConfigurator.ForFragment()
-                .setDeviceScreen(PIXEL_4A)
-                .setLocale("ar_XB")
-                .setUiMode(UiMode.NIGHT)
-                .setInitialOrientation(Orientation.LANDSCAPE)
-                .setFontSize(FontSize.SMALL)
-                .setDisplaySize(DisplaySize.SMALL)
-                .launchInContainer(
-                    fragmentArgs = bundleOf("coffee_shop_name" to "MyCoffeeShop"),
-                    fragmentClass = CoffeeDrinksFragment::class.java,
-                )
-
-        fragmentScenario.waitForFragment()
+    fun snapFragmentWithPixelCopy() {
+        fragmentScenarioConfiguratorRule.fragment
             .requireView()
-            .captureRoboImage(filePath("CoffeeDrinksFragment_UnhappyPath"))
-
-        fragmentScenario.close()
+            .drawToBitmapWithElevation()
+            .captureRoboImage(
+                filePath("CoffeeDrinksFragment_BitmapWithElevation")
+            )
     }
 }

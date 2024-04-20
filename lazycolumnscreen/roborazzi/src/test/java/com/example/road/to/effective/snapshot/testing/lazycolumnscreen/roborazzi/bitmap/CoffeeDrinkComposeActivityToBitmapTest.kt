@@ -1,30 +1,31 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.bitmap
 
-import android.os.Build
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
+import androidx.core.view.drawToBitmap
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
+import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
-import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
-import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen
-import sergio.sastre.uitesting.roborazzi.captureRoboImage
-import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
+import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
+import sergio.sastre.uitesting.robolectric.activityscenario.robolectricActivityScenarioForActivityRule
+import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
+import sergio.sastre.uitesting.utils.activityscenario.ActivityConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 
 /**
- * Execute the command below to run only ComposableTests
+ * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Composable*'
+ *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Bitmap*'
  * 2. Verify:
- *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Composable*'
+ *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Bitmap*'
  *
  * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
@@ -52,33 +53,41 @@ import sergio.sastre.uitesting.utils.common.UiMode
  *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
-class MultipleApiLevelsCoffeeDrinkAppBarComposableTest {
-
+class CoffeeDrinkComposeActivityToBitmapTest {
     @get:Rule
-    val activityScenarioForComposableRule =
-        RobolectricActivityScenarioForComposableRule(
-            config = ComposableConfigItem(
-                locale = "en",
+    val activityScenarioForActivityRule =
+        robolectricActivityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
+            config = ActivityConfigItem(
+                systemLocale = "en",
                 uiMode = UiMode.DAY,
                 orientation = Orientation.PORTRAIT,
                 fontSize = FontSize.NORMAL,
                 displaySize = DisplaySize.NORMAL,
-
             ),
-            deviceScreen = DeviceScreen.Phone.PIXEL_4A,
+            deviceScreen = PIXEL_4A,
         )
 
-    @GraphicsMode(GraphicsMode.Mode.NATIVE)
-    @Config(sdk = [30, 31]) // Configure API levels here. Hardware rendering is not supported on API 30 -> No shadows
+    @GraphicsMode(NATIVE)
+    @Config(sdk = [31])
     @Test
-    fun snapComposableInDifferentApiLevels() {
-        val sdkVersion = Build.VERSION.SDK_INT
-        activityScenarioForComposableRule.captureRoboImage(
-            filePath("CoffeeDrinkAppBar_API_$sdkVersion")
-        ){
-            AppTheme {
-                CoffeeDrinkAppBar(coffeeShopName = "API $sdkVersion")
-            }
-        }
+    fun snapActivityWithCanvas() {
+        activityScenarioForActivityRule
+            .rootView
+            .drawToBitmap()
+            .captureRoboImage(
+                filePath("CoffeeDrinkActivity_BitmapWithoutElevation")
+            )
+    }
+
+    @GraphicsMode(NATIVE)
+    @Config(sdk = [31])
+    @Test
+    fun snapActivityWithPixelCopy() {
+        activityScenarioForActivityRule
+            .rootView
+            .drawToBitmapWithElevation()
+            .captureRoboImage(
+                filePath("CoffeeDrinkActivity_BitmapWithElevation")
+            )
     }
 }

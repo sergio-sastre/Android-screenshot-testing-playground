@@ -19,6 +19,7 @@ import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.UiMode.DAY
 import sergio.sastre.uitesting.utils.common.UiMode.NIGHT
 import sergio.sastre.uitesting.utils.utils.drawToBitmap
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
 /**
@@ -32,13 +33,11 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
  */
 
 /**
- * You can only take Parameterized Screenshot tests with ParameterizedRobolectricTestRunner.
- *
  * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
  *
- * Moreover, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
+ * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
  * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
- * adding the following in the module's build.gradle:
+ * adding the corresponding system property in the module's build.gradle.
  *
  *  testOptions {
  *      unitTests {
@@ -48,6 +47,12 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
  *          }
  *      }
  *  }
+ *
+ *  That's how the experimental Robolectric feature "hardware rendering" is enabled in this module,
+ *  which enables rendering of shadows and elevation.
+ *  You can delete it or set it to false in the build.gradle:
+ *
+ *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class MultipleDevicesAndConfigsDeleteDialogTest(
@@ -80,9 +85,9 @@ class MultipleDevicesAndConfigsDeleteDialogTest(
     )
 
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
-    @Config(sdk = [30])
+    @Config(sdk = [33])
     @Test
-    fun snapViewHolder() {
+    fun snapDialog() {
         val activity = rule.activity
 
         val dialog = waitForMeasuredDialog(exactWidthPx = testItem.uiState.dialogWidth.widthInPx) {
@@ -97,7 +102,7 @@ class MultipleDevicesAndConfigsDeleteDialogTest(
         }
 
         dialog
-            .drawToBitmap()
+            .drawToBitmapWithElevation()
             .captureRoboImage(
                 filePath("DeleteDialog_${testItem.screenshotId}")
             )

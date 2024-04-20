@@ -54,6 +54,10 @@ android {
                 if (project.hasProperty("parallel")) {
                     maxParallelForks = Runtime.runtime.availableProcessors() / 2
                 }
+
+                // Enable hardware rendering to display shadows and elevation. Still experimental
+                // Supported only on API 31+
+                systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
             }
         }
     }
@@ -65,13 +69,12 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:2.7.7"
 
     // Jetpack Compose
-    testImplementation platform('androidx.compose:compose-bom:2024.02.02')
+    testImplementation platform('androidx.compose:compose-bom:2024.04.00')
     testImplementation "androidx.compose.material:material"
 
-    testImplementation "org.robolectric:robolectric:4.11.1"
+    testImplementation "org.robolectric:robolectric:4.12.1"
 
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.0'
-
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.2'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.2'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.2'
 }

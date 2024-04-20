@@ -1,12 +1,12 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.accessibility
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.bitmap
 
+import androidx.compose.ui.platform.ComposeView
+import androidx.core.view.drawToBitmap
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose.parameterized.HappyPathTestItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.compose.parameterized.coffeeDrink
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.filePath
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils.roborazziAccessibilityOptions
+import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,14 +16,20 @@ import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForComposableRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_4A
-import sergio.sastre.uitesting.roborazzi.captureRoboImage
+import sergio.sastre.uitesting.roborazzi.setContent
+import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
+import sergio.sastre.uitesting.utils.common.DisplaySize
+import sergio.sastre.uitesting.utils.common.FontSize
+import sergio.sastre.uitesting.utils.common.Orientation
+import sergio.sastre.uitesting.utils.common.UiMode
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 
 /**
- * Execute the command below to run only AccessibilityTests
+ * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Accessibility*'
+ *    ./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug --tests '*Bitmap*'
  * 2. Verify:
- *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Accessibility*'
+ *    ./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug --tests '*Bitmap*'
  *
  * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
@@ -51,40 +57,47 @@ import sergio.sastre.uitesting.roborazzi.captureRoboImage
  *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
-class AccessibilityTest {
+class CoffeeDrinkListComposableToBitmapTest {
 
     @get:Rule
     val activityScenarioForComposableRule = RobolectricActivityScenarioForComposableRule(
-        config = HappyPathTestItem.PORTRAIT.configItem,
+        config = ComposableConfigItem(
+            locale = "en",
+            uiMode = UiMode.DAY,
+            orientation = Orientation.PORTRAIT,
+            fontSize = FontSize.NORMAL,
+            displaySize = DisplaySize.NORMAL,
+        ),
         deviceScreen = PIXEL_4A,
     )
+
+    private fun inflateComposable(): ComposeView =
+        activityScenarioForComposableRule
+            .setContent {
+                AppTheme {
+                    CoffeeDrinkList(coffeeDrink = coffeeDrink)
+                }
+            }.composeView
 
     @GraphicsMode(NATIVE)
     @Config(sdk = [31])
     @Test
-    fun snapCoffeeDrinkAppBarWithAccessibility() {
-        activityScenarioForComposableRule.captureRoboImage(
-            filePath = filePath("CoffeeDrinkAppBarComposable_Accessibility"),
-            roborazziOptions = roborazziAccessibilityOptions,
-        ) {
-            AppTheme {
-                CoffeeDrinkAppBar()
-            }
-
-        }
+    fun snapComposableWithCanvas() {
+        inflateComposable()
+            .drawToBitmap()
+            .captureRoboImage(
+                filePath("CoffeeDrinkListComposable_BitmapWithoutElevation")
+            )
     }
 
     @GraphicsMode(NATIVE)
     @Config(sdk = [31])
     @Test
-    fun snapCoffeeDrinkListWithAccessibility() {
-        activityScenarioForComposableRule.captureRoboImage(
-            filePath = filePath("CoffeeDrinkListComposable_Accessibility"),
-            roborazziOptions = roborazziAccessibilityOptions,
-        ) {
-            AppTheme {
-                CoffeeDrinkList(coffeeDrink = coffeeDrink)
-            }
-        }
+    fun snapComposableWithPixelCopy() {
+        inflateComposable()
+            .drawToBitmapWithElevation()
+            .captureRoboImage(
+                filePath("CoffeeDrinkListComposable_BitmapWithElevation")
+            )
     }
 }

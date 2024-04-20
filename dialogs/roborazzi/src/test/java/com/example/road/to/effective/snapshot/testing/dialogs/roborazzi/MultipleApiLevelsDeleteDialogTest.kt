@@ -18,6 +18,7 @@ import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.drawToBitmap
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
 /**
@@ -31,8 +32,26 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
  */
 
 /**
- *  Example of Robolectric Screenshot test for different API levels with Roborazzi
- *  This is possible due to Robolectric's annotation @Config(sdk = [30, 31])
+ * Roborazzi requires Robolectric Native Graphics (RNG) to generate screenshots.
+ *
+ * Therefore, RNG must be active. In these tests, we do it by annotating tests with @GraphicsMode(NATIVE).
+ * Alternatively one could drop the annotation and enable RNG for all Robolectric tests in a module,
+ * adding the corresponding system property in the module's build.gradle.
+ *
+ *  testOptions {
+ *      unitTests {
+ *          includeAndroidResources = true
+ *          all {
+ *              systemProperty 'robolectric.graphicsMode', 'NATIVE' // this
+ *          }
+ *      }
+ *  }
+ *
+ *  That's how the experimental Robolectric feature "hardware rendering" is enabled in this module,
+ *  which enables rendering of shadows and elevation.
+ *  You can delete it or set it to false in the build.gradle:
+ *
+ *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
 class MultipleApiLevelsDeleteDialogTest {
@@ -52,7 +71,7 @@ class MultipleApiLevelsDeleteDialogTest {
         )
 
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
-    @Config(sdk = [30, 31])
+    @Config(sdk = [33, 34])
     @Test
     fun snapDialog() {
         val sdkVersion = Build.VERSION.SDK_INT
@@ -67,7 +86,7 @@ class MultipleApiLevelsDeleteDialogTest {
         }
 
         dialog
-            .drawToBitmap()
+            .drawToBitmapWithElevation()
             .captureRoboImage(
                 filePath("DeleteDialog_API_$sdkVersion")
             )

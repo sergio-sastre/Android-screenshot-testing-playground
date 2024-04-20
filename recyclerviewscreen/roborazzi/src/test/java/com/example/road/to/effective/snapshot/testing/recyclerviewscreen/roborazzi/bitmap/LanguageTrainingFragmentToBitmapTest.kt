@@ -1,7 +1,6 @@
-package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.recyclerview
+package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.bitmap
 
-import android.view.View
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
+import androidx.core.view.drawToBitmap
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
 import com.github.takahirom.roborazzi.captureRoboImage
@@ -12,16 +11,16 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
-import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_XL
+import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen.Phone.PIXEL_5
 import sergio.sastre.uitesting.robolectric.fragmentscenario.robolectricFragmentScenarioConfiguratorRule
-import sergio.sastre.uitesting.utils.utils.drawFullScrollableToBitmap
+import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 
 /**
- * Execute the command below to run only RecyclerViewTests
+ * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*RecyclerView*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug --tests '*Bitmap*'
  * 2. Verify:
- *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*RecyclerView*'
+ *    ./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug --tests '*Bitmap*'
  *
  * See results under "Project" View and HTML reports under build/reports/roborazzi/index.html
  */
@@ -49,21 +48,33 @@ import sergio.sastre.uitesting.utils.utils.drawFullScrollableToBitmap
  *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
  */
 @RunWith(RobolectricTestRunner::class)
-class FullRecyclerViewTest {
+class LanguageTrainingFragmentToBitmapTest {
 
     @get:Rule
     val fragmentScenarioConfiguratorRule =
-        robolectricFragmentScenarioConfiguratorRule<LanguageTrainingFragment>(deviceScreen = PIXEL_XL)
+        robolectricFragmentScenarioConfiguratorRule<LanguageTrainingFragment>(
+            deviceScreen = PIXEL_5,
+        )
 
     @GraphicsMode(NATIVE)
     @Config(sdk = [33])
     @Test
-    fun snapFullRecyclerView() {
-        val fragmentView = fragmentScenarioConfiguratorRule.fragment.requireView()
-        val recyclerView: View = fragmentView.findViewById(R.id.memoriseList)
+    fun snapFragmentWithPixelCopy() {
+        fragmentScenarioConfiguratorRule.fragment.requireView()
+            .drawToBitmapWithElevation()
+            .captureRoboImage(
+                filePath("LanguageTrainingFragment_BitmapWithElevation")
+            )
+    }
 
-        recyclerView
-            .drawFullScrollableToBitmap() // this method uses Canvas, so no elevation or shadows displayed
-            .captureRoboImage(filePath("FullRecyclerView"))
+    @GraphicsMode(NATIVE)
+    @Config(sdk = [33])
+    @Test
+    fun snapFragmentWithCanvas() {
+        fragmentScenarioConfiguratorRule.fragment.requireView()
+            .drawToBitmap()
+            .captureRoboImage(
+                filePath("LanguageTrainingFragment_BitmapWithoutElevation")
+            )
     }
 }
