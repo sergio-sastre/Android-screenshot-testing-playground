@@ -21,6 +21,15 @@ A sample repo to introduce screenshot testing in Android.<br/> It contains a wid
 > **Warning**</br>
 > It is configured with AGP 8.2.2, so it requires Android Studio Iguana or higher!
 
+## Awards
+
+<p align="center">
+   <img src="https://github.com/sergio-sastre/Android-screenshot-testing-playground/assets/6097181/2538e857-e3c4-4ad6-8737-954b3a3ab7b2">
+</p>
+
+Android-screenshot-testing-playground won a **[Google Open Source Peer Bonus](https://github.com/sergio-sastre/Android-screenshot-testing-playground/files/15421726/OSPB-2024-Sergio-Sastre-award-letter.pdf) award in 2024**. Thanks to everybody who has found this project insightful and helped get Android-screenshot-testing-playground where it is today.
+<br clear="left"/>
+
 ## Sponsors
 
 Thanks to [Screenshotbot](https://screenshotbot.io) for their support!
