@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen_previews'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 23
+        targetSdk 34
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        // Enables Jetpack Compose for this module
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.14'
+    }
+
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
+}
+
+dependencies {
+    implementation project(":lazycolumnscreen")
+
+    // Jetpack Compose
+    screenshotTestImplementation platform('androidx.compose:compose-bom:2024.05.00')
+    screenshotTestImplementation "androidx.compose.ui:ui-tooling"
+}
