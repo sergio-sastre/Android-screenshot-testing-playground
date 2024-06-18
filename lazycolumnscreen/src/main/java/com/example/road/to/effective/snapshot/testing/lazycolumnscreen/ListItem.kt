@@ -24,27 +24,10 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 private val COFFEE_DRINK_IMAGE_SIZE = 72.dp
-
-@Preview(apiLevel = 33)
-@Preview(apiLevel = 34)
-@Composable
-fun PreviewListItem() {
-    val mapper = CoffeeDrinkItemMapper()
-    val coffeeDrink = mapper.map(
-        DummyCoffeeDrinksDataSource().getCoffeeDrinks().first()
-    )
-
-    MaterialTheme(colors = lightThemeColors) {
-        CoffeeDrinkListItem(
-            coffeeDrink = coffeeDrink
-        )
-    }
-}
 
 @Composable
 fun CoffeeDrinkList(

@@ -7,18 +7,17 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.0-rc02'
+        classpath 'com.android.tools.build:gradle:8.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // screenshot testing plugins
-        classpath 'app.cash.paparazzi:paparazzi-gradle-plugin:1.3.4'
+        classpath 'app.cash.paparazzi:paparazzi-gradle-plugin:1.3.3'
         classpath 'com.karumi:shot:6.1.0'
         classpath 'com.dropbox.dropshots:dropshots-gradle-plugin:0.4.1'
         classpath 'io.github.takahirom.roborazzi:roborazzi-gradle-plugin:1.12.0'
         classpath 'dev.testify:plugin:2.0.0'
 
         classpath 'com.android.compose.screenshot:screenshot-test-gradle-plugin:0.0.1-alpha01'
-        //classpath "com.android.tools.preview.screenshot:preview-screenshot-gradle-plugin:0.0.1-alpha01"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -33,7 +32,7 @@ allprojects {
     }
 }
 
-/*
+// Remove after upgrading to app.cash.paparazzi:paparazzi-gradle-plugin:1.3.4
 subprojects {
     plugins.withId("app.cash.paparazzi") {
         // Defer until afterEvaluate so that testImplementation is created by Android plugin.
@@ -53,8 +52,6 @@ subprojects {
         }
     }
 }
-
- */
 
 task clean(type: Delete) {
     delete rootProject.buildDir
