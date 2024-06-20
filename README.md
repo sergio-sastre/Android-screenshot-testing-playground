@@ -29,8 +29,7 @@ These examples include tests for screens like the one above (module `:recyclervi
    <img src="https://github.com/sergio-sastre/Android-screenshot-testing-playground/assets/6097181/2538e857-e3c4-4ad6-8737-954b3a3ab7b2">
 </p>
 
-Android-screenshot-testing-playground won a *
-*[Google Open Source Peer Bonus](https://github.com/sergio-sastre/Android-screenshot-testing-playground/files/15421726/OSPB-2024-Sergio-Sastre-award-letter.pdf)
+Android-screenshot-testing-playground won a **[Google Open Source Peer Bonus](https://github.com/sergio-sastre/Android-screenshot-testing-playground/files/15421726/OSPB-2024-Sergio-Sastre-award-letter.pdf)
 award in 2024**. Thanks to everybody who has found this project insightful and helped get
 Android-screenshot-testing-playground where it is today.
 <br clear="left"/>
