@@ -56,10 +56,6 @@ class PreviewsForScreenshotTests {
         }
     }
 
-    /**
-     * By having a preview with this locale, other previews without locale might also apply it...
-     * what is definitely wrong
-     */
     @Preview(locale = "ar-rXB")
     @Composable
     fun CoffeeDrinkListPseudoLocalePreview() {
@@ -70,10 +66,6 @@ class PreviewsForScreenshotTests {
         }
     }
 
-    /**
-     * This shows "API 34" instead of "API 31", since Compose-Preview screenshot testing tool
-     * does not support API levels
-     */
     @Preview(apiLevel = 31)
     @Composable
     fun CoffeeDrinkListApiLevelPreview() {
