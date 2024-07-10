@@ -18,7 +18,7 @@ import snapshot.testing.lazycolumn_previews.roborazzi.utils.filePath
 
 /**
  * Record: ./gradlew :lazycolumnscreen-previews:roborazzi:recordRoborazziDebug
- * Verify: ./gradlew :lazycolumnscreen-previews:roborazzi:recordRoborazziDebug
+ * Verify: ./gradlew :lazycolumnscreen-previews:roborazzi:verifyRoborazziDebug
  *
  * AndroidComposablePreviewScanner reads only the previews in the "main" source
  */
@@ -28,15 +28,18 @@ class RoborazziApiLevelUnder28ComposePreviewTests(
 ) {
 
     companion object {
-        @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters
-        fun values(): List<ComposablePreview<AndroidPreviewInfo>> =
+        private val cachedPreviews: List<ComposablePreview<AndroidPreviewInfo>> by lazy {
             AndroidComposablePreviewScanner()
                 .scanPackageTrees("snapshot.testing.lazycolumn_previews.roborazzi")
                 .includeAnnotationInfoForAllOf(RoborazziConfig::class.java)
                 // Native graphics do not work fine on API < 28, and default value is -1
                 .filterPreviews { previewParams -> previewParams.apiLevel < 28 }
                 .getPreviews()
+        }
+
+        @JvmStatic
+        @ParameterizedRobolectricTestRunner.Parameters
+        fun values(): List<ComposablePreview<AndroidPreviewInfo>> = cachedPreviews
     }
 
     @GraphicsMode(NATIVE)
@@ -60,14 +63,17 @@ class RoborazziApiLevel31ComposePreviewTests(
 ) {
 
     companion object {
-        @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters
-        fun values(): List<ComposablePreview<AndroidPreviewInfo>> =
+        private val cachedPreviews: List<ComposablePreview<AndroidPreviewInfo>> by lazy {
             AndroidComposablePreviewScanner()
                 .scanPackageTrees("snapshot.testing.lazycolumn_previews.roborazzi")
                 .includeAnnotationInfoForAllOf(RoborazziConfig::class.java)
                 .filterPreviews { previewParams -> previewParams.apiLevel == 31 }
                 .getPreviews()
+        }
+
+        @JvmStatic
+        @ParameterizedRobolectricTestRunner.Parameters
+        fun values(): List<ComposablePreview<AndroidPreviewInfo>> = cachedPreviews
     }
 
     @GraphicsMode(NATIVE)
