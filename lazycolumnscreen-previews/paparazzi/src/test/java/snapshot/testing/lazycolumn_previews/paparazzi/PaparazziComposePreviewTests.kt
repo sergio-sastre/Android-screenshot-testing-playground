@@ -15,7 +15,7 @@ import snapshot.testing.lazycolumn_previews.paparazzi.utils.PaparazziPreviewRule
 
 /**
  * Record: ./gradlew :lazycolumnscreen-previews:paparazzi:recordPaparazziDebug
- * Verify: ./gradlew :lazycolumnscreen-previews:paparazzi:recordPaparazziDebug
+ * Verify: ./gradlew :lazycolumnscreen-previews:paparazzi:verifyPaparazziDebug
  *
  * AndroidComposablePreviewScanner reads only the previews in the "main" source
  */
