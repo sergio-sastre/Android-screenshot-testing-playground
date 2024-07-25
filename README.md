@@ -113,11 +113,6 @@ You can read more about it in this blog post series:
 
 <sup>1</sup> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
 
-<sup>2</sup> Paparazzi does not support screenshot tests...
-
-1. For Activities and Fragments, due to clashes with Robolectric, which is required by
-   Activity/FragmentScenarios to run on the JVM.
-
 ## Table of Contents
 
 - [Before you start...](#before-you-start)
