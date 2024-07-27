@@ -139,20 +139,20 @@ dependencies {
     debugImplementation "androidx.compose.material:material"
 
     // screenshot libs
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.2')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.5')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.3.2')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.3.5')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.3.2')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.3.5')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.3.2')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.3.5')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.2')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.2')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.3.2')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.5')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.5')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.3.5')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.3.2')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.3.2')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.3.5')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.3.5')
 
     // for Gradle Managed Devices
     androidTestUtil('androidx.test.services:test-services:1.4.2')

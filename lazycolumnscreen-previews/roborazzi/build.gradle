@@ -73,9 +73,9 @@ dependencies {
 
     testImplementation "org.robolectric:robolectric:4.12.1"
 
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.2'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.2'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.2'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.5'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.5'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.5'
 
     testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.12.0'
     testImplementation 'com.github.sergio-sastre.ComposablePreviewScanner:android:0.1.2'
