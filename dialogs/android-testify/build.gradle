@@ -98,8 +98,8 @@ dependencies {
 
     androidTestImplementation 'androidx.test:rules:1.5.0'
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.2'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.3.2'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.5'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.3.5'
 
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
 
