@@ -1,15 +1,21 @@
 package com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary
 
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
+import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.UnhappyPathTestItem.HUGE_NIGHT
 import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils.defaultCrossLibraryScreenshotTestRule
 import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils.sdkVersion
+import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.utils.userTestFilePath
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import org.junit.Test
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot
+import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.Canvas
+import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibraryScreenshotTestRunner
 
 /**
@@ -96,14 +102,23 @@ class DeleteDialogParameterizedUnhappyPathTest(
     @get:Rule
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(config = deleteItem.viewConfig)
-
-
+            .configure(
+                RoborazziConfig(
+                    deviceScreen = DeviceScreen.Phone.NEXUS_4,
+                    filePath = userTestFilePath(),
+                    // PixelCopy would distort very large views to make them fit in the screen window
+                    // Therefore use Canvas for HUGE_NIGHT
+                    bitmapCaptureMethod = when(testItem == HUGE_NIGHT) {
+                        true -> Canvas()
+                        false -> PixelCopy()
+                    }
+                )
+            )
 
     @CrossLibraryScreenshot
     @UnhappyPath
     @Test
     fun snapDialog() {
-
         val context = screenshotRule.context
 
         val dialog =
