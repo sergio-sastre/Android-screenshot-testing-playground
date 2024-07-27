@@ -103,6 +103,7 @@ fun defaultCrossLibraryScreenshotTestRule(
             RoborazziConfig(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
                 filePath = userTestFilePath(),
+                bitmapCaptureMethod = PixelCopy(),
             )
         )
 
