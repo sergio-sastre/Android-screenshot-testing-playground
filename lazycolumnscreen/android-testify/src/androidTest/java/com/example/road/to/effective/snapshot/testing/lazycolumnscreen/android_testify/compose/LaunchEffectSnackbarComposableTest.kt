@@ -4,12 +4,15 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.ActionNot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.android_testify.utils.SnackbarScaffold
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ComposableScreenshotRuleWithConfiguration
-import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.setContent
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -37,24 +40,33 @@ class SnackbarComposableTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val screenshotRule = ComposableScreenshotRuleWithConfiguration(exactness = 0.85f)
+    var composableScenarioRule = ActivityScenarioForComposableRule()
+
+    @get:Rule(order = 2)
+    val screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f)
+    )
 
     @ScreenshotInstrumentation
     @ComposableTest
     @Test
     fun snapComposable() {
         screenshotRule
-            .setCompose {
-                AppTheme {
-                    SnackbarScaffold { snackbarHostState ->
-                        ActionNotSupportedSnackbar(
-                            snackbarHostState = snackbarHostState,
-                            onDismiss = {}
-                        )
-                    }
-                }
+            .withScenario(composableScenarioRule.activityScenario)
+            .setScreenshotViewProvider {
+                composableScenarioRule
+                    .setContent {
+                        AppTheme {
+                            SnackbarScaffold { snackbarHostState ->
+                                ActionNotSupportedSnackbar(
+                                    snackbarHostState = snackbarHostState,
+                                    onDismiss = {}
+                                )
+                            }
+                        }
+                    }.composeView
             }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .assertSame(
                 name = "ActionNotSupportedSnackbar"
             )

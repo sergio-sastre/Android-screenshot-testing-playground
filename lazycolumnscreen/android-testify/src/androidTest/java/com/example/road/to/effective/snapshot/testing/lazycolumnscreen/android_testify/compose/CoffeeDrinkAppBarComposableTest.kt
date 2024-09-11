@@ -5,12 +5,15 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDri
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Test
 import org.junit.Rule
-import sergio.sastre.uitesting.android_testify.ComposableScreenshotRuleWithConfiguration
-import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.setContent
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
@@ -47,15 +50,19 @@ class CoffeeDrinkAppBarHappyPathTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val screenshotRule = ComposableScreenshotRuleWithConfiguration(
-        exactness = 0.85f,
+    var composableScenarioRule = ActivityScenarioForComposableRule(
         config = ComposableConfigItem(
             locale = "en",
             uiMode = UiMode.DAY,
             fontSize = FontSize.NORMAL,
             displaySize = DisplaySize.NORMAL,
             orientation = Orientation.PORTRAIT
-        )
+        ),
+    )
+
+    @get:Rule(order = 2)
+    val screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f)
     )
 
     @ScreenshotInstrumentation
@@ -64,8 +71,15 @@ class CoffeeDrinkAppBarHappyPathTest {
     @Test
     fun snapComposable() {
         screenshotRule
-            .setCompose { AppTheme { CoffeeDrinkAppBar() } }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .withScenario(composableScenarioRule.activityScenario)
+            .setScreenshotViewProvider {
+                composableScenarioRule
+                    .setContent {
+                        AppTheme { CoffeeDrinkAppBar() }
+                    }
+                    .composeView
+            }
+            .generateDiffs(true)
             .assertSame(
                 name = "CoffeeDrinkAppBar_Happy"
             )
@@ -78,15 +92,19 @@ class CoffeeDrinkAppBarUnhappyPathTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val screenshotRule = ComposableScreenshotRuleWithConfiguration(
-        exactness = 0.85f,
+    var composableScenarioRule = ActivityScenarioForComposableRule(
         config = ComposableConfigItem(
             locale = "en_XA",
             uiMode = UiMode.NIGHT,
             fontSize = FontSize.LARGEST,
             displaySize = DisplaySize.LARGER,
             orientation = Orientation.LANDSCAPE
-        )
+        ),
+    )
+
+    @get:Rule(order = 2)
+    val screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f)
     )
 
     @ScreenshotInstrumentation
@@ -95,8 +113,15 @@ class CoffeeDrinkAppBarUnhappyPathTest {
     @Test
     fun snapComposable() {
         screenshotRule
-            .setCompose { AppTheme { CoffeeDrinkAppBar() } }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .withScenario(composableScenarioRule.activityScenario)
+            .setScreenshotViewProvider {
+                composableScenarioRule
+                    .setContent {
+                        AppTheme { CoffeeDrinkAppBar() }
+                    }
+                    .composeView
+            }
+            .generateDiffs(true)
             .assertSame(
                 name = "CoffeeDrinkAppBar_Unhappy"
             )

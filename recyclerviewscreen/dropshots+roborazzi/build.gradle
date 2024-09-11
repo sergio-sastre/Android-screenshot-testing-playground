@@ -53,9 +53,9 @@ android {
                 // Enable RNG for Roborazzi tests
                 systemProperty 'robolectric.graphicsMode', 'NATIVE'
 
-                // Enable hardware rendering to display shadows and elevation for Roborazzi tests.
-                // Still experimental. Supported only on API 31+
-                systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
+                // Enable hardware rendering to display shadows and elevation. Still experimental
+                // Supported only on API 28+
+                systemProperty 'robolectric.pixelCopyRenderMode', 'hardware'
             }
         }
     }
@@ -75,16 +75,16 @@ dependencies {
     debugImplementation project(path: ':recyclerviewscreen')
     implementation project(':testannotations')
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.5')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0')
 
     // Support for Dropshots
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.3.5')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.5.0')
 
     // Support for Roborazzi
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.5')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.5')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.3.5')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.5.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.5.0')
 }

@@ -56,16 +56,19 @@ dependencies {
     implementation project(':lazycolumnscreen')
     implementation project(':testannotations')
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation "androidx.navigation:navigation-compose:2.7.7"
 
     // Jetpack Compose
     androidTestImplementation platform('androidx.compose:compose-bom:2024.02.02')
     androidTestImplementation "androidx.compose.material:material"
 
-    androidTestImplementation 'androidx.test:rules:1.5.0'
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.5'
+    //noinspection GradleDependency
+    androidTestImplementation('androidx.test:rules:1.5.0') {
+        because 'newer versions make Android-testify crash'
+    }
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.16'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0'
 
-    androidTestUtil 'androidx.test:orchestrator:1.4.2'
+    androidTestUtil 'androidx.test:orchestrator:1.5.0'
 }

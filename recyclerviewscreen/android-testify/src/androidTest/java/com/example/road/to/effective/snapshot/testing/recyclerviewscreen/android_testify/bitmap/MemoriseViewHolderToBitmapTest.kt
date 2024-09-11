@@ -9,20 +9,22 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.viewholder.MemoriseTestItemGenerator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
 import dev.testify.core.processor.capture.canvasCapture
 import dev.testify.core.processor.capture.pixelCopyCapture
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.setViewHolderForScreenshot
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
  * Execute the command below to run only BitmapTests
@@ -64,14 +66,18 @@ class MemoriseViewHolderToBitmapTest {
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        activityBackgroundColor = TRANSPARENT,
-        exactness = 0.85f,
+    var viewScenarioRule = ActivityScenarioForViewRule(
         config = ViewConfigItem(
             uiMode = UiMode.DAY,
             locale = "en",
             orientation = Orientation.PORTRAIT,
         ),
+        backgroundColor = TRANSPARENT
+    )
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f),
     )
 
     private fun createMemoriseViewHolder(
@@ -95,12 +101,15 @@ class MemoriseViewHolderToBitmapTest {
     @BitmapTest
     @Test
     fun snapViewHolderWithCanvas() {
+        val container = viewScenarioRule.inflateAndWaitForIdle(R.layout.memorise_row) as ViewGroup
+        val layout = waitForMeasuredViewHolder {
+            createMemoriseViewHolder(viewScenarioRule.activity, container)
+        }
         screenshotRule
-            .setViewHolderForScreenshot(R.layout.memorise_row) { targetLayout ->
-                createMemoriseViewHolder(screenshotRule.activity, targetLayout)
-            }
+            .withScenario(viewScenarioRule.activityScenario)
             .configure { this@configure.captureMethod = ::canvasCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .setScreenshotViewProvider { layout.itemView }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolder_BitmapWithoutElevation")
     }
@@ -109,12 +118,15 @@ class MemoriseViewHolderToBitmapTest {
     @BitmapTest
     @Test
     fun snapViewHolderWithPixelCopy() {
+        val container = viewScenarioRule.inflateAndWaitForIdle(R.layout.memorise_row) as ViewGroup
+        val layout = waitForMeasuredViewHolder {
+            createMemoriseViewHolder(viewScenarioRule.activity, container)
+        }
         screenshotRule
-            .setViewHolderForScreenshot(R.layout.memorise_row) { targetLayout ->
-                createMemoriseViewHolder(screenshotRule.activity, targetLayout)
-            }
+            .withScenario(viewScenarioRule.activityScenario)
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .setScreenshotViewProvider { layout.itemView }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolder_BitmapWithElevation")
     }

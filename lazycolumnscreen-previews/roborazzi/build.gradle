@@ -49,8 +49,8 @@ android {
                 }
 
                 // Enable hardware rendering to display shadows and elevation. Still experimental
-                // Supported only on API 31+
-                systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
+                // Supported only on API 28+
+                systemProperty 'robolectric.pixelCopyRenderMode', 'hardware'
             }
         }
     }
@@ -71,12 +71,12 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling"
     implementation "androidx.compose.ui:ui-tooling-preview"
 
-    testImplementation "org.robolectric:robolectric:4.12.1"
+    testImplementation "org.robolectric:robolectric:4.13"
 
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.3.5'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.3.5'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.3.5'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.5.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.5.0'
 
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.12.0'
-    testImplementation 'com.github.sergio-sastre.ComposablePreviewScanner:android:0.1.2'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.26.0'
+    testImplementation 'com.github.sergio-sastre.ComposablePreviewScanner:android:0.3.0'
 }

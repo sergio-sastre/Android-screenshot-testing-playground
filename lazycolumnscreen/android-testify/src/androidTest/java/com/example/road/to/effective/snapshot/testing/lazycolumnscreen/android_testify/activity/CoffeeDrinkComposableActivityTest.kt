@@ -1,19 +1,21 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.android_testify.activity
 
-import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.ScreenshotRule
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityConfigItem
+import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 import sergio.sastre.uitesting.utils.common.FontSize
+import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.fontsize.FontSizeTestRule
 import sergio.sastre.uitesting.utils.testrules.locale.InAppLocaleTestRule
@@ -42,14 +44,17 @@ import sergio.sastre.uitesting.utils.testrules.uiMode.UiModeTestRule
 class CoffeeDrinkComposeActivityHappyPathTest {
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
-    @get:Rule
+    @get:Rule(order = 0)
     val inAppLocale = InAppLocaleTestRule("en")
 
-    @get:Rule
-    val activityScreenshotRule =
-        ScreenshotRule(
-            configuration = TestifyConfiguration(exactness = 0.85f),
-            activityClass = CoffeeDrinksComposeActivity::class.java
+    @get:Rule(order = 1)
+    val activityScenarioForActivityRule =
+        activityScenarioForActivityRule<CoffeeDrinksComposeActivity>()
+
+    @get:Rule(order = 2)
+    val screenshotRule =
+        ScreenshotScenarioRule(
+            configuration = TestifyConfiguration(exactness = 0.85f)
         )
 
     @ScreenshotInstrumentation
@@ -57,8 +62,9 @@ class CoffeeDrinkComposeActivityHappyPathTest {
     @ActivityTest
     @Test
     fun snapActivity() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(activityScenarioForActivityRule.activityScenario)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "CoffeeDrinksComposeActivity_HappyPath")
     }
@@ -67,26 +73,28 @@ class CoffeeDrinkComposeActivityHappyPathTest {
 class CoffeeDrinkComposeActivityUnhappyPathTest {
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
-    @get:Rule
+    @get:Rule(order = 0)
     val inAppLocale = InAppLocaleTestRule("ar_XB")
 
-    @get:Rule
+    @get:Rule(order = 1)
     val systemLocale = SystemLocaleTestRule("en_XA")
 
-    @get:Rule
+    @get:Rule(order = 2)
     val fontSize = FontSizeTestRule(FontSize.LARGEST)
 
-    @get:Rule
+    @get:Rule(order = 3)
     val uiMode = UiModeTestRule(UiMode.NIGHT)
 
-    @get:Rule
-    val activityScreenshotRule =
-        ScreenshotRule(
-            activityClass = CoffeeDrinksComposeActivity::class.java,
-            configuration = TestifyConfiguration(
-                exactness = 0.85f,
-                orientation = SCREEN_ORIENTATION_LANDSCAPE
-            )
+    @get:Rule(order = 4)
+    val activityScenarioRule =
+        activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
+            config = ActivityConfigItem(orientation = Orientation.LANDSCAPE),
+        )
+
+    @get:Rule(order = 5)
+    val screenshotRule =
+        ScreenshotScenarioRule(
+            configuration = TestifyConfiguration(exactness = 0.85f)
         )
 
     @ScreenshotInstrumentation
@@ -94,8 +102,9 @@ class CoffeeDrinkComposeActivityUnhappyPathTest {
     @ActivityTest
     @Test
     fun snapActivity() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(activityScenarioRule.activityScenario)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeActivity_UnhappyPath",

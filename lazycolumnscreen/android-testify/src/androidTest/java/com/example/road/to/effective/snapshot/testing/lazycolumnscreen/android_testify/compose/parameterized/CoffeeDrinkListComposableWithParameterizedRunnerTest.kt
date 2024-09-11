@@ -5,14 +5,17 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDri
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import sergio.sastre.uitesting.android_testify.ComposableScreenshotRuleWithConfiguration
-import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.setContent
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -60,9 +63,13 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val rule = ComposableScreenshotRuleWithConfiguration(
-        exactness = 0.85f,
+    var composableScenarioRule = ActivityScenarioForComposableRule(
         config = testItem.item
+    )
+
+    @get:Rule(order = 2)
+    val screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f)
     )
 
     @ScreenshotInstrumentation
@@ -70,13 +77,17 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
     @ComposableTest
     @Test
     fun snapComposable() {
-        rule
-            .setCompose {
-                AppTheme {
-                    CoffeeDrinkList(coffeeDrink = coffeeDrink)
-                }
+        screenshotRule
+            .withScenario(composableScenarioRule.activityScenario)
+            .setScreenshotViewProvider {
+                composableScenarioRule
+                    .setContent {
+                        AppTheme {
+                            CoffeeDrinkList(coffeeDrink = coffeeDrink)
+                        }
+                    }.composeView
             }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .assertSame(
                 name = "${testItem.name}_Parameterized"
             )
@@ -99,9 +110,13 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val rule = ComposableScreenshotRuleWithConfiguration(
-        exactness = 0.85f,
+    var composableScenarioRule = ActivityScenarioForComposableRule(
         config = testItem.item
+    )
+
+    @get:Rule(order = 2)
+    val screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f)
     )
 
     @ScreenshotInstrumentation
@@ -109,13 +124,17 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
     @ComposableTest
     @Test
     fun snapComposable() {
-        rule
-            .setCompose {
-                AppTheme {
-                    CoffeeDrinkList(coffeeDrink = coffeeDrink)
-                }
+        screenshotRule
+            .withScenario(composableScenarioRule.activityScenario)
+            .setScreenshotViewProvider {
+                composableScenarioRule
+                    .setContent {
+                        AppTheme {
+                            CoffeeDrinkList(coffeeDrink = coffeeDrink)
+                        }
+                    }.composeView
             }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .assertSame(
                 name = "${testItem.name}_Parameterized"
             )

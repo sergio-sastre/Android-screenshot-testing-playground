@@ -12,32 +12,34 @@ import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Rule
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 
 /**
  * Execute the command below to run only DialogTests
  * 1. Record:
- *    ./gradlew :dialogs:android-testify:screenshotRecord
+ *    ./gradlew :dialogs:android-testify:screenshotRecord -PscreenshotAnnotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
  * 2. Verify:
- *    ./gradlew :dialogs:android-testify:screenshotTest
+ *    ./gradlew :dialogs:android-testify:screenshotTest -PscreenshotAnnotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
  *
  * With Gradle Managed Devices (API 27+)
  * 1. Record (saved under this module's build/outputs/managed_device_android_test_additional_output/...):
- *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd
+ *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd -PuseTestStorage -PrecordModeGmd -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
  * 2. Verify (copy recorded screenshots + assert):
  *  - Copy recorded screenshots in androidTest/assets -> https://ndtp.github.io/android-testify/docs/recipes/gmd
  *    ./gradlew :dialogs:android-testify:copyScreenshots -Pdevices=pixel3api30
  *  - Assert
- *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage
+ *    ./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PuseTestStorage -PrecordModeGmd -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.DialogTest
  *
  * To run them using Android Orchestrator, add the following at the end of the command:
  * -PuseOrchestrator
@@ -64,10 +66,16 @@ class DeleteDialogTestParameterHappyPathTest(
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        activityBackgroundColor = TRANSPARENT,
-        exactness = 0.85f,
+    var activityScenarioRule = ActivityScenarioForViewRule(
         config = deleteItem.viewConfig,
+        backgroundColor = TRANSPARENT
+    )
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(
+            exactness = 0.85f
+        )
     )
 
     @ScreenshotInstrumentation
@@ -76,6 +84,7 @@ class DeleteDialogTestParameterHappyPathTest(
     @Test
     fun snapDialog() {
         screenshotRule
+            .withScenario(activityScenarioRule.activityScenario)
             .setScreenshotViewProvider {
                 val activity = screenshotRule.activity
                 val dialog =
@@ -92,7 +101,7 @@ class DeleteDialogTestParameterHappyPathTest(
                 dialog.show()
                 dialog.window!!.decorView
             }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "DeleteDialog_${testItem.name}_TestParameter")
     }
@@ -110,10 +119,16 @@ class DeleteDialogTestParameterUnhappyPathTest(
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        activityBackgroundColor = TRANSPARENT,
-        exactness = 0.85f,
+    var activityScenarioRule = ActivityScenarioForViewRule(
         config = deleteItem.viewConfig,
+        backgroundColor = TRANSPARENT
+    )
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(
+            exactness = 0.85f
+        )
     )
 
     @ScreenshotInstrumentation
@@ -122,6 +137,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
     @Test
     fun snapDialog() {
         screenshotRule
+            .withScenario(activityScenarioRule.activityScenario)
             .setScreenshotViewProvider {
                 val activity = screenshotRule.activity
                 val dialog =
@@ -138,7 +154,7 @@ class DeleteDialogTestParameterUnhappyPathTest(
                 dialog.show()
                 dialog.window!!.decorView
             }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "DeleteDialog_${testItem.name}_TestParameter")
     }

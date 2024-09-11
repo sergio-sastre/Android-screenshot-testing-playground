@@ -5,18 +5,20 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDri
 import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.ScreenshotScenarioRuleForFragment
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
+import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
-import sergio.sastre.uitesting.utils.fragmentscenario.FragmentConfigItem
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -44,31 +46,33 @@ class CoffeeDrinkComposeFragmentHappyPathTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val activityScreenshotRule =
-        ScreenshotRuleWithConfigurationForFragment(
-            exactness = 0.85f,
-            fragmentClass = CoffeeDrinksFragment::class.java,
-            fragmentArgs = bundleOf("coffee_shop_name" to "MyCoffeeShop"),
-            config = FragmentConfigItem(
-                locale = "en",
-                uiMode = UiMode.DAY,
-                fontSize = FontSize.NORMAL,
-                displaySize = DisplaySize.NORMAL,
-                orientation = Orientation.PORTRAIT
-            ),
+    var viewScenarioRule = ActivityScenarioForViewRule(
+        config = ViewConfigItem(
+            locale = "en",
+            uiMode = UiMode.DAY,
+            fontSize = FontSize.NORMAL,
+            displaySize = DisplaySize.NORMAL,
+            orientation = Orientation.PORTRAIT
         )
+    )
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRuleForFragment(
+        fragmentClass = CoffeeDrinksFragment::class.java,
+        fragmentArgs = bundleOf("coffee_shop_name" to "MyCoffeeShop"),
+        configuration = TestifyConfiguration(exactness = 0.85f),
+    )
 
     @ScreenshotInstrumentation
     @HappyPath
     @FragmentTest
     @Test
     fun snapFragment() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .generateDiffs(true)
             .waitForIdleSync()
-            .assertSame(
-                name = "CoffeeDrinksComposeFragment_HappyPath"
-            )
+            .assertSame(name = "CoffeeDrinksComposeFragment_HappyPath")
     }
 }
 
@@ -78,27 +82,31 @@ class CoffeeDrinkComposeFragmentUnhappyPathTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val activityScreenshotRule =
-        ScreenshotRuleWithConfigurationForFragment(
-            exactness = 0.85f,
-            fragmentClass = CoffeeDrinksFragment::class.java,
-            fragmentArgs = bundleOf("coffee_shop_name" to "MyCoffeeShop"),
-            config = FragmentConfigItem(
-                locale = "ar_XB",
-                uiMode = UiMode.NIGHT,
-                fontSize = FontSize.SMALL,
-                displaySize = DisplaySize.SMALL,
-                orientation = Orientation.LANDSCAPE
-            ),
+    var viewScenarioRule = ActivityScenarioForViewRule(
+        config = ViewConfigItem(
+            locale = "ar_XB",
+            uiMode = UiMode.NIGHT,
+            fontSize = FontSize.SMALL,
+            displaySize = DisplaySize.SMALL,
+            orientation = Orientation.LANDSCAPE
         )
+    )
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRuleForFragment(
+        fragmentClass = CoffeeDrinksFragment::class.java,
+        fragmentArgs = bundleOf("coffee_shop_name" to "MyCoffeeShop"),
+        configuration = TestifyConfiguration(exactness = 0.85f),
+    )
 
     @ScreenshotInstrumentation
     @UnhappyPath
     @FragmentTest
     @Test
     fun snapFragment() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeFragment_UnhappyPath"

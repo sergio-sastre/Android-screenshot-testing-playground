@@ -3,12 +3,12 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.androi
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
-import sergio.sastre.uitesting.utils.fragmentscenario.FragmentConfigItem
 import  com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
+import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 
-enum class HappyPathTestItem(val item: FragmentConfigItem) {
+enum class HappyPathTestItem(val item: ViewConfigItem) {
     PORTRAIT(
-        FragmentConfigItem(
+        ViewConfigItem(
             locale = "en",
             uiMode = UiMode.DAY,
             fontSize = FontSize.NORMAL,
@@ -16,9 +16,9 @@ enum class HappyPathTestItem(val item: FragmentConfigItem) {
     ),
 }
 
-enum class UnhappyPathTestItem(val item: FragmentConfigItem) {
+enum class UnhappyPathTestItem(val item: ViewConfigItem) {
     CUSTOM_THEME_DAY(
-        FragmentConfigItem(
+        ViewConfigItem(
             locale = "en",
             theme = R.style.Theme_Custom,
             uiMode = UiMode.DAY,
@@ -26,7 +26,7 @@ enum class UnhappyPathTestItem(val item: FragmentConfigItem) {
         ),
     ),
     CUSTOM_THEME_NIGHT(
-        FragmentConfigItem(
+        ViewConfigItem(
             locale = "en",
             theme = R.style.Theme_Custom,
             uiMode = UiMode.NIGHT,
@@ -34,14 +34,14 @@ enum class UnhappyPathTestItem(val item: FragmentConfigItem) {
         ),
     ),
     AR_XB_HUGE(
-        FragmentConfigItem(
+        ViewConfigItem(
             locale = "ar_XB",
             uiMode = UiMode.DAY,
             fontSize = FontSize.LARGEST,
         ),
     ),
     LANDSCAPE_NIGHT(
-        FragmentConfigItem(
+        ViewConfigItem(
             locale = "en",
             uiMode = UiMode.NIGHT,
             orientation = Orientation.LANDSCAPE,

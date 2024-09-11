@@ -2,15 +2,17 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.androi
 
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingFragment
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
 import dev.testify.core.processor.capture.canvasCapture
 import dev.testify.core.processor.capture.pixelCopyCapture
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.ScreenshotScenarioRuleForFragment
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -53,9 +55,12 @@ class LanguageTrainingFragmentToBitmapTest {
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForFragment(
-        exactness = 0.85f,
-        fragmentClass = LanguageTrainingFragment::class.java
+    var viewScenarioRule = ActivityScenarioForViewRule()
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRuleForFragment(
+        fragmentClass = LanguageTrainingFragment::class.java,
+        configuration = TestifyConfiguration(exactness = 0.85f),
     )
 
     @ScreenshotInstrumentation
@@ -63,8 +68,9 @@ class LanguageTrainingFragmentToBitmapTest {
     @Test
     fun snapFragmentWithCanvas() {
         screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
             .configure { this@configure.captureMethod = ::canvasCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "LanguageTrainingFragment_BitmapWithoutElevation")
     }
@@ -74,8 +80,9 @@ class LanguageTrainingFragmentToBitmapTest {
     @Test
     fun snapFragmentWithPixelCopy() {
         screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "LanguageTrainingFragment_BitmapWithElevation")
     }
