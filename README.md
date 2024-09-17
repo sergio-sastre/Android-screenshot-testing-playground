@@ -30,7 +30,7 @@ These examples include tests for screens like the one above (module `:recyclervi
 </p>
 
 Android-screenshot-testing-playground won a **[Google Open Source Peer Bonus](https://github.com/sergio-sastre/Android-screenshot-testing-playground/files/15421726/OSPB-2024-Sergio-Sastre-award-letter.pdf)
-award in 2024**. Thanks to everybody who has found this project insightful and helped get
+award in 2024**, whose winners were listed in [Google Open Source blog](https://opensource.googleblog.com/2024/06/google-open-source-peer-bonus-program-first-group-2024-recipients.html). Thanks to everybody who has found this project insightful and helped get
 Android-screenshot-testing-playground where it is today.
 <br clear="left"/>
 
