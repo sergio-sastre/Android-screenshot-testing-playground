@@ -46,9 +46,9 @@ import sergio.sastre.uitesting.utils.common.assumeSdkSupports
  *
  *  That's how the experimental Robolectric feature "hardware rendering" is enabled in this module,
  *  which enables rendering of shadows and elevation.
- *  You can delete it or set it to false in the build.gradle:
+ *  You can delete it in the build.gradle:
  *
- *  systemProperty 'robolectric.screenshot.hwrdr.native', 'true'
+ *  systemProperty 'robolectric.pixelCopyRenderMode', 'hardware'
  */
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class LanguageTrainingActivityFontSizeTest(

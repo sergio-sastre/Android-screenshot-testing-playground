@@ -1,5 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.viewholder.parameterized
 
+import android.view.ViewGroup
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -10,13 +11,15 @@ import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPat
 import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterInjector
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.setScreenshotFirstView
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
  * Execute the command below to run only ViewHolderTests
@@ -60,9 +63,11 @@ class TrainingViewHolderTestParameterHappyPathTest(
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        exactness = 0.85f,
-        config = viewConfig
+    var viewScenarioRule = ActivityScenarioForViewRule(config = viewConfig)
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f),
     )
 
     @ScreenshotInstrumentation
@@ -70,18 +75,19 @@ class TrainingViewHolderTestParameterHappyPathTest(
     @ViewHolderTest
     @Test
     fun snapViewHolder() {
-        screenshotRule
-            .setTargetLayoutId(R.layout.training_row)
-            .setViewModifications { targetLayout ->
-                TrainingViewHolder(targetLayout).apply {
-                    bind(
-                        item = testItem.item.trainingItem,
-                        languageClickedListener = null,
-                    )
-                }
+        val container = viewScenarioRule.inflateAndWaitForIdle(R.layout.training_row) as ViewGroup
+        val layout = waitForMeasuredViewHolder {
+            TrainingViewHolder(container).apply {
+                bind(
+                    item = testItem.item.trainingItem,
+                    languageClickedListener = null,
+                )
             }
-            .setScreenshotFirstView()
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        }
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .setScreenshotViewProvider { layout.itemView }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(
                 name = "${testItem.name}_TestParameter"
@@ -101,9 +107,11 @@ class TrainingViewHolderTestParameterUnhappyPathTest(
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        exactness = 0.85f,
-        config = viewConfig
+    var viewScenarioRule = ActivityScenarioForViewRule(config = viewConfig)
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f),
     )
 
     @ScreenshotInstrumentation
@@ -111,18 +119,19 @@ class TrainingViewHolderTestParameterUnhappyPathTest(
     @ViewHolderTest
     @Test
     fun snapViewHolder() {
-        screenshotRule
-            .setTargetLayoutId(R.layout.training_row)
-            .setViewModifications { targetLayout ->
-                TrainingViewHolder(targetLayout).apply {
-                    bind(
-                        item = testItem.item.trainingItem,
-                        languageClickedListener = null,
-                    )
-                }
+        val container = viewScenarioRule.inflateAndWaitForIdle(R.layout.training_row) as ViewGroup
+        val layout = waitForMeasuredViewHolder {
+            TrainingViewHolder(container).apply {
+                bind(
+                    item = testItem.item.trainingItem,
+                    languageClickedListener = null,
+                )
             }
-            .setScreenshotFirstView()
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        }
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .setScreenshotViewProvider { layout.itemView }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(
                 name = "${testItem.name}_TestParameter"

@@ -4,15 +4,17 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.La
 import com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForFragment
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.ScreenshotScenarioRuleForFragment
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -49,24 +51,26 @@ class LanguageTrainingFragmentParameterizedHappyPathTest(
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val activityScreenshotRule =
-        ScreenshotRuleWithConfigurationForFragment(
-            exactness = 0.85f,
-            fragmentClass = LanguageTrainingFragment::class.java,
-            config = testItem.item,
-        )
+    var viewScenarioRule = ActivityScenarioForViewRule(
+        config = testItem.item
+    )
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRuleForFragment(
+        fragmentClass = LanguageTrainingFragment::class.java,
+        configuration = TestifyConfiguration(exactness = 0.85f),
+    )
 
     @ScreenshotInstrumentation
     @HappyPath
     @FragmentTest
     @Test
     fun snapFragment() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .generateDiffs(true)
             .waitForIdleSync()
-            .assertSame(
-                name = "LanguageTrainingFragment_${testItem.name}_Parameterized"
-            )
+            .assertSame(name = "LanguageTrainingFragment_${testItem.name}_Parameterized")
     }
 }
 
@@ -86,20 +90,24 @@ class LanguageTrainingFragmentParameterizedUnhappyPathTest(
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val activityScreenshotRule =
-        ScreenshotRuleWithConfigurationForFragment(
-            exactness = 0.85f,
-            fragmentClass = LanguageTrainingFragment::class.java,
-            config = testItem.item,
-        )
+    var viewScenarioRule = ActivityScenarioForViewRule(
+        config = testItem.item
+    )
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRuleForFragment(
+        fragmentClass = LanguageTrainingFragment::class.java,
+        configuration = TestifyConfiguration(exactness = 0.85f),
+    )
 
     @ScreenshotInstrumentation
     @UnhappyPath
     @FragmentTest
     @Test
     fun snapFragment() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(
                 name = "LanguageTrainingFragment_${testItem.name}_Parameterized"

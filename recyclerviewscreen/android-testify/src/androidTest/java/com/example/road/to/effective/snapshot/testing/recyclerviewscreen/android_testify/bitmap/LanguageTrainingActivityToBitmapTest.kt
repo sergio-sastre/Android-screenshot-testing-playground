@@ -2,16 +2,17 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.androi
 
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
-import dev.testify.ScreenshotRule
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import dev.testify.core.TestifyConfiguration
 import dev.testify.core.processor.capture.canvasCapture
 import dev.testify.core.processor.capture.pixelCopyCapture
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -54,9 +55,11 @@ class LanguageTrainingActivityToBitmapTest {
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRule(
+    var activityScenarioRule = activityScenarioForActivityRule<LanguageTrainingActivity>()
+
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
         configuration = TestifyConfiguration(exactness = 0.85f),
-        activityClass = LanguageTrainingActivity::class.java,
     )
 
     @ScreenshotInstrumentation
@@ -64,8 +67,9 @@ class LanguageTrainingActivityToBitmapTest {
     @Test
     fun snapActivityWithCanvas() {
         screenshotRule
+            .withScenario(activityScenarioRule.activityScenario)
             .configure { this@configure.captureMethod = ::canvasCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "LanguageTrainingActivity_BitmapWithoutElevation")
     }
@@ -75,8 +79,9 @@ class LanguageTrainingActivityToBitmapTest {
     @Test
     fun snapActivityWithPixelCopy() {
         screenshotRule
+            .withScenario(activityScenarioRule.activityScenario)
             .configure { this@configure.captureMethod = ::pixelCopyCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "LanguageTrainingActivity_BitmapWithElevation")
     }

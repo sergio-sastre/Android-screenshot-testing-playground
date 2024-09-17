@@ -1,25 +1,28 @@
 package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.viewholder
 
+import android.view.ViewGroup
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.android_testify.viewholder.MemoriseTestItemGenerator.generateMemoriseItem
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.ViewHolderTest
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ScreenshotRuleWithConfigurationForView
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.setScreenshotFirstView
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForViewRule
 import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
 import sergio.sastre.uitesting.utils.common.DisplaySize
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.Orientation
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
+import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
 
 /**
  * Execute the command below to run only ViewHolderTests
@@ -50,8 +53,7 @@ class MemoriseViewHolderHappyPathTest {
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        exactness = 0.85f,
+    var viewScenarioRule = ActivityScenarioForViewRule(
         config = ViewConfigItem(
             uiMode = UiMode.DAY,
             locale = "en",
@@ -59,29 +61,35 @@ class MemoriseViewHolderHappyPathTest {
         ),
     )
 
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f),
+    )
+
     @ScreenshotInstrumentation
     @HappyPath
     @ViewHolderTest
     @Test
     fun snapMemoriseViewHolderHappyPath() {
-        screenshotRule
-            .setTargetLayoutId(R.layout.memorise_row)
-            .setViewModifications { targetLayout ->
-                MemoriseViewHolder(
-                    container = targetLayout,
-                    itemEventListener = null,
-                    animationDelay = 0L
-                ).apply {
-                    bind(
-                        generateMemoriseItem(
-                            rightAligned = false,
-                            activity = screenshotRule.activity
-                        )
+        val container = viewScenarioRule.inflateAndWaitForIdle(R.layout.memorise_row) as ViewGroup
+        val layout = waitForMeasuredViewHolder {
+            MemoriseViewHolder(
+                container = container,
+                itemEventListener = null,
+                animationDelay = 0L
+            ).apply {
+                bind(
+                    generateMemoriseItem(
+                        rightAligned = false,
+                        activity = viewScenarioRule.activity
                     )
-                }
+                )
             }
-            .setScreenshotFirstView()
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        }
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .setScreenshotViewProvider { layout.itemView }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolderHappy")
     }
@@ -93,8 +101,7 @@ class MemoriseViewHolderUnhappyPathTest {
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    var screenshotRule = ScreenshotRuleWithConfigurationForView(
-        exactness = 0.85f,
+    var viewScenarioRule = ActivityScenarioForViewRule(
         config = ViewConfigItem(
             uiMode = UiMode.NIGHT,
             locale = "en_XA",
@@ -104,29 +111,35 @@ class MemoriseViewHolderUnhappyPathTest {
         ),
     )
 
+    @get:Rule(order = 2)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f),
+    )
+
     @ScreenshotInstrumentation
     @UnhappyPath
     @ViewHolderTest
     @Test
     fun snapMemoriseViewHolderHappyPath() {
-        screenshotRule
-            .setTargetLayoutId(R.layout.memorise_row)
-            .setViewModifications { targetLayout ->
-                MemoriseViewHolder(
-                    container = targetLayout,
-                    itemEventListener = null,
-                    animationDelay = 0L
-                ).apply {
-                    bind(
-                        generateMemoriseItem(
-                            rightAligned = false,
-                            activity = screenshotRule.activity
-                        )
+        val container = viewScenarioRule.inflateAndWaitForIdle(R.layout.memorise_row) as ViewGroup
+        val layout = waitForMeasuredViewHolder {
+            MemoriseViewHolder(
+                container = container,
+                itemEventListener = null,
+                animationDelay = 0L
+            ).apply {
+                bind(
+                    generateMemoriseItem(
+                        rightAligned = false,
+                        activity = viewScenarioRule.activity
                     )
-                }
+                )
             }
-            .setScreenshotFirstView()
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        }
+        screenshotRule
+            .withScenario(viewScenarioRule.activityScenario)
+            .setScreenshotViewProvider { layout.itemView }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "MemoriseViewHolderUnhappy")
     }

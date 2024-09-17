@@ -5,14 +5,15 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.La
 import com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
-import dev.testify.ScreenshotRule
-import dev.testify.TestifyFeatures
 import dev.testify.annotation.ScreenshotInstrumentation
 import dev.testify.core.TestifyConfiguration
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
@@ -45,20 +46,22 @@ class LanguageTrainingActivityHappyPathTest {
     @get:Rule(order = 0)
     val disableAnimationsRule = DisableAnimationsRule()
 
+    @get:Rule(order = 1)
+    var activityScenarioRule = activityScenarioForActivityRule<LanguageTrainingActivity>()
+
     @get:Rule(order = 2)
-    val activityScreenshotRule =
-        ScreenshotRule(
-            configuration = TestifyConfiguration(exactness = 0.85f),
-            activityClass = LanguageTrainingActivity::class.java,
-        )
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(exactness = 0.85f),
+    )
 
     @ScreenshotInstrumentation
     @HappyPath
     @ActivityTest
     @Test
     fun snapActivity() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(TestifyFeatures.GenerateDiffs)
+        screenshotRule
+            .withScenario(activityScenarioRule.activityScenario)
+            .generateDiffs(true)
             .assertSame(name = "LanguageTrainingActivity_HappyPath")
     }
 }
@@ -82,22 +85,24 @@ class LanguageTrainingActivityUnhappyPathTest {
     val uiMode = UiModeTestRule(UiMode.NIGHT)
 
     @get:Rule(order = 5)
-    val activityScreenshotRule =
-        ScreenshotRule(
-            activityClass = LanguageTrainingActivity::class.java,
-            configuration = TestifyConfiguration(
-                exactness = 0.85f,
-                orientation = SCREEN_ORIENTATION_LANDSCAPE
-            )
-        )
+    var activityScenarioRule = activityScenarioForActivityRule<LanguageTrainingActivity>()
+
+    @get:Rule(order = 6)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(
+            exactness = 0.85f,
+            orientation = SCREEN_ORIENTATION_LANDSCAPE
+        ),
+    )
 
     @ScreenshotInstrumentation
     @UnhappyPath
     @ActivityTest
     @Test
     fun snapActivity() {
-        activityScreenshotRule
-            .withExperimentalFeatureEnabled(TestifyFeatures.GenerateDiffs)
+        screenshotRule
+            .withScenario(activityScenarioRule.activityScenario)
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(name = "LanguageTrainingActivity_UnhappyPath")
     }

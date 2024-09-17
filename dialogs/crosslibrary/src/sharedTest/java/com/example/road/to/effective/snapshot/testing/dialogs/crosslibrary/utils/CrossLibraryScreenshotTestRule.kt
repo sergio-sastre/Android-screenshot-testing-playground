@@ -94,10 +94,6 @@ fun defaultCrossLibraryScreenshotTestRule(
             PaparazziConfig(
                 deviceConfig = DeviceConfig.NEXUS_4,
                 renderingMode = RenderingMode.SHRINK,
-                environment = Environment(
-                    platformDir = "${androidHome()}/platforms/android-33",
-                    compileSdkVersion = 33,
-                )
             )
         ).configure(
             RoborazziConfig(

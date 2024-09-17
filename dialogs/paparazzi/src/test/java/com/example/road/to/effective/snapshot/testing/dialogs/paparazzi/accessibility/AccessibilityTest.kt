@@ -3,9 +3,6 @@ package com.example.road.to.effective.snapshot.testing.dialogs.paparazzi.accessi
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
-import app.cash.paparazzi.androidHome
-import app.cash.paparazzi.detectEnvironment
-import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.ScreenOrientation
 import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.R
@@ -29,11 +26,6 @@ class AccessibilityTest {
             orientation = ScreenOrientation.LANDSCAPE
         ),
         theme = "Theme.RoadToEffectiveSnapshotTesting",
-        // Needed to avoid crashes due to compileSdk 34
-        environment = detectEnvironment().copy(
-            platformDir = "${androidHome()}/platforms/android-33",
-            compileSdkVersion = 33
-        ),
         renderExtensions = setOf(AccessibilityRenderExtension())
     )
 

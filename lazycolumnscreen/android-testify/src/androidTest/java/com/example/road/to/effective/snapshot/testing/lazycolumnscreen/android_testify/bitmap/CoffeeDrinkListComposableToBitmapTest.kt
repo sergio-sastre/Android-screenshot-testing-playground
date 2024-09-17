@@ -4,14 +4,17 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.android_testify.compose.parameterized.coffeeDrink
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
+import dev.testify.core.TestifyConfiguration
 import dev.testify.core.processor.capture.canvasCapture
 import dev.testify.core.processor.capture.pixelCopyCapture
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.ComposableScreenshotRuleWithConfiguration
-import sergio.sastre.uitesting.android_testify.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.setContent
+import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 
 /**
  * Execute the command below to run only BitmapTests
@@ -35,21 +38,33 @@ import sergio.sastre.uitesting.android_testify.assertSame
 
 class CoffeeDrinkListComposableToBitmapTest {
 
-    @get:Rule
-    val androidTestifyRule = ComposableScreenshotRuleWithConfiguration(exactness = 0.85f)
+    @get:Rule(order = 0)
+    var composableScenarioRule = ActivityScenarioForComposableRule()
+
+    @get:Rule(order = 1)
+    var screenshotRule = ScreenshotScenarioRule(
+        configuration = TestifyConfiguration(
+            exactness = 0.85f,
+            useSoftwareRenderer = true
+        ),
+    )
 
     @ScreenshotInstrumentation
     @BitmapTest
     @Test
     fun snapComposableWithCanvas() {
-        androidTestifyRule
-            .setCompose {
-                AppTheme {
-                    CoffeeDrinkList(coffeeDrink = coffeeDrink)
-                }
+        screenshotRule
+            .withScenario(composableScenarioRule.activityScenario)
+            .setScreenshotViewProvider {
+                composableScenarioRule
+                    .setContent {
+                        AppTheme {
+                            CoffeeDrinkList(coffeeDrink = coffeeDrink)
+                        }
+                    }.composeView
             }
-            .configure { this@configure.captureMethod = ::canvasCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .configure { captureMethod = ::canvasCapture }
+            .generateDiffs(true)
             .assertSame(name = "CoffeeDrinkListComposable_BitmapWithoutElevation")
     }
 
@@ -57,14 +72,18 @@ class CoffeeDrinkListComposableToBitmapTest {
     @BitmapTest
     @Test
     fun snapComposableWithPixelCopy() {
-        androidTestifyRule
-            .setCompose {
-                AppTheme {
-                    CoffeeDrinkList(coffeeDrink = coffeeDrink)
-                }
+        screenshotRule
+            .withScenario(composableScenarioRule.activityScenario)
+            .setScreenshotViewProvider {
+                composableScenarioRule
+                    .setContent {
+                        AppTheme {
+                            CoffeeDrinkList(coffeeDrink = coffeeDrink)
+                        }
+                    }.composeView
             }
-            .configure { this@configure.captureMethod = ::pixelCopyCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+            .configure { captureMethod = ::pixelCopyCapture }
+            .generateDiffs(true)
             .assertSame(name = "CoffeeDrinkListComposable_BitmapWithElevation")
     }
 }

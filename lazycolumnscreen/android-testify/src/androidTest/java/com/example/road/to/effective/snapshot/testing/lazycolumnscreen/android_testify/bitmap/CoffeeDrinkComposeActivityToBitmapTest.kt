@@ -2,16 +2,17 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.android_
 
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinksComposeActivity
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
-import dev.testify.ScreenshotRule
-import dev.testify.TestifyFeatures.GenerateDiffs
 import dev.testify.annotation.ScreenshotInstrumentation
 import dev.testify.core.TestifyConfiguration
 import dev.testify.core.processor.capture.canvasCapture
 import dev.testify.core.processor.capture.pixelCopyCapture
+import dev.testify.scenario.ScreenshotScenarioRule
 import org.junit.Rule
 import org.junit.Test
-import sergio.sastre.uitesting.android_testify.assertSame
-import sergio.sastre.uitesting.android_testify.waitForIdleSync
+import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
+import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
+import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 
 /**
@@ -39,19 +40,23 @@ class CoffeeDrinkComposeActivityToBitmapTest {
     val disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val activityScreenshotRule =
-        ScreenshotRule(
-            configuration = TestifyConfiguration(exactness = 0.85f),
-            activityClass = CoffeeDrinksComposeActivity::class.java
+    val activityScenarioForActivityRule =
+        activityScenarioForActivityRule<CoffeeDrinksComposeActivity>()
+
+    @get:Rule(order = 2)
+    val screenshotRule =
+        ScreenshotScenarioRule(
+            configuration = TestifyConfiguration(exactness = 0.85f)
         )
 
     @ScreenshotInstrumentation
     @BitmapTest
     @Test
     fun snapActivityWithCanvas() {
-        activityScreenshotRule
-            .configure { this@configure.captureMethod = ::canvasCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(activityScenarioForActivityRule.activityScenario)
+            .configure { captureMethod = ::canvasCapture }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeActivity_WithoutElevation"
@@ -62,9 +67,10 @@ class CoffeeDrinkComposeActivityToBitmapTest {
     @BitmapTest
     @Test
     fun snapActivityWithPixelCopy() {
-        activityScreenshotRule
-            .configure { this@configure.captureMethod = ::pixelCopyCapture }
-            .withExperimentalFeatureEnabled(GenerateDiffs)
+        screenshotRule
+            .withScenario(activityScenarioForActivityRule.activityScenario)
+            .configure { captureMethod = ::pixelCopyCapture }
+            .generateDiffs(true)
             .waitForIdleSync()
             .assertSame(
                 name = "CoffeeDrinksComposeActivity_WithElevation"

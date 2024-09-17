@@ -89,7 +89,7 @@ class CrossLibraryScreenshotTestRule(
         ).configure(
             RoborazziConfig(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
-                filePath = userTestFilePath(),
+                filePath = userTestFilePath()
             )
         )
 
