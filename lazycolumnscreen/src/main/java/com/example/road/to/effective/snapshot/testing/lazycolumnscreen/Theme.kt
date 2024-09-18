@@ -8,6 +8,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
@@ -71,9 +72,13 @@ val darkThemeColors = darkColorScheme(
     onSurfaceVariant = Color(0xFFD8C2BC),
 )
 
+val LocalAppTheme = staticCompositionLocalOf<(@Composable (content: @Composable () -> Unit) -> Unit)> {
+    { content -> DefaultAppTheme(content) } // Default to your real `AppTheme`
+}
+
 @SuppressWarnings
 @Composable
-fun AppTheme(
+private fun DefaultAppTheme(
     content: @Composable () -> Unit
 ) {
     val inDarkMode: Boolean = isSystemInDarkTheme()
@@ -89,4 +94,14 @@ fun AppTheme(
         colorScheme = colors,
         content = content
     )
+}
+
+@SuppressWarnings
+@Composable
+fun AppTheme(
+    content: @Composable () -> Unit
+) {
+    val appTheme = LocalAppTheme.current
+    // Apply the theme (either the default `AppTheme` or an overridden one in tests)
+    appTheme(content)
 }

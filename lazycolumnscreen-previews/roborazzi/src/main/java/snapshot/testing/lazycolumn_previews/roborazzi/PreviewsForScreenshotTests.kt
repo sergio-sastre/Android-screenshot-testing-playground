@@ -1,12 +1,15 @@
 package snapshot.testing.lazycolumn_previews.roborazzi
 
+import android.content.res.Configuration
 import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.Wallpapers
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
@@ -39,7 +42,6 @@ fun CoffeeDrinkListWithParametersPreview(
     }
 }
 
-
 @PreviewFontScale
 @PreviewLightDark
 @Composable
@@ -61,7 +63,7 @@ fun CoffeeDrinkListPseudoLocalePreview() {
     }
 }
 
-@Preview(apiLevel = 31)
+@Preview(apiLevel = 33)
 @Composable
 fun CoffeeDrinkListApiLevelPreview() {
     AppTheme {
@@ -79,5 +81,61 @@ fun CoffeeDrinkListAccessibilityPreview() {
         CoffeeDrinkList(
             coffeeDrink = coffeeDrink
         )
+    }
+}
+
+// Dynamic Colors are applied from API 31+
+@Preview(
+    apiLevel = 30,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Preview(
+    apiLevel = 30,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.BLUE_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.BLUE_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.RED_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.RED_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.GREEN_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.GREEN_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.YELLOW_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
+@Preview(
+    apiLevel = 33,
+    wallpaper = Wallpapers.YELLOW_DOMINATED_EXAMPLE,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Composable
+fun PreviewCoffeeDrinkAppBar() {
+    AppTheme {
+        CoffeeDrinkAppBar()
     }
 }
