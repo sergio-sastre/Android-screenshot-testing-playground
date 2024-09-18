@@ -1,24 +1,30 @@
 package snapshot.testing.lazycolumn_previews.compose_screenshot
 
+import android.content.res.Configuration
 import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.Wallpapers
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.R
 
 /**
+ * Screenshot tests are generated from these Previews.
+ * A general tolerance value is defined in the gradle plugin
+ *
  * Record: ./gradlew :lazycolumnscreen-previews:compose-screenshot:updateDebugScreenshotTest
  * Verify: ./gradlew :lazycolumnscreen-previews:compose-screenshot:validateDebugScreenshotTest
  *
  * Keep in mind that currently, Compose Preview screenshot testing tool only supports previews
  * in the "screenshotTest" source, so previews in the "main" source are ignored
  */
-class PreviewsForScreenshotTests {
+class CoffeeDrinkItemPreviews {
     private val coffeeDrink =
         CoffeeDrinkItem(
             id = 1L,
@@ -66,13 +72,71 @@ class PreviewsForScreenshotTests {
         }
     }
 
-    @Preview(apiLevel = 31)
+    @Preview(apiLevel = 33)
     @Composable
     fun CoffeeDrinkListApiLevelPreview() {
         AppTheme {
             CoffeeDrinkList(
                 coffeeDrink = coffeeDrink.copy(name = "API ${Build.VERSION.SDK_INT}")
             )
+        }
+    }
+}
+
+class AppBarWallpaperPreviews {
+    // Dynamic Colors are applied from API 31+
+    @Preview(
+        apiLevel = 30,
+        uiMode = Configuration.UI_MODE_NIGHT_YES
+    )
+    @Preview(
+        apiLevel = 30,
+        uiMode = Configuration.UI_MODE_NIGHT_NO
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.BLUE_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_NO
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.BLUE_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_YES
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.RED_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_NO
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.RED_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_YES
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.GREEN_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_NO
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.GREEN_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_YES
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.YELLOW_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_NO
+    )
+    @Preview(
+        apiLevel = 33,
+        wallpaper = Wallpapers.YELLOW_DOMINATED_EXAMPLE,
+        uiMode = Configuration.UI_MODE_NIGHT_YES
+    )
+    @Composable
+    fun PreviewCoffeeDrinkAppBar() {
+        AppTheme {
+            CoffeeDrinkAppBar()
         }
     }
 }
