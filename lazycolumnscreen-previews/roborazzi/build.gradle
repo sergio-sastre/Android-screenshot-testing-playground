@@ -80,5 +80,5 @@ dependencies {
     testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.5.0'
 
     testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.26.0'
-    testImplementation 'com.github.sergio-sastre.ComposablePreviewScanner:android:0.3.0'
+    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.3.2'
 }
