@@ -5,14 +5,20 @@ import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
 import org.robolectric.RuntimeEnvironment.setFontScale
 import org.robolectric.RuntimeEnvironment.setQualifiers
 import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
+import sergio.sastre.composable.preview.scanner.android.device.domain.RobolectricDeviceQualifierBuilder
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
 
 object RobolectricPreviewInfosApplier {
     fun applyFor(preview: ComposablePreview<AndroidPreviewInfo>) {
-        setQualifiers(RobolectricDeviceQualifiers.Pixel4a)
+        setDevice(preview.previewInfo.device)
         setUiMode(preview.previewInfo.uiMode)
         setLocale(preview.previewInfo.locale)
         setFontScale(preview.previewInfo.fontScale)
+    }
+
+    private fun setDevice(device: String) {
+        val parsedDevice = RobolectricDeviceQualifierBuilder.build(device) ?: RobolectricDeviceQualifiers.Pixel4a
+        setQualifiers(parsedDevice)
     }
 
     private fun setUiMode(uiMode: Int){

@@ -47,6 +47,8 @@ class PaparazziComposePreviewTests(
                 // due to the longName
                 .ignoreClassName()
                 .ignoreMethodName()
+                .ignoreIdFor("showSystemUi")
+                .ignoreIdFor("device") // since we only use @PreviewScreenSizes and all have "name"
                 .build()
         ) {
             preview()

@@ -6,6 +6,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
@@ -45,6 +46,7 @@ class PreviewsForScreenshotTests {
         }
     }
 
+    @PreviewScreenSizes
     @PreviewFontScale
     @PreviewLightDark
     @Composable
