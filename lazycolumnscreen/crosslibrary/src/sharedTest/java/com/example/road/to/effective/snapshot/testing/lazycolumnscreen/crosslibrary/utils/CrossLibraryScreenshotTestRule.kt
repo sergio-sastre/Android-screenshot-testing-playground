@@ -10,7 +10,11 @@ import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.ImageIoFormat.LosslessWebPImageIoFormat
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RecordOptions
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RoborazziOptions
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DpiDensity
 import sergio.sastre.uitesting.shot.ShotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
@@ -62,36 +66,45 @@ class CrossLibraryScreenshotTestRule(
         )
 }
 
- fun defaultCrossLibraryScreenshotTestRule(
-     config: ScreenshotConfigForComposable = ScreenshotConfigForComposable(),
- ): ScreenshotTestRuleForComposable =
-    CrossLibraryScreenshotTestRule(config)
-        // Optional: configure for the libraries you use
-        .configure(
-            ShotConfig(
-                bitmapCaptureMethod = PixelCopy(),
-            )
-        ).configure(
-            DropshotsConfig(
-                bitmapCaptureMethod = PixelCopy(),
-                resultValidator = ThresholdValidator(0.15f),
-                filePath = "dropshots",
-            )
-        ).configure(
-            AndroidTestifyConfig(
-                bitmapCaptureMethod = PixelCopy(),
-            )
-        ).configure(
-            PaparazziConfig(
-                deviceConfig = DeviceConfig.NEXUS_4,
-                renderingMode = RenderingMode.SHRINK,
-            )
-        ).configure(
-            RoborazziConfig(
-                deviceScreen = DeviceScreen.Phone.NEXUS_4,
-                filePath = userTestFilePath()
-            )
+val defaultPaparazziConfig = PaparazziConfig(
+    deviceConfig = DeviceConfig.NEXUS_4,
+    renderingMode = RenderingMode.SHRINK,
+)
+
+val defaultRoborazziConfig = RoborazziConfig(
+    deviceScreen = DeviceScreen.Phone.NEXUS_4,
+    filePath = userTestFilePath(),
+    roborazziOptions = RoborazziOptions(
+        recordOptions = RecordOptions(
+            // avoid this option if running this test on several sdks set via resources/robolectric.properties. It'd crash
+            imageIoFormat = LosslessWebPImageIoFormat
         )
+    )
+)
+
+fun defaultCrossLibraryScreenshotTestRule(
+    config: ScreenshotConfigForComposable = ScreenshotConfigForComposable(),
+): ScreenshotTestRuleForComposable = CrossLibraryScreenshotTestRule(config)
+    // Optional: configure for the libraries you use
+    .configure(
+        ShotConfig(
+            bitmapCaptureMethod = PixelCopy(),
+        )
+    )
+    .configure(
+        DropshotsConfig(
+            bitmapCaptureMethod = PixelCopy(),
+            resultValidator = ThresholdValidator(0.15f),
+            filePath = "dropshots",
+        )
+    )
+    .configure(
+        AndroidTestifyConfig(
+            bitmapCaptureMethod = PixelCopy(),
+        )
+    )
+    .configure(defaultPaparazziConfig)
+    .configure(defaultRoborazziConfig)
 
 fun userTestFilePath(): String {
     val path = System.getProperty("user.dir")

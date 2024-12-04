@@ -10,10 +10,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
-import sergio.sastre.uitesting.utils.common.Orientation
-import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot
-import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForComposable
 import sergio.sastre.uitesting.utils.crosslibrary.runners.CrossLibraryScreenshotTestRunner
 
 /**
