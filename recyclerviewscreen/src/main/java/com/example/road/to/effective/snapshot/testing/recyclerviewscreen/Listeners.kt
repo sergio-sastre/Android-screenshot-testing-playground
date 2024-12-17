@@ -4,15 +4,15 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.La
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
 
 interface DeleteMemoriseListener {
-    fun onMemoriseDeleted(memorise: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise)
+    fun onMemoriseDeleted(memorise: Memorise)
 }
 
 interface MemoriseClickedListener {
-    fun onMemoriseClicked(memorise: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise)
+    fun onMemoriseClicked(memorise: Memorise)
 }
 
 interface LanguageFilterClickedListener {
-    fun onLanguageFilterClicked(lang: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language)
+    fun onLanguageFilterClicked(lang: Language)
 }
 
 interface TrainAllClickedListener {

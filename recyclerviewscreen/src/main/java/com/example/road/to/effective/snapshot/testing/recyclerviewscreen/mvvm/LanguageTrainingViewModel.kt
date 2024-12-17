@@ -3,7 +3,9 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise
+import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.MemorisesInfoCollector
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.memorise.MemoriseProvider
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.setting.SettingsProvider
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.mvvm.LanguageTrainingViewModelContract.*
@@ -34,9 +36,7 @@ class LanguageTrainingViewModel(
         if (!memorisesFetched) {
             memorisesFetched = true
             memorises = memoriseProvider.getMemorises().toMutableList()
-            val translByLang = com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.MemorisesInfoCollector(
-                memorises
-            ).getTranslationsToTrainByDestLang()
+            val translByLang = MemorisesInfoCollector(memorises).getTranslationsToTrainByDestLang()
 
             mutableListState.value = MemoriseListViewState.Results(memorises)
             mutableTrainingState.value =
@@ -48,16 +48,14 @@ class LanguageTrainingViewModel(
         mutableClicksState.value = Event(ShowNotSupportedActionSnackbar)
     }
 
-    override fun clickOnFilter(lang: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language) {
+    override fun clickOnFilter(lang: Language) {
         settingsProvider.toggleLangState(lang)
-        val translByLang = com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.MemorisesInfoCollector(
-            memorises
-        ).getTranslationsToTrainByDestLang()
+        val translByLang = MemorisesInfoCollector(memorises).getTranslationsToTrainByDestLang()
         mutableTrainingState.value =
             TrainingViewState.Results(translByLang, settingsProvider.getActiveLangs())
     }
 
-    override fun clickOnMemorise(memorise: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Memorise) {
+    override fun clickOnMemorise(memorise: Memorise) {
         mutableClicksState.value = Event(ShowNotSupportedActionSnackbar)
     }
 
@@ -76,7 +74,7 @@ class LanguageTrainingViewModel(
     override fun clickOnDeleteMemorise(memorise: Memorise) {
         memorises.remove(memorise)
 
-        val translByDestLang = com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dataproviders.MemorisesInfoCollector(
+        val translByDestLang = MemorisesInfoCollector(
             memorises
         ).getTranslationsToTrainByDestLang()
         val newLangs = translByDestLang.keys.intersect(settingsProvider.getActiveLangs())

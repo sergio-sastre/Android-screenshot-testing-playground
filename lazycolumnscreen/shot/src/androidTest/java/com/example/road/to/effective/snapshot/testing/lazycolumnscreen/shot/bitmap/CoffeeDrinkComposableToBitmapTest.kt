@@ -5,7 +5,7 @@ import androidx.core.view.drawToBitmap
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.compose.parameterized.coffeeDrink
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils.setContent
 import com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
 import com.karumi.shot.ScreenshotTest
 import org.junit.Rule

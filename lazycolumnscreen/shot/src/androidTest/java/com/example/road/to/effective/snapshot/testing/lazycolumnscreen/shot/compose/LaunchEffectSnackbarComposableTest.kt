@@ -3,7 +3,7 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.com
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.ActionNotSupportedSnackbar
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils.setContent
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils.SnackbarScaffold
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.karumi.shot.ScreenshotTest

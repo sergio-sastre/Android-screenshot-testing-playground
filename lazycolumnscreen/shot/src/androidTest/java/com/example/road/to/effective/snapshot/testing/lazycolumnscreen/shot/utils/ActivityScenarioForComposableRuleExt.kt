@@ -1,4 +1,4 @@
-package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot
+package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils
 
 import android.app.Activity
 import androidx.activity.compose.setContent

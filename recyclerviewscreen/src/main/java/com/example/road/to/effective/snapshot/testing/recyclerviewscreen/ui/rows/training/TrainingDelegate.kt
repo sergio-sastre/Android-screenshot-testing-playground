@@ -8,7 +8,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.inflate
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
-class TrainingDelegate<T>(val listener: T?) :
+class TrainingDelegate<T>(private val listener: T?) :
     AbsListItemAdapterDelegate<TrainingItem, RowType, TrainingViewHolder>()
         where T : LanguageFilterClickedListener,
               T : TrainAllClickedListener {

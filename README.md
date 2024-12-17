@@ -21,7 +21,7 @@ examples written with different screenshot testing libraries for a better compar
 These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 > **Warning**</br>
-> It is configured with AGP 8.5.0, so it requires Android Studio Koala or higher!
+> It is configured with AGP 8.5.2, so it requires Android Studio Koala or higher!
 
 ## Awards
 
@@ -65,9 +65,10 @@ In order to help find the desired examples, the app is modularized accordingly:
    View system. Examples for Compose dialogs will be added as well
 2. `:recyclerviewscreen`: Contains screenshot tests for Activities, Fragments, ViewHolders and
    RecyclerViews.
-3. `:lazycolumnscreen`: Includes Jetpack Compose screenshot tests examples, as well as examples for
+3. `:recyclerviewscreen-previews`: Includes screenshot tests examples generated from @Previews. This wrap a `ViewHolder` inside an `AndroidView` Composable to enable Previews for XML-based layouts under `:recyclerviewscreen`
+4. `:lazycolumnscreen`: Includes Jetpack Compose screenshot tests examples, as well as examples for
    Activities & Fragments.
-4. `:lazycolumnscreen-previews`: Includes screenshot tests examples generated from @Previews
+5. `:lazycolumnscreen-previews`: Includes screenshot tests examples generated from @Previews of Composables in `:lazycolumnscreen` 
 
 Each of these modules contains submodules. Each submodule name corresponds to a screenshot testing
 library. You'll find screenshot test examples with that library in it.
@@ -81,7 +82,7 @@ testing, namely:
 4. Dropbox [Dropshots](https://github.com/dropbox/dropshots)
 5. [Shot from pedrovgs](https://github.com/pedrovgs/Shot)
 6. Ndtp [Android-testify](https://github.com/ndtp/android-testify) <sup>1<sup/>
-7. Facebook [screenshot-tests-for-android](https://github.com/facebook/screenshot-tests-for-android)
+7. Facebook [screenshot-tests-for-android](https://github.com/facebook/screenshot-tests-for-android) 
 8. QuickBird [Snappy](https://github.com/QuickBirdEng/kotlin-snapshot-testing)
 
 All of them have their own pros and cons.
@@ -90,17 +91,17 @@ needs!
 
 In order to do that, it contains the same/similar examples but written with different libraries:
 
-1. [Compose Preview Screenshot Testing tool](https://developer.android.com/studio/preview/compose-screenshot-testing) (for now, only under `:lazycolumnscreen-previews`)
+1. [Compose Preview Screenshot Testing tool](https://developer.android.com/studio/preview/compose-screenshot-testing) (check `:lazycolumnscreen-previews` and `:recyclerviewscreen-previews`)
 2. [Paparazzi](https://github.com/cashapp/paparazzi)
 3. [Roborazzi](https://github.com/takahirom/roborazzi)
-4. [Dropshots](https://github.com/dropbox/dropshots) (coming to `:lazycolumnscreen-previews` soon)
-5. [Shot](https://github.com/pedrovgs/Shot) (coming to `:lazycolumnscreen-previews` soon)
-6. [Android-testify](https://github.com/ndtp/android-testify) (coming
-   to `:lazycolumnscreen-previews` soon)
+4. [Dropshots](https://github.com/dropbox/dropshots) (coming to `:lazycolumnscreen-previews` soon, but already available in `:recyclerviewscreen-previews`)
+5. [Shot](https://github.com/pedrovgs/Shot) (coming to `:lazycolumnscreen-previews` soon, but already available in `:recyclerviewscreen-previews`)
+6. [Android-testify](https://github.com/ndtp/android-testify) (coming to `:lazycolumnscreen-previews` soon, but already available in `:recyclerviewscreen-previews`)
 
 **BONUS**:
 It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests
 running with multiple libraries, namely: Paparazzi, Roborazzi, Shot, Dropshots & Android-Testify*.
+Compose Screenshot Testing Tool support coming soon.
 For that it
 uses [Android UI Testing Utils 2.x.x](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
@@ -379,13 +380,15 @@ Run the following gradle tasks depending on the module:
 1. **Record**: `./gradlew :module_name:paparazzi:recordPaparazziDebug`. For instance:
     1. `./gradlew :dialogs::paparazzi:recordPaparazziDebug`
     2. `./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug`
-    3. `./gradlew :lazycolumnscreen:paparazzi:recordPaparazziDebug`
-    4. `./gradlew :lazycolumnscreen-previews:paparazzi:recordPaparazziDebug`
+    3. `./gradlew :recyclerviewscreen-previews:paparazzi:recordPaparazziDebug`
+    4. `./gradlew :lazycolumnscreen:paparazzi:recordPaparazziDebug`
+    5. `./gradlew :lazycolumnscreen-previews:paparazzi:recordPaparazziDebug`
 2. **Verify**: `./gradlew :module_name:paparazzi:verifyPaparazziDebug`. For instance:
     1. `./gradlew :dialogs:paparazzi:verifyPaparazziDebug`
     2. `./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug`
-    3. `./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug`
-    4. `./gradlew :lazycolumnscreen-previews:paparazzi:verifyPaparazziDebug`
+    3. `./gradlew :recyclerviewscreen-previews:paparazzi:verifyPaparazziDebug`
+    4. `./gradlew :lazycolumnscreen:paparazzi:verifyPaparazziDebug`
+    5. `./gradlew :lazycolumnscreen-previews:paparazzi:verifyPaparazziDebug`
 
 > **Note**</br>
 > You can record/verify the tests in parallel with the gradle property -Pparallel e.g.
@@ -401,13 +404,15 @@ Run the following gradle tasks depending on the module:
 1. **Record**: `./gradlew :module_name:roborazzi:recordRoborazziDebug`. For instance:
     1. `./gradlew :dialogs::roborazzi:recordRoborazziDebug`
     2. `./gradlew :recyclerviewscreen:roborazzi:recordRoborazziDebug`
-    3. `./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug`
-    4. `./gradlew :lazycolumnscreen-previews:roborazzi:recordRoborazziDebug`
+    3. `./gradlew :recyclerviewscreen-previews:roborazzi:recordRoborazziDebug`
+    4. `./gradlew :lazycolumnscreen:roborazzi:recordRoborazziDebug`
+    5. `./gradlew :lazycolumnscreen-previews:roborazzi:recordRoborazziDebug`
 2. **Verify**: `./gradlew :module_name:roborazzi:verifyRoborazziDebug`. For instance:
     1. `./gradlew :dialogs:roborazzi:verifyRoborazziDebug`
     2. `./gradlew :recyclerviewscreen:roborazzi:verifyRoborazziDebug`
-    3. `./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug`
-    4. `./gradlew :lazycolumnscreen-previews:roborazzi:verifyRoborazziDebug`
+    3. `./gradlew :recyclerviewscreen-previews:roborazzi:verifyRoborazziDebug`
+    4. `./gradlew :lazycolumnscreen:roborazzi:verifyRoborazziDebug`
+    5. `./gradlew :lazycolumnscreen-previews:roborazzi:verifyRoborazziDebug`
 
 In order to see the screenshots in Android Studio, change the view from "Android" to "Project".
 
@@ -429,15 +434,16 @@ In order to see the screenshots in Android Studio, change the view from "Android
 Start the emulator.
 Then run the following gradle tasks depending on the module:
 
-1. **Record**: `./gradlew :module_name:dropshots:connectedAndroidTest -Pdropshots.record`. For
-   instance:
+1. **Record**: `./gradlew :module_name:dropshots:connectedAndroidTest -Pdropshots.record`. For instance:
     1. `./gradlew :dialogs:dropshots:connectedAndroidTest -Pdropshots.record`
     2. `./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pdropshots.record`
-    3. `./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pdropshots.record`
+    3. `./gradlew :recyclerviewscreen-previews:dropshots:connectedAndroidTest -Pdropshots.record`
+    4. `./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pdropshots.record`
 2. **Verify**: `./gradlew :module_name:dropshots:connectedAndroidTest`. For instance:
     1. `./gradlew :dialogs:dropshots:connectedAndroidTest`
     2. `./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest`
-    3. `./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest`
+    3. `./gradlew :recyclerviewscreen-previews:dropshots:connectedAndroidTest`
+    4. `./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest`
 
 > **Note**</br>
 > Thanks to Dropshots plugin, it is also possible to record/verify these tests directly from Android
@@ -454,11 +460,13 @@ Then run the following gradle tasks depending on the module:
 1. **Record**: `./gradlew :module_name:shot:executeScreenshotTests -Precord`. For instance:
     1. `./gradlew :dialogs:shot:executeScreenshotTests -Precord`
     2. `./gradlew :recyclerviewscreen:shot:executeScreenshotTests -Precord`
-    3. `./gradlew :lazycolumnscreen:shot:executeScreenshotTests -Precord`
+    3. `./gradlew :recyclerviewscreen-previews:shot:executeScreenshotTests -Precord`
+    4. `./gradlew :lazycolumnscreen:shot:executeScreenshotTests -Precord`
 2. **Verify**: `./gradlew :module_name:shot:executeScreenshotTests`. For instance:
     1. `./gradlew :dialogs:shot:executeScreenshotTests`
     2. `./gradlew :recyclerviewscreen:shot:executeScreenshotTests`
-    3. `./gradlew :lazycolumnscreen:shot:executeScreenshotTests`
+    3. `./gradlew :recyclerviewscreen-previews:shot:executeScreenshotTests`
+    4. `./gradlew :lazycolumnscreen:shot:executeScreenshotTests`
 
 > **Note**</br>
 > The library says the record reports can be reviewed
@@ -477,13 +485,19 @@ You can do it by directly running the following command:
    For instance:
     1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
     2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
-    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
+    3. `./gradlew :recyclerviewscreen-previews:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
+    4. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
 2. **Verify**: `./gradlew :module_name:android-testify:pixel3api30DebugAndroidTest`. For instance:
     1. `./gradlew :dialogs:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
     2. `./gradlew :recyclerviewscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
-    3. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
+    3. `./gradlew :recyclerviewscreen-previews:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
+    4. `./gradlew :lazycolumnscreen:android-testify:pixel3api30DebugAndroidTest -PuseTestStorage`
 
-> **Note**</br>
+> **Note 1**</br>
+> You might also want to add the following gradle parameter to avoid verify failing for screenshots with elevation when executed on the same machine:
+> -Pandroid.testoptions.manageddevices.emulator.gpu=host
+
+> **Note 2**</br>
 > Before verifying, you need to copy the generated screenshots under the corresponding module's
 > build/outputs/managed_device_android_test_additional_output/...) to the correct location, as
 > specified here: https://ndtp.github.io/android-testify/docs/recipes/gmd
@@ -500,11 +514,13 @@ Then run the following gradle tasks depending on the module:
 1. **Record**: `./gradlew :module_name:android-testify:screenshotRecord`. For instance:
     1. `./gradlew :dialogs:android-testify:screenshotRecord`
     2. `./gradlew :recyclerviewscreen:android-testify:screenshotRecord`
-    3. `./gradlew :lazycolumnscreen:android-testify:screenshotRecord`
+    3. `./gradlew :recyclerviewscreen-previews:android-testify:screenshotRecord`
+    4. `./gradlew :lazycolumnscreen:android-testify:screenshotRecord`
 2. **Verify**: `./gradlew :module_name:android-testify:screenshotTest`. For instance:
     1. `./gradlew :dialogs:android-testify:screenshotTest`
     2. `./gradlew :recyclerviewscreen:android-testify:screenshotTest`
-    3. `./gradlew :lazycolumnscreen:android-testify:screenshotTest`
+    3. `./gradlew :recyclerviewscreen-previews:android-testify:screenshotTest`
+    4. `./gradlew :lazycolumnscreen:android-testify:screenshotTest`
 
 ### Cross-Library
 
@@ -525,33 +541,22 @@ command line for its correct execution. Here some examples with `:lazycolumnscre
 to `:recyclerviewscreen` and `:dialogs`
 
 1. **Record**:
-    1.
-   Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordPaparazziDebug -PscreenshotLibrary=paparazzi`
-    2.
-   Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi`
-    3.
-   Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -Precord -PscreenshotLibrary=shot`
-    4.
-   Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots`
-    5.
-   Testify:   `./gradlew :lazycolumnscreen:crosslibrary:screenshotRecord -PscreenshotLibrary=android-testify`
+    1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordPaparazziDebug -PscreenshotLibrary=paparazzi`
+    2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi`
+    3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -Precord -PscreenshotLibrary=shot`
+    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots`
+    5. Testify:   `./gradlew :lazycolumnscreen:crosslibrary:screenshotRecord -PscreenshotLibrary=android-testify`
 2. **Verify**:
-    1.
-   Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug -PscreenshotLibrary=paparazzi`
-    2.
-   Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyRoborazziDebug -PscreenshotLibrary=roborazzi`
-    3.
-   Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
-    4.
-   Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
-    5.
-   Testify:   `./gradlew :lazycolumnscreen:crosslibrary:screenshotTest -PscreenshotLibrary=android-testify`
+    1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug -PscreenshotLibrary=paparazzi`
+    2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyRoborazziDebug -PscreenshotLibrary=roborazzi`
+    3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -PscreenshotLibrary=shot`
+    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -PscreenshotLibrary=dropshots`
+    5. Testify:   `./gradlew :lazycolumnscreen:crosslibrary:screenshotTest -PscreenshotLibrary=android-testify`
 
 > **Note**</br>
 > You can also record and verify via Gradle Managed Devices with Android-Testify as specified in the
 > previous section:
-> 1.
-Record: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
+> 1. Record: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PuseTestStorage -PrecordModeGmd`
 > 2. Verify: `./gradlew :lazycolumnscreen:crosslibrary:pixel3api30DebugAndroidTest -PuseTestStorage`
 >
 > Before verifying, you need to copy the generated screenshots under the corresponding module's
