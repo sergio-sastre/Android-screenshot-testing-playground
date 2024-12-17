@@ -24,7 +24,7 @@ import snapshot.testing.lazycolumn_previews.roborazzi.utils.filePath
  *
  * INFO: You can also configure Roborazzi's plugin to automatically generate
  * screenshot tests out of @Previews without these Parameterized tests.
- * However, it currently supports only Locale, UiMode & FontScale out of the box.
+ * It currently supports Locale, UiMode, FontScale, Device, HeightDp, WidthDp, ShowBackground and BackgroundColor out of the box.
  * Check it here:
  * https://github.com/takahirom/roborazzi#generate-compose-preview-screenshot-tests
  *

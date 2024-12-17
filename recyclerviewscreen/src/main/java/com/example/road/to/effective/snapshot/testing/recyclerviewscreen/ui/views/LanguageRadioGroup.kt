@@ -85,7 +85,7 @@ class LanguageRadioGroup : RadioGroup {
     fun bindTrainingItem(
         contextWrapper: Context,
         item: TrainingItem,
-        languageClickedListener: com.example.road.to.effective.snapshot.testing.recyclerviewscreen.LanguageFilterClickedListener?,
+        languageClickedListener: LanguageFilterClickedListener?,
     ) {
         removeAllViews()
         ensureMinimumHeight(contextWrapper, item)
@@ -102,7 +102,7 @@ class LanguageRadioGroup : RadioGroup {
                 LanguageFilterView.createLanguageRadioButtonLayout(
                     ctx = context,
                     checked = false,
-                    viewTag = com.example.road.to.effective.snapshot.testing.recyclerviewscreen.data.Language.Spanish,
+                    viewTag = Language.Spanish,
                     amountTexts = 0,
                     listener = null,
                 ).apply {
@@ -120,6 +120,7 @@ class LanguageRadioGroup : RadioGroup {
     ) {
         item.trainingByLang.sortByValueSize().keys
             .forEach { lang ->
+
                 val checkMark =
                     LanguageFilterView.createLanguageRadioButtonLayout(
                         ctx = context,
@@ -128,6 +129,7 @@ class LanguageRadioGroup : RadioGroup {
                         amountTexts = item.trainingByLang[lang]?.size ?: 0,
                         listener = listener,
                     )
+
                 addView(checkMark)
             }
     }

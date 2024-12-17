@@ -5,7 +5,7 @@ import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.test.filters.SdkSuppress
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkAppBar
-import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.setContent
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot.utils.setContent
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
