@@ -1,4 +1,4 @@
-package snapshot.testing.lazycolumn_previews.roborazzi.utils
+package snapshot.testing.recyclerview_previews.roborazzi.utils
 
 import androidx.compose.ui.tooling.preview.Devices
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
@@ -17,7 +17,7 @@ object RoborazziComposeOptionsMapper {
     fun createFor(preview: ComposablePreview<AndroidPreviewInfo>): RoborazziComposeOptions =
         RoborazziComposeOptions {
             val previewInfo = preview.previewInfo
-            previewDevice(previewInfo.device.ifBlank { Devices.NEXUS_5 } )
+            previewDevice(previewInfo.device.ifBlank { Devices.PIXEL_4A } )
             size(
                 widthDp = previewInfo.widthDp,
                 heightDp = previewInfo.heightDp

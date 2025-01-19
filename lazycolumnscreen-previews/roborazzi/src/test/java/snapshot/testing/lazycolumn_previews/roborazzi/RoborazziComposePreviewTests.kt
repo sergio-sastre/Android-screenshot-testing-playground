@@ -1,17 +1,7 @@
 package snapshot.testing.lazycolumn_previews.roborazzi
 
-import androidx.compose.ui.tooling.preview.Devices
-import com.github.takahirom.roborazzi.Dump
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
-import com.github.takahirom.roborazzi.RoborazziComposeOptions
-import com.github.takahirom.roborazzi.RoborazziOptions
-import com.github.takahirom.roborazzi.background
 import com.github.takahirom.roborazzi.captureRoboImage
-import com.github.takahirom.roborazzi.fontScale
-import com.github.takahirom.roborazzi.locale
-import com.github.takahirom.roborazzi.previewDevice
-import com.github.takahirom.roborazzi.size
-import com.github.takahirom.roborazzi.uiMode
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterValuesProvider
 import org.junit.Test
@@ -24,7 +14,6 @@ import sergio.sastre.composable.preview.scanner.android.AndroidComposablePreview
 import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
 import sergio.sastre.composable.preview.scanner.android.screenshotid.AndroidPreviewScreenshotIdBuilder
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
-import sergio.sastre.composable.preview.scanner.core.preview.getAnnotation
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziComposeOptionsMapper
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziConfig
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziOptionsMapper

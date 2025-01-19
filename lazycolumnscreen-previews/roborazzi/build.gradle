@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace 'snapshot.testing.lazycolumn_previews.roborazzi'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         minSdk 23
@@ -76,10 +76,6 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest"
 
     testImplementation "org.robolectric:robolectric:4.14"
-
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.6.0'
 
     testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
     testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.39.0'
