@@ -56,17 +56,6 @@ fun CoffeeDrinkListWithParametersPreview(
 @PreviewScreenSizes
 @PreviewFontScale
 @PreviewLightDark
-@Preview(widthDp = 30, heightDp = 30)
-@Preview(widthDp = 2000, heightDp = 2000)
-@Preview(widthDp = 1000, heightDp = 1000)
-@Preview(name = "w2000", widthDp = 2000)
-@Preview(name = "h2000", heightDp = 2000)
-@Preview(
-    widthDp = 2000,
-    heightDp = 1000,
-    device = "id:pixel_xl",
-    uiMode = Configuration.UI_MODE_NIGHT_YES
-)
 @Preview(
     widthDp = 1000,
     heightDp = 2000,
@@ -110,37 +99,6 @@ fun CoffeeDrinkListAccessibilityPreview() {
     AppTheme {
         CoffeeDrinkList(
             coffeeDrink = coffeeDrink
-        )
-    }
-}
-
-@Preview
-@Preview(showBackground = true)
-@Composable
-fun SimpleText() {
-    Text(
-        text = "HELLO",
-        modifier = Modifier.padding(top = 8.dp, end = 8.dp),
-        style = TextStyle(fontSize = 24.sp),
-        color = MaterialTheme.colors.onSurface,
-        maxLines = 1
-    )
-}
-
-@Preview(
-    name = "Preview width & height",
-    group = "Preview Group",
-    widthDp = 30,
-    heightDp = 30,
-)
-@Composable
-fun PreviewWithWidthAndHeightSmall() {
-    Card(
-        Modifier.fillMaxSize()
-    ) {
-        Text(
-            modifier = Modifier.padding(8.dp),
-            text = "Hello, World!"
         )
     }
 }

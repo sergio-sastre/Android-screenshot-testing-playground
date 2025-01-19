@@ -91,7 +91,7 @@ class RoborazziApiLevel31ComposePreviewTests(
 
         captureRoboImage(
             filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
-            roborazziOptions = RoborazziOptionsMapper.createFor(preview)
+            roborazziOptions = RoborazziOptionsMapper.createFor(preview),
         ) {
             preview()
         }

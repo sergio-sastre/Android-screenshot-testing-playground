@@ -1,26 +1,17 @@
 package snapshot.testing.lazycolumn_previews.roborazzi
 
-import android.view.ViewGroup
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.ViewRootForTest
-import androidx.compose.ui.unit.dp
-import androidx.test.core.app.ActivityScenario
-import com.github.takahirom.roborazzi.DefaultFileNameGenerator
+import androidx.compose.ui.tooling.preview.Devices
+import com.github.takahirom.roborazzi.Dump
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
-import com.github.takahirom.roborazzi.InternalRoborazziApi
+import com.github.takahirom.roborazzi.RoborazziComposeOptions
 import com.github.takahirom.roborazzi.RoborazziOptions
-import com.github.takahirom.roborazzi.RoborazziTransparentActivity
-import com.github.takahirom.roborazzi.applyToRobolectricConfiguration
+import com.github.takahirom.roborazzi.background
 import com.github.takahirom.roborazzi.captureRoboImage
-import com.github.takahirom.roborazzi.provideRoborazziContext
+import com.github.takahirom.roborazzi.fontScale
+import com.github.takahirom.roborazzi.locale
+import com.github.takahirom.roborazzi.previewDevice
+import com.github.takahirom.roborazzi.size
+import com.github.takahirom.roborazzi.uiMode
 import com.google.testing.junit.testparameterinjector.TestParameter
 import com.google.testing.junit.testparameterinjector.TestParameterValuesProvider
 import org.junit.Test
@@ -33,13 +24,11 @@ import sergio.sastre.composable.preview.scanner.android.AndroidComposablePreview
 import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
 import sergio.sastre.composable.preview.scanner.android.screenshotid.AndroidPreviewScreenshotIdBuilder
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
-import snapshot.testing.lazycolumn_previews.roborazzi.utils.RobolectricPreviewInfosApplier
+import sergio.sastre.composable.preview.scanner.core.preview.getAnnotation
+import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziComposeOptionsMapper
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziConfig
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziOptionsMapper
-import snapshot.testing.lazycolumn_previews.roborazzi.utils.setBackgroundColor
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.filePath
-import snapshot.testing.lazycolumn_previews.roborazzi.utils.resize
-import snapshot.testing.lazycolumn_previews.roborazzi.utils.setShadowDisplay
 
 /**
  * Record: ./gradlew :lazycolumnscreen-previews:roborazzi:recordRoborazziDebug
@@ -73,64 +62,20 @@ object ComposablePreviewProviderApi31 : TestParameterValuesProvider() {
         cachedPreviews.filter { it.previewInfo.apiLevel == 31 }
 }
 
-object ComposablePreviewProviderApi29 : TestParameterValuesProvider() {
-    override fun provideValues(context: Context?): List<ComposablePreview<AndroidPreviewInfo>?> =
-        cachedPreviews.filter { it.previewInfo.apiLevel == 29 }.ifEmpty { listOf(null) }
-}
-
 @RunWith(RobolectricTestParameterInjector::class)
-class PaparazziComposePreviewTests {
-    //@get:Rule
-    //val composeTestRule = createAndroidComposeRule<ComponentActivity>()
-
-    /**
-    @get:Rule
-    val emptyComposeRule = RobolectricActivityScenarioForComposableRule()
-     **/
+class RoborazziComposePreviewTests {
 
     @OptIn(ExperimentalRoborazziApi::class)
     private fun snapshot(preview: ComposablePreview<AndroidPreviewInfo>) {
-
-        /*
-        when (preview.previewInfo.widthDp != -1 || preview.previewInfo.heightDp != -1) {
-            // Requires an Activity with its display dimensions adjusted
-            true -> {
-                preview.captureRoboImage2(
-                    filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
-                    roborazziOptions = RoborazziOptionsMapper.createFor(preview),
-                )
-            }
-
-            false -> {
-                preview.captureRoboImage(
-                    filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
-                    roborazziOptions = RoborazziOptionsMapper.createFor(preview)
-                )
-            }
-        }
-
-         */
-
-        preview.captureRoboImage3(
+        captureRoboImage(
             filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
-            roborazziOptions = RoborazziOptionsMapper.createFor(preview)
-        )
+            roborazziOptions = RoborazziOptionsMapper.createFor(preview),
+            roborazziComposeOptions = RoborazziComposeOptionsMapper.createFor(preview)
+        ){
+            preview()
+        }
     }
-
-    /*
-    @GraphicsMode(NATIVE)
-    @Config(sdk = [29])
-    @Test
-    fun snapshotApi29(
-        @TestParameter(valuesProvider = ComposablePreviewProviderApi29::class)
-        preview: ComposablePreview<AndroidPreviewInfo>?,
-    ) {
-        Assume.assumeTrue("Skipping api 29", preview != null)
-        snapshot(preview!!)
-    }
-
-     */
-
+    
     @GraphicsMode(NATIVE)
     @Config(sdk = [35])
     @Test
@@ -141,7 +86,6 @@ class PaparazziComposePreviewTests {
         snapshot(preview)
     }
 
-    /*
     @GraphicsMode(NATIVE)
     @Config(sdk = [31])
     @Test
@@ -151,114 +95,4 @@ class PaparazziComposePreviewTests {
     ) {
         snapshot(preview)
     }
-
-     */
-}
-
-@OptIn(ExperimentalRoborazziApi::class, InternalRoborazziApi::class)
-fun ComposablePreview<AndroidPreviewInfo>.captureRoboImage2(
-    filePath: String = DefaultFileNameGenerator.generateFilePath("png"),
-    roborazziOptions: RoborazziOptions = provideRoborazziContext().options,
-) {
-    if (!roborazziOptions.taskType.isEnabled()) return
-
-    applyToRobolectricConfiguration()
-
-    val widthDp = previewInfo.widthDp
-    val heightDp = previewInfo.heightDp
-
-    // Requires activity to adjust Display to width and height
-    val activityScenario = ActivityScenario.launch(ComponentActivity::class.java)
-
-    activityScenario.onActivity { activity ->
-        activity.setShadowDisplay(
-            widthDp = widthDp,
-            heightDp = heightDp
-        )
-
-        activity.setBackgroundColor(
-            showBackground = previewInfo.showBackground,
-            backgroundColor = previewInfo.backgroundColor
-        )
-    }
-
-    activityScenario.use {
-        activityScenario.onActivity { activity ->
-
-            activity.setContent(content = resize(widthDp, heightDp))
-
-            val composeView = activity.window.decorView
-                .findViewById<ViewGroup>(android.R.id.content)
-                .getChildAt(0) as ComposeView
-            val viewRootForTest = composeView.getChildAt(0) as ViewRootForTest
-
-            viewRootForTest.view.captureRoboImage(filePath, roborazziOptions)
-        }
-
-        // Closing the activity is necessary to prevent memory leaks.
-        // If multiple captureRoboImage calls occur in a single test,
-        // they can lead to an activity leak.
-    }
-}
-
-@OptIn(ExperimentalRoborazziApi::class, InternalRoborazziApi::class)
-fun ComposablePreview<AndroidPreviewInfo>.captureRoboImage3(
-    filePath: String = DefaultFileNameGenerator.generateFilePath("png"),
-    roborazziOptions: RoborazziOptions = provideRoborazziContext().options
-) {
-    if (!roborazziOptions.taskType.isEnabled()) return
-    //registerRoborazziActivityToRobolectricIfNeeded()
-    RobolectricPreviewInfosApplier.applyFor(this) //applyToRobolectricConfiguration()
-
-    val activityScenario = ActivityScenario.launch(ComponentActivity::class.java)
-
-    activityScenario.onActivity { activity ->
-        activity.setShadowDisplay(
-            widthDp = previewInfo.widthDp,
-            heightDp = previewInfo.heightDp
-        )
-    }
-
-    activityScenario.use {
-        activityScenario.onActivity { activity ->
-            
-            activity.setBackgroundColor(
-                showBackground = previewInfo.showBackground,
-                backgroundColor = previewInfo.backgroundColor
-            )
-
-            activity.setContent(
-                content = resize(widthDp = previewInfo.widthDp, heightDp = previewInfo.heightDp)
-            )
-            val composeView = activity.window.decorView
-                .findViewById<ViewGroup>(android.R.id.content)
-                .getChildAt(0) as ComposeView
-            val viewRootForTest = composeView.getChildAt(0) as ViewRootForTest
-            viewRootForTest.view.captureRoboImage(filePath, roborazziOptions)
-        }
-
-        // Closing the activity is necessary to prevent memory leaks.
-        // If multiple captureRoboImage calls occur in a single test,
-        // they can lead to an activity leak.
-    }
-}
-
-/**
- * WARNING:
- * For this to work, it requires that the Display is within the widthDp and heightDp dimensions
- */
-fun ComposablePreview<AndroidPreviewInfo>.size(
-    widthDp: Int,
-    heightDp: Int,
-): @Composable () -> Unit {
-    val resizedPreview = @Composable {
-        val modifier = when {
-            widthDp > 0 && heightDp > 0 -> Modifier.size(widthDp.dp, heightDp.dp)
-            widthDp > 0 -> Modifier.width(widthDp.dp)
-            heightDp > 0 -> Modifier.height(heightDp.dp)
-            else -> Modifier
-        }
-        Box(modifier = modifier) { this@size.invoke() }
-    }
-    return resizedPreview
 }
