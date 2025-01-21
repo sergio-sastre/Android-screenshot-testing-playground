@@ -11,6 +11,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.composable.preview.scanner.android.screenshotid.AndroidPreviewScreenshotIdBuilder
+import snapshot.testing.recyclerview_previews.paparazzi.utils.Background
 import snapshot.testing.recyclerview_previews.paparazzi.utils.PaparazziConfig
 import snapshot.testing.recyclerview_previews.paparazzi.utils.PaparazziPreviewRule
 
@@ -53,7 +54,12 @@ class PaparazziComposePreviewTests(
                 .ignoreMethodName()
                 .build()
         ) {
-            preview()
+            Background(
+                showBackground = preview.previewInfo.showBackground,
+                backgroundColor = preview.previewInfo.backgroundColor,
+            ) {
+                preview()
+            }
         }
     }
 }

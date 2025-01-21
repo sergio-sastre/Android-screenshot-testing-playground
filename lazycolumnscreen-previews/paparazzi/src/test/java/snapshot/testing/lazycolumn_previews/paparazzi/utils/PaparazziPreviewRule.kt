@@ -54,21 +54,21 @@ object PaparazziPreviewRule {
         renderingMode: PaparazziConfig.RenderingMode?,
         previewWidthInDp: Int,
         previewHeightInDp: Int,
-    ): SessionParams.RenderingMode {
-        // Do not shrink if height or width are set, otherwise it throws exception
-        val defaultRenderingMode = when (previewHeightInDp > 0 || previewWidthInDp > 0) {
-            true -> SessionParams.RenderingMode.FULL_EXPAND
-            false -> SessionParams.RenderingMode.SHRINK
-        }
-        return when (renderingMode) {
+    ): SessionParams.RenderingMode =
+        when (renderingMode) {
             PaparazziConfig.RenderingMode.NORMAL -> SessionParams.RenderingMode.NORMAL
             PaparazziConfig.RenderingMode.V_SCROLL -> SessionParams.RenderingMode.V_SCROLL
             PaparazziConfig.RenderingMode.H_SCROLL -> SessionParams.RenderingMode.H_SCROLL
             PaparazziConfig.RenderingMode.FULL_EXPAND -> SessionParams.RenderingMode.FULL_EXPAND
             PaparazziConfig.RenderingMode.SHRINK -> SessionParams.RenderingMode.SHRINK
-            null -> defaultRenderingMode
+            null -> {
+                // Do not shrink if height or width are set, otherwise it throws exception
+                when (previewHeightInDp > 0 || previewWidthInDp > 0) {
+                    true -> SessionParams.RenderingMode.FULL_EXPAND
+                    false -> SessionParams.RenderingMode.SHRINK
+                }
+            }
         }
-    }
 
     private fun getDeviceConfig(
         device: String,
