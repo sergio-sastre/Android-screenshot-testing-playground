@@ -10,6 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import sergio.sastre.composable.preview.scanner.android.screenshotid.AndroidPreviewScreenshotIdBuilder
+import snapshot.testing.lazycolumn_previews.paparazzi.utils.Background
 import snapshot.testing.lazycolumn_previews.paparazzi.utils.PaparazziConfig
 import snapshot.testing.lazycolumn_previews.paparazzi.utils.PaparazziPreviewRule
 
@@ -47,11 +48,22 @@ class PaparazziComposePreviewTests(
                 // due to the longName
                 .ignoreClassName()
                 .ignoreMethodName()
+                .overrideDefaultIdFor("showBackground") { info ->
+                    when (info.showBackground) {
+                        true -> "with_bg"
+                        false -> ""
+                    }
+                }
                 .ignoreIdFor("showSystemUi")
                 .ignoreIdFor("device") // since we only use @PreviewScreenSizes and all have "name"
                 .build()
         ) {
-            preview()
+            Background(
+                showBackground = preview.previewInfo.showBackground,
+                backgroundColor = preview.previewInfo.backgroundColor
+            ) {
+                preview()
+            }
         }
     }
 }
