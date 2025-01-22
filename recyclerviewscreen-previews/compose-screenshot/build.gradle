@@ -7,11 +7,11 @@ plugins {
 
 android {
     namespace 'snapshot.testing.recyclerview_previews.compose_screenshot'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

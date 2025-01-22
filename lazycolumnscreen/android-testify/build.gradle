@@ -23,12 +23,12 @@ String filterAnnotation() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.android_testify'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -109,21 +109,21 @@ dependencies {
     implementation project(':testannotations')
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation "androidx.navigation:navigation-compose:2.7.7"
+    implementation "androidx.navigation:navigation-compose:2.8.5"
 
     // Jetpack Compose
-    androidTestImplementation platform('androidx.compose:compose-bom:2024.02.02')
+    androidTestImplementation platform('androidx.compose:compose-bom:2025.01.00')
     androidTestImplementation "androidx.compose.material:material"
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.16'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
 
     // noinspection GradleDependency
     androidTestImplementation('androidx.test:rules:1.5.0') {
         because 'newer versions make Android-testify crash'
     }
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0'
 
     androidTestUtil 'androidx.test:orchestrator:1.5.0'
     // for Gradle Managed Devices

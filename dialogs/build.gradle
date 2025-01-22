@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

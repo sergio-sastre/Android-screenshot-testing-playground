@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.roborazzi'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -56,8 +56,8 @@ android {
 dependencies {
     implementation project(':dialogs')
 
-    testImplementation 'org.robolectric:robolectric:4.13'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi:1.26.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.5.0'
+    testImplementation 'org.robolectric:robolectric:4.14.1'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi:1.39.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0'
 }

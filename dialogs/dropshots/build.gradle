@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.dropshots'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing.dialogs.dropshots"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -50,8 +50,8 @@ dependencies {
     androidTestImplementation('androidx.test:rules:1.5.0') {
         because 'newer versions make the tests crash'
     }
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.16'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
 
     androidTestUtil 'androidx.test:orchestrator:1.5.0'
 }

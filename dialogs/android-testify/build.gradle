@@ -22,12 +22,12 @@ String filterAnnotation() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.android_testify'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -101,10 +101,10 @@ dependencies {
         because 'newer versions make Android-testify crash'
     }
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0'
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.16'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
 
     androidTestUtil 'androidx.test:orchestrator:1.5.0'
     // for Gradle Managed Devices

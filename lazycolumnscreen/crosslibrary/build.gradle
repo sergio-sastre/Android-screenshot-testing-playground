@@ -31,12 +31,12 @@ String screenshotLibraryName() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files
@@ -136,42 +136,24 @@ dependencies {
     implementation project(':testannotations')
 
     // Jetpack Compose
-    debugImplementation platform('androidx.compose:compose-bom:2024.10.01')
+    debugImplementation platform('androidx.compose:compose-bom:2025.01.00')
     debugImplementation "androidx.compose.material:material"
 
     // screenshot libs
-    debugImplementation('com.github.sergio-sastre:utils:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre:shot:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre:dropshots:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre:android-testify:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0')
 
-    testImplementation('com.github.sergio-sastre:robolectric:2.6.0')
-    testImplementation('com.github.sergio-sastre:roborazzi:2.6.0')
-    debugImplementation('com.github.sergio-sastre:mapper-roborazzi:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.6.0')
 
-    testImplementation('com.github.sergio-sastre:paparazzi:2.6.0')
-    debugImplementation('com.github.sergio-sastre:mapper-paparazzi:2.6.0')
-
-    /*
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0')
-
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.5.0')
-
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.5.0')
-
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
-
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.5.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.5.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.5.0')
-
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.5.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.5.0')
-
-     */
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.6.0')
 
     // for Gradle Managed Devices
     androidTestUtil('androidx.test.services:test-services:1.5.0')
