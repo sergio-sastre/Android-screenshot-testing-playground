@@ -63,9 +63,10 @@ android {
         // Warning: android-testify does not support shards with gradle managed devices for now
         managedDevices {
             devices {
-                pixel3api30(ManagedVirtualDevice) {
+                // api 30/31 causes problems with Dialogs
+                pixel3api32(ManagedVirtualDevice) {
                     device = "Pixel 3"
-                    apiLevel = 30
+                    apiLevel = 32
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
@@ -85,7 +86,7 @@ testify {
 
 // Create task to move screenshots generated via Gradle Managed Devices to the right location
 // before verifying them
-def devices = project.hasProperty("devices") ? project.devices : "pixel3api30"
+def devices = project.hasProperty("devices") ? project.devices : "pixel3api32"
 
 tasks.register('copyScreenshots', Copy) {
     from "build/outputs/managed_device_android_test_additional_output/debug/${devices}/images"
