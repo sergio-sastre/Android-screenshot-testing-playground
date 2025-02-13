@@ -76,7 +76,8 @@ val defaultRoborazziConfig = RoborazziConfig(
     filePath = userTestFilePath(),
     roborazziOptions = RoborazziOptions(
         recordOptions = RecordOptions(
-            // avoid this option if running this test on several sdks set via resources/robolectric.properties. It'd crash
+            // It'd crash if running this test on several sdks set via resources/robolectric.properties.
+            // Don't use this WebP in that case
             imageIoFormat = LosslessWebPImageIoFormat
         )
     )

@@ -12,6 +12,8 @@ import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.CompareOptions
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.ComparisonStyle
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.ImageIoFormat.LosslessWebPImageIoFormat
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RecordOptions
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RoborazziOptions
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
@@ -28,7 +30,6 @@ import java.io.File
  * It required some extra configuration in the gradle file
  * Take a look at the :dialogs:crosslibrary gradle file to see how it is configured
  */
-
 class CrossLibraryScreenshotTestRule(
     override val config: ScreenshotConfigForView,
 ) : SharedScreenshotLibraryTestRuleForView(config) {
@@ -99,7 +100,12 @@ fun defaultCrossLibraryScreenshotTestRule(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
                 backgroundColor = TRANSPARENT,
                 roborazziOptions = RoborazziOptions(
-                    compareOptions = CompareOptions(comparisonStyle = ComparisonStyle.Simple)
+                    compareOptions = CompareOptions(comparisonStyle = ComparisonStyle.Simple),
+                    recordOptions = RecordOptions(
+                        // It'd crash if running this test on several sdks set via resources/robolectric.properties.
+                        // Don't use this WebP in that case
+                        imageIoFormat = LosslessWebPImageIoFormat
+                    )
                 ),
                 filePath = userTestFilePath(),
             )
