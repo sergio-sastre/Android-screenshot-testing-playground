@@ -115,7 +115,7 @@ dependencies {
     implementation project(':testannotations')
 
     // Jetpack Compose
-    debugImplementation platform('androidx.compose:compose-bom:2025.01.00')
+    debugImplementation platform('androidx.compose:compose-bom:2025.02.00')
     debugImplementation "androidx.compose.material:material"
 
     debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')

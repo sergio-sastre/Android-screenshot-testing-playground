@@ -8,10 +8,14 @@ class SaveScanResultInAssets {
     @Test
     fun `task -- save scan result in assets`() {
         val scanResultFileName = "scan_result.json"
+        val customPreviewsFileName = "custom_previews.json"
 
         ScanResultDumper()
             .scanPackageTrees("snapshot.testing.recyclerview_previews.android_testify")
-            .dumpScanResultToFileInAssets(fileName = scanResultFileName)
+            .dumpScanResultToFileInAssets(
+                scanFileName = scanResultFileName,
+                customPreviewsFileName = customPreviewsFileName
+            )
 
         assert(
             assetsFilePath(fileName = scanResultFileName).exists()

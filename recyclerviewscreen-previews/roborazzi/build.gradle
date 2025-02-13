@@ -67,7 +67,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 
     // Jetpack Compose
-    implementation platform('androidx.compose:compose-bom:2025.01.00')
+    implementation platform('androidx.compose:compose-bom:2025.02.00')
     implementation "androidx.compose.runtime:runtime"
     implementation "androidx.compose.foundation:foundation-layout"
     implementation "androidx.compose.material:material"
@@ -81,7 +81,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:4.14.1"
 
     testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support:1.39.0'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.39.0'
-    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.5.0'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support:1.41.1'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.41.1'
+    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.5.1'
 }

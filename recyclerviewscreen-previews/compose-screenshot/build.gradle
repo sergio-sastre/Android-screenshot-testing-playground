@@ -55,12 +55,12 @@ android {
 dependencies {
     screenshotTestImplementation project(":recyclerviewscreen")
 
-    screenshotTestImplementation 'androidx.core:core-ktx:1.13.0'
+    screenshotTestImplementation 'androidx.core:core-ktx:1.15.0'
     screenshotTestImplementation 'androidx.appcompat:appcompat:1.7.0'
     screenshotTestImplementation 'com.google.android.material:material:1.12.0'
 
     // Jetpack Compose
-    screenshotTestImplementation platform('androidx.compose:compose-bom:2024.05.00')
+    screenshotTestImplementation platform('androidx.compose:compose-bom:2025.02.00')
     // Jetpack Compose
     screenshotTestImplementation "androidx.compose.runtime:runtime"
     screenshotTestImplementation "androidx.compose.foundation:foundation-layout"
