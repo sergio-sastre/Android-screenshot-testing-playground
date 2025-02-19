@@ -3,6 +3,8 @@ package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslib
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils.defaultCrossLibraryScreenshotTestRule
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils.defaultPaparazziConfig
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils.defaultRoborazziConfig
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils.sdkVersion
 import com.example.road.to.effective.snapshot.testing.testannotations.HappyPath
 import com.example.road.to.effective.snapshot.testing.testannotations.UnhappyPath
@@ -50,12 +52,15 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
         @JvmStatic
         @Parameterized.Parameters
         fun testItemProvider(): Array<HappyPathTestItem> =
-                HappyPathTestItem.entries.toTypedArray()
+            HappyPathTestItem.entries.toTypedArray()
     }
 
     @get:Rule
     val screenshotRule =
         defaultCrossLibraryScreenshotTestRule(config = testItem.item)
+            // Showcase how to configure Accessibility (when possible) in Cross-Library screenshot tests
+            .configure(defaultPaparazziConfig.overrideForDefaultAccessibility())
+            .configure(defaultRoborazziConfig.overrideForDefaultAccessibility())
 
     @CrossLibraryScreenshot
     @HappyPath

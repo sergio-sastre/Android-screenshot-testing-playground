@@ -1,9 +1,12 @@
 package snapshot.testing.lazycolumn_previews.roborazzi
 
+import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.captureRoboImage
+import com.google.testing.junit.testparameterinjector.TestParameter
+import com.google.testing.junit.testparameterinjector.TestParameterValuesProvider
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.ParameterizedRobolectricTestRunner
+import org.robolectric.RobolectricTestParameterInjector
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import org.robolectric.annotation.GraphicsMode.Mode.NATIVE
@@ -11,7 +14,7 @@ import sergio.sastre.composable.preview.scanner.android.AndroidComposablePreview
 import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
 import sergio.sastre.composable.preview.scanner.android.screenshotid.AndroidPreviewScreenshotIdBuilder
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
-import snapshot.testing.lazycolumn_previews.roborazzi.utils.RobolectricPreviewInfosApplier
+import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziComposeOptionsMapper
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziConfig
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.RoborazziOptionsMapper
 import snapshot.testing.lazycolumn_previews.roborazzi.utils.filePath
@@ -29,71 +32,56 @@ import snapshot.testing.lazycolumn_previews.roborazzi.utils.filePath
  * https://github.com/takahirom/roborazzi#generate-compose-preview-screenshot-tests
  *
  */
-@RunWith(ParameterizedRobolectricTestRunner::class)
-class RoborazziApiLevelUnder28ComposePreviewTests(
-    private val preview: ComposablePreview<AndroidPreviewInfo>,
-) {
 
-    companion object {
-        private val cachedPreviews: List<ComposablePreview<AndroidPreviewInfo>> by lazy {
-            AndroidComposablePreviewScanner()
-                .scanPackageTrees("snapshot.testing.lazycolumn_previews.roborazzi")
-                .includeAnnotationInfoForAllOf(RoborazziConfig::class.java)
-                // Native graphics do not work fine on API < 28, and default value is -1
-                .filterPreviews { previewParams -> previewParams.apiLevel < 28 }
-                .getPreviews()
-        }
-
-        @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters
-        fun values(): List<ComposablePreview<AndroidPreviewInfo>> = cachedPreviews
-    }
-
-    @GraphicsMode(NATIVE)
-    @Config(sdk = [34])
-    @Test
-    fun snapshot() {
-        RobolectricPreviewInfosApplier.applyFor(preview)
-
-        captureRoboImage(
-            filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
-            roborazziOptions = RoborazziOptionsMapper.createFor(preview)
-        ) {
-            preview()
-        }
-    }
+private val cachedPreviews: List<ComposablePreview<AndroidPreviewInfo>> by lazy {
+    AndroidComposablePreviewScanner()
+        .scanPackageTrees("snapshot.testing.lazycolumn_previews.roborazzi")
+        .includeAnnotationInfoForAllOf(RoborazziConfig::class.java)
+        .getPreviews()
 }
 
-@RunWith(ParameterizedRobolectricTestRunner::class)
-class RoborazziApiLevel31ComposePreviewTests(
-    private val preview: ComposablePreview<AndroidPreviewInfo>,
-) {
+object ComposablePreviewProviderApi35 : TestParameterValuesProvider() {
+    override fun provideValues(context: Context?): List<ComposablePreview<AndroidPreviewInfo>> =
+        // apiLevel default = -1 -> renders with 35
+        cachedPreviews.filter { it.previewInfo.apiLevel < 28 || it.previewInfo.apiLevel == 35 }
+}
 
-    companion object {
-        private val cachedPreviews: List<ComposablePreview<AndroidPreviewInfo>> by lazy {
-            AndroidComposablePreviewScanner()
-                .scanPackageTrees("snapshot.testing.lazycolumn_previews.roborazzi")
-                .includeAnnotationInfoForAllOf(RoborazziConfig::class.java)
-                .filterPreviews { previewParams -> previewParams.apiLevel == 31 }
-                .getPreviews()
+object ComposablePreviewProviderApi31 : TestParameterValuesProvider() {
+    override fun provideValues(context: Context?): List<ComposablePreview<AndroidPreviewInfo>> =
+        cachedPreviews.filter { it.previewInfo.apiLevel == 31 }
+}
+
+@RunWith(RobolectricTestParameterInjector::class)
+class RoborazziComposePreviewTests {
+
+    @OptIn(ExperimentalRoborazziApi::class)
+    private fun snapshot(preview: ComposablePreview<AndroidPreviewInfo>) {
+        captureRoboImage(
+            filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
+            roborazziOptions = RoborazziOptionsMapper.createFor(preview),
+            roborazziComposeOptions = RoborazziComposeOptionsMapper.createFor(preview)
+        ){
+            preview()
         }
-
-        @JvmStatic
-        @ParameterizedRobolectricTestRunner.Parameters
-        fun values(): List<ComposablePreview<AndroidPreviewInfo>> = cachedPreviews
+    }
+    
+    @GraphicsMode(NATIVE)
+    @Config(sdk = [35])
+    @Test
+    fun snapshotApi35(
+        @TestParameter(valuesProvider = ComposablePreviewProviderApi35::class)
+        preview: ComposablePreview<AndroidPreviewInfo>,
+    ) {
+        snapshot(preview)
     }
 
     @GraphicsMode(NATIVE)
-    @Config(sdk = [31]) // same as filtered previews
+    @Config(sdk = [31])
     @Test
-    fun snapshot() {
-        RobolectricPreviewInfosApplier.applyFor(preview)
-
-        captureRoboImage(
-            filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
-            roborazziOptions = RoborazziOptionsMapper.createFor(preview)
-        ) {
-            preview()
-        }
+    fun snapshotApi31(
+        @TestParameter(valuesProvider = ComposablePreviewProviderApi31::class)
+        preview: ComposablePreview<AndroidPreviewInfo>,
+    ) {
+        snapshot(preview)
     }
 }

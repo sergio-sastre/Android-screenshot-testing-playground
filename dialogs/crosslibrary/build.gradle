@@ -31,12 +31,12 @@ String screenshotLibraryName() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files
@@ -68,9 +68,10 @@ android {
         // However, it does not support shards for now
         managedDevices {
             devices {
-                pixel3api30(ManagedVirtualDevice) {
+                // api 30/31 causes problems with Dialogs
+                pixel3api32(ManagedVirtualDevice) {
                     device = "Pixel 3"
-                    apiLevel = 30
+                    apiLevel = 32
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
@@ -114,7 +115,7 @@ switch (screenshotLibraryName()) {
 // Android-Testify:
 // Create task to move screenshots generated via Gradle Managed Devices to the right location
 // before verifying them
-def devices = project.hasProperty("devices") ? project.devices : "pixel3api30"
+def devices = project.hasProperty("devices") ? project.devices : "pixel3api32"
 
 tasks.register('copyScreenshots', Copy) {
     from "build/outputs/managed_device_android_test_additional_output/debug/${devices}/images"
@@ -128,20 +129,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.6.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.5.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.5.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.5.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.6.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.5.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.5.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.6.0')
 
     // for Gradle Managed Devices
     androidTestUtil('androidx.test.services:test-services:1.5.0')

@@ -16,18 +16,27 @@ import sergio.sastre.composable.preview.scanner.android.device.DevicePreviewInfo
 import sergio.sastre.composable.preview.scanner.android.device.domain.Orientation
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
 import sergio.sastre.composable.preview.scanner.core.preview.getAnnotation
+import kotlin.math.ceil
 
 object PaparazziPreviewRule {
     fun createFor(preview: ComposablePreview<AndroidPreviewInfo>): Paparazzi {
         val previewPaparazziConfig = preview.getAnnotation<PaparazziConfig>()
         return Paparazzi(
-            deviceConfig = getDeviceConfig(preview.previewInfo.device).copy(
+            deviceConfig = getDeviceConfig(
+                device = preview.previewInfo.device,
+                previewHeightInDp = preview.previewInfo.heightDp,
+                previewWidthInDp = preview.previewInfo.widthDp,
+            ).copy(
                 nightMode = getNightMode(preview.previewInfo.uiMode),
                 fontScale = preview.previewInfo.fontScale,
-                locale = preview.previewInfo.locale.ifBlank { null }
+                locale = preview.previewInfo.locale.ifBlank { "en" }
             ),
             supportsRtl = true,
-            renderingMode = getRenderingMode(previewPaparazziConfig?.renderingMode),
+            renderingMode = getRenderingMode(
+                renderingMode = previewPaparazziConfig?.renderingMode,
+                previewHeightInDp = preview.previewInfo.heightDp,
+                previewWidthInDp = preview.previewInfo.widthDp
+            ),
             renderExtensions = when (previewPaparazziConfig?.enableAccessibility == true) {
                 true -> setOf(AccessibilityRenderExtension())
                 false -> emptySet()
@@ -41,21 +50,45 @@ object PaparazziPreviewRule {
             false -> NightMode.NOTNIGHT
         }
 
-    private fun getRenderingMode(renderingMode: PaparazziConfig.RenderingMode?): SessionParams.RenderingMode =
+    private fun getRenderingMode(
+        renderingMode: PaparazziConfig.RenderingMode?,
+        previewWidthInDp: Int,
+        previewHeightInDp: Int,
+    ): SessionParams.RenderingMode =
         when (renderingMode) {
             PaparazziConfig.RenderingMode.NORMAL -> SessionParams.RenderingMode.NORMAL
             PaparazziConfig.RenderingMode.V_SCROLL -> SessionParams.RenderingMode.V_SCROLL
             PaparazziConfig.RenderingMode.H_SCROLL -> SessionParams.RenderingMode.H_SCROLL
             PaparazziConfig.RenderingMode.FULL_EXPAND -> SessionParams.RenderingMode.FULL_EXPAND
             PaparazziConfig.RenderingMode.SHRINK -> SessionParams.RenderingMode.SHRINK
-            null -> SessionParams.RenderingMode.SHRINK
+            null -> {
+                // Do not shrink if height or width are set, otherwise it throws exception
+                when (previewHeightInDp > 0 || previewWidthInDp > 0) {
+                    true -> SessionParams.RenderingMode.FULL_EXPAND
+                    false -> SessionParams.RenderingMode.SHRINK
+                }
+            }
         }
 
-    private fun getDeviceConfig(device: String): DeviceConfig {
+    private fun getDeviceConfig(
+        device: String,
+        previewWidthInDp: Int,
+        previewHeightInDp: Int
+    ): DeviceConfig {
         val parsedDevice = DevicePreviewInfoParser.parse(device)?.inPx() ?: return DeviceConfig()
+        val conversionFactor = parsedDevice.densityDpi / 160f
+        val previewWidthInPx = ceil(previewWidthInDp * conversionFactor).toInt()
+        val previewHeightInPx = ceil(previewHeightInDp * conversionFactor).toInt()
+
         return DeviceConfig(
-            screenHeight = parsedDevice.dimensions.height.toInt(),
-            screenWidth = parsedDevice.dimensions.width.toInt(),
+            screenHeight = when (previewHeightInPx > 0) {
+                true -> previewHeightInPx
+                false -> parsedDevice.dimensions.height.toInt()
+            },
+            screenWidth = when (previewWidthInDp > 0) {
+                true -> previewWidthInPx
+                false -> parsedDevice.dimensions.width.toInt()
+            },
             density = Density(parsedDevice.densityDpi),
             xdpi = parsedDevice.densityDpi,
             ydpi = parsedDevice.densityDpi,

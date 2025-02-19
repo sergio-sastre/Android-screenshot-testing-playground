@@ -49,6 +49,13 @@ class PreviewsForScreenshotTests {
     @PreviewScreenSizes
     @PreviewFontScale
     @PreviewLightDark
+    @Preview(
+        widthDp = 1000,
+        heightDp = 2000,
+        device = "id:pixel_xl",
+        showBackground = true,
+        backgroundColor = 0xAAFFFFFF
+    )
     @Composable
     fun CoffeeDrinkListMultiConfigPreview() {
         AppTheme {

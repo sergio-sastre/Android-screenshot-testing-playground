@@ -3,6 +3,7 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
 
     // 1 on-device + 1 JVM screenshot test library
     id 'dev.testify'
@@ -18,12 +19,12 @@ ext {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.sharedtests'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         // Warning: For Shot, replace it with testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -114,17 +115,17 @@ dependencies {
     implementation project(':testannotations')
 
     // Jetpack Compose
-    debugImplementation platform('androidx.compose:compose-bom:2024.02.02')
+    debugImplementation platform('androidx.compose:compose-bom:2025.02.00')
     debugImplementation "androidx.compose.material:material"
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')
 
     // Support for Android-Testify
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0')
 
     // Support for Paparazzi
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.5.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.5.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.6.0')
 
     // for Gradle Managed Devices
     androidTestUtil "androidx.test.services:test-services:1.5.0"

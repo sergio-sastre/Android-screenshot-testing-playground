@@ -2,7 +2,6 @@ package com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.util
 
 import android.graphics.Color
 import androidx.test.platform.app.InstrumentationRegistry.*
-import sergio.sastre.uitesting.mapper.paparazzi.wrapper.androidHome
 
 import com.dropbox.dropshots.ThresholdValidator
 import com.example.road.to.effective.snapshot.testing.dialogs.crosslibrary.BuildConfig
@@ -10,7 +9,6 @@ import sergio.sastre.uitesting.android_testify.AndroidTestifyConfig
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.mapper.paparazzi.PaparazziConfig
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.DeviceConfig
-import sergio.sastre.uitesting.mapper.paparazzi.wrapper.Environment
 import sergio.sastre.uitesting.mapper.paparazzi.wrapper.RenderingMode
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen

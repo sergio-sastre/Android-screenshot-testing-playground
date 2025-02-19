@@ -22,12 +22,12 @@ String filterAnnotation() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.android_testify'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 34
+        targetSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -63,9 +63,10 @@ android {
         // Warning: android-testify does not support shards with gradle managed devices for now
         managedDevices {
             devices {
-                pixel3api30(ManagedVirtualDevice) {
+                // api 30/31 causes problems with Dialogs
+                pixel3api32(ManagedVirtualDevice) {
                     device = "Pixel 3"
-                    apiLevel = 30
+                    apiLevel = 32
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
@@ -85,7 +86,7 @@ testify {
 
 // Create task to move screenshots generated via Gradle Managed Devices to the right location
 // before verifying them
-def devices = project.hasProperty("devices") ? project.devices : "pixel3api30"
+def devices = project.hasProperty("devices") ? project.devices : "pixel3api32"
 
 tasks.register('copyScreenshots', Copy) {
     from "build/outputs/managed_device_android_test_additional_output/debug/${devices}/images"
@@ -101,10 +102,10 @@ dependencies {
         because 'newer versions make Android-testify crash'
     }
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.5.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0'
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.16'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
 
     androidTestUtil 'androidx.test:orchestrator:1.5.0'
     // for Gradle Managed Devices

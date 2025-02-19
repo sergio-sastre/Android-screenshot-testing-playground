@@ -29,7 +29,7 @@ import sergio.sastre.uitesting.utils.common.Orientation as ComposableConfigOrien
 
 /**
  * First of all, execute the command below to dump the previews under "main" into a json file.
- * For now, ComposablePreviewScanner requires that to be done in a "unit test", but will not be necessary from 0.5.0 on.
+ * For now, ComposablePreviewScanner requires that to be done in a "unit test".
  *    ./gradlew :recyclerviewscreen-previews:shot:testDebugUnitTest --tests 'SaveScanResultInAssets'
  *
  * WARNING: Remember to execute that command again if you modify your Previews or their params.
@@ -49,7 +49,10 @@ object ComposablePreviewProvider : TestParameterValuesProvider() {
     override fun provideValues(context: Context?): List<ComposablePreview<AndroidPreviewInfo>> =
         AndroidComposablePreviewScanner()
             // The name of this file must match the one we dump into in the "unit test"
-            .scanFile(getInstrumentation().context.assets.open("scan_result.json"))
+            .scanFile(
+                targetInputStream = getInstrumentation().context.assets.open("scan_result.json"),
+                customPreviewsInfoInputStream = getInstrumentation().context.assets.open("custom_previews.json")
+            )
             .getPreviews()
 }
 
