@@ -84,5 +84,5 @@ dependencies {
     }
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
     androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
-    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.5.1'
+    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.6.1'
 }

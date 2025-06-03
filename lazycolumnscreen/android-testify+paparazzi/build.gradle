@@ -115,13 +115,13 @@ dependencies {
     implementation project(':testannotations')
 
     // Jetpack Compose
-    debugImplementation platform('androidx.compose:compose-bom:2025.02.00')
+    debugImplementation platform('androidx.compose:compose-bom:2025.05.01')
     debugImplementation "androidx.compose.material:material"
 
     debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')
 
     // Support for Android-Testify
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
 
     // Support for Paparazzi
     testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.6.0')

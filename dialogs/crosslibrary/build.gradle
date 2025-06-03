@@ -133,7 +133,7 @@ dependencies {
 
     debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
 
     debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.6.0')
 
