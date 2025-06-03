@@ -146,7 +146,7 @@ dependencies {
 
     debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.6.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
 
     testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0')
     testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.6.0')
