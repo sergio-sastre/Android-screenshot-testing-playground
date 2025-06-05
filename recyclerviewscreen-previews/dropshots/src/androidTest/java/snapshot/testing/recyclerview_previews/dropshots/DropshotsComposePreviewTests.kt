@@ -121,7 +121,10 @@ class DropshotsComposePreviewTests(
 
         dropshots.assertSnapshot(
             bitmap = view.drawToBitmapWithElevation(),
-            name = AndroidPreviewScreenshotIdBuilder(preview).build()
+            filePath = preview.declaringClass,
+            name = AndroidPreviewScreenshotIdBuilder(preview)
+                .ignoreClassName()
+                .build()
         )
     }
 }
