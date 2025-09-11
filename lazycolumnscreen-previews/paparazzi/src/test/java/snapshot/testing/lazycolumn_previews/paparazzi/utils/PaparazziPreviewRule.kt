@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
+import app.cash.paparazzi.detectEnvironment
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.Density
 import com.android.resources.NightMode
@@ -40,7 +41,8 @@ object PaparazziPreviewRule {
             renderExtensions = when (previewPaparazziConfig?.enableAccessibility == true) {
                 true -> setOf(AccessibilityRenderExtension())
                 false -> emptySet()
-            }
+            },
+            environment = detectEnvironment().copy(compileSdkVersion = preview.previewInfo.apiLevel)
         )
     }
 
