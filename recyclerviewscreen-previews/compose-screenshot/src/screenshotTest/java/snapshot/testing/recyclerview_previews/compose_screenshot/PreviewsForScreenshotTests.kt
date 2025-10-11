@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.viewinterop.AndroidView
+import com.android.tools.screenshot.PreviewTest
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingViewHolder
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
@@ -28,6 +29,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
  * in the "screenshotTest" source, so previews in the "main" source are ignored
  */
 class PreviewsForScreenshotTests {
+    @PreviewTest
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, apiLevel = 31)
     @Composable
@@ -61,6 +63,7 @@ class PreviewsForScreenshotTests {
         )
     }
 
+    @PreviewTest
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, locale = "b+sr+Latn")
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, locale = "b+sr+Cyrl")
     @Composable
@@ -94,6 +97,7 @@ class PreviewsForScreenshotTests {
         )
     }
 
+    @PreviewTest
     @Preview(locale = "b+ar+XB")
     @Preview(locale = "b+en+XA")
     @Composable

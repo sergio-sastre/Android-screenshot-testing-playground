@@ -2,16 +2,16 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'com.android.compose.screenshot'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
     namespace 'snapshot.testing.recyclerview_previews.compose_screenshot'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,21 +26,15 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    
 
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
     }
 
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
@@ -50,9 +44,14 @@ android {
             imageDifferenceThreshold = 0.0001f // 0.01%
         }
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
 }
 
 dependencies {
+    implementation 'androidx.core:core-ktx:1.17.0'
     screenshotTestImplementation project(":recyclerviewscreen")
 
     screenshotTestImplementation 'androidx.core:core-ktx:1.15.0'
@@ -71,4 +70,5 @@ dependencies {
     screenshotTestImplementation "androidx.compose.ui:ui"
     screenshotTestImplementation "androidx.compose.ui:ui-tooling"
     screenshotTestImplementation "androidx.compose.ui:ui-tooling-preview"
+    screenshotTestImplementation 'com.android.tools.screenshot:screenshot-validation-api:0.0.1-alpha11'
 }

@@ -7,6 +7,7 @@ import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
+import com.android.tools.screenshot.PreviewTest
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkItem
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.CoffeeDrinkList
@@ -35,6 +36,7 @@ class PreviewsForScreenshotTests {
         )
 
     @Composable
+    @PreviewTest
     @Preview
     fun CoffeeDrinkListWithParametersPreview(
         @PreviewParameter(provider = CoffeeDrinkItemProvider::class) drinkItem: CoffeeDrinkItem
@@ -46,6 +48,7 @@ class PreviewsForScreenshotTests {
         }
     }
 
+    @PreviewTest
     @PreviewScreenSizes
     @PreviewFontScale
     @PreviewLightDark
@@ -65,6 +68,7 @@ class PreviewsForScreenshotTests {
         }
     }
 
+    @PreviewTest
     @Preview(locale = "ar-rXB")
     @Composable
     fun CoffeeDrinkListPseudoLocalePreview() {
@@ -75,6 +79,7 @@ class PreviewsForScreenshotTests {
         }
     }
 
+    @PreviewTest
     @Preview(apiLevel = 31)
     @Composable
     fun CoffeeDrinkListApiLevelPreview() {

@@ -3,7 +3,7 @@ import com.android.build.api.dsl.ManagedVirtualDevice
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 ext {
@@ -31,12 +31,12 @@ String screenshotLibraryName() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files
@@ -58,24 +58,18 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    
 
     buildFeatures {
         compose true
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
-    }
-
     testOptions {
-        // Warning: android-testify does not support shards with Gradle Managed Devices for now
+        // Warning: shards with gradle managed devices are not supported for now
         managedDevices {
             devices {
                 pixel3api30(ManagedVirtualDevice) {
@@ -136,25 +130,25 @@ dependencies {
     implementation project(':testannotations')
 
     // Jetpack Compose
-    debugImplementation platform('androidx.compose:compose-bom:2025.02.00')
+    debugImplementation platform('androidx.compose:compose-bom:2025.10.00')
     debugImplementation "androidx.compose.material:material"
 
     // screenshot libs
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.7.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.7.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.7.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.6.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.7.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.7.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.6.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.7.0')
 
     // for Gradle Managed Devices
-    androidTestUtil('androidx.test.services:test-services:1.5.0')
+    androidTestUtil('androidx.test.services:test-services:1.6.0')
 }

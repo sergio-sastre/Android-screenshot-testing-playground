@@ -2,16 +2,16 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'app.cash.paparazzi'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
     namespace 'snapshot.testing.recyclerview_previews.paparazzi'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,14 +33,6 @@ android {
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
-    }
-
-    kotlinOptions {
-        jvmTarget = '17'
     }
 }
 
@@ -64,6 +56,6 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling"
     implementation "androidx.compose.ui:ui-tooling-preview"
 
-    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
+    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
     testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.6.1'
 }

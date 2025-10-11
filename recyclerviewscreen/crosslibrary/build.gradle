@@ -31,12 +31,12 @@ String screenshotLibraryName() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.recyclerviewscreen.crosslibrary'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files
@@ -58,12 +58,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     // required for shared tests in this module: on-device + JVM screenshot tests
@@ -131,20 +127,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.7.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.7.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.7.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.6.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.7.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.7.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.6.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.7.0')
 
     // To support Gradle Manage Devices
     androidTestUtil('androidx.test.services:test-services:1.5.0')

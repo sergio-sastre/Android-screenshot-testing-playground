@@ -2,16 +2,16 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'app.cash.paparazzi'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.paparazzi'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,21 +26,15 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    
 
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
     }
 
     // Enable running tests in parallel

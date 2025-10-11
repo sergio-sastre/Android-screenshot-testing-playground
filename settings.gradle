@@ -1,3 +1,16 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        mavenLocal()
+    }
+    plugins {
+        // Centralized Compose plugin version
+        id('org.jetbrains.kotlin.plugin.compose') version '2.2.0'
+    }
+}
+
 rootProject.name = "Road to Effective Snapshot Testing"
 include ':app'
 include ':dialogs'
