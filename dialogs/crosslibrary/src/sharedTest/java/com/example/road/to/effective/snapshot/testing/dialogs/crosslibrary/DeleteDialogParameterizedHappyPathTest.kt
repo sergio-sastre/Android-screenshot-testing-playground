@@ -24,7 +24,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  *  1. Paparazzi: ./gradlew :dialogs:crosslibrary:recordPaparazziDebug -PscreenshotLibrary=paparazzi
  *  2. Roborazzi: ./gradlew :dialogs:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi
  *  3. Shot:      ./gradlew :dialogs:crosslibrary:executeScreenshotTest -Precord -PscreenshotLibrary=shot
- *  4. Dropshots: ./gradlew :dialogs:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots
+ *  4. Dropshots: ./gradlew :dialogs:crosslibrary:recordScreenshots -PscreenshotLibrary=dropshots
  *  5. Testify:   ./gradlew :dialogs:crosslibrary:screenshotRecord -PscreenshotLibrary=android-testify
  *     Testify via gradle manages devices (saved under this module's build/outputs/managed_device_android_test_additional_output/...):
  *                ./gradlew :dialogs:crosslibrary:pixel3api32DebugAndroidTest -PscreenshotLibrary=android-testify -PuseTestStorage -PrecordModeGmd

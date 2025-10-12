@@ -33,8 +33,6 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    
-
     testOptions {
         // Not reliable on every API. Seems to work only from API 25 on.
         // Better to disable through developer settings
@@ -74,8 +72,8 @@ dependencies {
     debugImplementation project(path: ':recyclerviewscreen')
     implementation project(':testannotations')
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
 
     debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0')
 

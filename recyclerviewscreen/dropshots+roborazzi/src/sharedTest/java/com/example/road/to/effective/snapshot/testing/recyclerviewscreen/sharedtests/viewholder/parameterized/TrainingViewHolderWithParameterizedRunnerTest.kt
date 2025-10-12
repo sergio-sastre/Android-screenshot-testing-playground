@@ -16,7 +16,7 @@ import sergio.sastre.uitesting.utils.crosslibrary.runners.ParameterizedCrossLibr
  * You can execute these tests from the command line with different screenshot testing libraries as follows:
  * 1. Record task:
  *  1. Roborazzi: ./gradlew :recyclerviewscreen:dropshots+roborazzi:recordRoborazziDebug
- *  4. Dropshots: ./gradlew :recyclerviewscreen:dropshots+roborazzi:connectedAndroidTest -Pdropshots.record
+ *  4. Dropshots: ./gradlew :recyclerviewscreen:dropshots+roborazzi:recordScreenshots
  *
  * 2. Verify task:
  *  2. Roborazzi: ./gradlew :recyclerviewscreen:dropshots+roborazzi:verifyRoborazziDebug
