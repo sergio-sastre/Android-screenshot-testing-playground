@@ -30,8 +30,6 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    
-
     // Not reliable on every API. Seems to work only from API 25 on.
     // Better to disable through developer settings
     testOptions {
@@ -51,9 +49,11 @@ dependencies {
     implementation project(':dialogs')
     implementation project(':testannotations')
 
-    androidTestImplementation 'org.lsposed.hiddenapibypass:hiddenapibypass:4.3'
+    androidTestImplementation ('org.lsposed.hiddenapibypass:hiddenapibypass:6.1') {
+        because("otherwise it does not print the dialog")
+    }
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
     androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
 
-    androidTestUtil 'androidx.test:orchestrator:1.5.0'
+    androidTestUtil 'androidx.test:orchestrator:1.6.1'
 }

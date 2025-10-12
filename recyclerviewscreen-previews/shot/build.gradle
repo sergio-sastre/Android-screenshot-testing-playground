@@ -54,13 +54,13 @@ dependencies {
 
     implementation project(":recyclerviewscreen")
 
-    implementation 'androidx.core:core-ktx:1.15.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.core:core-ktx:1.17.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
     testImplementation 'junit:junit:4.13.2'
 
     // Jetpack Compose
-    implementation platform('androidx.compose:compose-bom:2025.02.00')
+    implementation platform('androidx.compose:compose-bom:2025.10.00')
     implementation "androidx.compose.runtime:runtime"
     implementation "androidx.compose.foundation:foundation-layout"
     implementation "androidx.compose.material:material"
@@ -71,10 +71,10 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling"
     implementation "androidx.compose.ui:ui-tooling-preview"
 
-    androidTestImplementation('androidx.navigation:navigation-compose:2.8.7') {
+    androidTestImplementation('androidx.navigation:navigation-compose:2.9.5') {
         because "The ActivityScenarioRule wants to set a Composable as activity content"
     }
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
     androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
-    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.6.1'
+    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.7.1'
 }
