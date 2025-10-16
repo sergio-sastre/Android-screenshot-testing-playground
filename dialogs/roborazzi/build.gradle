@@ -52,8 +52,8 @@ android {
 dependencies {
     implementation project(':dialogs')
 
-    testImplementation 'org.robolectric:robolectric:4.14.1'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi:1.41.1'
+    testImplementation 'org.robolectric:robolectric:4.16'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi:1.50.0'
     testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
     testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.7.0'
 }
