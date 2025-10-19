@@ -30,6 +30,7 @@ class CoffeeDrinkAppBarComposableHappyPathTest {
                 locale = "en",
                 orientation = ScreenOrientation.PORTRAIT,
             ),
+            supportsRtl = true,
             renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 
@@ -55,6 +56,7 @@ class CoffeeDrinkAppBarComposableUnhappyPathTest {
                 locale = "ar-rXB",
                 orientation = ScreenOrientation.LANDSCAPE
             ),
+            supportsRtl = true,
             renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 

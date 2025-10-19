@@ -64,7 +64,7 @@ class TrainingViewHolderTestParameterHappyPathTest(
         paparazzi.snapshot(
             view = viewHolder.itemView,
             offsetMillis = 1_500,
-            name = "${testItem.name}_TestParam",
+            // No name, TestParameterInjectorRunner solves unique Ids with Paparazzi
         )
     }
 }
@@ -101,7 +101,7 @@ class TrainingViewHolderTestParameterUnhappyPathTest(
         paparazzi.snapshot(
             view = viewHolder.itemView,
             offsetMillis = 1_500,
-            name = "${testItem.name}_TestParam",
+            // No name, TestParameterInjectorRunner solves unique Ids with Paparazzi
         )
     }
 }

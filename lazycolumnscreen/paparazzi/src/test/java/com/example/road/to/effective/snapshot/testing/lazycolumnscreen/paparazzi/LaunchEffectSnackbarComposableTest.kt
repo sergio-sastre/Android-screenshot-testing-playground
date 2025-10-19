@@ -22,7 +22,10 @@ class SnackbarComposableTest {
 
     @get:Rule
     val paparazzi =
-        Paparazzi(deviceConfig = DeviceConfig.PIXEL_5)
+        Paparazzi(
+            deviceConfig = DeviceConfig.PIXEL_5,
+            supportsRtl = true,
+        )
 
     @Test
     fun snapComposable() {

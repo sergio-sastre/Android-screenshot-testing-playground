@@ -51,8 +51,8 @@ dependencies {
     implementation project(':lazycolumnscreen')
 
     // Jetpack Compose
-    testImplementation platform('androidx.compose:compose-bom:2024.02.02')
+    testImplementation platform('androidx.compose:compose-bom:2025.10.00')
     testImplementation "androidx.compose.material:material"
 
-    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.8'
+    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
 }

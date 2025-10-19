@@ -45,6 +45,7 @@ class CoffeeDrinkListComposableParameterizedHappyPathTest(
                 locale = testItem.item.locale,
                 orientation = testItem.item.phoneOrientation,
             ),
+            supportsRtl = true,
             renderingMode = SessionParams.RenderingMode.SHRINK,
         )
 
@@ -80,6 +81,7 @@ class CoffeeDrinkListComposableParameterizedUnhappyPathTest(
             locale = testItem.item.locale,
             orientation = testItem.item.phoneOrientation,
         ),
+        supportsRtl = true,
         renderingMode = SessionParams.RenderingMode.SHRINK,
     )
 
