@@ -30,9 +30,6 @@ android {
         // Enables Jetpack Compose for this module
         compose true
     }
-    kotlinOptions {
-        jvmTarget = '17'
-    }
 
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 }
