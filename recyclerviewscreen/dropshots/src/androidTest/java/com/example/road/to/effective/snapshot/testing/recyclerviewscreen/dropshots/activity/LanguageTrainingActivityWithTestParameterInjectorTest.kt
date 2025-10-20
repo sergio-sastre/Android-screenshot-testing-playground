@@ -15,11 +15,11 @@ import org.junit.runner.RunWith
 import sergio.sastre.uitesting.utils.activityscenario.activityScenarioForActivityRule
 
 /**
- * Execute the command below to run only FragmentTests
+ * Execute the command below to run only ActivityTests
  * 1. Record:
- *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest -Pdropshots.record
+ *    ./gradlew :recyclerviewscreen:dropshots:recordScreenshots -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
  * 2. Verify:
- *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.FragmentTest
+ *    ./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.ActivityTest
  *
  * To run them using Android Orchestrator, add the following at the end of the command:
  * -PuseOrchestrator

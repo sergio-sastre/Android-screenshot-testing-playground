@@ -4,7 +4,7 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'dev.testify'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 ext {
@@ -23,12 +23,12 @@ String filterAnnotation() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.android_testify'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -47,12 +47,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     // Not reliable on every API. Seems to work only from API 25 on.
@@ -77,10 +73,6 @@ android {
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
     }
 }
 
@@ -108,20 +100,20 @@ dependencies {
     implementation project(':lazycolumnscreen')
     implementation project(':testannotations')
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.navigation:navigation-compose:2.9.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.navigation:navigation-compose:2.9.5'
 
     // Jetpack Compose
-    androidTestImplementation platform('androidx.compose:compose-bom:2025.05.01')
+    androidTestImplementation platform('androidx.compose:compose-bom:2025.10.00')
     androidTestImplementation 'androidx.compose.material:material'
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
 
-    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'androidx.test:rules:1.7.0'
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.7.0'
 
-    androidTestUtil 'androidx.test:orchestrator:1.5.1'
-    androidTestUtil 'androidx.test.services:test-services:1.5.0'
+    androidTestUtil 'androidx.test:orchestrator:1.6.1'
+    androidTestUtil 'androidx.test.services:test-services:1.6.0'
 }

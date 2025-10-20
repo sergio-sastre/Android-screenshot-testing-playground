@@ -22,12 +22,12 @@ String filterAnnotation() {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.android_testify'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -46,12 +46,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     testOptions {
@@ -60,7 +56,7 @@ android {
         }
         animationsDisabled = true
 
-        // Warning: android-testify does not support shards with gradle managed devices for now
+        // Warning: shards with gradle managed devices are not supported for now
         managedDevices {
             devices {
                 // api 30/31 causes problems with Dialogs
@@ -97,15 +93,15 @@ dependencies {
     implementation project(':dialogs')
     implementation project(':testannotations')
 
-    androidTestImplementation 'androidx.test:rules:1.6.1'
+    androidTestImplementation 'androidx.test:rules:1.7.0'
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.5.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.7.0'
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
 
-    androidTestUtil 'androidx.test:orchestrator:1.5.1'
+    androidTestUtil 'androidx.test:orchestrator:1.6.1'
 
     // for Gradle Managed Devices
-    androidTestUtil('androidx.test.services:test-services:1.5.0')
+    androidTestUtil('androidx.test.services:test-services:1.6.0')
 }

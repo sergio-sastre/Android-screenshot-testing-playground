@@ -23,7 +23,7 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredDialog
 /**
  * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :dialogs:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Pdropshots.record
+ *    ./gradlew :dialogs:dropshots:recordScreenshots -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  * 2. Verify:
  *    ./gradlew :dialogs:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  *

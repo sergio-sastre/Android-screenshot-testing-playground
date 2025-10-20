@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.dialogs.sharedtests'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         // Warning: For Dropshots, replace it with testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
@@ -28,13 +28,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    
 
     testOptions {
         // Not reliable on every API. Seems to work only from API 25 on.
@@ -80,16 +78,16 @@ dependencies {
     debugImplementation project(path: ':dialogs')
     implementation project(':testannotations')
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0')
 
     // Support for Shot
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.6.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.7.0')
 
     // Support for Roborazzi
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.6.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.6.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.6.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.7.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.7.0')
 }

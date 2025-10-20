@@ -1,16 +1,16 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,28 +22,23 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.13.1'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'com.google.android.material:material:1.12.0'
-    implementation 'androidx.fragment:fragment-ktx:1.7.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1'
-    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
-    implementation "androidx.navigation:navigation-ui-ktx:2.7.7"
+    implementation 'androidx.core:core-ktx:1.17.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'androidx.fragment:fragment-ktx:1.8.9'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.9.4'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.4'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2'
+    implementation "androidx.navigation:navigation-ui-ktx:2.9.5"
 
     // Jetpack Compose
-    implementation platform('androidx.compose:compose-bom:2024.11.00')
+    implementation platform('androidx.compose:compose-bom:2025.10.00')
     implementation "androidx.compose.runtime:runtime"
     implementation "androidx.compose.ui:ui"
     implementation "androidx.compose.foundation:foundation-layout"
@@ -54,6 +49,6 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling"
     implementation "androidx.compose.runtime:runtime-livedata"
 
-    implementation "androidx.navigation:navigation-compose:2.7.7"
-    implementation "androidx.navigation:navigation-fragment-ktx:2.7.7"
+    implementation "androidx.navigation:navigation-compose:2.9.5"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.9.5"
 }

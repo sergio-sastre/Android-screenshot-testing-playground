@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import app.cash.paparazzi.accessibility.AccessibilityRenderExtension
+import app.cash.paparazzi.detectEnvironment
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.Density
 import com.android.resources.NightMode
@@ -13,34 +14,44 @@ import com.android.resources.ScreenRound
 import com.android.resources.ScreenSize
 import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
 import sergio.sastre.composable.preview.scanner.android.device.DevicePreviewInfoParser
-import sergio.sastre.composable.preview.scanner.android.device.domain.Orientation
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
 import sergio.sastre.composable.preview.scanner.core.preview.getAnnotation
 import kotlin.math.ceil
 
 object PaparazziPreviewRule {
+
+    private const val UNDEFINED_API_LEVEL = -1
+    private const val MAX_API_LEVEL = 36
+
     fun createFor(preview: ComposablePreview<AndroidPreviewInfo>): Paparazzi {
         val previewPaparazziConfig = preview.getAnnotation<PaparazziConfig>()
+        val previewInfo = preview.previewInfo
         return Paparazzi(
             deviceConfig = getDeviceConfig(
-                device = preview.previewInfo.device,
-                previewHeightInDp = preview.previewInfo.heightDp,
-                previewWidthInDp = preview.previewInfo.widthDp,
+                device = previewInfo.device,
+                previewHeightInDp = previewInfo.heightDp,
+                previewWidthInDp = previewInfo.widthDp,
             ).copy(
-                nightMode = getNightMode(preview.previewInfo.uiMode),
-                fontScale = preview.previewInfo.fontScale,
-                locale = preview.previewInfo.locale.ifBlank { "en" }
+                nightMode = getNightMode(previewInfo.uiMode),
+                fontScale = previewInfo.fontScale,
+                locale = previewInfo.locale.ifBlank { "en" }
             ),
             supportsRtl = true,
             renderingMode = getRenderingMode(
                 renderingMode = previewPaparazziConfig?.renderingMode,
-                previewHeightInDp = preview.previewInfo.heightDp,
-                previewWidthInDp = preview.previewInfo.widthDp
+                previewHeightInDp = previewInfo.heightDp,
+                previewWidthInDp = previewInfo.widthDp
             ),
             renderExtensions = when (previewPaparazziConfig?.enableAccessibility == true) {
                 true -> setOf(AccessibilityRenderExtension())
                 false -> emptySet()
-            }
+            },
+            environment = detectEnvironment().copy(
+                compileSdkVersion = when (previewInfo.apiLevel == UNDEFINED_API_LEVEL) {
+                    true -> MAX_API_LEVEL
+                    false -> previewInfo.apiLevel
+                }
+            )
         )
     }
 
@@ -95,10 +106,7 @@ object PaparazziPreviewRule {
             size = ScreenSize.valueOf(parsedDevice.screenSize.name),
             ratio = ScreenRatio.valueOf(parsedDevice.screenRatio.name),
             screenRound = ScreenRound.valueOf(parsedDevice.shape.name),
-            orientation = when (parsedDevice.orientation) {
-                Orientation.PORTRAIT -> ScreenOrientation.PORTRAIT
-                Orientation.LANDSCAPE -> ScreenOrientation.LANDSCAPE
-            }
+            orientation = ScreenOrientation.valueOf(parsedDevice.orientation.name),
         )
     }
 }

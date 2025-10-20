@@ -357,7 +357,7 @@ in this repo by adding the following to the corresponding command:
 `-PuseOrchestrator`
 
 For instance, to record with Dropshots:
-`./gradlew :dialogs:dropshots:connectedAndroidTest -Pdropshots.record -PuseOrchestrator`
+`./gradlew :dialogs:dropshots:recordScreenshots -PuseOrchestrator`
 
 ### [Compose Preview Screenshot Testing tool](https://developer.android.com/studio/preview/compose-screenshot-testing)
 The brand new Google's screenshot testing tool!
@@ -434,11 +434,11 @@ In order to see the screenshots in Android Studio, change the view from "Android
 Start the emulator.
 Then run the following gradle tasks depending on the module:
 
-1. **Record**: `./gradlew :module_name:dropshots:connectedAndroidTest -Pdropshots.record`. For instance:
-    1. `./gradlew :dialogs:dropshots:connectedAndroidTest -Pdropshots.record`
-    2. `./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest -Pdropshots.record`
-    3. `./gradlew :recyclerviewscreen-previews:dropshots:connectedAndroidTest -Pdropshots.record`
-    4. `./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pdropshots.record`
+1. **Record**: `./gradlew :module_name:dropshots:recordScreenshots`. For instance:
+    1. `./gradlew :dialogs:dropshots:recordScreenshots`
+    2. `./gradlew :recyclerviewscreen:dropshots:recordScreenshots`
+    3. `./gradlew :recyclerviewscreen-previews:dropshots:recordScreenshots`
+    4. `./gradlew :lazycolumnscreen:dropshots:recordScreenshots`
 2. **Verify**: `./gradlew :module_name:dropshots:connectedAndroidTest`. For instance:
     1. `./gradlew :dialogs:dropshots:connectedAndroidTest`
     2. `./gradlew :recyclerviewscreen:dropshots:connectedAndroidTest`
@@ -544,7 +544,7 @@ to `:recyclerviewscreen` and `:dialogs`
     1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordPaparazziDebug -PscreenshotLibrary=paparazzi`
     2. Roborazzi: `./gradlew :lazycolumnscreen:crosslibrary:recordRoborazziDebug -PscreenshotLibrary=roborazzi`
     3. Shot:      `./gradlew :lazycolumnscreen:crosslibrary:executeScreenshotTests -Precord -PscreenshotLibrary=shot`
-    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:connectedAndroidTest -Pdropshots.record -PscreenshotLibrary=dropshots`
+    4. Dropshots: `./gradlew :lazycolumnscreen:crosslibrary:recordScreenshots -PscreenshotLibrary=dropshots`
     5. Testify:   `./gradlew :lazycolumnscreen:crosslibrary:screenshotRecord -PscreenshotLibrary=android-testify`
 2. **Verify**:
     1. Paparazzi: `./gradlew :lazycolumnscreen:crosslibrary:verifyPaparazziDebug -PscreenshotLibrary=paparazzi`

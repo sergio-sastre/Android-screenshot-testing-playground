@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.recyclerviewscreen.dropshots'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,12 +25,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     // Not reliable on every API. Seems to work only from API 25 on.
@@ -47,16 +43,13 @@ dependencies {
     implementation project(':recyclerviewscreen')
     implementation project(':testannotations')
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
 
-    androidTestImplementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.1'
+    androidTestImplementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2'
 
-    //noinspection GradleDependency
-    androidTestImplementation('androidx.test:rules:1.5.0') {
-        because 'newer versions make the tests crash'
-    }
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
+    androidTestImplementation 'androidx.test:rules:1.7.0'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
 
-    androidTestUtil 'androidx.test:orchestrator:1.5.0'
+    androidTestUtil 'androidx.test:orchestrator:1.6.1'
 }

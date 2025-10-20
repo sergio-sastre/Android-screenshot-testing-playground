@@ -40,7 +40,7 @@ import sergio.sastre.uitesting.utils.common.Orientation as ComposableConfigOrien
  *
  * Then record or verify accordingly.
  * 1. Record:
- *    ./gradlew :recyclerviewscreen-previews:dropshots:connectedAndroidTest -Pdropshots.record
+ *    ./gradlew :recyclerviewscreen-previews:dropshots:recordScreenshots
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen-previews:dropshots:connectedAndroidTest
  *

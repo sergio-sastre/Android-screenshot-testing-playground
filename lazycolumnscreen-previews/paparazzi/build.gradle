@@ -2,16 +2,16 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'app.cash.paparazzi'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
     namespace 'snapshot.testing.lazycolumn_previews.paparazzi'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,17 +27,9 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '17'
-    }
-
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
     }
 
     testOptions {
@@ -59,7 +51,7 @@ dependencies {
     implementation project(':lazycolumnscreen')
 
     // Jetpack Compose
-    implementation platform('androidx.compose:compose-bom:2025.05.01')
+    implementation platform('androidx.compose:compose-bom:2025.10.00')
     implementation "androidx.compose.runtime:runtime"
     implementation "androidx.compose.foundation:foundation-layout"
     implementation "androidx.compose.material:material"
@@ -71,6 +63,6 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview"
     debugImplementation "androidx.compose.ui:ui-test-manifest"
 
-    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
-    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.6.1'
+    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
+    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.7.1'
 }

@@ -19,7 +19,7 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 /**
  * Execute the command below to run only BitmapTests
  * 1. Record:
- *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest -Pdropshots.record
+ *    ./gradlew :lazycolumnscreen:dropshots:recordScreenshots -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  * 2. Verify:
  *    ./gradlew :lazycolumnscreen:dropshots:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.annotation=com.example.road.to.effective.snapshot.testing.testannotations.BitmapTest
  *
@@ -45,15 +45,15 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
  */
 class CoffeeDrinkComposeActivityToBitmapToTest {
 
-    @get:Rule
+    @get:Rule(1)
     val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
 
     // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
-    @get:Rule
+    @get:Rule(2)
     val inAppLocale = InAppLocaleTestRule("en")
 
-    @get:Rule
+    @get:Rule(3)
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
             config = ActivityConfigItem(

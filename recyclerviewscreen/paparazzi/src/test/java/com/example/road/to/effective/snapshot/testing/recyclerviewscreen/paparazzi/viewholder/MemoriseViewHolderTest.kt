@@ -21,7 +21,6 @@ import org.junit.Test
  *    ./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug --tests '*ViewHolder*'
  * 2. Verify:
  *    ./gradlew :recyclerviewscreen:paparazzi:verifyPaparazziDebug --tests '*ViewHolder*'
- *
  */
 
 /**

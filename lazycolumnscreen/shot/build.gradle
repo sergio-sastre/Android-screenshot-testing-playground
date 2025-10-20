@@ -2,17 +2,17 @@ plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'shot'
-    id 'org.jetbrains.kotlin.plugin.compose' version '2.0.0'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
     namespace 'com.example.road.to.effective.snapshot.testing.lazycolumnscreen.shot'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 35
+        targetSdk 36
 
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
     }
@@ -27,13 +27,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+    
 
     // Not reliable on every API. Seems to work only from API 25 on.
     // Better to disable through developer settings
@@ -48,10 +46,6 @@ android {
         // Enables Jetpack Compose for this module
         compose true
     }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion '1.5.14'
-    }
 }
 
 shot {
@@ -63,15 +57,15 @@ dependencies {
     implementation project(':testannotations')
     implementation project(':lazycolumnscreen')
 
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.navigation:navigation-compose:2.8.7'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.navigation:navigation-compose:2.9.5'
 
     // Jetpack Compose
-    androidTestImplementation platform('androidx.compose:compose-bom:2025.02.00')
+    androidTestImplementation platform('androidx.compose:compose-bom:2025.10.00')
     androidTestImplementation "androidx.compose.material:material"
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.18'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.6.0'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
 
-    androidTestUtil 'androidx.test:orchestrator:1.5.0'
+    androidTestUtil 'androidx.test:orchestrator:1.6.1'
 }

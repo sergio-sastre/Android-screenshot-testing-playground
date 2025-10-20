@@ -59,7 +59,7 @@ class RoborazziComposePreviewTests {
             filePath = filePath(AndroidPreviewScreenshotIdBuilder(preview).build()),
             roborazziOptions = RoborazziOptionsMapper.createFor(preview),
             roborazziComposeOptions = RoborazziComposeOptionsMapper.createFor(preview)
-        ){
+        ) {
             preview()
         }
     }

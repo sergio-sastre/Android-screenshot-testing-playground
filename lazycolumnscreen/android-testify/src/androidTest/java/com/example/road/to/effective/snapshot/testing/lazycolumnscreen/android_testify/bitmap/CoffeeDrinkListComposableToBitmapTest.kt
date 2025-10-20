@@ -43,10 +43,7 @@ class CoffeeDrinkListComposableToBitmapTest {
 
     @get:Rule(order = 1)
     var screenshotRule = ScreenshotScenarioRule(
-        configuration = TestifyConfiguration(
-            exactness = 0.85f,
-            useSoftwareRenderer = true
-        ),
+        configuration = TestifyConfiguration(exactness = 0.85f)
     )
 
     @ScreenshotInstrumentation
