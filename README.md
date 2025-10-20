@@ -21,7 +21,7 @@ examples written with different screenshot testing libraries for a better compar
 These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 > **Warning**</br>
-> It is configured with AGP 8.7.2, so it requires Android Studio Lady Bug or higher!
+> It is configured with AGP 8.11, so it requires Android Studio Narwahl or higher!
 
 ## Awards
 
