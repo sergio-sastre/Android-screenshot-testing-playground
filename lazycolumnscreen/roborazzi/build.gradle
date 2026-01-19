@@ -31,8 +31,6 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
-    
-
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
@@ -68,7 +66,7 @@ dependencies {
     testImplementation "androidx.compose.material:material"
 
     testImplementation "org.robolectric:robolectric:4.16"
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.7.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.7.0'
+    testImplementation 'com.github.sergio-sastre:utils:2.8.0'
+    testImplementation 'com.github.sergio-sastre:robolectric:2.8.0'
+    testImplementation 'com.github.sergio-sastre:roborazzi:2.8.0'
 }
