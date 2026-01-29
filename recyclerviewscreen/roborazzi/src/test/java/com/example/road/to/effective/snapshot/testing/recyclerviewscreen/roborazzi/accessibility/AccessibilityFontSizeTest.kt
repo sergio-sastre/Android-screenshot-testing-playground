@@ -2,7 +2,6 @@ package com.example.road.to.effective.snapshot.testing.recyclerviewscreen.robora
 
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.filePath
-import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.utils.roborazziAccessibilityOptions
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.viewholder.MemoriseTestItemGenerator
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.roborazzi.viewholder.parameterized.HappyPathTestItem.WITH_WORDS
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseViewHolder
@@ -11,12 +10,15 @@ import com.github.takahirom.roborazzi.captureRoboImage
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
+import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.robolectric.annotation.GraphicsMode
 import sergio.sastre.uitesting.robolectric.activityscenario.RobolectricActivityScenarioForViewRule
 import sergio.sastre.uitesting.robolectric.config.screen.DeviceScreen
+import sergio.sastre.uitesting.utils.activityscenario.ViewConfigItem
+import sergio.sastre.uitesting.utils.common.FontSize
 import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
+import kotlin.intArrayOf
 
 /**
  * Execute the command below to run only AccessibilityTests
@@ -50,13 +52,22 @@ import sergio.sastre.uitesting.utils.utils.waitForMeasuredViewHolder
  *
  *  systemProperty 'robolectric.pixelCopyRenderMode', 'hardware'
  */
-@RunWith(RobolectricTestRunner::class)
-class AccessibilityTest {
+@RunWith(ParameterizedRobolectricTestRunner::class)
+class AccessibilityFontSizeTest(
+    private val fontSize: FontSize,
+) {
+    companion object {
+        @JvmStatic
+        @ParameterizedRobolectricTestRunner.Parameters
+        fun testItemProvider(): Array<FontSize> =
+            arrayOf(FontSize.SMALL, FontSize.LARGEST)
+    }
 
     @get:Rule
     val activityScenarioForViewRule =
         RobolectricActivityScenarioForViewRule(
             deviceScreen = DeviceScreen.Phone.PIXEL_4A,
+            config = ViewConfigItem(fontSize = fontSize)
         )
 
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -84,8 +95,7 @@ class AccessibilityTest {
         viewHolder
             .itemView
             .captureRoboImage(
-                filePath = filePath("MemoriseViewHolder_Accessibility"),
-                roborazziOptions = roborazziAccessibilityOptions,
+                filePath = filePath("MemoriseViewHolder_FontSize_${fontSize.name}")
             )
     }
 
@@ -103,8 +113,7 @@ class AccessibilityTest {
 
         viewHolder.itemView
             .captureRoboImage(
-                filePath = filePath("TrainingViewHolder_Accessibility"),
-                roborazziOptions = roborazziAccessibilityOptions,
+                filePath = filePath("TrainingViewHolder_FontSize_${fontSize.name}"),
             )
     }
 }
