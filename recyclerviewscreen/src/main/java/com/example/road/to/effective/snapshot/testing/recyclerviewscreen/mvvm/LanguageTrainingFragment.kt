@@ -24,6 +24,7 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.memorisetext.MemoriseDelegate
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows.training.TrainingDelegate
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.utils.EventObserver
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar.*
 
 class LanguageTrainingFragment : Fragment(),
@@ -59,6 +60,9 @@ class LanguageTrainingFragment : Fragment(),
         val view = inflater.inflate(R.layout.recycler_view_fragment, container, false)
         view.findViewById<RecyclerView>(R.id.memoriseList).apply {
             adapter = rvAdapter
+        }
+        view.findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+            showNonSupportedActionSnackbar()
         }
         return view
     }
