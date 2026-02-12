@@ -115,7 +115,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/trainButton"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginHorizontal="20dp"

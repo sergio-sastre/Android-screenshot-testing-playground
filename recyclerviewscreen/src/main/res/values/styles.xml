@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Title" parent="TextAppearance.AppCompat.Title">
+    <style name="Title" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">?attr/memorise_title_color</item>
         <item name="android:maxLines">2</item>
@@ -10,7 +10,7 @@
         <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
     </style>
 
-    <style name="Subtitle" parent="TextAppearance.AppCompat.Body1">
+    <style name="Subtitle" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?attr/memorise_body_color</item>
         <item name="android:maxLines">4</item>
@@ -32,12 +32,12 @@
         <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
     </style>
 
-    <style name="RowHeader" parent="TextAppearance.AppCompat.Body2">
+    <style name="RowHeader" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">?attr/training_card_bg_color</item>
     </style>
 
-    <style name="FlagCheckMark" parent="Widget.AppCompat.CompoundButton.CheckBox">
+    <style name="FlagCheckMark" parent="Widget.Material3.CompoundButton.CheckBox">
         <item name="android:button">@null</item>
         <item name="android:layout_marginEnd">12dp</item>
         <item name="android:layout_marginStart">12dp</item>
@@ -58,7 +58,7 @@
         <item name="autoSizeTextType">uniform</item>
     </style>
 
-    <style name="TrainingInfo" parent="TextAppearance.AppCompat.Body2">
+    <style name="TrainingInfo" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize" tools:ignore="SpUsage">16dp</item>
         <item name="android:textColor">?attr/memorise_info_text_color</item>
@@ -72,7 +72,7 @@
         <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
     </style>
 
-    <style name="TextInfo" parent="TextAppearance.AppCompat.Body2">
+    <style name="TextInfo" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textSize" tools:ignore="SpUsage">12dp</item>
         <item name="android:textColor">?attr/memorise_info_text_color</item>
         <item name="autoSizeTextType">uniform</item>
