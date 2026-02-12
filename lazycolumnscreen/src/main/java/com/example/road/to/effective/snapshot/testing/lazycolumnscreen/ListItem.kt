@@ -11,9 +11,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -46,7 +46,7 @@ fun CoffeeDrinkList(
 fun CoffeeDrinkListItem(
     coffeeDrink: CoffeeDrinkItem
 ) {
-    Row(Modifier.background(color = MaterialTheme.colors.background)) {
+    Row(Modifier.background(color = MaterialTheme.colorScheme.background)) {
         CoffeeDrinkLogo(id = coffeeDrink.imageUrl)
         Box(
             modifier = Modifier.weight(1f)
@@ -82,7 +82,7 @@ private fun CoffeeDrinkTitle(title: String) {
         text = title,
         modifier = Modifier.padding(top = 8.dp, end = 8.dp),
         style = TextStyle(fontSize = 24.sp),
-        color = MaterialTheme.colors.onSurface,
+        color = MaterialTheme.colorScheme.onSurface,
         maxLines = 1
     )
 }
@@ -96,7 +96,7 @@ private fun CoffeeDrinkIngredient(ingredients: String) {
             .alpha(0.54f),
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
-        style = MaterialTheme.typography.body1,
-        color = MaterialTheme.colors.onSurface
+        style = MaterialTheme.typography.bodyLarge,
+        color = MaterialTheme.colorScheme.onSurface
     )
 }

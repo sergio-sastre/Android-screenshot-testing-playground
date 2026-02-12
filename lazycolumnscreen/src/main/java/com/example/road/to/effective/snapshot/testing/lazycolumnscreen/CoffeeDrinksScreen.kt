@@ -6,15 +6,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.SnackbarDuration
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.SnackbarResult
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -24,7 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ShowSuccessCoffeeDrinksScreen(
     coffeeDrinksState: CoffeeDrinksState,
@@ -69,6 +71,7 @@ fun CoffeeDrinksScreenUI(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CoffeeDrinkAppBar(
     coffeeShopName: String = "",
@@ -77,12 +80,14 @@ fun CoffeeDrinkAppBar(
         title = {
             Text(
                 text = stringResource(R.string.coffee_drinks_title).addLocation(coffeeShopName),
-                style = MaterialTheme.typography.h6.copy(
-                    color = MaterialTheme.colors.onPrimary
+                style = MaterialTheme.typography.titleLarge.copy(
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             )
         },
-        backgroundColor = MaterialTheme.colors.primary
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary
+        )
     )
 }
 
