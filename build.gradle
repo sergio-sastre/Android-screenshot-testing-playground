@@ -17,7 +17,7 @@ buildscript {
         classpath 'com.dropbox.dropshots:dropshots-gradle-plugin:0.5.0'
         classpath 'io.github.takahirom.roborazzi:roborazzi-gradle-plugin:1.50.0'
         classpath 'dev.testify:dev.testify.gradle.plugin:3.2.2'
-        classpath 'com.android.compose.screenshot:screenshot-test-gradle-plugin:0.0.1-alpha11'
+        classpath 'com.android.compose.screenshot:screenshot-test-gradle-plugin:0.0.1-alpha15'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
