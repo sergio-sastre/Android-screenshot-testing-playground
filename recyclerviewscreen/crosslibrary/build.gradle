@@ -76,7 +76,7 @@ android {
         // However, it does not support shards for now
         managedDevices {
             localDevices {
-                pixel3api30(ManagedVirtualDevice) {
+                pixel3api30 {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
@@ -87,6 +87,9 @@ android {
     }
     lint {
         targetSdk 36
+    }
+    buildFeatures {
+        buildConfig true
     }
 }
 

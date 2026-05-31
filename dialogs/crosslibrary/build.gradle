@@ -59,20 +59,15 @@ android {
     }
 
     testOptions {
-        // Warning: Only android-testify supports gradle managed devices.
-        // However, it does not support shards for now
-        /*
         managedDevices {
             localDevices {
-                // api 30/31 causes problems with Dialogs
-                register("pixel3api32", ManagedVirtualDevice) {
+                pixel3api32 {
                     device = "Pixel 3"
                     apiLevel = 32
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
         }
-        */
         targetSdk 36
     }
 

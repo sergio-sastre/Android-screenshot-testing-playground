@@ -57,7 +57,7 @@ android {
 
         managedDevices {
             localDevices {
-                register("pixel3api32", ManagedVirtualDevice) {
+                pixel3api32 {
                     device = "Pixel 3"
                     apiLevel = 32
                     systemImageSource = "aosp"

@@ -62,7 +62,7 @@ android {
 
         managedDevices {
             localDevices {
-                register("pixel3api30", ManagedVirtualDevice) {
+                pixel3api30 {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
