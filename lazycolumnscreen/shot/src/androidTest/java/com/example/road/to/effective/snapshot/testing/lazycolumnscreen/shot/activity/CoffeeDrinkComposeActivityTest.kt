@@ -35,10 +35,6 @@ import sergio.sastre.uitesting.utils.utils.waitForActivity
  */
 class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
 
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
-    @get:Rule
-    val inAppLocale = InAppLocaleTestRule("en")
-
     @get:Rule
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
@@ -50,6 +46,10 @@ class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
                 displaySize = DisplaySize.NORMAL,
             )
         )
+
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
+    @get:Rule
+    val inAppLocale = InAppLocaleTestRule("en", activityScenarioForActivityRule)
 
     @HappyPath
     @Test
@@ -72,10 +72,6 @@ class CoffeeDrinkComposeActivityHappyPathTest : ScreenshotTest {
  * in-app Locale, which ActivityScenarioForActivityRule does not support
  */
 class CoffeeDrinkComposeActivityUnhappyPathTest : ScreenshotTest {
-
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
-    @get:Rule
-    val inAppLocale = InAppLocaleTestRule("ar_XB")
 
     @get:Rule
     val systemLocale = SystemLocaleTestRule("en_XA")

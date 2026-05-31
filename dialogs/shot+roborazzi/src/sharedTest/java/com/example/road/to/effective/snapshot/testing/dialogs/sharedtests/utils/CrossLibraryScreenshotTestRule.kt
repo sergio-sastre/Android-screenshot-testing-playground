@@ -1,6 +1,9 @@
 package com.example.road.to.effective.snapshot.testing.dialogs.sharedtests.utils
 
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.ImageIoFormat.LosslessWebPImageIoFormat
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RecordOptions
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RoborazziOptions
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.shot.ShotConfig
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
@@ -40,6 +43,11 @@ fun defaultCrossLibraryScreenshotTestRule(
             RoborazziConfig(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
                 filePath = userTestFilePath(),
+                roborazziOptions = RoborazziOptions(
+                    recordOptions = RecordOptions(
+                        imageIoFormat = LosslessWebPImageIoFormat
+                    )
+                )
             )
         )
 

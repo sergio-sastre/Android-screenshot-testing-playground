@@ -45,8 +45,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
     }
 
     testOptions {
@@ -96,8 +100,8 @@ dependencies {
 
     androidTestImplementation 'androidx.test:rules:1.7.0'
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.7.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.9.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.9.0'
 
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
 

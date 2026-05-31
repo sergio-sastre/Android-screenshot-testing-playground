@@ -43,15 +43,15 @@ import sergio.sastre.uitesting.utils.testrules.uiMode.UiModeTestRule
  */
 class CoffeeDrinkComposeActivityHappyPathTest {
 
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
-    @get:Rule(order = 0)
-    val inAppLocale = InAppLocaleTestRule("en")
-
     @get:Rule(order = 1)
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>()
 
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule(order = 2)
+    val inAppLocale = InAppLocaleTestRule("en", activityScenarioForActivityRule)
+
+    @get:Rule(order = 3)
     val screenshotRule =
         ScreenshotScenarioRule(
             configuration = TestifyConfiguration(exactness = 0.85f)
@@ -72,24 +72,24 @@ class CoffeeDrinkComposeActivityHappyPathTest {
 
 class CoffeeDrinkComposeActivityUnhappyPathTest {
 
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule(order = 0)
-    val inAppLocale = InAppLocaleTestRule("ar_XB")
-
-    @get:Rule(order = 1)
     val systemLocale = SystemLocaleTestRule("en_XA")
 
-    @get:Rule(order = 2)
+    @get:Rule(order = 1)
     val fontSize = FontSizeTestRule(FontSize.LARGEST)
 
-    @get:Rule(order = 3)
+    @get:Rule(order = 2)
     val uiMode = UiModeTestRule(UiMode.NIGHT)
 
-    @get:Rule(order = 4)
+    @get:Rule(order = 3)
     val activityScenarioRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
             config = ActivityConfigItem(orientation = Orientation.LANDSCAPE),
         )
+
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
+    @get:Rule(order = 4)
+    val inAppLocale = InAppLocaleTestRule("ar_XB", activityScenarioRule)
 
     @get:Rule(order = 5)
     val screenshotRule =

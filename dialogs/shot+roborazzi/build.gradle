@@ -27,8 +27,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
     }
 
     
@@ -84,13 +88,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.13.0'
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.9.0')
 
     // Support for Shot
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.9.0')
 
     // Support for Roborazzi
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.7.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.7.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.7.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.9.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.9.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.9.0')
 }

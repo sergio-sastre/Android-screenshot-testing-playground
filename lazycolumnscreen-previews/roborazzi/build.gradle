@@ -22,8 +22,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
     }
 
     buildFeatures {
@@ -70,7 +74,7 @@ dependencies {
     testImplementation "org.robolectric:robolectric:4.16"
 
     testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.50.0'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support:1.50.0'
-    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.7.1'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.60.0'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support:1.60.0'
+    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.0'
 }

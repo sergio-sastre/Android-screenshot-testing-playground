@@ -32,9 +32,6 @@ import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 class CoffeeDrinkComposeActivityToBitmapTest : ScreenshotTest {
 
     @get:Rule
-    val inAppLocale = InAppLocaleTestRule("en")
-
-    @get:Rule
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
             config = ActivityConfigItem(
@@ -45,6 +42,9 @@ class CoffeeDrinkComposeActivityToBitmapTest : ScreenshotTest {
                 displaySize = DisplaySize.NORMAL,
             )
         )
+
+    @get:Rule
+    val inAppLocale = InAppLocaleTestRule("en", activityScenarioForActivityRule)
 
     // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest
