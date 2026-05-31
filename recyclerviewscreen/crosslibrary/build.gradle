@@ -36,7 +36,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files
@@ -76,7 +75,7 @@ android {
         // Warning: Only android-testify supports gradle managed devices.
         // However, it does not support shards for now
         managedDevices {
-            devices {
+            localDevices {
                 pixel3api30(ManagedVirtualDevice) {
                     device = "Pixel 3"
                     apiLevel = 30
@@ -84,6 +83,10 @@ android {
                 }
             }
         }
+        targetSdk 36
+    }
+    lint {
+        targetSdk 36
     }
 }
 

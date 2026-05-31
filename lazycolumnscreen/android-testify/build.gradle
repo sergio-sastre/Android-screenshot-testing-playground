@@ -28,7 +28,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -60,31 +59,35 @@ android {
         animationsDisabled = true
 
         managedDevices {
-            devices {
-                pixel3api30(ManagedVirtualDevice) {
+            localDevices {
+                register("pixel3api30", ManagedVirtualDevice) {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
         }
+        targetSdk 36
     }
 
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
     }
+    lint {
+        targetSdk 36
+    }
 }
 
 testify {
-    moduleName = ":lazycolumnscreen:android-testify"
-    applicationPackageId = 'com.example.road.to.effective.snapshot.testing'
-    testPackageId = 'com.example.road.to.effective.snapshot.testing'
-    screenshotAnnotation = filterAnnotation()
+    moduleName ":lazycolumnscreen:android-testify"
+    applicationPackageId "com.example.road.to.effective.snapshot.testing"
+    testPackageId "com.example.road.to.effective.snapshot.testing"
+    screenshotAnnotation filterAnnotation()
 
     // for Gradle Managed Devices
-    recordMode = project.hasProperty(RECORD_MODE_GMD)
-    useTestStorage = project.hasProperty(USE_TEST_STORAGE)
+    recordMode project.hasProperty(RECORD_MODE_GMD)
+    useTestStorage project.hasProperty(USE_TEST_STORAGE)
 }
 
 // Create task to move screenshots generated via Gradle Managed Devices to the right location

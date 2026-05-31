@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,6 +28,12 @@ android {
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
+    }
+    lint {
+        targetSdk 36
+    }
+    testOptions {
+        targetSdk 36
     }
 
     experimentalProperties["android.experimental.enableScreenshotTest"] = true

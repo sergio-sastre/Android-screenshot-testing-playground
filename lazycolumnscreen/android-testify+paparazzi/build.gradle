@@ -24,7 +24,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         // Warning: For Shot, replace it with testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -62,14 +61,15 @@ android {
         animationsDisabled = true
 
         managedDevices {
-            devices {
-                pixel3api30(ManagedVirtualDevice) {
+            localDevices {
+                register("pixel3api30", ManagedVirtualDevice) {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
         }
+        targetSdk 36
     }
 
     // required for shared tests in this module: on-device + JVM screenshot tests
@@ -81,17 +81,20 @@ android {
             java.srcDir 'src/sharedTest/java'
         }
     }
+    lint {
+        targetSdk 36
+    }
 }
 
 testify {
-    moduleName = ':lazycolumnscreen:android-testify+paparazzi'
-    applicationPackageId = 'com.example.road.to.effective.snapshot.testing'
-    testPackageId = 'com.example.road.to.effective.snapshot.testing'
-    screenshotAnnotation = 'sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot'
+    moduleName ":lazycolumnscreen:android-testify+paparazzi"
+    applicationPackageId "com.example.road.to.effective.snapshot.testing"
+    testPackageId "com.example.road.to.effective.snapshot.testing"
+    screenshotAnnotation "sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot"
 
     // for Gradle Managed Devices
-    recordMode = project.hasProperty(RECORD_MODE_GMD)
-    useTestStorage = project.hasProperty(USE_TEST_STORAGE)
+    recordMode project.hasProperty(RECORD_MODE_GMD)
+    useTestStorage project.hasProperty(USE_TEST_STORAGE)
 }
 
 // Android-Testify

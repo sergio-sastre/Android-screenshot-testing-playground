@@ -36,7 +36,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files
@@ -71,14 +70,15 @@ android {
     testOptions {
         // Warning: shards with gradle managed devices are not supported for now
         managedDevices {
-            devices {
-                pixel3api30(ManagedVirtualDevice) {
+            localDevices {
+                register("pixel3api30", ManagedVirtualDevice) {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
         }
+        targetSdk 36
     }
 
     // required for shared tests in this module: on-device + JVM screenshot tests
@@ -89,6 +89,9 @@ android {
         androidTest {
             java.srcDir 'src/sharedTest/java'
         }
+    }
+    lint {
+        targetSdk 36
     }
 }
 

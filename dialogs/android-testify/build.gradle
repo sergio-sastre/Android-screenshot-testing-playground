@@ -27,7 +27,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -56,28 +55,30 @@ android {
         }
         animationsDisabled = true
 
-        // Warning: shards with gradle managed devices are not supported for now
         managedDevices {
-            devices {
-                // api 30/31 causes problems with Dialogs
-                pixel3api32(ManagedVirtualDevice) {
+            localDevices {
+                register("pixel3api32", ManagedVirtualDevice) {
                     device = "Pixel 3"
                     apiLevel = 32
-                    systemImageSource = "aosp" // do not use atd images for screenshot testing
+                    systemImageSource = "aosp"
                 }
             }
         }
+        targetSdk 36
+    }
+    lint {
+        targetSdk 36
     }
 }
 
 testify {
-    moduleName = ":dialogs:android-testify"
-    applicationPackageId = 'com.example.road.to.effective.snapshot.testing'
-    testPackageId = 'com.example.road.to.effective.snapshot.testing'
-    screenshotAnnotation = filterAnnotation()
+    moduleName ":dialogs:android-testify"
+    applicationPackageId "com.example.road.to.effective.snapshot.testing"
+    testPackageId "com.example.road.to.effective.snapshot.testing"
+    screenshotAnnotation filterAnnotation()
     // for Gradle Managed Devices
-    recordMode = project.hasProperty(RECORD_MODE_GMD)
-    useTestStorage = project.hasProperty(USE_TEST_STORAGE)
+    recordMode project.hasProperty(RECORD_MODE_GMD)
+    useTestStorage project.hasProperty(USE_TEST_STORAGE)
 }
 
 // Create task to move screenshots generated via Gradle Managed Devices to the right location

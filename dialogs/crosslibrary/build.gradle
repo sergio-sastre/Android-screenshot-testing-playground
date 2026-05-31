@@ -36,7 +36,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         // make gradle constants available in Tests via BuildConfig to make changes consistent
         // among build and test files
@@ -62,16 +61,19 @@ android {
     testOptions {
         // Warning: Only android-testify supports gradle managed devices.
         // However, it does not support shards for now
+        /*
         managedDevices {
-            devices {
+            localDevices {
                 // api 30/31 causes problems with Dialogs
-                pixel3api32(ManagedVirtualDevice) {
+                register("pixel3api32", ManagedVirtualDevice) {
                     device = "Pixel 3"
                     apiLevel = 32
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
         }
+        */
+        targetSdk 36
     }
 
     // required for shared tests in this module: on-device + JVM screenshot tests
@@ -82,6 +84,12 @@ android {
         androidTest {
             java.srcDir 'src/sharedTest/java'
         }
+    }
+    lint {
+        targetSdk 36
+    }
+    buildFeatures {
+        buildConfig true
     }
 }
 

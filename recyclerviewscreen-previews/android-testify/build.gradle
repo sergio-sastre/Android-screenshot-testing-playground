@@ -66,8 +66,8 @@ android {
 
         // Warning: shards with gradle managed devices are not supported for now
         managedDevices {
-            devices {
-                pixel3api30(ManagedVirtualDevice) {
+            localDevices {
+                register("pixel3api30", ManagedVirtualDevice) {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
@@ -79,12 +79,12 @@ android {
 
 testify {
     moduleName ":recyclerviewscreen-previews:android-testify"
-    applicationPackageId 'com.example.road.to.effective.snapshot.testing'
-    testPackageId 'com.example.road.to.effective.snapshot.testing'
-    screenshotAnnotation = filterAnnotation()
+    applicationPackageId "com.example.road.to.effective.snapshot.testing"
+    testPackageId "com.example.road.to.effective.snapshot.testing"
+    screenshotAnnotation filterAnnotation()
     // for Gradle Managed Devices
-    recordMode = project.hasProperty(RECORD_MODE_GMD)
-    useTestStorage = project.hasProperty(USE_TEST_STORAGE)
+    recordMode project.hasProperty(RECORD_MODE_GMD)
+    useTestStorage project.hasProperty(USE_TEST_STORAGE)
 }
 
 // Create task to move screenshots generated via Gradle Managed Devices to the right location

@@ -12,7 +12,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
     }
@@ -40,11 +39,15 @@ android {
             execution 'ANDROIDX_TEST_ORCHESTRATOR'
         }
         animationsDisabled = true
+        targetSdk 36
     }
 
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
+    }
+    lint {
+        targetSdk 36
     }
 }
 

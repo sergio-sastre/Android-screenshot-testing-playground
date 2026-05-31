@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -36,6 +35,10 @@ android {
             execution 'ANDROIDX_TEST_ORCHESTRATOR'
         }
         animationsDisabled = true
+        targetSdk 36
+    }
+    lint {
+        targetSdk 36
     }
 }
 

@@ -13,7 +13,6 @@ android {
 
     defaultConfig {
         minSdk 23
-        targetSdk 36
 
         // Warning: For Shot, replace it with testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -55,6 +54,7 @@ android {
                 systemProperty 'robolectric.pixelCopyRenderMode', 'hardware'
             }
         }
+        targetSdk 36
     }
 
     // required for shared tests in this module: on-device + JVM screenshot tests
@@ -65,6 +65,9 @@ android {
         androidTest {
             java.srcDir 'src/sharedTest/java'
         }
+    }
+    lint {
+        targetSdk 36
     }
 }
 

@@ -12,7 +12,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,6 +54,10 @@ android {
                 systemProperty 'robolectric.pixelCopyRenderMode', 'hardware'
             }
         }
+        targetSdk 36
+    }
+    lint {
+        targetSdk 36
     }
 }
 
