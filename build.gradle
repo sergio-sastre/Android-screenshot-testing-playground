@@ -1,22 +1,22 @@
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "2.2.0"
+    ext.kotlin_version = "2.2.10"
     repositories {
         google()
         mavenCentral()
         mavenLocal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.11.1'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0'
+        classpath 'com.android.tools.build:gradle:9.0.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.10'
 
         // screenshot testing plugins
         classpath 'app.cash.paparazzi:paparazzi-gradle-plugin:2.0.0-alpha02'
         classpath 'com.karumi:shot:6.1.0'
-        classpath 'com.dropbox.dropshots:dropshots-gradle-plugin:0.5.0'
-        classpath 'io.github.takahirom.roborazzi:roborazzi-gradle-plugin:1.50.0'
-        classpath 'dev.testify:dev.testify.gradle.plugin:3.2.2'
+        classpath 'com.dropbox.dropshots:dropshots-gradle-plugin:0.6.0'
+        classpath 'io.github.takahirom.roborazzi:roborazzi-gradle-plugin:1.60.0'
+        classpath 'dev.testify:dev.testify.gradle.plugin:5.0.2'
         classpath 'com.android.compose.screenshot:screenshot-test-gradle-plugin:0.0.1-alpha15'
 
         // NOTE: Do not place your application dependencies here; they belong

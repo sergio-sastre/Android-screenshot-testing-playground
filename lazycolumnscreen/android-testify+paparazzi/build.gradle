@@ -24,7 +24,6 @@ android {
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
         minSdk 23
-        targetSdk 36
 
         // Warning: For Shot, replace it with testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -46,8 +45,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
     }
 
     
@@ -62,14 +65,15 @@ android {
         animationsDisabled = true
 
         managedDevices {
-            devices {
-                pixel3api30(ManagedVirtualDevice) {
+            localDevices {
+                pixel3api30 {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
                 }
             }
         }
+        targetSdk 36
     }
 
     // required for shared tests in this module: on-device + JVM screenshot tests
@@ -81,17 +85,20 @@ android {
             java.srcDir 'src/sharedTest/java'
         }
     }
+    lint {
+        targetSdk 36
+    }
 }
 
 testify {
-    moduleName = ':lazycolumnscreen:android-testify+paparazzi'
-    applicationPackageId = 'com.example.road.to.effective.snapshot.testing'
-    testPackageId = 'com.example.road.to.effective.snapshot.testing'
-    screenshotAnnotation = 'sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot'
+    moduleName ":lazycolumnscreen:android-testify+paparazzi"
+    applicationPackageId "com.example.road.to.effective.snapshot.testing"
+    testPackageId "com.example.road.to.effective.snapshot.testing"
+    screenshotAnnotation "sergio.sastre.uitesting.utils.crosslibrary.annotations.CrossLibraryScreenshot"
 
     // for Gradle Managed Devices
-    recordMode = project.hasProperty(RECORD_MODE_GMD)
-    useTestStorage = project.hasProperty(USE_TEST_STORAGE)
+    recordMode project.hasProperty(RECORD_MODE_GMD)
+    useTestStorage project.hasProperty(USE_TEST_STORAGE)
 }
 
 // Android-Testify
@@ -112,14 +119,14 @@ dependencies {
     debugImplementation platform('androidx.compose:compose-bom:2025.10.00')
     debugImplementation "androidx.compose.material:material"
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.9.0')
 
     // Support for Android-Testify
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.7.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.9.0')
 
     // Support for Paparazzi
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.7.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.7.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.9.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.9.0')
 
     // for Gradle Managed Devices
     androidTestUtil "androidx.test.services:test-services:1.6.0"

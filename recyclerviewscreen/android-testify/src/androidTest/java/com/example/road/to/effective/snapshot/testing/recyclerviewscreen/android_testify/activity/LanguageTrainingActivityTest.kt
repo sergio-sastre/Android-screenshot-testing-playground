@@ -71,21 +71,21 @@ class LanguageTrainingActivityUnhappyPathTest {
     @get:Rule(order = 0)
     val disableAnimationsRule = DisableAnimationsRule()
 
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule(order = 1)
-    val inAppLocale = InAppLocaleTestRule("ar_XB")
-
-    @get:Rule(order = 2)
     val systemLocale = SystemLocaleTestRule("en_XA")
 
-    @get:Rule(order = 3)
+    @get:Rule(order = 2)
     val fontSize = FontSizeTestRule(FontSize.LARGEST)
 
-    @get:Rule(order = 4)
+    @get:Rule(order = 3)
     val uiMode = UiModeTestRule(UiMode.NIGHT)
 
-    @get:Rule(order = 5)
+    @get:Rule(order = 4)
     var activityScenarioRule = activityScenarioForActivityRule<LanguageTrainingActivity>()
+
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
+    @get:Rule(order = 5)
+    val inAppLocale = InAppLocaleTestRule("ar_XB", activityScenarioRule)
 
     @get:Rule(order = 6)
     var screenshotRule = ScreenshotScenarioRule(

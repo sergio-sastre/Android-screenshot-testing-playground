@@ -47,8 +47,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
     }
 
     buildFeatures {
@@ -66,8 +70,8 @@ android {
 
         // Warning: shards with gradle managed devices are not supported for now
         managedDevices {
-            devices {
-                pixel3api30(ManagedVirtualDevice) {
+            localDevices {
+                pixel3api30 {
                     device = "Pixel 3"
                     apiLevel = 30
                     systemImageSource = "aosp" // do not use atd images for screenshot testing
@@ -79,12 +83,12 @@ android {
 
 testify {
     moduleName ":recyclerviewscreen-previews:android-testify"
-    applicationPackageId 'com.example.road.to.effective.snapshot.testing'
-    testPackageId 'com.example.road.to.effective.snapshot.testing'
-    screenshotAnnotation = filterAnnotation()
+    applicationPackageId "com.example.road.to.effective.snapshot.testing"
+    testPackageId "com.example.road.to.effective.snapshot.testing"
+    screenshotAnnotation filterAnnotation()
     // for Gradle Managed Devices
-    recordMode = project.hasProperty(RECORD_MODE_GMD)
-    useTestStorage = project.hasProperty(USE_TEST_STORAGE)
+    recordMode project.hasProperty(RECORD_MODE_GMD)
+    useTestStorage project.hasProperty(USE_TEST_STORAGE)
 }
 
 // Create task to move screenshots generated via Gradle Managed Devices to the right location
@@ -120,9 +124,9 @@ dependencies {
         because "The ActivityScenarioRule wants to set a Composable as activity content"
     }
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.7.0'
-    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.7.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.9.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.9.0'
+    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.0'
 
     androidTestImplementation 'androidx.test:rules:1.7.0'
 

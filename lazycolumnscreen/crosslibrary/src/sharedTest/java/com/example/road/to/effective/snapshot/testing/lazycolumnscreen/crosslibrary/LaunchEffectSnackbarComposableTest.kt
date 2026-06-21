@@ -4,6 +4,7 @@ import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.ActionNot
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.AppTheme
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils.SnackbarScaffold
 import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils.defaultCrossLibraryScreenshotTestRule
+import com.example.road.to.effective.snapshot.testing.lazycolumnscreen.crosslibrary.utils.sdkVersion
 import com.example.road.to.effective.snapshot.testing.testannotations.ComposableTest
 import org.junit.Rule
 import org.junit.Test
@@ -53,7 +54,7 @@ class SnackbarComposableTest {
     @ComposableTest
     @Test
     fun snapComposable() {
-        screenshotRule.snapshot(name = "ActionNotSupportedSnackbar") {
+        screenshotRule.snapshot(name = "ActionNotSupportedSnackbar_API_$sdkVersion") {
             AppTheme {
                 SnackbarScaffold { snackbarHostState ->
                     ActionNotSupportedSnackbar(

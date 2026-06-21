@@ -49,9 +49,6 @@ class LanguageTrainingActivityToBitmapTest {
         Dropshots(resultValidator = ThresholdValidator(0.15f))
 
     @get:Rule
-    val inAppLocale = InAppLocaleTestRule("en")
-
-    @get:Rule
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<LanguageTrainingActivity>(
             config = ActivityConfigItem(
@@ -62,6 +59,9 @@ class LanguageTrainingActivityToBitmapTest {
                 displaySize = DisplaySize.NORMAL,
             ),
         )
+
+    @get:Rule
+    val inAppLocale = InAppLocaleTestRule("en", activityScenarioForActivityRule)
 
     // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest

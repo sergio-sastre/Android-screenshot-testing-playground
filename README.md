@@ -638,7 +638,7 @@ uses `@ScreenshotInstrumentation`:
 def filterAnnotation = project.hasProperty("filterAnnotation") ? project.filterAnnotation : null
 
 testify {
-    screenshotAnnotation = filterAnnotation
+    screenshotAnnotation filterAnnotation
 }
 ```
 

@@ -11,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,13 +25,23 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
     }
 
     buildFeatures {
         // Enables Jetpack Compose for this module
         compose true
+    }
+    lint {
+        targetSdk 36
+    }
+    testOptions {
+        targetSdk 36
     }
 }
 
@@ -57,5 +66,5 @@ dependencies {
     implementation "androidx.compose.ui:ui-tooling-preview"
 
     testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
-    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.7.1'
+    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.0'
 }

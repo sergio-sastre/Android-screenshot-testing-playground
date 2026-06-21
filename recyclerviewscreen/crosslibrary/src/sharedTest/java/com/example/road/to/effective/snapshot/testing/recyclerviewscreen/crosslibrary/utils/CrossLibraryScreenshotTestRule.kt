@@ -102,8 +102,6 @@ fun defaultCrossLibraryScreenshotTestRule(
                 roborazziOptions = RoborazziOptions(
                     compareOptions = CompareOptions(comparisonStyle = ComparisonStyle.Simple),
                     recordOptions = RecordOptions(
-                        // It'd crash if running this test on several sdks set via resources/robolectric.properties.
-                        // Don't use this WebP in that case
                         imageIoFormat = LosslessWebPImageIoFormat
                     )
                 ),

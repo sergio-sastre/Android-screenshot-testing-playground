@@ -41,11 +41,7 @@ class CoffeeDrinkComposeActivityHappyPathTest {
     val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
 
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule(2)
-    val inAppLocale = InAppLocaleTestRule("en")
-
-    @get:Rule(3)
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
             config = ActivityConfigItem(
@@ -56,6 +52,10 @@ class CoffeeDrinkComposeActivityHappyPathTest {
                 displaySize = DisplaySize.NORMAL,
             )
         )
+
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
+    @get:Rule(3)
+    val inAppLocale = InAppLocaleTestRule("en", activityScenarioForActivityRule)
 
     @HappyPath
     @ActivityTest
@@ -80,10 +80,6 @@ class CoffeeDrinkComposeActivityUnhappyPathTest {
     @get:Rule(1)
     val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
-
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
-    @get:Rule(2)
-    val inAppLocale = InAppLocaleTestRule("ar_XB")
 
     @get:Rule(3)
     val systemLocale = SystemLocaleTestRule("en_XA")

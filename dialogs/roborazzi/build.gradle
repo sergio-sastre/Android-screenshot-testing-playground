@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         minSdk 23
-        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,8 +24,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
+    }
+
+    kotlinOptions {
+        jvmTarget = '21'
     }
 
     testOptions {
@@ -46,14 +49,18 @@ android {
                 systemProperty 'robolectric.pixelCopyRenderMode', 'hardware'
             }
         }
+        targetSdk 36
+    }
+    lint {
+        targetSdk 36
     }
 }
 
 dependencies {
     implementation project(':dialogs')
 
-    testImplementation 'org.robolectric:robolectric:4.16'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi:1.50.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.7.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.7.0'
+    testImplementation 'org.robolectric:robolectric:4.16.1'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi:1.60.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.9.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.9.0'
 }

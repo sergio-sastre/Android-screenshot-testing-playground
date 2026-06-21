@@ -49,11 +49,7 @@ class CoffeeDrinkComposeActivityToBitmapToTest {
     val dropshots =
         Dropshots(resultValidator = ThresholdValidator(0.15f))
 
-    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
     @get:Rule(2)
-    val inAppLocale = InAppLocaleTestRule("en")
-
-    @get:Rule(3)
     val activityScenarioForActivityRule =
         activityScenarioForActivityRule<CoffeeDrinksComposeActivity>(
             config = ActivityConfigItem(
@@ -64,6 +60,10 @@ class CoffeeDrinkComposeActivityToBitmapToTest {
                 displaySize = DisplaySize.NORMAL,
             )
         )
+
+    // WARNING: in-app Locale prevails over SystemLocale when screenshot testing your app
+    @get:Rule(3)
+    val inAppLocale = InAppLocaleTestRule("en", activityScenarioForActivityRule)
 
     // For API < 26, drawToBitmapWithElevation defaults to Canvas. Thus, draws no elevation
     @BitmapTest

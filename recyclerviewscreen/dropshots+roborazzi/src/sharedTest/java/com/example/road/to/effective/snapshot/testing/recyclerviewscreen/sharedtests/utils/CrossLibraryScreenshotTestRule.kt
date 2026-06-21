@@ -5,6 +5,9 @@ import android.graphics.Color
 import com.dropbox.dropshots.ThresholdValidator
 import sergio.sastre.uitesting.dropshots.DropshotsConfig
 import sergio.sastre.uitesting.mapper.roborazzi.RoborazziConfig
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.ImageIoFormat.LosslessWebPImageIoFormat
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RecordOptions
+import sergio.sastre.uitesting.mapper.roborazzi.wrapper.RoborazziOptions
 import sergio.sastre.uitesting.mapper.roborazzi.wrapper.screen.DeviceScreen
 import sergio.sastre.uitesting.utils.crosslibrary.config.BitmapCaptureMethod.PixelCopy
 import sergio.sastre.uitesting.utils.crosslibrary.config.ScreenshotConfigForView
@@ -49,6 +52,11 @@ fun defaultCrossLibraryScreenshotTestRule(
                 deviceScreen = DeviceScreen.Phone.NEXUS_4,
                 backgroundColor = Color.TRANSPARENT,
                 filePath = userTestFilePath(),
+                roborazziOptions = RoborazziOptions(
+                    recordOptions = RecordOptions(
+                        imageIoFormat = LosslessWebPImageIoFormat
+                    )
+                )
             )
         )
 
