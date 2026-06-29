@@ -21,7 +21,7 @@ examples written with different screenshot testing libraries for a better compar
 These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 > **Warning**</br>
-> It is configured with AGP 8.11, so it requires Android Studio Narwahl or higher!
+> It is configured with AGP 9.0.0, so it requires Android Studio Narwahl or higher!
 
 ## Awards
 
@@ -62,7 +62,7 @@ libraries on your own!
 In order to help find the desired examples, the app is modularized accordingly:
 
 1. `:dialogs`: Showcases how to screenshot test dialogs created with DialogBuilder from the android
-   View system. Examples for Compose dialogs will be added as well
+   View system.
 2. `:recyclerviewscreen`: Contains screenshot tests for Activities, Fragments, ViewHolders and
    RecyclerViews.
 3. `:recyclerviewscreen-previews`: Includes screenshot tests examples generated from @Previews. This wrap a `ViewHolder` inside an `AndroidView` Composable to enable Previews for XML-based layouts under `:recyclerviewscreen`
@@ -73,7 +73,7 @@ In order to help find the desired examples, the app is modularized accordingly:
 Each of these modules contains submodules. Each submodule name corresponds to a screenshot testing
 library. You'll find screenshot test examples with that library in it.
 
-As of June 2024, there are many screenshot testing libraries that facilitate automated screenshot
+As of June 2026, there are many screenshot testing libraries that facilitate automated screenshot
 testing, namely:
 
 1. Google [Compose Preview Screenshot Testing tool](https://developer.android.com/studio/preview/compose-screenshot-testing)
@@ -82,7 +82,7 @@ testing, namely:
 4. Dropbox [Dropshots](https://github.com/dropbox/dropshots)
 5. [Shot from pedrovgs](https://github.com/pedrovgs/Shot)
 6. Ndtp [Android-testify](https://github.com/ndtp/android-testify) <sup>1<sup/>
-7. Facebook [screenshot-tests-for-android](https://github.com/facebook/screenshot-tests-for-android) 
+7. Screenshotbot [screenshot-tests-for-android](https://github.com/screenshotbot/screenshot-tests-for-android)<sup>2<sup/>
 8. QuickBird [Snappy](https://github.com/QuickBirdEng/kotlin-snapshot-testing)
 
 All of them have their own pros and cons.
@@ -101,18 +101,17 @@ In order to do that, it contains the same/similar examples but written with diff
 **BONUS**:
 It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests
 running with multiple libraries, namely: Paparazzi, Roborazzi, Shot, Dropshots & Android-Testify*.
-Compose Screenshot Testing Tool support coming soon.
 For that it
-uses [Android UI Testing Utils 2.x.x](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+uses [Android UI Testing Utils 2.9.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 You can read more about it in this blog post series:
 
 1. [A World Beyond Libraries: Cross-Library Screenshot tests on android](https://sergiosastre.hashnode.dev/a-world-beyond-libraries-cross-library-screenshot-tests-on-android)
 2. [Write Once, Test Everywhere: Cross-Library Screenshot Testing with AndroidUiTestingUtils 2.0.0](https://sergiosastre.hashnode.dev/write-once-test-everywhere-cross-library-screenshot-testing-with-androiduitestingutils)</br></br>
-   More screenshot test examples, as well as examples with other libraries will be continuously
-   added.
+   More screenshot test examples will be continuously added.
 
 <sup>1</sup> Android-testify was started at Shopify and changed to Ndtp in summer 2022.
+<sup>2</sup> Screenshot tests for Android was started at Facebook and changed to Screenshotbot in 2026.
 
 ## Table of Contents
 
@@ -120,10 +119,8 @@ You can read more about it in this blog post series:
     - [The need for screenshot testing](#the-need-for-screenshot-testing)
     - [Emulators](#emulators)
         - [Animations](#animations)
-- [Comparing screenshot testing libraries](#comparing-screenshot-testing-libraries)
-    - [Paparazzi vs. on-device screenshot testing libraries](#paparazzi-vs-on-device-screenshot-testing-libraries)
-        - [Summary: Pros and Cons](#summary-pros-and-cons)
 - [Recording and verifying screenshots](#recording-and-verifying-screenshots)
+    - [Library Versions used in this repo](#library-versions-used-in-this-repo)
     - [On-device tests with Android Orchestrator](#on-device-tests-with-android-orchestrator)
     - [Compose Preview Screenshot Testing tool](#compose-preview-screenshot-testing-tool)
     - [Paparazzi](#paparazzi)
@@ -136,7 +133,6 @@ You can read more about it in this blog post series:
 - [Filtered parameterized screenshot tests](#filtered-parameterized-screenshot-tests)
     - [Instrumented tests](#instrumented-tests)
     - [Gradle tests](#gradle-tests)
-- [What is coming next](#what-is-coming-next)
 - [Code attribution](#code-attribution)
 - [Attribution of icons in the app](#attribution-of-icons-in-the-app)
 
@@ -155,10 +151,9 @@ If reading is not your thing, you can always watch my 2021 Droidcon tech-talks o
 ### Emulators
 
 For instrumented screenshot testing (which excludes Paparazzi), I've been using emulators running
-API 27-31.
+API 30-36.
 Moreover, if you are running screenshot tests on a Windows machine, beware that Shot had
-some [issues in the past](https://github.com/pedrovgs/Shot/issues/244), although they should be
-already solved.
+some [issues in the past](https://github.com/pedrovgs/Shot/issues/244), although they should be already solved.
 
 #### Animations
 
@@ -171,161 +166,19 @@ if you
 come across some issues, disable animations on the emulator *via settings* before running the
 screenshot tests.
 
-## Comparing screenshot testing libraries
-
-### Paparazzi vs. on-device screenshot testing libraries
-
-**Need for emulators**
-
-Google's brand new Compose Screenshot Testing tool, as well as Roborazzi & Paparazzi let you run screenshot tests on the JVM, without emulators/devices.
-I'm still evaluating Roborazzi and Compose Screenshot Testing tool, so this section refers to Paparazzi only, and will be extended in
-the future.
-
-Although running screenshot tests on the JVM comes with some speed wins, its main advantage is that
-one doesn't have to deal with emulator and their problems, such as:
-
-1. Emulators eventually freezing/crashing (specially on CI)
-2. "Insufficient storage" exception
-3. "Out of Memory" exceptions
-
-**Rendering elevation in generated screenshots**
-
-Paparazzi uses PixelCopy to generate bitmaps out of Views.
-Most on-device screenshot testing frameworks use Canvas as default<sup>1</sup> to generate bitmaps,
-what ignores elevation.
-
-This is specially noticeable in API 31:
-
-<p align="center">
-<img width="350" src="https://user-images.githubusercontent.com/6097181/209678572-c4610c75-0122-41c4-bfae-304e8a633b2d.jpeg">
-</p>
-
-However, on-device screenshot testing libraries also accept bitmaps as arguments of their
-take/verify screenshot methods.
-
-```kotlin
-// Shot
-compareScreenshot(
-    bitmap = pixelCopyBitmapFromView
-)
-```
-
-```kotlin
-// Dropshots
-dropshots.assertSnapshot(
-    bitmap = pixelCopyBitmapFromView
-)
-```
-
-Therefore, they could render elevation by converting views to bitmaps using PixelCopy.
-[Android UI Testing Utils](https://github.com/sergio-sastre/AndroidUiTestingUtils) provides
-the `drawToBitmapWithElevation()` method for that.
-
-And the resulting screenshot would render elevation
-<p align="center">
-<img width="350" src="https://user-images.githubusercontent.com/6097181/209678214-9e4664b7-f898-4173-a9f7-36dfc764b035.png">
-</p>
-
-You can find such examples in this repo, under the `bitmap` folder under any `:dropshots`, `:shot`
-and `:android-testify` module.
-
-<sup>1</sup> Shot doesn't use Canvas when using `compareScreenshot(composeRule)`, so those
-screenshots draw elevation. It does use Canvas for Views, Activities, Fragments & Dialogs though.
-
-**Screenshot testing Activites and Fragments**
-
-ActivityScenarios and FragmentScenarios are compatible with Robolectric, which stubs the Android
-framework to run instrumented tests on the JVM.
-Therefore, we could also use Robolectric to run Activity/Fragment screenshot tests on the JVM with
-Paparazzi, theoretically.
-However, it crashes in doing so with some Byte Buddy exception at runtime, likely due to some
-clashes with Robolectric.
-
-Roborazzi, on the other hand, is built on top of Robolectric, so ActivityScenarios and
-FragmentScenarios are compatible with it.
-
-This means, only on-device screenshot testing frameworks & Roborazzi can be used for snapshoting
-Activites/Fragments. Only Paparazzi cannot.
-
-**Rendering problems**
-
-Paparazzi relies on layoutlib to record screenshots. That's a private library used to render the xml
-layouts and Compose previews in Android Studio.
-This comes with some limitations.
-For example,
-
-1. [Composables using NavHost cannot be rendered](https://github.com/cashapp/paparazzi/issues/635)
-   in the @Preview, and therefore, Paparazzi cannot either, for now.
-2. Renders incorrectly UI elements that use multiple `View.animate()`
-   and/or `ObjectAnimator.ofPropertyValuesHolder()` for animations. You can check it out yourself by
-   running
-   `./gradlew :recyclerviewscreen:paparazzi:recordPaparazziDebug` in this repo. For instance:
-
-| View.animate()                                                                                                               |                                               View.animate() + ObjectAnimator                                                |
-|------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------:|
-| <img width="350" src="https://user-images.githubusercontent.com/6097181/209678715-c7356e7b-7d4c-413a-942f-76e42e445d0b.png"> | <img width="350" src="https://user-images.githubusercontent.com/6097181/209678760-b84bb060-03fb-4050-b283-ab2e28415df7.png"> |
-
-On the other hand, on-device screenshot testing has its own issues as well. Most of them happen due
-to the **hardware accelerated drawing model**. This happens for example, when running the same test
-on machines with different architectures<sup>1</sup> e.g. Macbook Pro with M1 chip vs. Intel x64. It
-might cause issues related to:
-
-1. Shadows & elevation
-2. Font smoothing & anti-aliasing
-3. Image decompression and rendering
-4. Alpha-blending.
-
-Nevertheless, you can solve/mitigate such issues as follows:
-
-1. Hardware acceleration can be enabled/disabled at different levels e.g. Activity, Window, View...
-   to reduce such issues. Keep in mind that this affects how the screenshots are rendered.
-2. Most libraries provide a "tolerance/maxPixelDiff" mechanism to set some error threshold when
-   verifying the screenshot. Although it isn't a real fix, you could use it to mitigate such issues.
-   There is an [interesting blog](https://ndtp.github.io/android-testify/blog/platform-differences)
-   on android-testify about this.
-3. The safest solution is to generate the screenshots only on the CI, then pushing them in a new
-   commit on your PRs. Same goes for "verify". This ensures that the screenshots are always
-   generated using the same hardware.
-
-Read more about hardware acceleration in
-the [official Android documentation](https://developer.android.com/topic/performance/hardware-accel)
-
-<sup>1</sup> There is evidence of such problems in Paparazzi as well, when running tests on
-different operating systems, as stated [here](https://github.com/cashapp/paparazzi/issues/311)
-
-**Stability: Android Gradle Plugin and Compose runtime updates**
-
-Unfortunately, any Android Gradle Plugin (a.k.a. AGP) or Compose update can make your working
-Paparazzi screenshot tests break... or fix those broken.
-For instance:
-
-1. When updating to Compose runtime
-   1.4.x: [this issue](https://github.com/cashapp/paparazzi/issues/641) & [the corresponding fix](https://github.com/cashapp/paparazzi/pull/650/files)
-2. Before updating AGP to that required by Android Studio Dolphin:
-   [Compose Dialog rendering issue](https://github.com/cashapp/paparazzi/issues/619)
-
-#### Summary: Pros and Cons
-
-Let's summarize.
-
-**Pros**
-
-1. No emulators needed.
-    1. Faster
-    2. No emulator troubleshooting
-2. Uses PixelCopy by default to generate bitmaps out of the views. Thus, screenshots render UI
-   elements with elevation (e.g. shadows)
-
-**Cons**
-
-1. Cannot screenshot Activities or Fragments
-2. Rendering problems
-    1. Incorrect screenshots for UI components that call View.animate() or
-       ObjectAnimator.ofPropertyValuesHolder() several times.
-    2. Only renders what the Compose @Previews can display
-3. Fragile to AGP & Jetpack Compose updates
-
 ## Recording and verifying screenshots
+
+### Library Versions used in this repo
+
+| Library | Version |
+| ------- | ------- |
+| Compose Preview Screenshot Testing tool | 0.0.1-alpha15 |
+| Paparazzi | 2.0.0-alpha02 |
+| Roborazzi | 1.60.0 |
+| Dropshots | 0.6.0 |
+| Shot | 6.1.0 |
+| Android-testify | 5.0.2 |
+| AndroidUiTestingUtils | 2.9.0 |
 
 For screenshot testing, 2 tasks are required:
 
@@ -369,8 +222,8 @@ For now, it cannot auto-generate tests from previews in the "main" source
 
 Run the following gradle tasks
 
-1. **Record**: `./gradlew :lazycolumnscreen-previews:compose-screenshot:recordPaparazziDebug`. 
-2. **Verify**: `./gradlew :lazycolumnscreen-previews:compose-screenshot:verifyPaparazziDebug`.
+1. **Record**: `./gradlew :lazycolumnscreen-previews:compose-screenshot:updateDebugScreenshotTest`. 
+2. **Verify**: `./gradlew :lazycolumnscreen-previews:compose-screenshot:validateDebugScreenshotTest`.
 
 ### [Paparazzi](https://github.com/cashapp/paparazzi)
 
@@ -566,7 +419,7 @@ to `:recyclerviewscreen` and `:dialogs`
 > `./gradlew :lazycolumnscreen:crosslibrary:copyScreenshots -Pdevices=pixel3api30`:
 
 To enable cross-library screenshot testing, it
-uses [Android UI Testing Utils 2.1.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+uses [Android UI Testing Utils 2.9.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 
@@ -698,15 +551,6 @@ This enables to filter the test separately by executing:
 
 > **Note**</br>
 > This approach does not work for instrumented tests though.
-
-## What is coming next:
-
-1. Comparison between libraries regarding e.g. speed, reliability, configurability, etc.
-2. More Snapshot testing samples (e.g. ScrollViews, Material you + dynamic colors...)
-3. Screenshot tests with other libraries: Facebook, ndtp/Testify, without library...
-4. Running snapshot tests on multiple devices/JVM in parallel
-6. Tips to remove flakiness
-7. Tips to increase test execution speed and more...
 
 ## Code attribution
 
