@@ -24,6 +24,7 @@ import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.utils.drawToBitmapWithElevation
 import sergio.sastre.uitesting.utils.utils.waitForActivity
 import sergio.sastre.uitesting.utils.utils.waitForComposeView
+import snapshot.testing.recyclerview_previews.shot.utils.SystemUiPreviewRule
 import snapshot.testing.recyclerview_previews.shot.utils.setContent
 import sergio.sastre.uitesting.utils.common.Orientation as ComposableConfigOrientation
 
@@ -96,7 +97,9 @@ class ShotComposePreviewTests(
     val preview: ComposablePreview<AndroidPreviewInfo>,
 ) : ScreenshotTest {
 
-    @get:Rule
+    @get:Rule(order = 0)
+    val systemUiRule = SystemUiPreviewRule.createFor(preview)
+    @get:Rule(order = 1)
     val composableRule = ActivityScenarioForComposablePreviewRule.createFor(preview)
 
     @Test
@@ -106,8 +109,13 @@ class ShotComposePreviewTests(
             .waitForActivity()
             .waitForComposeView()
 
+        val bitmap = when (preview.previewInfo.showSystemUi) {
+            true -> systemUiRule.drawFullScreenToBitmap()
+            false -> view.drawToBitmapWithElevation()
+        }
+
         compareScreenshot(
-            bitmap = view.drawToBitmapWithElevation(),
+            bitmap = bitmap,
             name = AndroidPreviewScreenshotIdBuilder(preview).build()
         )
     }
