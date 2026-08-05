@@ -34,9 +34,10 @@ import sergio.sastre.uitesting.utils.common.FontSizeScale
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
 import sergio.sastre.uitesting.utils.testrules.systemui.NavigationConfig
+import sergio.sastre.uitesting.utils.testrules.systemui.StatusBarConfig
 import sergio.sastre.uitesting.utils.testrules.systemui.SystemUiTestRule
 import sergio.sastre.uitesting.utils.testrules.systemui.navigation.Navigation
-import sergio.sastre.uitesting.utils.utils.drawFullScreenToBitmap
+import sergio.sastre.uitesting.utils.testrules.systemui.statusbar.ClockTime
 import snapshot.testing.recyclerview_previews.android_testify.utils.AndroidTestifyConfig
 import sergio.sastre.uitesting.utils.common.Orientation as ComposableConfigOrientation
 
@@ -88,7 +89,10 @@ object SystemUiPreviewRule {
                 GESTURE -> Navigation.GESTURAL
                 null -> Navigation.GESTURAL
             }
-        return SystemUiTestRule(navigationConfig = NavigationConfig(mode = navigation))
+        return SystemUiTestRule(
+            navigationConfig = NavigationConfig(mode = navigation),
+            statusBarConfig = StatusBarConfig(clockTime = ClockTime.from("10:00"))
+        )
     }
 }
 
@@ -109,8 +113,15 @@ object ActivityScenarioForComposablePreviewRule {
         val locale =
             preview.previewInfo.locale.removePrefix("b+").replace("+", "-").ifBlank { "en" }
 
+        val showSystemUi = preview.previewInfo.showSystemUi
+        val backgroundColor = when (showSystemUi) {
+            true -> null
+            false -> Color.TRANSPARENT
+        }
+
         return ActivityScenarioForComposableRule(
-            backgroundColor = Color.TRANSPARENT,
+            backgroundColor = backgroundColor,
+            showStatusBar = showSystemUi,
             config = ComposableConfigItem(
                 uiMode = uiMode,
                 fontSize = FontSizeScale.Value(preview.previewInfo.fontScale),
