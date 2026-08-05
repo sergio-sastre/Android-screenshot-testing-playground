@@ -21,7 +21,7 @@ examples written with different screenshot testing libraries for a better compar
 These examples include tests for screens like the one above (module `:recyclerviewscreen`)
 
 > **Warning**</br>
-> It is configured with AGP 9.0.0, so it requires Android Studio Narwahl or higher!
+> It is configured with AGP 9.0.0, so it requires Android Studio Panda or higher and Java 21!
 
 ## Awards
 
@@ -102,7 +102,7 @@ In order to do that, it contains the same/similar examples but written with diff
 It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests
 running with multiple libraries, namely: Paparazzi, Roborazzi, Shot, Dropshots & Android-Testify*.
 For that it
-uses [Android UI Testing Utils 2.9.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+uses [Android UI Testing Utils 2.10.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 You can read more about it in this blog post series:
 
@@ -170,15 +170,15 @@ screenshot tests.
 
 ### Library Versions used in this repo
 
-| Library | Version |
-| ------- | ------- |
-| Compose Preview Screenshot Testing tool | 0.0.1-alpha15 |
-| Paparazzi | 2.0.0-alpha02 |
-| Roborazzi | 1.60.0 |
-| Dropshots | 0.6.0 |
-| Shot | 6.1.0 |
-| Android-testify | 5.0.2 |
-| AndroidUiTestingUtils | 2.9.0 |
+| Library | Version       |
+| ------- |---------------|
+| Compose Preview Screenshot Testing tool | 0.0.1-alpha16 |
+| Paparazzi | 2.0.0-alpha04 |
+| Roborazzi | 1.70.0        |
+| Dropshots | 0.6.0         |
+| Shot | 6.1.0         |
+| Android-testify | 5.0.2         |
+| AndroidUiTestingUtils | 2.10.0        |
 
 For screenshot testing, 2 tasks are required:
 
@@ -419,7 +419,7 @@ to `:recyclerviewscreen` and `:dialogs`
 > `./gradlew :lazycolumnscreen:crosslibrary:copyScreenshots -Pdevices=pixel3api30`:
 
 To enable cross-library screenshot testing, it
-uses [Android UI Testing Utils 2.9.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+uses [Android UI Testing Utils 2.10.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 
