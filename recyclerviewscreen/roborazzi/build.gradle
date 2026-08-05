@@ -63,8 +63,8 @@ dependencies {
     implementation project(':recyclerviewscreen')
 
     testImplementation "org.robolectric:robolectric:4.16.1"
-    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.60.0"
+    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.70.0"
 
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.9.0'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.9.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.10.0'
 }

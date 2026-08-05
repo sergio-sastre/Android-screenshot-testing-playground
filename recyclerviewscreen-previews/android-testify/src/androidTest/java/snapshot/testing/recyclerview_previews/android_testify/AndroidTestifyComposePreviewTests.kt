@@ -1,7 +1,9 @@
 package snapshot.testing.recyclerview_previews.android_testify
 
+import android.app.Activity
 import android.content.res.Configuration.*
 import android.graphics.Color
+import android.view.View
 import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.google.testing.junit.testparameterinjector.TestParameter
@@ -17,6 +19,8 @@ import org.junit.runner.RunWith
 import sergio.sastre.composable.preview.scanner.android.AndroidComposablePreviewScanner
 import sergio.sastre.composable.preview.scanner.android.AndroidPreviewInfo
 import sergio.sastre.composable.preview.scanner.android.device.DevicePreviewInfoParser
+import sergio.sastre.composable.preview.scanner.android.device.domain.Navigation.BUTTONS
+import sergio.sastre.composable.preview.scanner.android.device.domain.Navigation.GESTURE
 import sergio.sastre.composable.preview.scanner.android.device.domain.Orientation
 import sergio.sastre.composable.preview.scanner.android.screenshotid.AndroidPreviewScreenshotIdBuilder
 import sergio.sastre.composable.preview.scanner.core.preview.ComposablePreview
@@ -29,6 +33,11 @@ import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
 import sergio.sastre.uitesting.utils.common.FontSizeScale
 import sergio.sastre.uitesting.utils.common.UiMode
 import sergio.sastre.uitesting.utils.testrules.animations.DisableAnimationsRule
+import sergio.sastre.uitesting.utils.testrules.systemui.NavigationConfig
+import sergio.sastre.uitesting.utils.testrules.systemui.StatusBarConfig
+import sergio.sastre.uitesting.utils.testrules.systemui.SystemUiTestRule
+import sergio.sastre.uitesting.utils.testrules.systemui.navigation.Navigation
+import sergio.sastre.uitesting.utils.testrules.systemui.statusbar.ClockTime
 import snapshot.testing.recyclerview_previews.android_testify.utils.AndroidTestifyConfig
 import sergio.sastre.uitesting.utils.common.Orientation as ComposableConfigOrientation
 
@@ -72,6 +81,21 @@ object ComposablePreviewProvider : TestParameterValuesProvider() {
             .getPreviews()
 }
 
+object SystemUiPreviewRule {
+    fun createFor(preview: ComposablePreview<AndroidPreviewInfo>): SystemUiTestRule {
+        val navigation =
+            when (DevicePreviewInfoParser.parse(preview.previewInfo.device)?.navigation) {
+                BUTTONS -> Navigation.THREE_BUTTON
+                GESTURE -> Navigation.GESTURAL
+                null -> Navigation.GESTURAL
+            }
+        return SystemUiTestRule(
+            navigationConfig = NavigationConfig(mode = navigation),
+            statusBarConfig = StatusBarConfig(clockTime = ClockTime.from("10:00"))
+        )
+    }
+}
+
 object ActivityScenarioForComposablePreviewRule {
     fun createFor(preview: ComposablePreview<AndroidPreviewInfo>): ActivityScenarioForComposableRule {
         val uiMode =
@@ -89,8 +113,15 @@ object ActivityScenarioForComposablePreviewRule {
         val locale =
             preview.previewInfo.locale.removePrefix("b+").replace("+", "-").ifBlank { "en" }
 
+        val showSystemUi = preview.previewInfo.showSystemUi
+        val backgroundColor = when (showSystemUi) {
+            true -> null
+            false -> Color.TRANSPARENT
+        }
+
         return ActivityScenarioForComposableRule(
-            backgroundColor = Color.TRANSPARENT,
+            backgroundColor = backgroundColor,
+            showStatusBar = showSystemUi,
             config = ComposableConfigItem(
                 uiMode = uiMode,
                 fontSize = FontSizeScale.Value(preview.previewInfo.fontScale),
@@ -124,20 +155,30 @@ class AndroidTestifyComposePreviewTests(
     var disableAnimationsRule = DisableAnimationsRule()
 
     @get:Rule(order = 1)
-    val composableRule = ActivityScenarioForComposablePreviewRule.createFor(preview)
+    val systemUiRule = SystemUiPreviewRule.createFor(preview)
 
     @get:Rule(order = 2)
+    val composableRule = ActivityScenarioForComposablePreviewRule.createFor(preview)
+
+    @get:Rule(order = 3)
     var screenshotRule = ScreenshotScenarioPreviewRule.createFor(preview)
 
     @ScreenshotInstrumentation
     @Test
     fun snapPreview() {
+
         screenshotRule
             .withScenario(composableRule.activityScenario)
             .setScreenshotViewProvider {
                 composableRule.setContent { preview() }.composeView
             }
-            .configure { captureMethod = ::pixelCopyCapture }
+            .configure {
+                captureMethod =
+                    when (preview.previewInfo.showSystemUi) {
+                        true -> { _: Activity, _: View? -> systemUiRule.drawFullScreenToBitmap() }
+                        false -> { activity: Activity, targetView: View? -> pixelCopyCapture(activity, targetView) }
+                    }
+            }
             .generateDiffs(true)
             .assertSame(
                 name = AndroidPreviewScreenshotIdBuilder(preview).build()

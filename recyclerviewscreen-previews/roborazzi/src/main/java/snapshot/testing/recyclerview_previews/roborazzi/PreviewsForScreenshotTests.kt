@@ -24,6 +24,8 @@ import snapshot.testing.recyclerview_previews.roborazzi.utils.initialTrainingIte
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, apiLevel = 31)
+@Preview(showSystemUi = true) // navigation = gesture
+@Preview(showSystemUi = true, device = "spec:parent=pixel_5, orientation=landscape, navigation=buttons")
 @Composable
 fun MemoriseTextViewHolderPreview() {
 

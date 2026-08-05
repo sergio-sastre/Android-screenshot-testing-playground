@@ -59,7 +59,7 @@ dependencies {
     implementation project(':lazycolumnscreen')
 
     // Jetpack Compose
-    implementation platform('androidx.compose:compose-bom:2025.05.01')
+    implementation platform('androidx.compose:compose-bom:2026.06.01')
     implementation "androidx.compose.runtime:runtime"
     implementation "androidx.compose.foundation:foundation-layout"
     implementation "androidx.compose.material:material"
@@ -73,8 +73,8 @@ dependencies {
 
     testImplementation "org.robolectric:robolectric:4.16.1"
 
-    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.19'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.60.0'
-    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support:1.60.0'
-    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.0'
+    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.22'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose:1.70.0'
+    testImplementation 'io.github.takahirom.roborazzi:roborazzi-compose-preview-scanner-support:1.70.0'
+    testImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.1'
 }

@@ -19,9 +19,6 @@ import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.ui.rows
 import com.example.road.to.effective.snapshot.testing.recyclerviewscreen.R
 
 /**
- * WARNING: Currently this crashes due to a bug in Compose Screenshot Tool:
- * https://issuetracker.google.com/issues/384188032
- *
  * Record: ./gradlew :recyclerviewscreen-previews:compose-screenshot:updateDebugScreenshotTest
  * Verify: ./gradlew :recyclerviewscreen-previews:compose-screenshot:validateDebugScreenshotTest
  *
@@ -32,6 +29,8 @@ class PreviewsForScreenshotTests {
     @PreviewTest
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
     @Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, apiLevel = 31)
+    @Preview(showSystemUi = true) // navigation = gesture
+    @Preview(showSystemUi = true, device = "spec:parent=pixel_5, orientation=landscape, navigation=buttons")
     @Composable
     fun MemoriseTextViewHolderPreview() {
 
