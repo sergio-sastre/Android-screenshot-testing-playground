@@ -41,9 +41,6 @@ android {
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     testOptions {
-        screenshotTests {
-            imageDifferenceThreshold = 0.0001f // 0.01%
-        }
         targetSdk 36
     }
     lint {
@@ -58,5 +55,5 @@ dependencies {
     // Jetpack Compose
     screenshotTestImplementation platform('androidx.compose:compose-bom:2026.06.01')
     screenshotTestImplementation "androidx.compose.ui:ui-tooling"
-    screenshotTestImplementation 'com.android.tools.screenshot:screenshot-validation-api:0.0.1-alpha15'
+    screenshotTestImplementation 'com.android.tools.screenshot:screenshot-validation-api:0.0.1-alpha16'
 }

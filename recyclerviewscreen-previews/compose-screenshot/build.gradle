@@ -39,9 +39,6 @@ android {
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     testOptions {
-        screenshotTests {
-            imageDifferenceThreshold = 0.0001f // 0.01%
-        }
         targetSdk 36
     }
     kotlinOptions {
@@ -50,7 +47,6 @@ android {
     lint {
         targetSdk 36
     }
-
 }
 
 dependencies {
@@ -73,5 +69,5 @@ dependencies {
     screenshotTestImplementation "androidx.compose.ui:ui"
     screenshotTestImplementation "androidx.compose.ui:ui-tooling"
     screenshotTestImplementation "androidx.compose.ui:ui-tooling-preview"
-    screenshotTestImplementation 'com.android.tools.screenshot:screenshot-validation-api:0.0.1-alpha15'
+    screenshotTestImplementation 'com.android.tools.screenshot:screenshot-validation-api:0.0.1-alpha16'
 }
