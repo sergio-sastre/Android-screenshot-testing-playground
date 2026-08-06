@@ -88,13 +88,13 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.google.android.material:material:1.13.0'
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.1')
 
     // Support for Shot
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.10.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.10.1')
 
     // Support for Roborazzi
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.10.0')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.10.0')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.10.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.10.1')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.10.1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.10.1')
 }

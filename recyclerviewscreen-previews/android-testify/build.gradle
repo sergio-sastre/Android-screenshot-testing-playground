@@ -124,8 +124,8 @@ dependencies {
         because "The ActivityScenarioRule wants to set a Composable as activity content"
     }
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.22'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.10.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.10.1'
     debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.1'
 
     androidTestImplementation 'androidx.test:rules:1.7.0'
