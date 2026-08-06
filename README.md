@@ -102,7 +102,7 @@ In order to do that, it contains the same/similar examples but written with diff
 It also contains examples of **Cross-Library Screenshot Tests**: *the very same screenshot tests
 running with multiple libraries, namely: Paparazzi, Roborazzi, Shot, Dropshots & Android-Testify*.
 For that it
-uses [Android UI Testing Utils 2.10.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+uses [Android UI Testing Utils 2.10.1](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 You can read more about it in this blog post series:
 
@@ -178,7 +178,7 @@ screenshot tests.
 | Dropshots | 0.6.0         |
 | Shot | 6.1.0         |
 | Android-testify | 5.0.2         |
-| AndroidUiTestingUtils | 2.10.0        |
+| AndroidUiTestingUtils | 2.10.1        |
 
 For screenshot testing, 2 tasks are required:
 
@@ -419,7 +419,7 @@ to `:recyclerviewscreen` and `:dialogs`
 > `./gradlew :lazycolumnscreen:crosslibrary:copyScreenshots -Pdevices=pixel3api30`:
 
 To enable cross-library screenshot testing, it
-uses [Android UI Testing Utils 2.10.0](https://github.com/sergio-sastre/AndroidUiTestingUtils)
+uses [Android UI Testing Utils 2.10.1](https://github.com/sergio-sastre/AndroidUiTestingUtils)
 
 ## Parameterized Screenshot Tests
 

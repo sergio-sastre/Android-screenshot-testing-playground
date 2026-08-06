@@ -26,7 +26,7 @@ android {
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
-        minSdk 23
+        minSdk 24
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments = [
@@ -100,8 +100,8 @@ dependencies {
 
     androidTestImplementation 'androidx.test:rules:1.7.0'
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.0'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.10.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.10.1'
 
     androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.22'
 
