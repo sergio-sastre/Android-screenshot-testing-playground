@@ -28,6 +28,7 @@ import sergio.sastre.composable.preview.scanner.core.preview.getAnnotation
 import sergio.sastre.uitesting.android_testify.screenshotscenario.assertSame
 import sergio.sastre.uitesting.android_testify.screenshotscenario.generateDiffs
 import sergio.sastre.uitesting.android_testify.screenshotscenario.setContent
+import sergio.sastre.uitesting.android_testify.screenshotscenario.waitForIdleSync
 import sergio.sastre.uitesting.utils.activityscenario.ActivityScenarioForComposableRule
 import sergio.sastre.uitesting.utils.activityscenario.ComposableConfigItem
 import sergio.sastre.uitesting.utils.common.FontSizeScale
@@ -77,8 +78,7 @@ object ComposablePreviewProvider : TestParameterValuesProvider() {
             .scanFile(
                 targetInputStream = getInstrumentation().context.assets.open("scan_result.json"),
                 customPreviewsInfoInputStream = getInstrumentation().context.assets.open("custom_previews.json")
-            )
-            .getPreviews()
+            ).getPreviews()
 }
 
 object SystemUiPreviewRule {
@@ -98,11 +98,10 @@ object SystemUiPreviewRule {
 
 object ActivityScenarioForComposablePreviewRule {
     fun createFor(preview: ComposablePreview<AndroidPreviewInfo>): ActivityScenarioForComposableRule {
-        val uiMode =
-            when (preview.previewInfo.uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES) {
-                true -> UiMode.NIGHT
-                false -> UiMode.DAY
-            }
+        val uiMode = when (preview.previewInfo.uiMode and UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES) {
+            true -> UiMode.NIGHT
+            false -> UiMode.DAY
+        }
 
         val orientation =
             when (DevicePreviewInfoParser.parse(preview.previewInfo.device)?.orientation == Orientation.LANDSCAPE) {
@@ -147,8 +146,7 @@ object ScreenshotScenarioPreviewRule {
 @SdkSuppress(minSdkVersion = 24)
 @RunWith(TestParameterInjector::class)
 class AndroidTestifyComposePreviewTests(
-    @TestParameter(valuesProvider = ComposablePreviewProvider::class)
-    val preview: ComposablePreview<AndroidPreviewInfo>,
+    @TestParameter(valuesProvider = ComposablePreviewProvider::class) val preview: ComposablePreview<AndroidPreviewInfo>,
 ) {
 
     @get:Rule(order = 0)
@@ -166,20 +164,18 @@ class AndroidTestifyComposePreviewTests(
     @ScreenshotInstrumentation
     @Test
     fun snapPreview() {
-
         screenshotRule
             .withScenario(composableRule.activityScenario)
             .setScreenshotViewProvider {
                 composableRule.setContent { preview() }.composeView
-            }
-            .configure {
-                captureMethod =
-                    when (preview.previewInfo.showSystemUi) {
-                        true -> { _: Activity, _: View? -> systemUiRule.drawFullScreenToBitmap() }
-                        false -> { activity: Activity, targetView: View? -> pixelCopyCapture(activity, targetView) }
-                    }
+            }.configure {
+                captureMethod = when (preview.previewInfo.showSystemUi) {
+                    true -> { _: Activity, _: View? -> systemUiRule.drawFullScreenToBitmap() }
+                    false -> { activity: Activity, targetView: View? -> pixelCopyCapture(activity, targetView) }
+                }
             }
             .generateDiffs(true)
+            .waitForIdleSync()
             .assertSame(
                 name = AndroidPreviewScreenshotIdBuilder(preview).build()
             )

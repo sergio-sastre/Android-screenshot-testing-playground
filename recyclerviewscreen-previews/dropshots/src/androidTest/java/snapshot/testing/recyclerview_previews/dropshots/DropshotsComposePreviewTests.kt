@@ -2,7 +2,6 @@ package snapshot.testing.recyclerview_previews.dropshots
 
 import android.content.res.Configuration.*
 import android.graphics.Color
-import androidx.test.espresso.action.Swiper
 import androidx.test.filters.SdkSuppress
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.dropbox.dropshots.Dropshots

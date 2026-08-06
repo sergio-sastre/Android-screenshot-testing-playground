@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
-        minSdk 23
+        minSdk 24
 
         // Warning: For Dropshots, replace it with testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner "com.karumi.shot.ShotTestRunner"

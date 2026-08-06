@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         testApplicationId "com.example.road.to.effective.snapshot.testing"
-        minSdk 23
+        minSdk 24
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
