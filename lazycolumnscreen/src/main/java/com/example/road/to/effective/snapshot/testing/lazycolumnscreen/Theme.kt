@@ -1,17 +1,19 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen
 
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 
-val lightThemeColors = lightColors(
+val lightThemeColors = lightColorScheme(
     primary = Color(0xFF855446),
-    primaryVariant = Color(0xFF9C684B),
     secondary = Color(0xFF03DAC5),
-    secondaryVariant = Color(0xFF0AC9F0),
     background = Color.White,
     surface = Color.White,
     error = Color(0xFFB00020),
@@ -22,9 +24,8 @@ val lightThemeColors = lightColors(
     onError = Color.White
 )
 
-val darkThemeColors = darkColors(
+val darkThemeColors = darkColorScheme(
     primary = Color(0xFF1F1F1F),
-    primaryVariant = Color(0xFF3E2723),
     secondary = Color(0xFF03DAC5),
     background = Color(0xFF121212),
     surface = Color.Black,
@@ -36,19 +37,23 @@ val darkThemeColors = darkColors(
     onError = Color.Black
 )
 
-@SuppressWarnings
 @Composable
 fun AppTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colors = if (isSystemInDarkTheme()) {
-        darkThemeColors
-    } else {
-        lightThemeColors
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+        darkTheme -> darkThemeColors
+        else -> lightThemeColors
     }
 
     MaterialTheme(
-        colors = colors,
+        colorScheme = colorScheme,
         content = content
     )
 }
