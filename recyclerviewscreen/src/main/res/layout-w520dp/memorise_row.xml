@@ -9,6 +9,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mainLayout"
+        style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
@@ -16,6 +17,9 @@
         android:minHeight="90dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
+        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
+        app:strokeWidth="1dp"
+        app:strokeColor="?attr/colorOutlineVariant"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

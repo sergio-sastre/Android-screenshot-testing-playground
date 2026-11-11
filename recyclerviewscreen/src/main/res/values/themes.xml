@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.RoadToEffectiveSnapshotTesting" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.RoadToEffectiveSnapshotTesting" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -15,11 +15,11 @@
         <item name="training_card_bg_color">@color/light_blue</item>
         <item name="memorise_info_text_color">@color/light_blue</item>
         <item name="background_color">@color/background</item>
-        <item name="memorise_title_color">@color/dark_grey</item>
-        <item name="memorise_body_color">@color/super_light_grey</item>
-        <item name="error_color">@color/design_default_color_error</item>
-        <item name="delete_dialog_button_bar_color">@color/super_light_grey</item>
-        <item name="delete_dialog_cancel_button_text_color">@color/dark_grey</item>
+        <item name="memorise_title_color">?attr/colorOnSurface</item>
+        <item name="memorise_body_color">?attr/colorOnSurfaceVariant</item>
+        <item name="error_color">?attr/colorError</item>
+        <item name="delete_dialog_button_bar_color">?attr/colorSecondaryContainer</item>
+        <item name="delete_dialog_cancel_button_text_color">?attr/colorOnSecondaryContainer</item>
         <item name="delete_icon_color">@color/white</item>
         <item name="delete_circle_stroke_color">@color/pinkish_red</item>
     </style>
