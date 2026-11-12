@@ -1,5 +1,6 @@
 package com.example.road.to.effective.snapshot.testing.lazycolumnscreen.roborazzi.utils
 
+import com.github.takahirom.roborazzi.AccessibilityLegend
 import com.github.takahirom.roborazzi.Dump
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RoborazziOptions
@@ -14,7 +15,5 @@ fun filePath(name: String): String {
 @OptIn(ExperimentalRoborazziApi::class)
 val roborazziAccessibilityOptions: RoborazziOptions =
     RoborazziOptions(
-        captureType = RoborazziOptions.CaptureType.Dump(
-            explanation = Dump.Companion.AccessibilityExplanation
-        )
+        captureType = RoborazziOptions.CaptureType.AccessibilityLegend()
     )

@@ -6,6 +6,7 @@ import com.example.road.to.effective.snapshot.testing.dialogs.DialogBuilder
 import com.example.road.to.effective.snapshot.testing.dialogs.R
 import com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.filePath
 import com.example.road.to.effective.snapshot.testing.dialogs.roborazzi.itemArray
+import com.github.takahirom.roborazzi.AccessibilityLegend
 import com.github.takahirom.roborazzi.Dump
 import com.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import com.github.takahirom.roborazzi.RoborazziOptions
@@ -87,9 +88,7 @@ class AccessibilityTest {
             .captureRoboImage(
                 filePath = filePath("DeleteDialog_Accessibility"),
                 roborazziOptions = RoborazziOptions(
-                    captureType = RoborazziOptions.CaptureType.Dump(
-                        explanation = Dump.Companion.AccessibilityExplanation
-                    )
+                    captureType = RoborazziOptions.CaptureType.AccessibilityLegend()
                 )
             )
     }

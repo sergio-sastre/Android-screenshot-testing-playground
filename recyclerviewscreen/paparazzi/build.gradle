@@ -65,5 +65,5 @@ dependencies {
     implementation "androidx.compose.runtime:runtime"
     implementation "androidx.compose.ui:ui"
 
-    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.22'
+    testImplementation 'com.google.testparameterinjector:test-parameter-injector:1.25'
 }

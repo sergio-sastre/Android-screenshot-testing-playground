@@ -174,7 +174,7 @@ screenshot tests.
 | ------- |---------------|
 | Compose Preview Screenshot Testing tool | 0.0.1-alpha16 |
 | Paparazzi | 2.0.0-alpha04 |
-| Roborazzi | 1.70.0        |
+| Roborazzi | 1.79.0        |
 | Dropshots | 0.6.0         |
 | Shot | 6.1.0         |
 | Android-testify | 5.0.2         |
