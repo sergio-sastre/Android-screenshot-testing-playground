@@ -78,7 +78,7 @@ dependencies {
     androidTestImplementation('androidx.navigation:navigation-compose:2.9.5') {
         because "The ActivityScenarioRule wants to set a Composable as activity content"
     }
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.22'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.1'
-    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.9.1'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.25'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.11.0'
+    debugImplementation 'io.github.sergio-sastre.ComposablePreviewScanner:android:0.10.0'
 }

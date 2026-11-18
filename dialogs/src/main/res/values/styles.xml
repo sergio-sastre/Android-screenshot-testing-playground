@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="DeleteDialogButton" parent="Widget.MaterialComponents.Button">
+    <style name="DeleteDialogButton" parent="Widget.Material3.Button">
         <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
@@ -8,7 +8,7 @@
         <item name="cornerRadius">16dp</item>
     </style>
 
-    <style name="CancelDialogButton" parent="Widget.MaterialComponents.Button.TextButton">
+    <style name="CancelDialogButton" parent="Widget.Material3.Button.TextButton">
         <item name="android:fontFamily">@font/montserrat_alternates_with_cyrillic</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">?attr/delete_dialog_cancel_button_text_color</item>
@@ -24,7 +24,7 @@
         <item name="fontFamily">@font/montserrat_alternates_with_cyrillic</item>
     </style>
 
-    <style name="Subtitle" parent="TextAppearance.AppCompat.Body1"> -->
+    <style name="Subtitle" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">?attr/memorise_body_color</item>
         <item name="android:maxLines">4</item>

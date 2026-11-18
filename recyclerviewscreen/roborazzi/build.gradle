@@ -62,9 +62,9 @@ android {
 dependencies {
     implementation project(':recyclerviewscreen')
 
-    testImplementation "org.robolectric:robolectric:4.16.1"
-    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.70.0"
+    testImplementation "org.robolectric:robolectric:4.18"
+    testImplementation "io.github.takahirom.roborazzi:roborazzi:1.79.0"
 
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.1'
-    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.10.1'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.11.0'
+    testImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.11.0'
 }

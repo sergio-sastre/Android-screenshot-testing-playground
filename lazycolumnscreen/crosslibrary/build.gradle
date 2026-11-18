@@ -137,23 +137,23 @@ dependencies {
 
     // Jetpack Compose
     debugImplementation platform('androidx.compose:compose-bom:2026.06.01')
-    debugImplementation "androidx.compose.material:material"
+    debugImplementation "androidx.compose.material3:material3"
 
     // screenshot libs
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.11.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.10.1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:shot:2.11.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.10.1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:dropshots:2.11.0')
 
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.10.1')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.11.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.10.1')
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.10.1')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.10.1')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:robolectric:2.11.0')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:roborazzi:2.11.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-roborazzi:2.11.0')
 
-    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.10.1')
-    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.10.1')
+    testImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:paparazzi:2.11.0')
+    debugImplementation('com.github.sergio-sastre.AndroidUiTestingUtils:mapper-paparazzi:2.11.0')
 
     // for Gradle Managed Devices
     androidTestUtil('androidx.test.services:test-services:1.6.0')

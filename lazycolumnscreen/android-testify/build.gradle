@@ -112,14 +112,14 @@ dependencies {
 
     // Jetpack Compose
     androidTestImplementation platform('androidx.compose:compose-bom:2026.06.01')
-    androidTestImplementation 'androidx.compose.material:material'
+    androidTestImplementation 'androidx.compose.material3:material3'
 
-    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.22'
+    androidTestImplementation 'com.google.testparameterinjector:test-parameter-injector:1.25'
 
     androidTestImplementation 'androidx.test:rules:1.7.0'
 
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.10.1'
-    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.10.1'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:utils:2.11.0'
+    androidTestImplementation 'com.github.sergio-sastre.AndroidUiTestingUtils:android-testify:2.11.0'
 
     androidTestUtil 'androidx.test:orchestrator:1.6.1'
     androidTestUtil 'androidx.test.services:test-services:1.6.0'

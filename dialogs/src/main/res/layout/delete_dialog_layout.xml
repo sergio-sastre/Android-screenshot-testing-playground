@@ -28,6 +28,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mainLayout"
+        style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -36,6 +37,7 @@
         android:minHeight="90dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
+        app:cardBackgroundColor="?attr/colorPrimaryContainer"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
